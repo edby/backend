@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-boss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-fastjson" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-generator" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-monitor" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-orm" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-payment" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-platscan" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-quartz" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-quotation" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-rpc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-ignite" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-security" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-socket" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-tools" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-trade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-tradex" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-wallet" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-webapp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-sdk" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-server" charset="UTF-8" />
+  </component>
+</project>

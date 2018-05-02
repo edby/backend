@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--BTC2EUR-->
+    <!--成交信息缓存配置-->
+    <bean id="btc2eur_entrustVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">
+        <property name="name" value="${cache.btc2eur.entrust}"/>
+        <property name="cacheMode" value="REPLICATED"/>
+        <property name="atomicityMode" value="TRANSACTIONAL"/>
+        <property name="readThrough" value="true"/>
+        <property name="writeThrough" value="true"/>
+        <property name="writeBehindEnabled" value="true"/>
+        <property name="cacheStoreFactory">
+            <bean class="org.apache.ignite.cache.store.jdbc.CacheJdbcPojoStoreFactory">
+                <property name="dataSourceBean" value="dataSource"/>
+                <property name="dialect" ref="oracleDialect"/>
+
+                <property name="types">
+                    <list>
+                        <bean class="org.apache.ignite.cache.store.jdbc.JdbcType">
+                            <property name="cacheName" value="${cache.btc2eur.entrust}"/>
+                            <property name="keyType" value="java.lang.Long"/>
+                            <property name="valueType" value="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney"/>
+                            <property name="databaseSchema" value="${jdbc.schema}"/>
+                            <property name="databaseTable" value="${tbl.btc2eur.entrust}"/>
+
+                            <property name="keyFields">
+                                <list>
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="id"/>
+                                    </bean>
+                                </list>
+                            </property>
+
+                            <property name="valueFields">
+                                <list>
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="id"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ACCOUNTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="accountId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.TIMESTAMP"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTTIME"/>
+                                        <constructor-arg value="java.sql.Timestamp"/>
+                                        <constructor-arg value="entrustTime"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTSOURCE"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="entrustSource"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUSINESSFLAG"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="businessFlag"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="TRADETYPE"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="tradeType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTTYPE"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="entrustType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTDIRECT"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="entrustDirect"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTSTOCKINFOID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="entrustStockinfoId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTRELATEDSTOCKINFOID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="entrustRelatedStockinfoId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTAMT"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="entrustAmt"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTPRICE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="entrustPrice"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTREMARK"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="entrustRemark"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ENTRUSTACCOUNTTYPE"/>
+                                        <constructor-arg value="java.lang.Boolean"/>
+                                        <constructor-arg value="entrustAccountType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="FEERATE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="feeRate"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="FEESTOCKINFOID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="feeStockinfoId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALAMT"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealAmt"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALBALANCE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealBalance"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALFEE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealFee"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="STATUS"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="status"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.TIMESTAMP"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="UPDATETIME"/>
+                                        <constructor-arg value="java.sql.Timestamp"/>
+                                        <constructor-arg value="updateTime"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="REMARK"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="remark"/>
+                                    </bean>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="queryEntities">
+            <list>
+                <bean class="org.apache.ignite.cache.QueryEntity">
+                    <property name="keyType" value="java.lang.Long"/>
+                    <property name="valueType" value="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney"/>
+                    <property name="keyFieldName" value="id"/>
+
+                    <property name="keyFields">
+                        <list>
+                            <value>id</value>
+                        </list>
+                    </property>
+
+                    <property name="fields">
+                        <map>
+                            <entry key="accountId" value="java.lang.Long"/>
+                            <entry key="entrustTime" value="java.sql.Timestamp"/>
+                            <entry key="entrustSource" value="java.lang.String"/>
+                            <entry key="businessFlag" value="java.lang.String"/>
+                            <entry key="tradeType" value="java.lang.String"/>
+                            <entry key="entrustType" value="java.lang.String"/>
+                            <entry key="entrustDirect" value="java.lang.String"/>
+                            <entry key="entrustStockinfoId" value="java.lang.Long"/>
+                            <entry key="entrustRelatedStockinfoId" value="java.lang.Long"/>
+                            <entry key="entrustAmt" value="java.math.BigDecimal"/>
+                            <entry key="entrustPrice" value="java.math.BigDecimal"/>
+                            <entry key="entrustRemark" value="java.lang.String"/>
+                            <entry key="entrustAccountType" value="java.lang.Boolean"/>
+                            <entry key="feeRate" value="java.math.BigDecimal"/>
+                            <entry key="feeStockinfoId" value="java.lang.Long"/>
+                            <entry key="dealAmt" value="java.math.BigDecimal"/>
+                            <entry key="dealBalance" value="java.math.BigDecimal"/>
+                            <entry key="dealFee" value="java.math.BigDecimal"/>
+                            <entry key="status" value="java.lang.String"/>
+                            <entry key="updateTime" value="java.sql.Timestamp"/>
+                            <entry key="remark" value="java.lang.String"/>
+                            <entry key="id" value="java.lang.Long"/>
+                        </map>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!--委托信息缓存配置-->
+    <bean id="btc2eur_realDealVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">
+        <property name="name" value="${cache.btc2eur.realdeal}"/>
+        <property name="cacheMode" value="REPLICATED"/>
+        <property name="atomicityMode" value="TRANSACTIONAL"/>
+        <property name="readThrough" value="true"/>
+        <property name="writeThrough" value="true"/>
+        <property name="writeBehindEnabled" value="true"/>
+        <property name="cacheStoreFactory">
+            <bean class="org.apache.ignite.cache.store.jdbc.CacheJdbcPojoStoreFactory">
+                <property name="dataSourceBean" value="dataSource"/>
+                <property name="dialect" ref="oracleDialect"/>
+
+                <property name="types">
+                    <list>
+                        <bean class="org.apache.ignite.cache.store.jdbc.JdbcType">
+                            <property name="cacheName" value="${cache.btc2eur.realdeal}"/>
+                            <property name="keyType" value="java.lang.Long"/>
+                            <property name="valueType" value="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney"/>
+                            <property name="databaseSchema" value="${jdbc.schema}"/>
+                            <property name="databaseTable" value="${tbl.btc2eur.realdeal}"/>
+
+                            <property name="keyFields">
+                                <list>
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="id"/>
+                                    </bean>
+                                </list>
+                            </property>
+
+                            <property name="valueFields">
+                                <list>
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="id"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYACCOUNTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="buyAccountId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLACCOUNTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="sellAccountId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYENTRUSTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="buyEntrustId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLENTRUSTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="sellEntrustId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="TRADETYPE"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="tradeType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUSINESSFLAG"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="businessFlag"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALDIRECT"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="dealDirect"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALSTOCKINFOID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="dealStockinfoId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALAMT"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealAmt"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALPRICE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealPrice"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALBALANCE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealBalance"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.TIMESTAMP"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALTIME"/>
+                                        <constructor-arg value="java.sql.Timestamp"/>
+                                        <constructor-arg value="dealTime"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYFEETYPE"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="buyFeeType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLFEETYPE"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="sellFeeType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYFEE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="buyFee"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLFEE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="sellFee"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="REMARK"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="remark"/>
+                                    </bean>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="queryEntities">
+            <list>
+                <bean class="org.apache.ignite.cache.QueryEntity">
+                    <property name="keyType" value="java.lang.Long"/>
+                    <property name="valueType" value="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney"/>
+                    <property name="keyFieldName" value="id"/>
+
+                    <property name="keyFields">
+                        <list>
+                            <value>id</value>
+                        </list>
+                    </property>
+
+                    <property name="fields">
+                        <map>
+                            <entry key="buyAccountId" value="java.lang.Long"/>
+                            <entry key="sellAccountId" value="java.lang.Long"/>
+                            <entry key="buyEntrustId" value="java.lang.Long"/>
+                            <entry key="sellEntrustId" value="java.lang.Long"/>
+                            <entry key="tradeType" value="java.lang.String"/>
+                            <entry key="businessFlag" value="java.lang.String"/>
+                            <entry key="dealDirect" value="java.lang.String"/>
+                            <entry key="dealStockinfoId" value="java.lang.Long"/>
+                            <entry key="dealAmt" value="java.math.BigDecimal"/>
+                            <entry key="dealPrice" value="java.math.BigDecimal"/>
+                            <entry key="dealBalance" value="java.math.BigDecimal"/>
+                            <entry key="dealTime" value="java.sql.Timestamp"/>
+                            <entry key="buyFeeType" value="java.lang.Long"/>
+                            <entry key="sellFeeType" value="java.lang.Long"/>
+                            <entry key="buyFee" value="java.math.BigDecimal"/>
+                            <entry key="sellFee" value="java.math.BigDecimal"/>
+                            <entry key="remark" value="java.lang.String"/>
+                            <entry key="id" value="java.lang.Long"/>
+                        </map>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!--委托历史信息缓存配置-->
+    <bean id="btc2eur_realDealVCoinMoneyHisCache" class="org.apache.ignite.configuration.CacheConfiguration">
+        <property name="name" value="${cache.btc2eur.realdealhis}"/>
+        <property name="cacheMode" value="REPLICATED"/>
+        <property name="atomicityMode" value="TRANSACTIONAL"/>
+        <property name="readThrough" value="true"/>
+        <property name="writeThrough" value="true"/>
+        <property name="writeBehindEnabled" value="true"/>
+        <property name="cacheStoreFactory">
+            <bean class="org.apache.ignite.cache.store.jdbc.CacheJdbcPojoStoreFactory">
+                <property name="dataSourceBean" value="dataSource"/>
+                <property name="dialect" ref="oracleDialect"/>
+
+                <property name="types">
+                    <list>
+                        <bean class="org.apache.ignite.cache.store.jdbc.JdbcType">
+                            <property name="cacheName" value="${cache.btc2eur.realdealhis}"/>
+                            <property name="keyType" value="java.lang.Long"/>
+                            <property name="valueType"
+                                      value="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney"/>
+                            <property name="databaseSchema" value="${jdbc.schema}"/>
+                            <property name="databaseTable" value="${tbl.btc2eur.realdealhis}"/>
+
+                            <property name="keyFields">
+                                <list>
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="id"/>
+                                    </bean>
+                                </list>
+                            </property>
+
+                            <property name="valueFields">
+                                <list>
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="ID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="id"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYACCOUNTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="buyAccountId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLACCOUNTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="sellAccountId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYENTRUSTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="buyEntrustId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLENTRUSTID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="sellEntrustId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="TRADETYPE"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="tradeType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUSINESSFLAG"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="businessFlag"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALDIRECT"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="dealDirect"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALSTOCKINFOID"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="dealStockinfoId"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALAMT"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealAmt"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALPRICE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealPrice"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALBALANCE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="dealBalance"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.TIMESTAMP"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="DEALTIME"/>
+                                        <constructor-arg value="java.sql.Timestamp"/>
+                                        <constructor-arg value="dealTime"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYFEETYPE"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="buyFeeType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLFEETYPE"/>
+                                        <constructor-arg value="java.lang.Long"/>
+                                        <constructor-arg value="sellFeeType"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="BUYFEE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="buyFee"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.NUMERIC"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="SELLFEE"/>
+                                        <constructor-arg value="java.math.BigDecimal"/>
+                                        <constructor-arg value="sellFee"/>
+                                    </bean>
+
+                                    <bean class="org.apache.ignite.cache.store.jdbc.JdbcTypeField">
+                                        <constructor-arg>
+                                            <util:constant static-field="java.sql.Types.VARCHAR"/>
+                                        </constructor-arg>
+                                        <constructor-arg value="REMARK"/>
+                                        <constructor-arg value="java.lang.String"/>
+                                        <constructor-arg value="remark"/>
+                                    </bean>
+                                </list>
+                            </property>
+                        </bean>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="queryEntities">
+            <list>
+                <bean class="org.apache.ignite.cache.QueryEntity">
+                    <property name="keyType" value="java.lang.Long"/>
+                    <property name="valueType" value="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney"/>
+                    <property name="keyFieldName" value="id"/>
+
+                    <property name="keyFields">
+                        <list>
+                            <value>id</value>
+                        </list>
+                    </property>
+
+                    <property name="fields">
+                        <map>
+                            <entry key="buyAccountId" value="java.lang.Long"/>
+                            <entry key="sellAccountId" value="java.lang.Long"/>
+                            <entry key="buyEntrustId" value="java.lang.Long"/>
+                            <entry key="sellEntrustId" value="java.lang.Long"/>
+                            <entry key="tradeType" value="java.lang.String"/>
+                            <entry key="businessFlag" value="java.lang.String"/>
+                            <entry key="dealDirect" value="java.lang.String"/>
+                            <entry key="dealStockinfoId" value="java.lang.Long"/>
+                            <entry key="dealAmt" value="java.math.BigDecimal"/>
+                            <entry key="dealPrice" value="java.math.BigDecimal"/>
+                            <entry key="dealBalance" value="java.math.BigDecimal"/>
+                            <entry key="dealTime" value="java.sql.Timestamp"/>
+                            <entry key="buyFeeType" value="java.lang.Long"/>
+                            <entry key="sellFeeType" value="java.lang.Long"/>
+                            <entry key="buyFee" value="java.math.BigDecimal"/>
+                            <entry key="sellFee" value="java.math.BigDecimal"/>
+                            <entry key="remark" value="java.lang.String"/>
+                            <entry key="id" value="java.lang.Long"/>
+                        </map>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+</beans>

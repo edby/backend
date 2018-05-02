@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountFundTransferMapper">
+    <!-- 基础列 -->
+    <sql id="accountFundTransferColumns">
+        a.id as id,
+        a.userinfoId as userinfoId,
+        a.stockinfoId as stockinfoId,
+        a.srcWalletId as srcWalletId,
+        a.srcWalletAddr as srcWalletAddr,
+        a.targetWalletAddr as targetWalletAddr,
+        a.accountId as accountId,
+        a.transferTime as transferTime,
+        a.transferAmt as transferAmt,
+        a.transferFee as transferFee,
+        a.realTransferFee as realTransferFee,
+        a.transferStatus as transferStatus,
+        a.transId as transId,
+        a.pendingApproval as pendingApproval,
+        a.confirmStatus as confirmStatus,
+        a.originalCurrentId as originalCurrentId,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark
+    </sql>
+    <sql id="accountFundTransferJoinColumns">
+        a.id as id,
+        a.userinfoId as userinfoId,
+        a.stockinfoId as stockinfoId,
+        a.srcWalletId as srcWalletId,
+        a.srcWalletAddr as srcWalletAddr,
+        a.targetWalletAddr as targetWalletAddr,
+        a.accountId as accountId,
+        a.transferTime as transferTime,
+        a.transferAmt as transferAmt,
+        a.transferFee as transferFee,
+        a.realTransferFee as realTransferFee,
+        a.transferStatus as transferStatus,
+        a.transId as transId,
+        a.pendingApproval as pendingApproval,
+        a.confirmStatus as confirmStatus,
+        a.originalCurrentId as originalCurrentId,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark,
+        b.accountName as accountName
+    </sql>
+    <resultMap id="accountFundTransferResultMap" type="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        <id column="id" property="id"/>
+        <result column="userinfoId" property="userinfoId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="srcWalletId" property="srcWalletId"/>
+        <result column="srcWalletAddr" property="srcWalletAddr"/>
+        <result column="targetWalletAddr" property="targetWalletAddr"/>
+        <result column="accountId" property="accountId"/>
+        <result column="transferTime" property="transferTime"/>
+        <result column="transferAmt" property="transferAmt"/>
+        <result column="transferFee" property="transferFee"/>
+        <result column="realTransferFee" property="realTransferFee"/>
+        <result column="transferStatus" property="transferStatus"/>
+        <result column="transId" property="transId"/>
+        <result column="pendingApproval" property="pendingApproval"/>
+        <result column="confirmStatus" property="confirmStatus"/>
+        <result column="originalCurrentId" property="originalCurrentId"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        insert into AccountFundTransfer(
+            id ,
+            userinfoId ,
+            stockinfoId ,
+            srcWalletId ,
+            srcWalletAddr ,
+            targetWalletAddr ,
+            accountId ,
+            transferTime ,
+            transferAmt ,
+            transferFee ,
+            realTransferFee ,
+            transferStatus ,
+            transId ,
+            pendingApproval ,
+            confirmStatus ,
+            originalCurrentId,
+            sign,
+			randomKey,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{userinfoId} ,
+            #{stockinfoId} ,
+            #{srcWalletId} ,
+            #{srcWalletAddr} ,
+            #{targetWalletAddr} ,
+            #{accountId} ,
+            #{transferTime} ,
+            #{transferAmt} ,
+            #{transferFee} ,
+            #{realTransferFee},
+            #{transferStatus} ,
+            #{transId} ,
+            #{pendingApproval},
+            #{confirmStatus} ,
+            #{originalCurrentId} ,
+            #{sign} ,
+            #{randomKey} ,
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountFundTransfer where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountFundTransfer set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        insert into AccountFundTransfer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="userinfoId != null">
+                userinfoId ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="srcWalletId != null">
+                srcWalletId ,
+            </if>
+            <if test="srcWalletAddr != null">
+                srcWalletAddr ,
+            </if>
+            <if test="targetWalletAddr != null">
+                targetWalletAddr ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="transferTime != null">
+                transferTime ,
+            </if>
+            <if test="transferAmt != null">
+                transferAmt ,
+            </if>
+            <if test="transferFee != null">
+                transferFee ,
+            </if>
+            <if test="realTransferFee != null">
+                realTransferFee ,
+            </if>
+
+            <if test="transferStatus != null">
+                transferStatus ,
+            </if>
+            <if test="transId != null">
+                transId ,
+            </if>
+            <if test="pendingApproval!=null">
+                pendingApproval ,
+            </if>
+            <if test="confirmStatus != null">
+                confirmStatus ,
+            </if>
+            <if test="originalCurrentId != null">
+                originalCurrentId ,
+            </if>
+            <if test="sign != null">
+                sign ,
+            </if>
+            <if test="randomKey != null">
+                randomKey ,
+            </if>
+            <if test="remark != null">
+                remark
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="userinfoId != null">
+                #{userinfoId} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="srcWalletId != null">
+                #{srcWalletId} ,
+            </if>
+            <if test="srcWalletAddr != null">
+                #{srcWalletAddr} ,
+            </if>
+            <if test="targetWalletAddr != null">
+                #{targetWalletAddr} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="transferTime != null">
+                #{transferTime} ,
+            </if>
+            <if test="transferAmt != null">
+                #{transferAmt} ,
+            </if>
+            <if test="transferFee != null">
+                #{transferFee} ,
+            </if>
+            <if test="realTransferFee != null">
+                #{realTransferFee} ,
+            </if>
+
+            <if test="transferStatus != null">
+                #{transferStatus} ,
+            </if>
+            <if test="transId != null">
+                #{transId} ,
+            </if>
+            <if test="pendingApproval!=null">
+                #{pendingApproval} ,
+            </if>
+            <if test="confirmStatus != null">
+                #{confirmStatus} ,
+            </if>
+            <if test="originalCurrentId != null">
+                #{originalCurrentId} ,
+            </if>
+            <if test="sign != null">
+                #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                #{remark}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        update AccountFundTransfer
+        <set>
+            <if test="userinfoId != null">
+                userinfoId = #{userinfoId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="srcWalletId != null">
+                srcWalletId = #{srcWalletId} ,
+            </if>
+            <if test="srcWalletAddr != null">
+                srcWalletAddr = #{srcWalletAddr} ,
+            </if>
+            <if test="targetWalletAddr != null">
+                targetWalletAddr = #{targetWalletAddr} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="transferTime != null">
+                transferTime = #{transferTime} ,
+            </if>
+            <if test="transferAmt != null">
+                transferAmt = #{transferAmt} ,
+            </if>
+            <if test="transferFee != null">
+                transferFee = #{transferFee} ,
+            </if>
+            <if test="realTransferFee != null">
+                realTransferFee = #{realTransferFee} ,
+            </if>
+
+            <if test="transferStatus != null">
+                transferStatus = #{transferStatus} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="pendingApproval!=null">
+                pendingApproval = #{pendingApproval},
+            </if>
+            <if test="confirmStatus != null">
+                confirmStatus = #{confirmStatus} ,
+            </if>
+            <if test="originalCurrentId != null">
+                originalCurrentId = #{originalCurrentId} ,
+            </if>
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountFundTransfer(
+        id ,
+        userinfoId ,
+        stockinfoId ,
+        srcWalletId ,
+        srcWalletAddr ,
+        targetWalletAddr ,
+        accountId ,
+        transferTime ,
+        transferAmt ,
+        transferFee ,
+        realTransferFee,
+        transferStatus ,
+        transId ,
+        pendingApproval ,
+        confirmStatus ,
+        originalCurrentId ,
+        sign ,
+        randomKey ,
+        remark
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.userinfoId} ,
+            #{item.stockinfoId} ,
+            #{item.srcWalletId} ,
+            #{item.srcWalletAddr} ,
+            #{item.targetWalletAddr} ,
+            #{item.accountId} ,
+            #{item.transferTime} ,
+            #{item.transferAmt} ,
+            #{item.transferFee} ,
+            #{item.realTransferFee},
+            #{item.transferStatus} ,
+            #{item.transId} ,
+            #{item.pendingApproval},
+            #{item.confirmStatus} ,
+            #{item.originalCurrentId} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.remark}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountFundTransfer set
+            userinfoId = #{item.userinfoId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            srcWalletId = #{item.srcWalletId} ,
+            srcWalletAddr = #{item.srcWalletAddr} ,
+            targetWalletAddr = #{item.targetWalletAddr} ,
+            accountId = #{item.accountId} ,
+            transferTime = #{item.transferTime} ,
+            transferAmt = #{item.transferAmt} ,
+            transferFee = #{item.transferFee} ,
+            realTransferFee = #{item.realTransferFee},
+            transferStatus = #{item.transferStatus} ,
+            transId = #{item.transId} ,
+            pendingApproval = #{item.pendingApproval},
+            confirmStatus = #{item.confirmStatus} ,
+            originalCurrentId = #{item.originalCurrentId} ,
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            remark = #{item.remark}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        update AccountFundTransfer set
+            userinfoId = #{userinfoId} ,
+            stockinfoId = #{stockinfoId} ,
+            srcWalletId = #{srcWalletId} ,
+            srcWalletAddr = #{srcWalletAddr} ,
+            targetWalletAddr = #{targetWalletAddr} ,
+            accountId = #{accountId} ,
+            transferTime = #{transferTime} ,
+            transferAmt = #{transferAmt} ,
+            transferFee = #{transferFee} ,
+            realTransferFee = #{realTransferFee},
+            transferStatus = #{transferStatus} ,
+            transId = #{transId} ,
+            pendingApproval = #{pendingApproval},
+            confirmStatus = #{confirmStatus} ,
+            originalCurrentId = #{originalCurrentId} ,
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        select
+        <include refid="accountFundTransferColumns"/>
+        from AccountFundTransfer a where a.id = #{id}
+    </select>
+
+    <!-- 按ID查找 -->
+    <select id="findByIds" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        SELECT
+        <include refid="accountFundTransferJoinColumns"/>
+        FROM AccountFundTransfer a left join Account b on b.id=a.accountId WHERE 1=1
+        <if test="ids !=null">
+            and a.id in
+            <foreach item="id" collection="ids" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        SELECT
+        <include refid="accountFundTransferJoinColumns"/>
+        FROM AccountFundTransfer a left join Account b on b.id=a.accountId WHERE 1=1
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="transId != null and transId!=''">
+            and a.transId = #{transId}
+        </if>
+        <if test="targetWalletAddr != null and targetWalletAddr!=''">
+            and a.targetWalletAddr like '%'|| #{targetWalletAddr}||'%'
+        </if>
+        <if test="transferStatus != null and transferStatus!=''">
+            and a.transferStatus = #{transferStatus}
+        </if>
+        <if test="originalCurrentId != null and  originalCurrentId != ''">
+            and a.originalCurrentId = #{originalCurrentId}
+        </if>
+    </select>
+
+    <select id="selectByOriginalCurrentId" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        select
+        <include refid="accountFundTransferColumns"/>
+        from AccountFundTransfer a where a.originalCurrentId = #{id}
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        SELECT
+        <include refid="accountFundTransferColumns"/>
+        FROM AccountFundTransfer a WHERE 1=1
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="findNeedUpdatePendingApprovals" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        SELECT
+        <include refid="accountFundTransferColumns"/>
+        FROM AccountFundTransfer a WHERE 1=1
+        and a.transferStatus = 'transferPending'
+        and a.pendingApproval is not null
+        and a.confirmStatus = 'unconfirm'
+    </select>
+
+    <!-- 查询所有待确认的交易 -->
+    <select id="findNeedUpdateTransaction" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        SELECT
+        <include refid="accountFundTransferColumns"/>
+        FROM AccountFundTransfer a WHERE 1=1
+        and a.transferStatus = 'transfer'
+        and a.transId is not null
+        and a.confirmStatus = 'unconfirm'
+    </select>
+
+    <!-- 查询TransferAddr -->
+    <select id="findTransferAddrList" parameterType="map" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        SELECT
+        <include refid="accountFundTransferColumns"/>
+        FROM AccountFundTransfer a
+        WHERE a.stockinfoId=#{map.stockinfoId} and a.transferStatus=#{map.transferStatus} and a.srcWalletId=#{map.walletId} and a.transId=#{map.transId}
+        <if test="map.addrList !=null">
+            and a.targetWalletAddr in
+            <foreach item="item" index="index" collection="map.addrList" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!-- 查询实体 -->
+    <select id="findTransferAddr" resultType="com.blocain.bitms.trade.fund.entity.AccountFundTransfer">
+        SELECT
+        <include refid="accountFundTransferColumns"/>
+        FROM AccountFundTransfer a WHERE a.stockinfoId=#{stockinfoId} and a.transId=#{transId}
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+    </select>
+
+</mapper>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorArchiveMapper">
+
+    <parameterMap id="monitorArchiveParamMap" type="java.util.HashMap">
+        <parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+        <parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+    </parameterMap>
+    <!-- 归档 -->
+    <select id="executeArchive" statementType="CALLABLE" parameterMap="monitorArchiveParamMap">
+        <![CDATA[
+
+           {
+           call sp_archive(?,?)
+           }
+
+        ]]>
+    </select>
+</mapper>

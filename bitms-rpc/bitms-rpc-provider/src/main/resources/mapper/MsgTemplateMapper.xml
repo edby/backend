@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.common.mapper.MsgTemplateMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="msgTemplateColumns">
+        a.id as id,
+        a.key as key,
+        a.lang as lang,
+        a.type as type,
+        a.title as title,
+        a.content as content,
+        a.dest as dest,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.delFlag as delFlag
+    </sql>
+    <sql id="msgTemplateJoinColumns">
+        a.id as id,
+        a.key as key,
+        a.lang as lang,
+        a.type as type,
+        a.title as title,
+        a.content as content,
+        a.dest as dest,
+        b.trueName as createName,
+        a.createDate as createDate,
+        a.delFlag as delFlag
+    </sql>
+
+    <resultMap id="msgTemplateResultMap" type="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        <id column="id" property="id"/>
+        <result column="key" property="key"/>
+        <result column="lang" property="lang"/>
+        <result column="type" property="type"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="dest" property="dest"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="delFlag" property="delFlag"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        insert into MsgTemplate(
+            id ,
+            key ,
+            lang ,
+            type ,
+            title ,
+            content ,
+            dest ,
+            createBy ,
+            createDate ,
+            delFlag
+        ) VALUES (
+            #{id} ,
+            #{key} ,
+            #{lang} ,
+            #{type} ,
+            #{title} ,
+            #{content} ,
+            #{dest} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{delFlag}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MsgTemplate where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update MsgTemplate set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        insert into MsgTemplate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="key != null">
+                key ,
+            </if>
+            <if test="lang != null">
+                lang ,
+            </if>
+            <if test="type != null">
+                type ,
+            </if>
+            <if test="title != null">
+                title ,
+            </if>
+            <if test="content != null">
+                content ,
+            </if>
+            <if test="dest != null">
+                dest ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="delFlag != null">
+                delFlag
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="key != null">
+                #{key} ,
+            </if>
+            <if test="lang != null">
+                #{lang} ,
+            </if>
+            <if test="type != null">
+                #{type} ,
+            </if>
+            <if test="title != null">
+                #{title} ,
+            </if>
+            <if test="content != null">
+                #{content} ,
+            </if>
+            <if test="dest != null">
+                #{dest} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="delFlag != null">
+                #{delFlag}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        update MsgTemplate
+        <set>
+            <if test="key != null">
+                key = #{key} ,
+            </if>
+            <if test="lang != null">
+                lang = #{lang} ,
+            </if>
+            <if test="type != null">
+                type = #{type} ,
+            </if>
+            <if test="title != null">
+                title = #{title} ,
+            </if>
+            <if test="content != null">
+                content = #{content} ,
+            </if>
+            <if test="dest != null">
+                dest = #{dest} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MsgTemplate(
+        id ,
+        key ,
+        lang ,
+        type ,
+        title ,
+        content ,
+        dest ,
+        createBy ,
+        createDate ,
+        delFlag
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.key} ,
+            #{item.lang} ,
+            #{item.type} ,
+            #{item.title} ,
+            #{item.content} ,
+            #{item.dest} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.delFlag}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MsgTemplate set
+            key = #{item.key} ,
+            lang = #{item.lang} ,
+            type = #{item.type} ,
+            content = #{item.content} ,
+            title = #{item.title} ,
+            dest = #{item.dest} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            delFlag = #{item.delFlag}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        update MsgTemplate set
+            key = #{key} ,
+            lang = #{lang} ,
+            type = #{type} ,
+            title = #{title} ,
+            content = #{content} ,
+            dest = #{dest} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            delFlag = #{delFlag}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        select
+        <include refid="msgTemplateColumns"/>
+        from MsgTemplate a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.common.entity.MsgTemplate"  useCache="false">
+        SELECT
+        <include refid="msgTemplateJoinColumns"/>
+        FROM MsgTemplate a left join UserInfo b on a.createBy=b.id  WHERE a.delFlag = 0
+        <if test="key != null">
+            and a.key like '%'||#{key}||'%'
+        </if>
+        <if test="lang != null">
+            and a.lang like '%'||#{lang}||'%'
+        </if>
+        <if test="type != null">
+            and a.type like '%'||#{type}||'%'
+        </if>
+        <if test="title != null">
+            and a.title like '%'||#{title}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        SELECT
+        <include refid="msgTemplateColumns"/>
+        FROM MsgTemplate a WHERE a.delFlag = 0
+    </select>
+
+    <select id="findByKeyAndLang" parameterType="hashmap"
+            resultType="com.blocain.bitms.boss.common.entity.MsgTemplate">
+        SELECT
+        <include refid="msgTemplateColumns"/>
+        FROM MsgTemplate a WHERE a.delFlag = 0
+        AND a.key = #{key} and a.type = #{type}
+        <!-- 多语言版本时 解开下面的代码 -->
+        <!--  <if test="lang != null">
+            AND a.lang like '%'||#{lang}||'%'
+        </if>-->
+        AND ROWNUM = 1
+    </select>
+
+
+</mapper>
+

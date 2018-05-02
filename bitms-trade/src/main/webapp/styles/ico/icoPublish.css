@@ -1,0 +1,135 @@
+/*infoShow页面*/
+.icoPublish .detail {
+	position: relative;
+	padding-top: 36px;
+	border-top: 1px solid #23333f;
+}
+
+.icoPublish .detail_top {
+	position: relative;
+	background-color: #151922;
+	border: 1px solid #2c363d;
+}
+
+.icoPublish .detail_top #p1 {
+	margin-top: 17px;
+	margin-left: 2%;
+}
+
+.icoPublish .detail_top #p2 {
+	margin-left: 2%;
+	margin-bottom: 2%;
+	color: #DC605A;
+}
+
+.icoPublish .detail_top h1 {
+	margin-top: 1%;
+	margin-left: 2%;
+	font-weight: normal;
+	font-size: xx-large;
+	color: #536b32;
+}
+
+.icoPublish .detail_top span {
+	float: right;
+	margin-right: 3%;
+	margin-bottom: 10px ;
+}
+
+.icoPublish .detail_top table {
+	width: 95%;
+	height: 50%;
+	margin-top: 10px;
+	margin-left: 2%;
+	margin-bottom: 1%;
+}
+
+.icoPublish .detail_top table tr td {
+	width: 19%;
+	height: 17%;
+	background-color: #1e222d;
+	border: 1px solid #2c363d;
+	padding: 10px;
+}
+
+.icoPublish .detail_bottom {
+	position: relative;
+	margin-top: 1%;
+	background-color: #151922;
+	border: 1px solid #2c363d;
+}
+
+.icoPublish .detail_bottom p {
+	margin-top: 18px;
+	margin-left: 30px;
+	margin-bottom: 20px;
+    font-size: 18px;
+	color: #536b32;
+}
+
+.icoPublish .detail_bottom table {
+	margin-left: 2%;
+	width: 96%;
+	height: 65%;
+	background-color: #151922;
+	border: none;
+	text-align: center;
+	border-collapse: collapse;
+}
+.icoPublish .detail_bottom table th{
+	height: 50px;
+	width: 10%;
+	font-size: 16px;
+	font-weight: 500;
+	vertical-align: middle;
+}
+.icoPublish .detail_bottom table td{
+	height: 36px;
+	font-size: 12px;
+	vertical-align: middle;
+}
+.icoPublish .detail_bottom table tr:hover {
+	background-color: #1a1f23;
+}
+
+.icoPublish .detail_bottom table tr:first-child {
+	background-color: #1e222d;
+}
+.PublishNavMargin{
+	margin-top: 94px;
+}
+@media (max-width: 1680px) {
+.icoPublish .detail_top h1 {
+    font-size: x-large;
+    margin-top: 0px;
+}	
+.icoPublish .detail_top #p1 {
+    font-size: 12px;
+}
+.icoPublish .detail_top #p2 {
+    margin-bottom: 1%;
+    font-size: 12px;
+}
+.icoPublish .detail_top span {
+    font-size: 12px;
+}
+.icoPublish .detail_bottom p {
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: medium;
+}
+.icoPublish .detail_bottom table th {
+    font-weight: normal;
+    font-size: 12px;
+    height: 40px;
+} 
+.icoPublish .detail_bottom table td {
+    font-weight: normal;
+    font-size: 12px;
+    height: 30px;
+} 
+.PublishNavMargin{
+	margin-top: 24px;
+}
+}

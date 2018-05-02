@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.bitpay.mapper.BitpayKeychainMapper">
+    <!-- 基础列 -->
+    <sql id="bitpayKeychainColumns">
+        a.id as id,
+        a.walletId as walletId,
+        a.walletName as walletName,
+        a.token as token,
+        a.xprv as xprv,
+        a.xpub as xpub,
+        a.systemPass as systemPass,
+        a.ciphertext as ciphertext,
+        a.stockinfoId as stockinfoId,
+        a.coin as coin,
+        a.feeTxConfirmTarget as feeTxConfirmTarget,
+        a.type as type,
+        a.createDate as createDate
+    </sql>
+
+    <resultMap id="bitpayKeychainResultMap" type="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        <id column="id" property="id"/>
+        <result column="walletId" property="walletId"/>
+        <result column="walletName" property="walletName"/>
+        <result column="token" property="token"/>
+        <result column="xprv" property="xprv"/>
+        <result column="xpub" property="xpub"/>
+        <result column="systemPass" property="systemPass"/>
+        <result column="ciphertext" property="ciphertext"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="coin" property="coin"/>
+        <result column="feeTxConfirmTarget" property="feeTxConfirmTarget"/>
+        <result column="type" property="type"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        insert into BitpayKeychain(
+            id ,
+            walletId ,
+            walletName ,
+            token ,
+            xprv ,
+            xpub ,
+            systemPass ,
+            ciphertext ,
+            stockinfoId ,
+            coin,
+            feeTxConfirmTarget ,
+            type ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{walletId} ,
+            #{walletName} ,
+            #{token} ,
+            #{xprv} ,
+            #{xpub} ,
+            #{systemPass} ,
+            #{ciphertext} ,
+            #{stockinfoId} ,
+            #{coin} ,
+            #{feeTxConfirmTarget} ,
+            #{type} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from BitpayKeychain where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update BitpayKeychain set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        insert into BitpayKeychain
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="walletId != null">
+                walletId ,
+            </if>
+            <if test="walletName != null">
+                walletName ,
+            </if>
+            <if test="token != null">
+                token ,
+            </if>
+            <if test="xprv != null">
+                xprv ,
+            </if>
+            <if test="xpub != null">
+                xpub ,
+            </if>
+            <if test="systemPass != null">
+                systemPass ,
+            </if>
+            <if test="ciphertext != null">
+                ciphertext ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="coin != null">
+                coin ,
+            </if>
+            <if test="feeTxConfirmTarget != null">
+                feeTxConfirmTarget ,
+            </if>
+            <if test="type != null">
+                type ,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="walletId != null">
+                #{walletId} ,
+            </if>
+            <if test="walletName != null">
+                #{walletName} ,
+            </if>
+            <if test="token != null">
+                #{token} ,
+            </if>
+            <if test="xprv != null">
+                #{xprv} ,
+            </if>
+            <if test="xpub != null">
+                #{xpub} ,
+            </if>
+            <if test="systemPass != null">
+                #{systemPass} ,
+            </if>
+            <if test="ciphertext != null">
+                #{ciphertext} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="coin != null">
+                #{coin} ,
+            </if>
+            <if test="feeTxConfirmTarget != null">
+                #{feeTxConfirmTarget} ,
+            </if>
+            <if test="type != null">
+                #{type} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        update BitpayKeychain
+        <set>
+            <if test="walletId != null">
+                walletId = #{walletId} ,
+            </if>
+            <if test="walletName != null">
+                walletName = #{walletName} ,
+            </if>
+            <if test="token != null">
+                token = #{token} ,
+            </if>
+            <if test="xprv != null">
+                xprv = #{xprv} ,
+            </if>
+            <if test="xpub != null">
+                xpub = #{xpub} ,
+            </if>
+            <if test="systemPass != null">
+                systemPass = #{systemPass} ,
+            </if>
+            <if test="ciphertext != null">
+                ciphertext = #{ciphertext} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="coin != null">
+                coin = #{coin} ,
+            </if>
+            <if test="feeTxConfirmTarget != null">
+                feeTxConfirmTarget = #{feeTxConfirmTarget} ,
+            </if>
+            <if test="type != null">
+                type = #{type} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into BitpayKeychain(
+        id ,
+        walletId ,
+        walletName ,
+        token ,
+        xprv ,
+        xpub ,
+        systemPass ,
+        ciphertext ,
+        stockinfoId ,
+        coin,
+        feeTxConfirmTarget ,
+        type ,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.walletId} ,
+            #{item.walletName} ,
+            #{item.token} ,
+            #{item.xprv} ,
+            #{item.xpub} ,
+            #{item.systemPass} ,
+            #{item.ciphertext} ,
+            #{item.stockinfoId} ,
+            #{item.coin},
+            #{item.feeTxConfirmTarget} ,
+            #{item.type} ,
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update BitpayKeychain set
+            walletId = #{item.walletId} ,
+            walletName = #{item.walletName} ,
+            token = #{item.token} ,
+            xprv = #{item.xprv} ,
+            xpub = #{item.xpub} ,
+            systemPass = #{item.systemPass} ,
+            ciphertext = #{item.ciphertext} ,
+            stockinfoId = #{item.stockinfoId} ,
+            coin = #{item.coin} ,
+            feeTxConfirmTarget = #{item.feeTxConfirmTarget} ,
+            type = #{item.type} ,
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        update BitpayKeychain set
+            walletId = #{walletId} ,
+            walletName = #{walletName} ,
+            token = #{token} ,
+            xprv = #{xprv} ,
+            xpub = #{xpub} ,
+            systemPass = #{systemPass} ,
+            ciphertext = #{ciphertext} ,
+            stockinfoId = #{stockinfoId} ,
+            coin = #{coin} ,
+            feeTxConfirmTarget = #{feeTxConfirmTarget} ,
+            type = #{type} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        select
+        <include refid="bitpayKeychainColumns"/>
+        from BitpayKeychain a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        SELECT
+        <include refid="bitpayKeychainColumns"/>
+        FROM BitpayKeychain a WHERE 1=1
+        <if test="walletId != null">
+            and a.walletId = #{walletId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="coin != null">
+            and a.coin = #{coin}
+        </if>
+        <if test="walletName != null">
+            and a.walletName like '%'||#{walletName}||'%'
+        </if>
+        <if test="token != null and token != ''">
+            and a.token like '%'||#{token}||'%'
+        </if>
+        <if test="xprv != null and xprv != ''">
+            and a.xprv like '%'||#{xprv}||'%'
+        </if>
+        <if test="xpub != null and xpub != ''">
+            and a.xpub like '%'||#{xpub}||'%'
+        </if>
+        <if test="ciphertext != null">
+            and a.ciphertext like '%'||#{ciphertext}||'%'
+        </if>
+        <if test="feeTxConfirmTarget != null">
+            and a.feeTxConfirmTarget = #{feeTxConfirmTarget}
+        </if>
+        <if test="type != null">
+            and a.type = #{type}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.bitpay.entity.BitpayKeychain">
+        SELECT
+        <include refid="bitpayKeychainColumns"/>
+        FROM BitpayKeychain a WHERE 1=1
+    </select>
+
+
+</mapper>
+

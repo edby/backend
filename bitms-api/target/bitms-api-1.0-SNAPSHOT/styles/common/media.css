@@ -1,0 +1,312 @@
+@media ( max-width : 1680px) {
+	.indexPage .content {
+		top: 45px;
+	}
+	.indexPage .header {
+		position: relative;
+		padding: 10px 0;
+	}
+	.topnavTxt li a {
+		line-height: 24px;
+	}
+	.sidebar {
+		width: 160px;
+	}
+	.main {
+		padding-left: 168px;
+	}
+	.mainFull {
+		padding-left: 0px;
+	}
+	/*icon*/
+	.A {
+		background-position: -50px -8px;
+	}
+	.H {
+		background-position: -52px -360px;
+	}
+	.K {
+		background-position: -52px -500px;
+	}
+	/*content*/
+	.sidebar h2 {
+		font-size: 16px;
+		color: #5d7b3c;
+		margin: 7px 0;
+		line-height: 21px;
+	}
+	.nav-items ul li {
+		font-size: 14px;
+		margin: 7px 0;
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+	.currency-box {
+		font-size: 12px;
+	}
+	.main-logo {
+		width: 160px;
+	}
+	.lg {
+		left: 210px;
+		top: 10px;
+	}
+	.topmenu {
+		padding-top: 4px;
+	}
+	.topmenu li a {
+		font-size: 12px;
+	}
+	.nav-items ul li {
+		font-size: 13px;
+	}
+	.main .well {
+		font-size: 12px;
+		padding: 2px 0px;
+		height: 30px;
+	}
+	.countdown {
+		padding: 40px 0 0;
+	}
+	.progressbar {
+		padding: 0 20px;
+	}
+	.progressbar span.progress-left, .progressbar span.progress-right {
+		top: -3px;
+	}
+	.progressbar .progress .progress-more, .progressbar .progress .progress-mid,
+		.progressbar .progress .progress-empty {
+		height: 5px;
+	}
+	.progressbar .progress .progress-mid {
+		top: 5px;
+	}
+	.progressbar .progress .progress-line {
+		position: absolute;
+		top: 1px;
+		left: 50%;
+		width: 1px;
+		height: 14px;
+		border-left: 1px solid #dc605a;
+	}
+	.progressbar span, .progressbar div {
+		font-size: 14px;
+	}
+	.bin, .progress-text {
+		font-size: 12px;
+		margin-top: -3px;
+	}
+	.bin .caf, .progress-text .caf {
+		height: 20px;
+	}
+	.bin {
+		height: 30px;
+	}
+	.panel-btc .divider {
+		margin: 15px 45px 0 0;
+		height: 40px;
+	}
+	.index-box {
+		width: 170px;
+		padding: 5px 0 10px;
+	}
+	.index-box h1 {
+		font-size: 16px;
+		margin-bottom: 3px;
+	}
+	.index-box h2 {
+		font-size: 28px;
+	}
+	.position-box {
+		left: 220px;
+		right: 220px;
+		padding-top: 0;
+	}
+	.panel-btc .panel-down {
+		padding-left: 383px;
+	}
+	.deal-top, .deal-action {
+		width: 370px;
+		padding: 10px 0;
+		font-size: 12px;
+	}
+	.deal-top .useful, .deal-action .useful {
+		margin-right: 0px;
+	}
+	.deal-top .magnify-box .magnify-index, .deal-action .magnify-box .magnify-index
+		{
+		width: 80px;
+	}
+	.deal-top div .text-controller, .deal-action div .text-controller,
+		.deal-top div .btn, .deal-action div .btn {
+		height: 30px;
+		font-size: 14px;
+	}
+	.deal-top div .btn, .deal-action div .btn {
+		margin: 5px 0 10px;
+	}
+	.deal-top .buy div, .deal-action .buy div, .deal-top .sell div,
+		.deal-action .sell div {
+		font-size: 12px;
+	}
+	.deal-top .buy div>span, .deal-action .buy div>span, .deal-top .sell div>span,
+		.deal-action .sell div>span {
+		width: 19px;
+	}
+	.deal-top .buy p, .deal-action .buy p, .deal-top .sell p, .deal-action .sell p
+		{
+		padding-top: 5px;
+	}
+	.deal-box #transferBtn {
+		margin: 0;
+	}
+	.deal-top {
+		padding-top: 30px;
+	}
+	.slide-price {
+		font-size: 12px;
+	}
+	.shipping-box {
+		height: 165px;
+		margin: 10px 0 0;
+	}
+	.table-data {
+    	margin-top: 8px;
+	}
+	.table-data table {
+    	margin-left: 10px;
+    	margin-top: 10px;
+	}	
+	.table-data table thead tr th{
+		font-size: 14px;
+	}
+	.price-nav li {
+		font-size: 12px;
+		height: 16px;
+		width: 60px;
+		line-height: 16px;
+	}
+	.risk-wrapper .force-price {
+		top: -3px;
+	}
+	.greenBtn {
+		height: 25px;
+		width: 80px;
+		line-height: 25px;
+		font-size: xx-small;
+		margin-left: 0px;
+	}
+	.horizontal {
+		margin: 10px 0;
+	}
+	.bottom_btn li {
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+	}
+	.bottom_btn {
+		margin: 11px auto;
+	}
+	.bottom_btn li:hover {
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+	}
+	.text-controller {
+		height: 36px;
+	}
+	.align-center {
+		padding: 12px;
+		text-align: center;
+	}
+	.btn-search {
+		background-position: 10px 4px;
+		background-size: auto;
+	}
+	.btn-dl {
+		background-position: 10px 4px;
+		background-size: auto;
+	}
+	/*Ǯ���˻�ͼ��*/
+	.account-list {
+		padding: 0px 5px;
+		right: 25px;
+		height: 25px;
+	}
+	.account-list>li {
+		line-height: 25px;
+	}
+	.account-list>li>ul>li {
+		font-size: 12px;
+		width: auto;
+        margin-right: 3px;
+	}
+	.account-list>li>ul>li:nth-child(2){
+		margin-left: 5px;
+	}
+	.icon-logo {
+		width: 15px;
+		height: 15px;
+	}
+	.icon-logo-e {
+		width: 12px;
+		height: 8px;
+		top: 10px;
+	}
+	.account-list.open {
+		height: 54px;
+		border: 1px solid #536b32;
+		border-radius: 5px;
+		background-color: #06111e;
+	}
+	.table-data h3 {
+    	font-size: 16px;
+    	padding-left: 15px;
+    	margin-top: 10px;
+    	margin-left: 14px;
+	}
+	.notice-pcon, .notice-pcon1 {
+		margin-top: 58px;
+	}
+	/*补*/
+	.chart-box .chart-table {
+    padding: 2px;
+	}
+	.tabnav>li {
+	    height: 38px;
+	    line-height: 38px;
+	    font-size: 13px;
+	}
+	.tableSwitch>li {
+	    height: 38px;
+	    line-height: 38px;
+	    font-size: 13px;
+	}
+	.scrolling-news {
+	    line-height: 25px;
+	    background-position: 0px 6px;
+	}
+	/*标签*/
+	.mark {
+		padding: 10px;
+	    font-size: 20px;
+	}
+	/*链接选项卡*/
+	.tabnavLink{
+		padding-top: 5px;
+	}
+    .tabnavLink li {
+	    border: 1px solid #4e6938;
+	    border-radius: 3px;
+	    margin-left: 5px;
+	    height: 25px;
+	    line-height: 22px;
+	}
+	.subTabPos{
+	    right: 10px;
+	    top: 10px;
+	}
+	.sys-error-Coming {
+		margin-top: 10%;
+	}
+}

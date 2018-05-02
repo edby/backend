@@ -1,0 +1,137 @@
+/*buyBack页面*/
+.buyBack-wrap {
+	position: relative;
+	padding-top: 36px;
+	border-top: 1px solid #23333f;
+}
+.buyBack-wrap .buyBack-content {
+	position: relative;
+	border: 1px solid #23333f;
+    background-color: #151922;
+    padding-bottom: 30px;
+    width: 100%;
+}
+.buyBack-wrap .buyBack-content .item {
+	position: relative;
+	margin-left: 10px;
+	margin-top: 10px;
+	display: inline-block;
+	width: 42%;
+}
+.buyBack-wrap .buyBack-content .item li {
+	margin: 5px;
+}
+.buyBack-wrap .buyBack-content .item li:first-child {
+	font-size: large;
+}
+.buyBack-wrap .buyBack-content .item li:nth-child(2) ul{
+	overflow: hidden;
+	width: 100%;
+}
+.buyBack-wrap .buyBack-content .item li:nth-child(2) ul li{
+	float: left;
+	margin: 5px;
+}
+.buyBack-wrap .buyBack-content .item li:nth-child(2) ul li:nth-child(1) input{
+	width: 170px;
+	height: 35px;
+	text-indent: 10px;
+	font-size: xx-small;
+	line-height: 35px;
+	background-color: #1e222d;
+	border: 1px solid #23333f;
+	margin-left: -10px;
+}
+.buyBack-wrap .buyBack-content .item li:nth-child(2) ul li:nth-child(2) {
+	color: #536b32;
+	line-height: 35px;
+	font-size: xx-small;
+}
+.buyBack-wrap .buyBack-content .item li:nth-child(2) ul li:nth-child(3) {
+	width: 15%;
+	height: 35px;
+	color: white;
+	line-height: 35px;
+	text-align: center;
+	background-color: #536b32;
+	border: 1px solid #23333f;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.buyBack-wrap .buyBack-content .item li:nth-child(3) {
+	color: #dc605a;
+	font-size: smaller;
+}
+.buyBack-wrap .buyBack-content .chart{
+	float: right;
+	margin-right: 10px;
+	margin-top: 30px;
+	width: 55%;
+}
+.buyBack-wrap .buyBack-content .chart table{
+	border-collapse:collapse;
+	width: 100%;
+	height: 80px
+}
+.buyBack-wrap .buyBack-content .chart td{
+	background-color: #1e222d;
+    border: 1px solid #23333f;
+    text-align: center;
+}
+.buyBack-wrap .buyBack-data{
+	position: relative;
+	margin-top: 20px;
+	border: 1px solid #23333f;
+    background-color: #151922;
+    width: 100%;
+}
+.buyBack-wrap .buyBack-data h2{
+	margin-left: 30px;
+	margin-top: 20px;
+	color: #536b32;
+}
+.buyBack-wrap .buyBack-data table{
+	width: 96%;
+	margin-top: 20px;
+	margin-left: 30px;
+    border-collapse: collapse;
+}
+.buyBack-wrap .buyBack-data table thead tr{
+    height: 40px;
+  	background-color: #1e222d;
+}
+.buyBack-wrap .buyBack-data table thead tr th{
+	text-align: center;
+	width: 10%;
+}
+.buyBack-wrap .buyBack-data table tbody tr{
+    line-height: 30px;
+    height: 30px;
+}
+.buyBack-wrap .buyBack-data table tbody tr:hover{
+	background-color: #1a1f23;
+}
+.buyBack-wrap .buyBack-data table tbody tr td{
+	text-align: center;
+}
+@media (max-width: 1680px) {
+/*回购页面*/
+.buyBack-wrap .buyBack-data h2 {
+    margin-top: 10px;
+    font-size: large;
+    font-weight: normal;
+}
+.buyBack-wrap .buyBack-content {
+    padding-bottom: 15px;
+}
+.buyBack-wrap .buyBack-data table {
+    margin-top: 15px;
+}
+.buyBack-wrap .buyBack-data table thead tr {
+    height: 35px;
+}
+.buyBack-wrap .buyBack-data table tbody tr {
+    line-height: 16px;
+    height: 16px;
+}
+}

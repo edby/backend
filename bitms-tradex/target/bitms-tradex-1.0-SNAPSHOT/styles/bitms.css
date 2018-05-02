@@ -1,0 +1,1073 @@
+@charset "UTF-8";
+/*error tip*/
+.ui-form-explain {
+    font-size: 12px;
+    color: #98c55a;
+}
+.remind-dialog .ui-head {
+    width: auto;
+    min-width: 256px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #265a88;
+    border-radius: 4px 4px 0 0;
+}
+.ui-form-explain {
+    font-size: 12px;
+    color: #a94442;
+    margin-left: 0;
+    text-align: left;
+    position: absolute;
+}
+#loginForm .ui-form-explain,#regForm .ui-form-explain,#findpwdForm .ui-form-explain,#changepwdForm  .ui-form-explain,#resetLoginForm .ui-form-explain,#bindGAForm .ui-form-explain,#clearGAForm .ui-form-explain{
+    margin-left: 115px;
+    max-width: 600px;
+}
+#withdrawForm .ui-form-explain{
+    margin-left: 45px;
+    max-width: 600px;
+}
+.tipColor{
+    color: #57595f;
+}
+.ui-dialog, .remind-dialog {
+    background: #fff;
+    box-shadow:none;
+    min-height: 100px;
+    _height: 100px;
+    padding-bottom: 10px;
+    outline: none;
+    border-radius: 4px;
+    min-width: 200px;
+    word-wrap: break-word;
+}
+
+.ui-dialog .ui-dialog-close {
+	color:#aaa;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 1;
+    position: absolute;
+    right: 7px;
+    text-decoration: none;
+    top: 12px;
+    z-index: 10
+}
+
+.ui-dialog .ui-dialog-close:hover {	 
+    color: #3c512d;
+}
+
+.ui-dialog .ui-dialog-content {
+    position: relative
+}
+
+.ui-dialog .ui-head {
+    height: 45px;
+    background: #f7f7f7;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.ui-dialog .ui-head h3 {
+    font: 16px/45px "微软雅黑";
+    padding-left: 9px;
+    margin: 0
+}
+
+.ui-dialog {
+    outline: none
+}
+
+.ui-dialog .ui-dialog-close {
+    display: none
+}
+
+.ui-dialog .ui-dialog-content .operate {
+    padding-bottom: 10px;
+    border-top: 1px solid #ccc
+}
+
+.ui-dialog .ui-dialog-content .simple_button {
+    width: 95px;
+    height: 33px;
+    line-height: 33px;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+    border-color: #e8e8e8;
+    padding: 0
+}
+
+.ui-dialog .ui-dialog-content .confirm_btn {
+    background: #66acf2;
+    border: 1px solid #4593fd;
+    color: #fff
+}
+
+.ui-dialog .ui-dialog-content .confirm_btn:hover {
+    color: #fff;
+    background: #4593fd
+}
+
+.ui-dialog .ui-dialog-content .confirm_bd {
+    padding-bottom: 0
+}
+
+.remind-dialog {
+    border-radius: 4px;
+    display: none;
+    position: fixed;
+    border: 0 none;
+    width: 260px;
+    height: 120px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: -140px;
+    bottom: 0;
+}
+
+.remind-dialog .remind {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 15px 5px;
+    text-align: center;
+}
+
+.remind-dialog .remind-icon {
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 30px;
+}
+
+.remind-dialog .remind-icon-error {
+    background-position: -97px -48px
+}
+
+.remind-dialog .remind-icon-warning {
+    background-position: -99px -98px
+}
+
+.remind-dialog .remind-icon-success {
+    background-position: -100px 0
+}
+
+.paginationContainer{
+    text-align: center;
+}
+.pagination {
+    background: transparent;
+    margin: 10px 0;
+}
+
+.pagination .total {
+    margin-left: 10px;
+    font-size: 12px
+}
+
+.pagination .total strong {
+    font-weight: normal
+}
+
+.pagination .ellipsis {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #536b32;
+}
+
+.pagination .page {
+    font-size: 12px;
+    display: inline-block;
+    margin-left: 8px;
+    background: #FFFFFF;
+    border: 1px solid #ddd;
+    color: #337ab7;
+    border-radius: 2px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0;
+    text-align: center;
+}
+
+.pagination .current,.pagination .current:hover,.pagination .page:hover {
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination .prev, .pagination .next {
+    text-align: center;
+    font-size: 12px;
+    display: inline-block;
+    border: 1px solid #ddd;
+    color: #337ab7;
+    border-radius: 2px;
+    height: 20px;
+    line-height: 25px;
+    padding: 0 5px;
+    margin-left: 8px;
+}
+
+.pagination .prev:hover, .pagination .next:hover {
+    color: #23527c;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+/*logout*/
+.ui-dialog .ui-head {
+    height: 35px;
+}
+.ui-dialog .ui-head h3 {
+    font: 16px/45px "微软雅黑";
+    line-height: 35px;
+}
+.ui-dialog .ui-dialog-close{
+	top: 5px;
+}
+.confirm-txt {
+    line-height: 30px;
+    padding: 15px;
+    padding-bottom: 5px;
+}
+.ui-dialog .operate a {
+    padding: 0 15px;
+    line-height: 28px;
+    display: block;
+    text-align: center;
+    float: left;
+    border-radius: 2px;
+    margin-bottom: 9px;
+}
+.ui-dialog .operate a.confirm_btn,.ui-dialog .operate a.confirm_btn:hover {
+    background-color: #5d7b3c;
+    border: 0;
+    margin-left: 40px;
+    margin-right: 15px;
+    border: solid 1px #5d7b3c;
+}
+.ui-dialog .operate a.cancel_btn {
+    color: #3c512d;
+}
+ 
+.ui-dialog .ui-dialog-content .operate {
+    border-top: 0;
+}
+
+.remind-dialog .ui-head h3 {
+    font-size: 16px;
+    line-height: 35px;
+    text-align: left;
+    height: 35px;
+    margin: 0 12px;
+}
+/*滑块验证样式*/
+.nc_wrapper .nc_scale {
+    height:30px;
+}
+#captcha.nc-container .nc_wrapper ,#bindPhoneCaptcha.nc-container .nc_wrapper{
+    width: 100%;
+    margin: 0 auto;
+}
+.ln .nc-container .imgCaptcha, .ln .nc-container .clickCaptcha {
+    width: 100%;
+}
+.nc-container .nc_scale span.nc_iconfont {
+    height: 30px;
+    line-height: 30px;
+}
+/*特殊样式*/
+.bitms-bg4  .row  .ui-form-explain {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+    margin-top: -1px;
+    padding: 0 5px;
+}
+#receiveMail,#emailStr {
+  color: #fff;
+  display:block;
+}
+.login-hr {
+    border-right: solid 1px #648241;
+    width: 0;
+    height: 12px;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-right: 15px;
+    margin-left: 8px;
+}
+/*开关样式*/
+.chooseBtn {
+    display: none;
+    cursor: pointer;
+}
+.choose-label {
+    width: 35px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    border-radius: 20px;
+    position: relative;
+    background-color: #bdbdbd;
+    overflow: visible;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.choose-label:before {
+    content: '';
+    position: absolute;
+    left: 1px;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #fff;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+}
+.chooseBtn:checked + label.choose-label:before {
+    left: 19px;
+}
+.chooseBtn:checked + label.choose-label {
+    background-color: #337ab7;
+}
+/*公用样式*/
+.dn{
+    display:none;
+}
+/*bootstrap取消阴影*/
+.btn{
+    box-shadow:none;
+    text-shadow:none;
+    background-image:none;
+    border:none;
+    outline:none;
+}
+.btn-primary[disabled],btn-primary[disabled]:hover{
+    background-color: #bdbdbd!important;
+}
+/*ajax处理中弹框*/
+@keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1); }
+
+    50% {
+        -webkit-transform: rotate(180deg) scale(0.6);
+        transform: rotate(180deg) scale(0.6); }
+
+    100% {
+        -webkit-transform: rotate(360deg) scale(1);
+        transform: rotate(360deg) scale(1); } }
+@keyframes load {
+    0% {
+        background: #3498db;
+        height: 5px;
+    }
+    50% {
+        background: #daecf9;
+        height: 20px;
+    }
+    100% {
+        background: #3498db;
+        height: 5px;
+    }
+}
+.ball-clip-rotate-multiple {
+    position: relative; }
+.ball-clip-rotate-multiple > div {
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    border: 2px solid #337ab7;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+    border-radius: 100%;
+    height: 70px;
+    width: 70px;
+    -webkit-animation: rotate 1s 0s ease-in-out infinite;
+    animation: rotate 1s 0s ease-in-out infinite; }
+.ball-clip-rotate-multiple > div:last-child {
+    display: inline-block;
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    border-color: #3498db transparent #3498db transparent;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse; }
+
+.reg-pop, .load-pop,.pageLoader {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background: rgba(0,0,0,.4);
+    color: #fff;
+    display: none;
+    z-index: 1060;
+}
+.load-pop,.pageLoader{
+    display:block;
+}
+.rp-inner, .lp-inner {
+    width: 80px;
+    border-radius: 6px;
+    position: absolute;
+    top: 40%;
+    height: 100px;
+    left: 50%;
+    margin-left: -40px;
+}
+.rp-inner img, .lp-inner img {
+    display: block;
+    width: 70px;
+    margin: 0 auto;
+}
+.lp-inner img{
+    width:90px;
+}
+.rpi-txt, .lpi-txt {
+    color: #aeaeae;
+    margin-top: 5px;
+}
+.tranloader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 60px;
+    height: 25px;
+    z-index: 99;
+}
+.tranloader span {
+    display: block;
+    background: #ccc;
+    width: 7px;
+    height: 5px;
+    border-radius: 14px;
+    margin-right: 5px;
+    float: left;
+}
+.tranloader span:nth-child(1) {
+    animation: load 0.6s infinite linear;
+}
+.tranloader span:nth-child(2) {
+    animation: load 0.8s infinite linear;
+}
+.tranloader span:nth-child(3) {
+    animation: load 1s infinite linear;
+}
+.tranloader span:nth-child(4) {
+    animation: load 0.8s infinite linear;
+}
+.tranloader span:nth-child(5) {
+    animation: load 0.6s infinite linear;
+}
+/*公告详情宽度*/
+.notice-content p{
+    margin:0 auto;
+    width:1000px;
+}
+/*公共国际化语言框*/
+.lg-switch {
+    position: absolute;
+    right: 20px;
+    z-index: 99;
+}
+.lg-switch>li>a{
+    text-decoration: none;
+    background-color: transparent;
+    border: solid 1px #273b48;
+    border-radius: 2px;
+}
+.lg-switch>li>a:hover, .lg-switch>li>a:focus {
+    text-decoration: none;
+    background-color: transparent;
+}
+.lg-switch .open>a, .lg-switch .open>a:hover, .lg-switch .open>a:focus {
+    background-color: transparent;
+    border-color: #273b48;
+}
+/*GA密钥显示及输入*/
+  #GAkeySave {
+      background: rgba(255,255,255,.9);
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: 1px;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+      color: #648241;
+  }
+  #GAkey{
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: default;
+      text-align: center;
+      letter-spacing: 1px;
+      font-size: 12px;
+  }
+.gakey-enter {
+    width: 100%;
+    padding-left: 2%;
+}
+.gaKeyLabel {
+    width: 91%;
+    text-align: center;
+    color: #fff;
+    display: block;
+}
+.gakey-enter input {
+    width: 6.1%;
+    text-align: center;
+    font-size: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,.9);
+    box-shadow: none;
+    text-shadow: none;
+    color: #648241;
+    outline: none;
+    height: 33px;
+    line-height: 33px;
+    border: 0;
+    float: left;
+    border-right: solid 1px #648241;
+}
+
+/*登录页面*/
+.ogin-bg {
+    width:100%;
+    background: -webkit-linear-gradient(right top,#0b212f,#071522); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(bottom left, #0b212f,#071522); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(bottom left, #0b212f,#071522); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to bottom left, #0b212f,#071522); /* 标准的语法（必须放在最后） */
+}
+
+.login-logo {
+    position: fixed;
+    left: 20px;
+    top: 12px;
+}
+.login-bg .modal-dialog {
+    margin-top:120px;
+}
+.loginBtn {
+    cursor: pointer;
+    margin-right: 5px;
+}
+.loginBtn:hover{
+    color: #2b542c;
+}
+.login-txt {
+    position: relative;
+    top: 50%;
+    margin-top: 140px;
+    padding: 0 20px;
+}
+.login-txt1{
+opacity: 0;
+transform: translateY(35px);
+transition: transform 800ms cubic-bezier(0, 0, 0, 0.98),opacity 900ms linear;}
+
+.login-txt2{
+    transform: translateY(-35px);
+    opacity: 0;
+    transition: transform 800ms cubic-bezier(0, 0, 0, 0.98),opacity 900ms linear;
+}
+.login-txt1.reveal-landing,.login-txt2.reveal-landing  {
+    opacity: 1;
+    transform: translateY(0px);
+}
+.login-tip {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    padding: 0;
+    background-image: none;
+}
+.login-addr {
+    margin-top: -46px;
+    height: 33px;
+    border: solid 1px #999;
+    margin-left: 10px;
+    padding: 0 8px;
+    border-radius: 3px;
+    line-height: 33px;
+}
+.login-tip-tit {
+    color: #dc605a;
+}
+.modal#loginGA-con {
+    z-index: -1;
+}
+#loginGA-con .modal-content {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+#loginGA-con .form-control {
+    background: #000;
+}
+/*头部下拉框充币提币样式*/
+.dropdown-menu.topnav-right {
+    right: 10px;
+    width: 270px;
+    padding:12px 10px;
+    height: auto;
+    border: 4px solid #23333f;
+    padding-top: 8px;
+}
+.topnav-right li {
+    margin: 0 auto;
+    color: #aeaeae;
+}
+.dropdown-menu.topnav-right >li>a{
+    padding:0;
+}
+.dropdown-menu>li>a.nav-link {
+    display: inline-block;
+    background: #648241;
+    color: #fff;
+    font-size: 1.4rem;
+    border: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 2px;
+    margin-top: 10px;
+    padding-right: 21%;
+}
+.dropdown-menu>li>a.nav-link:hover{
+    background:#59743a;
+    color:#fff;
+}
+.topnav-right li:hover{
+    color:#648241;
+}
+.topnav-right li a:hover{
+    background:transparent;
+}
+.topnav-right li i {
+    padding-right: 5px;
+    float: left;
+    padding: 0 12px;
+    font-size: 1.6rem;
+    line-height: 30px;
+}
+a#loginOut {
+    background: #d9534f;
+}
+a#loginOut:hover {
+    background: #c9302c;
+}
+.nav-half {
+    width: 100%;
+    overflow: hidden;
+}
+a.btn.btn-primary.nav-link.bitms-right {
+    float: right;
+    width: 48%;
+    padding-right: 20%;
+    margin-top:-30px;
+    background: #4ab1cf;
+}
+a.btn.btn-primary.nav-link.bitms-left {
+    float: left;
+    width: 48%;
+    padding-right: 20%;
+    background: #4ab1cf;
+}
+a.btn.btn-primary.nav-link.bitms-left:hover,a.btn.btn-primary.nav-link.bitms-right:hover{
+    background:#53bedd;
+}
+
+.dropdown-menu>li>a.nav-link.safe{
+    background: #4ab1cf;
+}
+.topnav-right li.uid {
+    border-bottom: solid 1px #333;
+    padding-bottom: 8px;
+    height: 38px;
+    line-height: 30px;
+}
+.topnav-right li.uid i {
+    padding: 0 5px;
+}
+.topnav-right li.uid a:hover {
+    text-decoration: underline;
+}
+#bindGAFormConfirm .ui-form-explain {
+    clear: both;
+    margin-left: 10px;
+    padding-top: 5px;
+}
+.account-out{
+    background: #040c17;
+    border: solid 5px #3d5361;
+    border-radius: 6px;
+}
+/*首页行情推送*/
+#allRtQuotation>thead>tr>th{
+    border: none;
+    border-bottom: 1px solid #252e3a;
+    color:rgba(255,255,255,0.8);
+    opacity: 0.5;
+}
+#allRtQuotation>tbody>tr>td{
+    border: none;
+    border-bottom: 0.03px solid rgba(155,155,155,0.1);
+    color:rgba(255,255,255,0.8);
+}
+#allRtQuotation>tbody>tr:hover{
+    background-color: #0f1a1c;
+    opacity: 0.3;
+}
+/*error*/
+.error-bg {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    background: -webkit-linear-gradient(right top, #0b212f, #071522);
+    background: -o-linear-gradient(bottom left, #0b212f, #071522);
+    background: -moz-linear-gradient(bottom left, #0b212f, #071522);
+    background: linear-gradient(to bottom left, #0b212f, #071522);
+}
+.sys-error {
+    background-position: center;
+    background-size: contain;
+    background-repeat:no-repeat;
+    width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    color: #acadaf;
+    padding-top: 320px;
+}
+.sys-error-txt {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 2.6rem;
+    color: #337ab7;
+}
+.error-back {
+    display: block;
+    text-decoration: none;
+    width: 145px;
+    height: 36px;
+    background: #337ab7;
+    margin: 0 auto;
+    line-height: 36px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #FFFFFF;
+    border-radius:4px;
+}
+.sys-error-404{
+    background-image: url(/images/common/error-404.png);
+}
+.sys-error-403{
+    background-image: url(/images/common/error-403.png);
+}
+.sys-error-500{
+    background-image: url(/images/common/error-500.png);
+}
+.sys-error-502{
+    background-image: url(/images/common/error-502.png);
+}
+.sys-error-Coming {
+    background-image: url(/images/common/weAreComing.png);
+    margin-top: 14%;
+}
+.brs0{
+    border-radius:0;
+}
+/*account*/
+.loginCon {
+    border: solid 2px #eee;
+    box-shadow: 0 0 3px #eee;
+    border-radius: 5px;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 10px;
+    width: 90%;
+}
+.loginTit{
+    margin:0px auto;
+}
+.mt-10{
+    margin-top:-10px;
+}
+.mt-20{
+    margin-top:-20px;
+}
+/*TOKEN Start*/
+input:focus {
+    border: 2px solid;
+}
+#txtSearchInput:focus{
+    border: 1px;
+    text-indent: 2px;
+}
+#txtSearchInput::-webkit-input-placeholder {
+    font-size: 12px;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.form-horizontal .form-group{
+    margin-left:0;
+    margin-right:0;
+}
+.table {
+    border: none;
+}
+.table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>th {
+    border: 1px solid #e8e8e8;
+}
+#entBalRatioBuy td, #entBalRatioBuy th, #entBalRatioSell td, #entBalRatioSell th{
+    border-top: 1px solid transparent;
+}
+.spinner {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.spinner > div {
+    background-color: #3498db;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+
+    -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+    animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+.token:hover{
+    background-color: #f5f5f5;
+}
+#txtSearchInput{
+    width: 295px!important;
+}
+.remind-dialog-content{
+    height: auto;
+}
+@-webkit-keyframes stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
+@media (max-width: 1400px) {
+    #openTokenForm .form-group {
+        margin-bottom: 8px;
+    }
+}
+@media (max-width: 768px) {
+    .loginCon {
+        margin-top: 150px;
+    }
+    #activeTokenDiv{
+        margin-top: 185px;
+    }
+    #item_addr {
+        font-size: 12px;
+    }
+    .float-xs-none{
+        float:none!important;
+    }
+    .padding-xs-none{
+        padding: 0;
+    }
+    #Logo{
+        width:180px!important;
+    }
+    .marginBottom-xs-none{
+        margin-bottom: 0!important;
+    }
+    .padding-xs-top{
+        padding:2px 4px!important;
+    }
+    #loginForm .ui-form-explain, #regForm .ui-form-explain, #findpwdForm .ui-form-explain, #changepwdForm .ui-form-explain, #resetLoginForm .ui-form-explain, #bindGAForm .ui-form-explain, #clearGAForm .ui-form-explain {
+        margin-left: 30px;
+    }
+    .navbar-collapse.in {
+        overflow-y: visible;
+    }
+    .navbar-toggle {
+        margin: 3px;
+        padding: 6px;
+    }
+    .navbar-toggle .icon-bar {
+        display: block;
+        width: 18px;
+        height: 1px;
+        border-radius: 1px;
+    }
+    .navbar-toggle .icon-bar+.icon-bar {
+        margin-top: 5px;
+    }
+    .dropdown-menu {
+        left: -140px;
+        top: 25px;
+    }
+    .deep-xs-hidden{
+        height: 280px;
+        overflow: hidden;
+    }
+    .width-xs-adapt{
+        width:25%!important;
+    }
+    .width-xs-btn{
+        width:30px!important;
+    }
+    .size-xs-market{
+        font-size:12px;
+    }
+    .ui-dialog, .remind-dialog {
+        max-width: 290px;
+    }
+    .ui-dialog p{
+        line-height: 20px;
+        font-size: 12px;
+        margin-bottom:0;
+    }
+}
+/*Token End*/
+@media (min-width: 768px){
+    .login-bg .modal-dialog {
+        width: 400px;
+    }
+}
+@media (max-width: 767px){
+    .login-txt {
+        margin-top: 50px;
+    }
+    .login-txt1 {
+        font-size: 2.4rem;
+    }
+    .login-txt2 {
+        font-size:1.6rem;
+    }
+    .navbar-nav .open .dropdown-menu.topnav-right>li>a, .navbar-nav .open .dropdown-menu.topnav-right .dropdown-header {
+        padding: 0;
+    }
+    .navbar-nav .open .dropdown-menu.topnav-right>li>a.nav-link {
+        padding: 0 10px;
+        color: #fff;
+        line-height: 30px;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a.btn.btn-primary.nav-link.bitms-left:hover, .navbar-default .navbar-nav .open .dropdown-menu>li> a.btn.btn-primary.nav-link.bitms-right:hover {
+        background: #53bedd;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a.nav-link:hover {
+        background: #59743a;
+        color: #fff;
+    }
+    .phone-gaCodeImg,.gaKeyLabel {
+        width: 55.6%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    .phone-gaimg1, .phone-gaimg2{
+        margin-top:0;
+    }
+    .phone-mt7{
+        margin-top:7px;
+    }
+    .phone-mt0{
+        margin-top:0;
+    }
+    .bindGa-link1 img, .bindGa-link2 img {
+        width: 16px;
+        margin-top: 5px;
+        margin-left: 0;
+    }
+    .bindGa-link1, .bindGa-link2 {
+        padding: 0;
+        margin-top: -15px;
+        border-color: transparent;
+    }
+    .bindGa-link1 div, .bindGa-link2 div {
+        margin-left:22px;
+    }
+    .coinAddr{
+        font-size: 12px!important;
+    }
+}
+
+@media (max-width: 1060px) {
+    .notice-content p {
+        width: 100%;
+    }
+}
+@media (max-width: 380px){
+    .phone-gaCodeImg,.gaKeyLabel{
+        width:64%;
+    }
+}
+@media (max-width: 330px){
+    .phone-gaCodeImg,.gaKeyLabel{
+        width:80%;
+    }
+}

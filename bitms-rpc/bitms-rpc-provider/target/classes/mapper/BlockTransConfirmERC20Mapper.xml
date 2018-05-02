@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.BlockTransConfirmERC20Mapper">
+    <!-- 基础列 -->
+    <sql id="blockTransConfirmERC20Columns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletId as walletId,
+        a.walletAddr as walletAddr,
+        a.transId as transId,
+        a.confirmSide as confirmSide,
+        a.direct as direct,
+        a.status as status,
+        a.collectStatus as collectStatus,
+        a.amount as amount,
+        a.fee as fee,
+        a.blockNumber as blockNumber,
+        a.blockHash as blockHash,
+        a.fromAddress as fromAddress,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="blockTransConfirmERC20JoinColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletAddr as walletAddr,
+        a.confirmSide as confirmSide,
+        a.direct as direct,
+        a.status as status,
+        a.collectStatus as collectStatus,
+        a.amount as amount,
+        a.fee as fee,
+        a.blockNumber as blockNumber,
+        a.blockHash as blockHash,
+        a.fromAddress as fromAddress,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.transId as transId,
+        b.accountName as accountName,
+        b.id as accountId,
+        d.stockCode as stockCode,
+        d.stockName as stockName,
+        d.stockType as stockType,
+        a.walletId as walletId
+    </sql>
+
+    <resultMap id="blockTransConfirmERC20ResultMap" type="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        <id column="id" property="id"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="walletId" property="walletId"/>
+        <result column="walletAddr" property="walletAddr"/>
+        <result column="transId" property="transId"/>
+        <result column="confirmSide" property="confirmSide"/>
+        <result column="direct" property="direct"/>
+        <result column="status" property="status"/>
+        <result column="collectStatus" property="collectStatus"/>
+        <result column="amount" property="amount"/>
+        <result column="fee" property="fee"/>
+        <result column="blockNumber" property="blockNumber"/>
+        <result column="blockHash" property="blockHash"/>
+        <result column="fromAddress" property="fromAddress"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        insert into BlockTransConfirmERC20(
+            id ,
+            stockinfoId ,
+            walletId ,
+            walletAddr ,
+            transId ,
+            confirmSide ,
+            direct ,
+            status ,
+            collectStatus,
+            amount ,
+            fee ,
+            blockNumber ,
+            blockHash ,
+            fromAddress ,
+            remark ,
+            createBy ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{stockinfoId} ,
+            #{walletId} ,
+            #{walletAddr} ,
+            #{transId} ,
+            #{confirmSide} ,
+            #{direct} ,
+            #{status} ,
+            #{collectStatus} ,
+            #{amount} ,
+            #{fee} ,
+            #{blockNumber} ,
+            #{blockHash} ,
+            #{fromAddress},
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from BlockTransConfirmERC20 where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update BlockTransConfirmERC20 set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        insert into BlockTransConfirmERC20
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="walletId != null">
+                walletId ,
+            </if>
+            <if test="walletAddr != null">
+                walletAddr ,
+            </if>
+            <if test="transId != null">
+                transId ,
+            </if>
+            <if test="confirmSide != null">
+                confirmSide ,
+            </if>
+            <if test="direct != null">
+                direct ,
+            </if>
+            <if test="status != null">
+                status ,
+            </if>
+            <if test="collectStatus != null">
+                collectStatus ,
+            </if>
+            <if test="amount != null">
+                amount ,
+            </if>
+            <if test="fee != null">
+                fee ,
+            </if>
+            <if test="blockNumber != null">
+                blockNumber ,
+            </if>
+            <if test="blockHash != null">
+                blockHash ,
+            </if>
+            <if test="fromAddress!=null">
+                fromAddress ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="walletId != null">
+                #{walletId} ,
+            </if>
+            <if test="walletAddr != null">
+                #{walletAddr} ,
+            </if>
+            <if test="transId != null">
+                #{transId} ,
+            </if>
+            <if test="confirmSide != null">
+                #{confirmSide} ,
+            </if>
+            <if test="direct != null">
+                #{direct} ,
+            </if>
+            <if test="status != null">
+                #{status} ,
+            </if>
+            <if test="collectStatus != null">
+                #{collectStatus} ,
+            </if>
+            <if test="amount != null">
+                #{amount} ,
+            </if>
+            <if test="fee != null">
+                #{fee} ,
+            </if>
+            <if test="blockNumber != null">
+                #{blockNumber} ,
+            </if>
+            <if test="blockHash != null">
+                #{blockHash} ,
+            </if>
+            <if test="fromAddress!=null">
+                #{fromAddress},
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        update BlockTransConfirmERC20
+        <set>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="walletId != null">
+                walletId = #{walletId} ,
+            </if>
+            <if test="walletAddr != null">
+                walletAddr = #{walletAddr} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="confirmSide != null">
+                confirmSide = #{confirmSide} ,
+            </if>
+            <if test="direct != null">
+                direct = #{direct} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="collectStatus != null">
+                collectStatus = #{collectStatus} ,
+            </if>
+            <if test="amount != null">
+                amount = #{amount} ,
+            </if>
+            <if test="fee != null">
+                fee = #{fee} ,
+            </if>
+            <if test="blockNumber != null">
+                blockNumber = #{blockNumber} ,
+            </if>
+            <if test="blockHash != null">
+                blockHash = #{blockHash} ,
+            </if>
+            <if test="fromAddress!=null">
+                fromAddress = #{fromAddress},
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into BlockTransConfirmERC20(
+        id ,
+        stockinfoId ,
+        walletId ,
+        walletAddr ,
+        transId ,
+        confirmSide ,
+        direct ,
+        status ,
+        collectStatus ,
+        amount ,
+        fee ,
+        blockNumber ,
+        blockHash ,
+        fromAddress ,
+        remark ,
+        createBy ,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.stockinfoId} ,
+            #{item.walletId} ,
+            #{item.walletAddr} ,
+            #{item.transId} ,
+            #{item.confirmSide} ,
+            #{item.direct} ,
+            #{item.status} ,
+            #{item.collectStatus} ,
+            #{item.amount} ,
+            #{item.fee} ,
+            #{item.blockNumber} ,
+            #{item.blockHash} ,
+            #{item.fromAddress},
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update BlockTransConfirmERC20 set
+            stockinfoId = #{item.stockinfoId} ,
+            walletId = #{item.walletId} ,
+            walletAddr = #{item.walletAddr} ,
+            transId = #{item.transId} ,
+            confirmSide = #{item.confirmSide} ,
+            direct = #{item.direct} ,
+            status = #{item.status} ,
+            collectStatus = #{item.collectStatus} ,
+            amount = #{item.amount} ,
+            fee = #{item.fee} ,
+            blockNumber = #{item.blockNumber} ,
+            blockHash = #{item.blockHash} ,
+            fromAddress = #{item.fromAddress},
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        update BlockTransConfirmERC20 set
+            stockinfoId = #{stockinfoId} ,
+            walletId = #{walletId} ,
+            walletAddr = #{walletAddr} ,
+            transId = #{transId} ,
+            confirmSide = #{confirmSide} ,
+            direct = #{direct} ,
+            status = #{status} ,
+            collectStatus = #{collectStatus} ,
+            amount = #{amount} ,
+            fee = #{fee} ,
+            blockNumber = #{blockNumber} ,
+            blockHash = #{blockHash} ,
+            fromAddress = #{fromAddress},
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        select
+        <include refid="blockTransConfirmERC20Columns"/>
+        from BlockTransConfirmERC20 a where a.id = #{id}
+    </select>
+
+    <select id="selectByIdForUpdate" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        select
+        <include refid="blockTransConfirmERC20Columns"/>
+        from BlockTransConfirmERC20 a where a.id = #{id} for update wait 3
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        SELECT
+        <include refid="blockTransConfirmERC20Columns"/>
+        FROM BlockTransConfirmERC20 a WHERE 1=1
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="walletId != null">
+            and a.walletId = #{walletId}
+        </if>
+        <if test="walletAddr != null">
+            and a.walletAddr = #{walletAddr}
+        </if>
+        <if test="transId != null">
+            and a.transId = #{transId}
+        </if>
+        <if test="confirmSide != null">
+            and a.confirmSide = #{confirmSide}
+        </if>
+        <if test="direct != null">
+            and a.direct = #{direct}
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+        <if test="collectStatus != null">
+            and a.collectStatus = #{collectStatus}
+        </if>
+        <if test="amount != null">
+            and a.amount = #{amount}
+        </if>
+        <if test="fee != null">
+            and a.fee = #{fee}
+        </if>
+        <if test="blockNumber != null">
+            and a.blockNumber = #{blockNumber}
+        </if>
+        <if test="blockHash != null">
+            and a.blockHash = #{blockHash}
+        </if>
+        order by a.createDate desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        SELECT
+        <include refid="blockTransConfirmERC20Columns"/>
+        FROM BlockTransConfirmERC20 a WHERE 1=1
+    </select>
+
+    <!-- 查询erc20充值区块确认信息-->
+    <select id="findConfirmERC20ChargeList" resultType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        SELECT
+        <include refid="blockTransConfirmERC20JoinColumns"/>
+        FROM BlockTransConfirmERC20 a, SystemWalletAddrERC20 c, Account b, StockInfo d
+        WHERE b.id = c.accountId and a.walletId = c.walletId
+        and a.walletAddr = c.walletAddr and d.id = a.stockinfoId
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="accountId != null">
+            and c.accountId = #{accountId}
+        </if>
+        <if test="accountName != null">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+        order by createDate desc
+    </select>
+
+    <!-- 查找未标记过的充值记录 -->
+    <select id="findUnsignList" resultType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        SELECT
+        <include refid="blockTransConfirmERC20Columns"/>
+        from systemwalletaddrerc20 b,blocktransconfirmerc20 a
+        left join ethaddrs d
+        on a.fromaddress = d.addr and d.isCollect='yes'
+        where  a.walletaddr=b.walletaddr and a.walletid=b.walletid
+        and b.accountid=#{accountId}
+        and b.stockinfoid=111111111102
+        and d.id is null
+    </select>
+
+    <select id="getByIdsForUpdate" resultType="com.blocain.bitms.trade.fund.entity.BlockTransConfirmERC20">
+        select  <include refid="blockTransConfirmERC20Columns"/>  from  blocktransconfirmerc20 a where id in
+        <foreach item="item" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        for update wait 3
+    </select>
+</mapper>
+

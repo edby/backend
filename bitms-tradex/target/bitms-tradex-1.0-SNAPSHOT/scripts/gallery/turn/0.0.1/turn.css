@@ -1,0 +1,114 @@
+﻿@charset "UTF-8";
+/*!
+Animate.css - http://daneden.me/animate
+Licensed under the MIT license - http://opensource.org/licenses/MIT
+
+Copyright (c) 2014 Daniel Eden
+*/
+
+.animated {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes flipIn {
+  0% {
+    -webkit-transform:  rotate3d(0, 1, 0, -180deg);
+    -ms-transform:  rotate3d(0, 1, 0, -180deg);
+    transform:  rotate3d(0, 1, 0, -180deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    -webkit-transform:  rotate3d(0, 1, 0, 0deg);
+    -ms-transform:  rotate3d(0, 1, 0, 0deg);
+    transform:  rotate3d(0, 1, 0, 0deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes flipIn {
+  0% {
+    -webkit-transform:  rotate3d(0, 1, 0, -180deg);
+    -ms-transform:  rotate3d(0, 1, 0, -180deg);
+    transform:  rotate3d(0, 1, 0, -180deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    -webkit-transform:  rotate3d(0, 1, 0, 0deg);
+    -ms-transform:  rotate3d(0, 1, 0, 0deg);
+    transform:  rotate3d(0, 1, 0, 0deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+.flipIn {
+  -webkit-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-animation-name: flipIn;
+  animation-name: flipIn;
+}
+
+
+@-webkit-keyframes flipOut {
+  0% {
+    -webkit-transform:  rotate3d(0, 1, 0, -360deg);
+    -ms-transform:  rotate3d(0, 1, 0, -360deg);
+    transform:  rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    -webkit-transform:  rotate3d(0, 1, 0, -180deg);
+    -ms-transform:  rotate3d(0, 1, 0, -180deg);
+    transform:  rotate3d(0, 1, 0, -180deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes flipOut {
+  0% {
+    -webkit-transform:  rotate3d(0, 1, 0, -360deg);
+    -ms-transform:  rotate3d(0, 1, 0, -360deg);
+    transform:  rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    -webkit-transform:  rotate3d(0, 1, 0, -180deg);
+    -ms-transform:  rotate3d(0, 1, 0, -180deg);
+    transform:  rotate3d(0, 1, 0, -180deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+
+}
+
+.flipOut {
+  -webkit-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+  backface-visibility: visible;
+  -webkit-animation-name: flipOut;
+  animation-name: flipOut;
+}

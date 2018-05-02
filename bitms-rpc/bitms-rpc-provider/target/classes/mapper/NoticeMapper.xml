@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.account.mapper.NoticeMapper">
+    <!-- 基础列 -->
+    <sql id="noticeColumns">
+        a.id as id,
+        a.langType as langType,
+        a.publicDate as publicDate,
+        a.title as title,
+        a.content as content,
+        a.status as status,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="noticeJoinColumns">
+        a.id as id,
+        a.langType as langType,
+        a.publicDate as publicDate,
+        a.title as title,
+        a.content as content,
+        a.status as status,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        b.trueName as createByName
+    </sql>
+
+    <resultMap id="noticeResultMap" type="com.blocain.bitms.trade.account.entity.Notice">
+        <id column="id" property="id"/>
+        <result column="langType" property="langType"/>
+        <result column="publicDate" property="publicDate"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.account.entity.Notice">
+        insert into Notice(
+            id ,
+            langType ,
+            publicDate ,
+            title ,
+            content ,
+            status ,
+            remark ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{langType} ,
+            #{publicDate} ,
+            #{title} ,
+            #{content} ,
+            #{status} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{updateBy} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Notice where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from Notice where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.account.entity.Notice">
+        insert into Notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="langType != null">
+                langType ,
+            </if>
+            <if test="publicDate != null">
+                publicDate ,
+            </if>
+            <if test="title != null">
+                title ,
+            </if>
+            <if test="content != null">
+                content ,
+            </if>
+            <if test="status != null">
+                status ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateBy != null">
+                updateBy ,
+            </if>
+            <if test="updateDate != null">
+                updateDate ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="langType != null">
+                #{langType} ,
+            </if>
+            <if test="publicDate != null">
+                #{publicDate} ,
+            </if>
+            <if test="title != null">
+                #{title} ,
+            </if>
+            <if test="content != null">
+                #{content} ,
+            </if>
+            <if test="status != null">
+                #{status} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate} ,
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.account.entity.Notice">
+        update Notice
+        <set>
+            <if test="langType != null">
+                langType = #{langType} ,
+            </if>
+            <if test="publicDate != null">
+                publicDate = #{publicDate} ,
+            </if>
+            <if test="title != null">
+                title = #{title} ,
+            </if>
+            <if test="content != null">
+                content = #{content} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} ,
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Notice(
+        id ,
+        langType ,
+        publicDate ,
+        title ,
+        content ,
+        status ,
+        remark ,
+        createBy ,
+        createDate ,
+        updateBy ,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.langType} ,
+            #{item.publicDate} ,
+            #{item.title} ,
+            #{item.content} ,
+            #{item.status} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.updateBy} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Notice set
+            langType = #{item.langType} ,
+            publicDate = #{item.publicDate} ,
+            title = #{item.title} ,
+            content = #{item.content} ,
+            status = #{item.status} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            updateBy = #{item.updateBy} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.account.entity.Notice">
+        update Notice set
+            langType = #{langType} ,
+            publicDate = #{publicDate} ,
+            title = #{title} ,
+            content = #{content} ,
+            status = #{status} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            updateBy = #{updateBy} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.trade.account.entity.Notice">
+        select
+        <include refid="noticeColumns"/>
+        from Notice a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.account.entity.Notice">
+        SELECT
+        <include refid="noticeJoinColumns"/>
+        FROM Notice a left join UserInfo b on a.createBy = b.id
+        WHERE 1=1
+        <if test="langType != null">
+            and a.langType = #{langType}
+        </if>
+        <if test="title != null">
+            and a.title like '%'||#{title}||'%'
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+        ORDER BY updateDate DESC,createDate DESC
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.account.entity.Notice">
+        SELECT
+        <include refid="noticeColumns"/>
+        FROM Notice a
+    </select>
+
+    <select id="findLatestNotice"  resultType="com.blocain.bitms.trade.account.entity.Notice">
+        SELECT
+        <include refid="noticeColumns"/>
+        FROM Notice a
+        WHERE a.langType = #{lang}
+        AND ROWNUM = 1
+        ORDER BY a.createDate desc
+    </select>
+
+
+</mapper>
+

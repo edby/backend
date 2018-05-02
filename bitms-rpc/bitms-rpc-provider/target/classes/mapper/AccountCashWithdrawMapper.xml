@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountCashWithdrawMapper">
+    <!-- 基础列 -->
+    <sql id="accountCashWithdrawColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.accountAssetType as accountAssetType,
+        a.accountAssetId as accountAssetId,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.occurDirect as occurDirect,
+        a.occurAmt as occurAmt,
+        a.transId as transId,
+        a.withdrawBankName as withdrawBankName,
+        a.withdrawCardNo as withdrawCardNo,
+        a.swiftBic as swiftBic,
+        a.fee as fee,
+        a.realFee as realFee,
+        a.approveStatus as approveStatus,
+        a.transferStatus as transferStatus,
+        a.originalBusinessId as originalBusinessId,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate,
+        a.checkBy as checkBy,
+        a.checkDate as checkDate
+    </sql>
+
+
+    <sql id="accountCashWithdrawJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.accountAssetType as accountAssetType,
+        a.accountAssetId as accountAssetId,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.occurDirect as occurDirect,
+        a.occurAmt as occurAmt,
+        a.transId as transId,
+        a.withdrawBankName as withdrawBankName,
+        a.withdrawCardNo as withdrawCardNo,
+        a.swiftBic as swiftBic,
+        a.fee as fee,
+        a.realFee as realFee ,
+        a.approveStatus as approveStatus,
+        a.transferStatus as transferStatus,
+        a.originalBusinessId as originalBusinessId,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate,
+        a.checkBy as checkBy,
+        a.checkDate as checkDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode
+    </sql>
+    <resultMap id="accountCashWithdrawResultMap" type="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        <id column="id" property="id"/>
+        <result column="accountId" property="accountId"/>
+        <result column="accountAssetType" property="accountAssetType"/>
+        <result column="accountAssetId" property="accountAssetId"/>
+        <result column="currentDate" property="currentDate"/>
+        <result column="businessFlag" property="businessFlag"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="occurDirect" property="occurDirect"/>
+        <result column="occurAmt" property="occurAmt"/>
+        <result column="transId" property="transId"/>
+        <result column="withdrawBankName" property="withdrawBankName"/>
+        <result column="withdrawCardNo" property="withdrawCardNo"/>
+        <result column="swiftBic" property="swiftBic" />
+        <result column="fee" property="fee"/>
+        <result column="realFee" property="realFee"/>
+        <result column="approveStatus" property="approveStatus"/>
+        <result column="transferStatus" property="transferStatus"/>
+        <result column="originalBusinessId" property="originalBusinessId"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="auditBy" property="auditBy"/>
+        <result column="auditDate" property="auditDate"/>
+        <result column="checkBy" property="checkBy"/>
+        <result column="checkDate" property="checkDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        insert into AccountCashWithdraw(
+            id ,
+            accountId ,
+            accountAssetType ,
+            accountAssetId ,
+            currentDate ,
+            businessFlag ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            occurDirect ,
+            occurAmt ,
+            transId ,
+            withdrawBankName ,
+            withdrawCardNo ,
+            swiftBic ,
+            fee ,
+            realFee,
+            approveStatus ,
+            transferStatus ,
+            originalBusinessId ,
+            remark ,
+            createBy ,
+            createDate ,
+            auditBy ,
+            auditDate ,
+            checkBy ,
+            checkDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{accountAssetType} ,
+            #{accountAssetId} ,
+            #{currentDate} ,
+            #{businessFlag} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{occurDirect} ,
+            #{occurAmt} ,
+            #{transId} ,
+            #{withdrawBankName} ,
+            #{withdrawCardNo} ,
+            #{swiftBic},
+            #{fee} ,
+            #{realFee},
+            #{approveStatus} ,
+            #{transferStatus} ,
+            #{originalBusinessId} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{auditBy} ,
+            #{auditDate} ,
+            #{checkBy} ,
+            #{checkDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountCashWithdraw where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountCashWithdraw set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        insert into AccountCashWithdraw
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="accountAssetType != null">
+                accountAssetType ,
+            </if>
+            <if test="accountAssetId != null">
+                accountAssetId ,
+            </if>
+            <if test="currentDate != null">
+                currentDate ,
+            </if>
+            <if test="businessFlag != null">
+                businessFlag ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+            </if>
+            <if test="occurDirect != null">
+                occurDirect ,
+            </if>
+            <if test="occurAmt != null">
+                occurAmt ,
+            </if>
+            <if test="transId != null">
+                transId ,
+            </if>
+            <if test="withdrawBankName != null">
+                withdrawBankName ,
+            </if>
+            <if test="withdrawCardNo != null">
+                withdrawCardNo ,
+            </if>
+            <if test="swiftBic!=null">
+                swiftBic,
+            </if>
+            <if test="fee != null">
+                fee ,
+            </if>
+            <if test="realFee!=null">
+                realFee,
+            </if>
+            <if test="approveStatus != null">
+                approveStatus ,
+            </if>
+            <if test="transferStatus != null">
+                transferStatus ,
+            </if>
+            <if test="originalBusinessId != null">
+                originalBusinessId ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="auditBy != null">
+                auditBy ,
+            </if>
+            <if test="auditDate != null">
+                auditDate ,
+            </if>
+            <if test="checkBy != null">
+                checkBy ,
+            </if>
+            <if test="checkDate != null">
+                checkDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="accountAssetType != null">
+                #{accountAssetType} ,
+            </if>
+            <if test="accountAssetId != null">
+                #{accountAssetId} ,
+            </if>
+            <if test="currentDate != null">
+                #{currentDate} ,
+            </if>
+            <if test="businessFlag != null">
+                #{businessFlag} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+            </if>
+            <if test="occurDirect != null">
+                #{occurDirect} ,
+            </if>
+            <if test="occurAmt != null">
+                #{occurAmt} ,
+            </if>
+            <if test="transId != null">
+                #{transId} ,
+            </if>
+            <if test="withdrawBankName != null">
+                #{withdrawBankName} ,
+            </if>
+            <if test="withdrawCardNo != null">
+                #{withdrawCardNo} ,
+            </if>
+            <if test="swiftBic!=null">
+                #{swiftBic},
+            </if>
+            <if test="fee != null">
+                #{fee} ,
+            </if>
+            <if test="realFee!=null">
+                #{realFee},
+            </if>
+            <if test="approveStatus != null">
+                #{approveStatus} ,
+            </if>
+            <if test="transferStatus != null">
+                #{transferStatus} ,
+            </if>
+            <if test="originalBusinessId != null">
+                #{originalBusinessId} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="auditBy != null">
+                #{auditBy} ,
+            </if>
+            <if test="auditDate != null">
+                #{auditDate} ,
+            </if>
+            <if test="checkBy != null">
+                #{checkBy} ,
+            </if>
+            <if test="checkDate != null">
+                #{checkDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        update AccountCashWithdraw
+        <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="accountAssetType != null">
+                accountAssetType = #{accountAssetType} ,
+            </if>
+            <if test="accountAssetId != null">
+                accountAssetId = #{accountAssetId} ,
+            </if>
+            <if test="currentDate != null">
+                currentDate = #{currentDate} ,
+            </if>
+            <if test="businessFlag != null">
+                businessFlag = #{businessFlag} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="occurDirect != null">
+                occurDirect = #{occurDirect} ,
+            </if>
+            <if test="occurAmt != null">
+                occurAmt = #{occurAmt} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="withdrawBankName != null">
+                withdrawBankName = #{withdrawBankName} ,
+            </if>
+            <if test="withdrawCardNo != null">
+                withdrawCardNo = #{withdrawCardNo} ,
+            </if>
+            <if test="swiftBic!=null">
+                swiftBic = #{swiftBic},
+            </if>
+            <if test="fee != null">
+                fee = #{fee} ,
+            </if>
+            <if test="realFee!=null">
+                realFee = #{realFee},
+            </if>
+            <if test="approveStatus != null">
+                approveStatus = #{approveStatus} ,
+            </if>
+            <if test="transferStatus != null">
+                transferStatus = #{transferStatus} ,
+            </if>
+            <if test="originalBusinessId != null">
+                originalBusinessId = #{originalBusinessId} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="auditBy != null">
+                auditBy = #{auditBy} ,
+            </if>
+            <if test="auditDate != null">
+                auditDate = #{auditDate} ,
+            </if>
+            <if test="checkBy != null">
+                checkBy = #{checkBy} ,
+            </if>
+            <if test="checkDate != null">
+                checkDate = #{checkDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountCashWithdraw(
+        id ,
+        accountId ,
+        accountAssetType ,
+        accountAssetId ,
+        currentDate ,
+        businessFlag ,
+        stockinfoId ,
+        relatedStockinfoId ,
+        occurDirect ,
+        occurAmt ,
+        transId ,
+        withdrawBankName ,
+        withdrawCardNo ,
+        swiftBic,
+        fee ,
+        realFee,
+        approveStatus ,
+        transferStatus ,
+        originalBusinessId ,
+        remark ,
+        createBy ,
+        createDate ,
+        auditBy ,
+        auditDate ,
+        checkBy ,
+        checkDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.accountAssetType} ,
+            #{item.accountAssetId} ,
+            #{item.currentDate} ,
+            #{item.businessFlag} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.occurDirect} ,
+            #{item.occurAmt} ,
+            #{item.transId} ,
+            #{item.withdrawBankName} ,
+            #{item.withdrawCardNo} ,
+            #{item.swiftBic},
+            #{item.fee} ,
+            #{item.realFee},
+            #{item.approveStatus} ,
+            #{item.transferStatus} ,
+            #{item.originalBusinessId} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.auditBy} ,
+            #{item.auditDate} ,
+            #{item.checkBy} ,
+            #{item.checkDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountCashWithdraw set
+            accountId = #{item.accountId} ,
+            accountAssetType = #{item.accountAssetType} ,
+            accountAssetId = #{item.accountAssetId} ,
+            currentDate = #{item.currentDate} ,
+            businessFlag = #{item.businessFlag} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            occurDirect = #{item.occurDirect} ,
+            occurAmt = #{item.occurAmt} ,
+            transId = #{item.transId} ,
+            withdrawBankName = #{item.withdrawBankName} ,
+            withdrawCardNo = #{item.withdrawCardNo} ,
+            swiftBic = #{item.swiftBic},
+            fee = #{item.fee} ,
+            realFee = #{item.realFee},
+            approveStatus = #{item.approveStatus} ,
+            transferStatus = #{item.transferStatus} ,
+            originalBusinessId = #{item.originalBusinessId} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            auditBy = #{item.auditBy} ,
+            auditDate = #{item.auditDate} ,
+            checkBy = #{item.checkBy} ,
+            checkDate = #{item.checkDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        update AccountCashWithdraw set
+            accountId = #{accountId} ,
+            accountAssetType = #{accountAssetType} ,
+            accountAssetId = #{accountAssetId} ,
+            currentDate = #{currentDate} ,
+            businessFlag = #{businessFlag} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            occurDirect = #{occurDirect} ,
+            occurAmt = #{occurAmt} ,
+            transId = #{transId} ,
+            withdrawBankName = #{withdrawBankName} ,
+            withdrawCardNo = #{withdrawCardNo} ,
+            swiftBic = #{swiftBic},
+            fee = #{fee} ,
+            realFee = #{realFee},
+            approveStatus = #{approveStatus} ,
+            transferStatus = #{transferStatus} ,
+            originalBusinessId = #{originalBusinessId} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            auditBy = #{auditBy} ,
+            auditDate = #{auditDate} ,
+            checkBy = #{checkBy} ,
+            checkDate = #{checkDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        select
+        <include refid="accountCashWithdrawColumns"/>
+        from AccountCashWithdraw a where a.id = #{id}
+    </select>
+
+    <select id="selectByIdForUpdate" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        select
+        <include refid="accountCashWithdrawColumns"/>
+        from AccountCashWithdraw a where a.id = #{id} for update wait 3
+    </select>
+
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        SELECT
+        <include refid="accountCashWithdrawJoinColumns"/>
+        FROM AccountCashWithdraw a
+        left join account b on b.id= a.accountId
+        left join stockinfo c on c.id=a.stockinfoId
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName != ''">
+            and ( b.accountName like '%'||#{accountName}||'%' or b.unid like '%'||#{accountName}||'%')
+        </if>
+        <if test="businessFlag != null">
+            and a.businessFlag like '%'||#{businessFlag}||'%'
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="occurDirect != null">
+            and a.occurDirect like '%'||#{occurDirect}||'%'
+        </if>
+        <if test="transId != null">
+            and a.transId like '%'||#{transId}||'%'
+        </if>
+        <if test="withdrawBankName != null">
+            and a.withdrawBankName like '%'||#{withdrawBankName}||'%'
+        </if>
+        <if test="withdrawCardNo != null">
+            and a.withdrawCardNo like '%'||#{withdrawCardNo}||'%'
+        </if>
+        <if test="approveStatus != null">
+            and a.approveStatus like '%'||#{approveStatus}||'%'
+        </if>
+        <if test="transferStatus != null">
+            and a.transferStatus like '%'||#{transferStatus}||'%'
+        </if>
+        <if test="originalBusinessId != null">
+            and a.originalBusinessId = #{originalBusinessId}
+        </if>
+        <if test="timeStart != null and timeStart!=''">
+            and a.auditDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null and timeEnd!=''">
+            and a.auditDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.currentDate desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        SELECT
+        <include refid="accountCashWithdrawColumns"/>
+        FROM AccountCashWithdraw a WHERE 1=1
+    </select>
+
+    <select id="listForExcel" resultType="com.blocain.bitms.trade.fund.entity.AccountCashWithdraw">
+        SELECT
+        <include refid="accountCashWithdrawJoinColumns"/>
+        FROM AccountCashWithdraw a
+        left join account b on b.id= a.accountId
+        left join stockinfo c on c.id=a.stockinfoId
+        WHERE a.approveStatus = 'checkThrough'
+        and  a.transferStatus = 'transferPending'
+        <if test="timeStart != null and timeStart!=''">
+            and a.auditDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null and timeEnd!=''">
+            and a.auditDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.auditDate desc
+    </select>
+
+    <!-- 查询账户已提现数量  -->
+    <select id="findSumAmtByAccount" resultType="java.math.BigDecimal">
+        select nvl(sum(OCCURAMT-fee),0) from AccountCashWithdraw
+        where accountId=#{accountId } and  accountAssetType='walletAccountAsset' and businessFlag='walletWithdraw'
+        and (approveStatus!='cancel' and approveStatus!='auditReject'  and approveStatus!='checkReject'   )
+        <if test="stockinfoId != null">
+            and stockinfoId  = #{stockinfoId }
+        </if>
+        <if test="timeStart != null">
+            and currentDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null">
+            and currentDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+    </select>
+
+</mapper>
+

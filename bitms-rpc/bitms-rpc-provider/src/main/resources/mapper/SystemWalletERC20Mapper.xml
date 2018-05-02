@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.SystemWalletERC20Mapper">
+    <!-- 基础列 -->
+    <sql id="systemWalletERC20Columns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletId as walletId,
+        a.walletName as walletName,
+        a.walletUsageType as walletUsageType,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="systemWalletERC20JoinColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletId as walletId,
+        a.walletName as walletName,
+        a.walletUsageType as walletUsageType,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        b.stockCode as stockCode,
+        b.stockName as stockName
+    </sql>
+
+    <resultMap id="systemWalletERC20ResultMap" type="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        <id column="id" property="id" />
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="walletId" property="walletId"/>
+        <result column="walletName" property="walletName"/>
+        <result column="walletUsageType" property="walletUsageType"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        insert into SystemWalletERC20(
+            id ,
+            stockinfoId ,
+            walletId ,
+            walletName ,
+            walletUsageType ,
+            sign ,
+            randomKey ,
+            remark ,
+            createBy ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{stockinfoId} ,
+            #{walletId} ,
+            #{walletName} ,
+            #{walletUsageType} ,
+            #{sign} ,
+            #{randomKey} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SystemWalletERC20 where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SystemWalletERC20 set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        insert into SystemWalletERC20
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="walletId != null">
+                walletId ,
+        </if>
+        <if test="walletName != null">
+                walletName ,
+        </if>
+        <if test="walletUsageType != null">
+                walletUsageType ,
+        </if>
+        <if test="sign != null">
+                sign ,
+        </if>
+        <if test="randomKey != null">
+                randomKey ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="walletId != null">
+                #{walletId} ,
+        </if>
+        <if test="walletName != null">
+                #{walletName} ,
+        </if>
+        <if test="walletUsageType != null">
+                #{walletUsageType} ,
+        </if>
+        <if test="sign != null">
+                #{sign} ,
+        </if>
+        <if test="randomKey != null">
+                #{randomKey} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        update SystemWalletERC20
+           <set>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="walletId != null">
+                walletId = #{walletId} ,
+            </if>
+            <if test="walletName != null">
+                walletName = #{walletName} ,
+            </if>
+            <if test="walletUsageType != null">
+                walletUsageType = #{walletUsageType} ,
+            </if>
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SystemWalletERC20(
+            id ,
+            stockinfoId ,
+            walletId ,
+            walletName ,
+            walletUsageType ,
+            sign ,
+            randomKey ,
+            remark ,
+            createBy ,
+            createDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.stockinfoId} ,
+            #{item.walletId} ,
+            #{item.walletName} ,
+            #{item.walletUsageType} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SystemWalletERC20 set
+            stockinfoId = #{item.stockinfoId} ,
+            walletId = #{item.walletId} ,
+            walletName = #{item.walletName} ,
+            walletUsageType = #{item.walletUsageType} ,
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        update SystemWalletERC20 set
+            stockinfoId = #{stockinfoId} ,
+            walletId = #{walletId} ,
+            walletName = #{walletName} ,
+            walletUsageType = #{walletUsageType} ,
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        select <include refid="systemWalletERC20Columns"/> from SystemWalletERC20 a where a.id = #{id}
+    </select>
+
+    <!-- 查询实体 -->
+    <select id="findWallet" resultType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        SELECT
+        <include refid="systemWalletERC20Columns"/>
+        FROM SystemWalletERC20 a where a.stockinfoId = #{stockinfoId}
+        <if test="walletId != null">
+            and a.walletId = #{walletId}
+        </if>
+        <if test="walletName != null and walletName != ''">
+            and a.walletName = #{walletName}
+        </if>
+        <if test="walletUsageType != null and walletUsageType != ''">
+            and a.walletUsageType = #{walletUsageType}
+        </if>
+    </select>
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        SELECT
+        <include refid="systemWalletERC20JoinColumns"/>
+        FROM SystemWalletERC20 a ,Stockinfo b WHERE 1=1
+        and a.stockinfoId = b.id
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="walletId != null">
+            and a.walletId like '%'||#{walletId}||'%'
+        </if>
+        <if test="walletName != null">
+            and a.walletName like '%'||#{walletName}||'%'
+        </if>
+        <if test="walletUsageType != null">
+            and a.walletUsageType like '%'||#{walletUsageType}||'%'
+        </if>
+        <if test="sign != null">
+            and a.sign like '%'||#{sign}||'%'
+        </if>
+        <if test="randomKey != null">
+            and a.randomKey like '%'||#{randomKey}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.SystemWalletERC20">
+        SELECT
+        <include refid="systemWalletERC20Columns"/>
+        FROM SystemWalletERC20 a WHERE 1=1
+    </select>
+
+
+</mapper>
+

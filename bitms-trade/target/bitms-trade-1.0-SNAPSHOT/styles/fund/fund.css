@@ -1,0 +1,896 @@
+.deposit-wrapper {
+	position: relative;
+}
+
+.deposit-wrapper .table td span {
+	color: #536b32;
+	margin-left: 20px;
+}
+
+.deposit-wrapper .table caption {
+	text-align: left;
+	font-weight: 100;
+}
+
+.deposit-wrapper .table caption h2 {
+	margin: 5px 0 15px 20px;
+}
+
+.deposit-wrapper .account-detail-box {
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: 1px solid #536b32;
+	height: 40px;
+}
+
+.deposit-wrapper .account-detail-box .account-list {
+	position: relative;
+	right: 0;
+}
+
+.deposit-wrapper .panel {
+	padding: 16px;
+}
+
+.deposit-wrapper .panel h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+	color: #536b32;
+}
+
+.deposit-wrapper .tab-content .input-box {
+	width: 570px;
+}
+
+.deposit-wrapper .tab-content .input-box p {
+	font-size: 12px;
+	line-height: 22px;
+	margin: 20px 0;
+}
+
+.deposit-wrapper .tab-content img {
+	margin: 60px;
+	vertical-align: middle;
+}
+.ext-content .field-val {
+	color: #aeaeae;
+}
+
+.ext-content .field-label {
+	width: 200px;
+    font-size: 16px;
+}
+
+.ext-content .text-controller:not(.noboder) {
+	height: 36px;
+	width: 250px;
+	text-indent: 13px;
+	margin-right: 10px;
+}
+
+.ext-content .iptbox {
+	float: left;
+}
+
+.ext-content .explain {
+	display: inline-block;
+	font-size: 14px;
+	color: #57595f;
+	margin-left: 10px;
+}
+
+.ext-content .btn {
+	height: 36px;
+	color: #fff;
+	width: 100px;
+}
+.settings-wrapper .btn.btn-submit {
+	width: 280px;
+	height: 28px;
+	margin: 20px 0 0 120px;
+}
+.inner-wrapper .tabnav li {
+	width: 182px;
+	height: 36px;
+}
+
+.inner-wrapper .tabnav li.cur {
+	font-weight: normal;
+}
+
+.inner-wrapper .tab-content>div {
+	background: none;
+}
+
+.inner-wrapper .tab-content h2 {
+	text-align: center;
+	color: #5c7c38;
+	font-size: 22px;
+	font-weight: normal;
+}
+
+.inner-wrapper .tab-content .inner-text {
+	padding: 10px 40px 15px;
+	background-color: #1e222d;
+	font-size: 12px;
+	line-height: 30px;
+}
+
+.inner-wrapper .tab-content .inner-text p:not(:last-child) {
+	text-indent: 20px;
+}
+
+.inner-wrapper .tab-content .inner-text ul {
+	padding-left: 15px;
+}
+
+.inner-wrapper .tab-content .filter-box {
+	padding: 10px 0;
+}
+
+.inner-wrapper .tab-content .btn {
+	width: 62px;
+	height: 23px;
+	color: #aeaeae;
+	padding-left: 18px;
+	margin: 0 10px;
+}
+.popup .new-addr {
+	width: 802px;
+}
+
+.popup .popup-content {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.popup .popup-content .field-label {
+	width: 125px;
+	margin: 0;
+}
+
+.popup .popup-content .select,
+.popup .popup-content .text-controller {
+	padding: 0;
+	width: 250px;
+    height: 36px;
+	background-color: #1e222d;
+	text-indent: 10px;
+}
+
+.popup .popup-content .btn {
+	width: 105px;
+	height: 36px;
+	font-size: 16px;
+	color: #fff;
+	height: 36px;
+}
+
+.popup .popup-content .horizontal.double .field-val {
+	width: 292px;
+}
+
+.popup .popup-content .horizontal.double .text-controller {
+	width: 190px;
+}
+
+.popup .popup-content .horizontal.double .btn {
+	width: 89px;
+	height: 37px;
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+}
+
+.popup .addr-mge {
+	width: 802px;
+}
+
+.popup .addr-mge .popup-content {
+	width: 710px;
+	padding: 10px 0 5px;
+}
+
+.popup .addr-mge .popup-content .adrr-box>div {
+	padding: 5px 0 10px;
+}
+
+.popup .addr-mge .popup-content ul li {
+	width: 344px;
+	height: 120px;
+	box-sizing: border-box;
+	padding: 10px;
+	background-color: #1e222d;
+	border: 1px solid #23333f;
+	border-radius: 2px;
+	margin-bottom: 10px;
+	color: #aeaeae;
+}
+.popup .addr-mge .popup-content ul li:nth-child(2n+1) {
+	float: left;
+}
+
+.popup .addr-mge .popup-content ul li:nth-child(2n) {
+	float: right;
+}
+
+.popup .addr-mge .popup-content ul li .addr-header {
+	border-bottom: 1px solid #414a65;
+	padding-bottom: 10px;
+	text-indent: 4px;
+	overflow: hidden;
+}
+
+.popup .addr-mge .popup-content ul li .addr-header #addr_icon1 {
+	vertical-align: middle;
+	float: right;
+	margin-left: 5px;
+}
+.popup .addr-mge .popup-content ul li .addr-content #addr_icon2{
+	display: block;
+    margin-top: 10px;
+    margin-right: -7px;
+    float: right;
+    cursor: pointer;
+}
+.popup .addr-mge .popup-content ul li .addr-header #certification {
+	vertical-align: middle;
+	float: right;
+	font-size: 12px;
+	display: inline-block;
+}
+.popup .addr-mge .popup-content ul li .addr-header #addr_remark {
+	font-size: 12px;
+	display: inline-block;
+}
+.popup .addr-mge .popup-content ul li .addr-header .icon-select {
+	width: 15px;
+	height: 15px;
+	margin-right: 10px;
+	cursor: pointer;
+	border-radius: 100%;
+	border: 1px solid #5b7d93;
+}
+
+.popup .addr-mge .popup-content ul li .addr-content {
+	padding: 15px 10px;
+	font-size: 12px;
+	position: relative
+}
+
+.popup .addr-mge .popup-content ul li .addr-content>p {
+	color: #57595f;
+	margin: 10px 0 5px;
+	display: inline-block
+}
+.panel .currentUl .currrentCon{
+	width: 120px;
+	height: 30px;
+	text-align: center;
+}
+.panel .currentUl .currrentSel{
+	height: 30px;
+	font-size: medium;
+	cursor: pointer;
+    border-radius: 2px;
+}
+.panel .currentUl{
+	overflow: hidden;
+	padding: 10px;
+	font-size: medium;
+}
+.panel .currentUl li{
+	float: left;
+	margin-right: 20px;
+}
+.panel .currentUl li label{
+    cursor: default;
+}
+.panel .currentUl .btn-search {
+    display: block;
+    padding-right: 15px;
+    height: 30px;
+    padding-left: 35px;
+    line-height: 30px;
+    font-size: 16px;
+    color: white;
+    border-radius: 3px;
+}
+.panel .currentUl .btn-dl{
+	display: block;
+    padding-right: 15px;
+    height: 30px;
+    padding-left: 35px;
+    line-height: 30px;
+    font-size: 16px;
+    color: white;
+    border-radius: 3px;
+}
+.panel .currentUl .icon-date{
+	vertical-align: middle;
+	cursor: pointer;
+}
+/*充币入金（改）*/
+.tab-content .chargeTab{
+	display: block;
+}
+.tab-content .qrcode_div{
+	height: 170px;
+	width: 170px; 
+	display: block;
+	margin-left: 650px;
+}
+.tab-content .qrcode_div #qrcode_img{
+	border: 10px solid #1e222d;
+    width: inherit;
+    height: inherit;
+    background-color: #1e222d;
+}
+.fontGray{
+	color: #57595f;
+}
+#item_4{
+	display: block;
+}
+/*账户互转（改）*/
+.deposit-wrapper .conversionTable thead th:nth-child(1){
+	width: 20%;
+}
+.deposit-wrapper .conversionTable thead th:nth-child(2){
+	width: 30%;
+}
+.deposit-wrapper .tab-content>div {
+    background-color: #1e222d;
+    padding: 20px;
+}
+.ex-con .select {
+	width: 200px;
+	margin: 0 5px;
+}
+
+.ex-con .text-controller {
+	height: 38px;
+	line-height: 38px;
+	text-indent: 10px;
+	margin: 0 5px;
+}
+
+.ex-con .btn {
+	width: 140px;
+	height: 37px;
+	line-height: 0px;
+	padding: 0px;
+	font-size: 16px;
+	color: #fff;
+	vertical-align: middle;
+}
+
+.exp-txt-btn {
+	padding: 8px 15px;
+    font-size: 16px;
+    border: 1px solid #4e6938;
+    color: #4e6938;
+}
+.inlineBlock {
+	display: inline-block;
+}
+.errorTip>div {
+	position: absolute;
+	margin-left: 6px;
+}
+/*提币出金（改）*/
+.errorI>div{
+	display: block;
+	margin-left: 218px;
+}
+.errorII>div{
+	display: block;
+	margin-left: 128px;
+}
+.spanBlock label{
+	cursor: auto;
+}
+.spanBlockPop{
+	display: block;
+	margin-left: 92px;
+}
+.spanBlockPop label{
+	cursor: auto;
+}
+#addr_posFee {
+	width: 219px;
+	height: 36px;
+}
+.raiseFee{
+	position: relative;
+    display: inline-block;
+}
+#authCheck{
+	vertical-align: middle;
+}
+.addr-header p{
+	display: inline-block;
+}
+.reminder{
+	border: 1px solid #536b32; 
+	border-radius: 2px; 
+	color: #151922; 
+	background-color: #536b32;
+	letter-spacing: 1px;
+	display: inline-block;
+	margin-bottom: 8px;
+	font-size: 16px;
+}
+.mailConfirmTxt{
+	margin: 15px auto;
+	text-align: center;
+}
+.mailConfirmBtn{
+	margin: 15px auto 0px;;
+    line-height: 25px;
+}
+#authCodeAddrBtn{
+	width: 122px;
+}
+#checkTypeAddr{
+	width: 114px;
+}
+#newAddrTip{
+	margin-left: 128px;
+}
+#authCodeBtn{
+	width: 122px;
+}
+#addrContainer{
+	height: 405px;
+	overflow-y: scroll;
+	padding-right: 10px;	
+}
+/*资金流水（改）*/
+#businessFlag{
+	padding: 0 6px;
+}
+.currentsPanel{
+	min-width: 1613px;
+}
+
+#remarkWidth{
+	width: 10%;
+}
+#occurNum{
+	width: 12%;
+}
+/*账户资产*/
+.assetSpan{
+	display: block;
+	padding-left: 30px;
+	font-size: large;
+	background-image: url(../../images/bitms/AssetIcon1.png);
+	background-repeat: no-repeat;
+	background-position: 2px 4px;
+}
+.assetTable{
+	border-radius: 5px;
+	min-width: 936px;
+	text-align: center;
+}
+.assetTable>thead>tr>th{
+	height: 50px;
+	border: 1px solid #252e3a;
+	font-size: large;
+	background-color: #1e222d;
+}
+.assetTable th:nth-child(6){
+	width: 20%;
+}
+.assetTable>tbody>tr>td{
+	height: 50px;
+	border: 1px solid #252e3a;
+}
+.assetTable td ul{
+	overflow: hidden;
+	margin-left: 55px;
+}
+.assetTable td ul li{
+	float: left;
+	margin-right: 20px;
+}
+.assetTable td ul li a{
+	display: inline-block;
+    font-size: 14px;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 3px;
+    color: white;
+}
+.assetTable .charge{
+	background-color: #3c5362;
+	cursor: pointer;
+}
+.assetTable .raise{
+	background-color: #5d7d93;
+	cursor: pointer;
+}
+.assetTable .stop{
+	background-color: #57595f;
+	cursor: default;
+}
+/*各个页面底部对齐*/
+.AssetNavMargin{
+	margin-top: 213px;
+}
+.chargeNavMargin{
+	margin-top: 71px;
+}
+.conversionNavMargin{
+	margin-top: 48px;
+}
+.currentNavMargin{
+	margin-top: 48px;
+}
+ 
+/*select*/
+.select-con {
+    display: inline-block;
+} 
+.select-content {
+    height: 36px;
+    border: solid 1px #394952;
+    cursor: pointer;
+    line-height: 36px;
+    width: 400px;
+    text-indent: 10px;
+    background-color: #1e222d;
+}
+.select-label {
+    height: auto;
+    overflow: hidden;
+    position: absolute;
+    display: none;
+    width: 400px;
+    border: 1px solid #486073;
+    background-color: #1e222d;
+    color: #aeaeae;
+    z-index: 1;
+}
+.select-label li {
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.select-label li:hover{
+	background:#1e90ff;
+	color:#fff;
+}
+.deposit-wrapper .select-con .select-content img,.deposit-wrapper .select-con .select-label img {
+    margin: 0;
+    margin-right: 2px;
+    margin-top: -2px;
+}
+.triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 6px solid #aeaeae;
+    position: absolute;
+    margin-left: 385px;
+    margin-top: -20px;
+}
+#signTip{
+	margin: 0px;
+	margin-right: 3px;
+	width: 15px;
+	vertical-align: sub;
+}
+/*激活状态页面*/
+.activationState{
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    background: #1e222d;
+    border-radius: 5px;
+    border: 1px solid #23333f;
+    text-align: center;
+}
+.activationState img{
+    display: block;
+    margin: 100px auto 0px;
+}
+.activationState .activationStateTxtDiv{
+	background: #151922;
+	text-align: center;
+	height: 100px;
+	width: 100%;
+}
+.activationState .activationStateTxt1{
+	font-size: 24px;
+    line-height: 97px;
+}
+.activationState .activationStateTxt2{
+	font-size: 16px;
+    display: block;
+    padding: 30px;
+}
+/*滚动条样式*/
+#addrContainer::-webkit-scrollbar{
+	width: 2px;
+}
+#addrContainer::-webkit-scrollbar-track{
+	background-color: transparent;
+}
+#addrContainer::-webkit-scrollbar-thumb{
+	background-color: #5d7b3c;
+}
+@media (max-width: 1680px){
+/*充币入金*/
+.tab-content .qrcode_div{
+	margin-left: 630px;
+}
+.deposit-wrapper .panel h2 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: normal;
+}
+.deposit-wrapper .tab-content img {
+    margin-top: 40px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+.deposit-wrapper .table caption h2 {
+    margin: 5px 0 10px 8px;
+}
+.chargeNavMargin{
+	margin-top: 54px;
+}
+/*资金流水*/
+.deposit-wrapper .tabnav .raiseNav{
+	width: 135px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+}
+.panel .currentUl .currrentCon{
+	width: 90px;
+	height: 20px;
+	font-size: xx-small;
+}
+.panel .currentUl .currrentSel{
+	height: 22px;
+	font-size: xx-small;
+}
+.panel .currentUl{
+	padding: 4px;
+	overflow: hidden;
+	font-size: xx-small;
+}
+.panel .currentUl li{
+	float: left;
+	margin-right: 10px;
+}
+.panel .currentUl .btn-search{
+    padding-right: 8px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 19px;
+    padding-left: 24px;
+    color: white;
+}
+.panel .currentUl .btn-dl{
+	padding-right: 8px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 19px;
+    padding-left: 24px;
+    color: white;
+}
+.panel .currentUl .icon-date{
+	vertical-align: middle;
+	cursor: pointer;
+}
+.deposit-wrapper .panel {
+    padding: 10px;
+    margin-bottom: 8px;
+}
+.currentNavMargin{
+	margin-top: 50px;
+}
+.currentsPanel{
+	min-width: 1075px;
+}
+/*账户互转*/
+.deposit-wrapper .tabnav .manualBtn{
+	width: 150px;
+}
+.inner-wrapper .tab-content .inner-text {
+    padding: 0px 0px 20px 10px;
+    background-color: #1e222d;
+    font-size: 12px;
+    line-height: 15px;
+}
+.ex-con .select{
+	width: 160px;
+	height: 30px;
+}
+.ex-con .text-controller {
+	width: 250px;
+    height: 30px;
+    line-height: 30px;
+}
+.ex-con .btn {
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+.exp-txt-btn {
+    padding: 4px;
+    font-size: 12px;
+}
+.conversionNavMargin{
+	margin-top: 34px;
+}
+/*合约说明书*/
+.inner-wrapper .tab-content .inner-text ul {
+	padding-left: 0px;
+}
+/*提币出金*/
+#addr_posFee {
+    width: 175px;
+    height: 30px;
+}
+.select {
+	height: 30px;
+	padding: 0 5px;
+}
+.ext-content{
+	font-size: 12px;
+}
+.ext-content .field-label {
+    width: 150px;
+    font-size: 12px;
+}
+.ext-content .text-controller:not(.noboder) {
+	height: 30px;
+    font-size: 12px;
+    width: 200px;
+}
+
+.iptbox .text-controller {
+    height: 30px;
+}
+.iptbox {
+    height: 30px;
+}
+.iptbox .addon {
+    top: 3px;
+}
+.ext-content .btn {
+   height: 30px;
+    width: 80px;;
+}
+.ext-content .explain {
+    margin-top: -4px;
+    font-size: 12px;
+}
+.popup .popup-wrapper .popup-box {
+	padding: 10px;
+}
+.popup .new-addr {
+    width: 500px;
+}
+.popup .popup-content .btn {
+    width: 90px;
+    height: 30px;
+}
+.popup .popup-content .btn-submit{
+    margin-top: 0px;
+    height: 25px;
+}
+.popup .popup-content {
+    width: 350px;
+}
+.raiseNavMargin{
+	margin-bottom: 0px;
+}
+.select-content {
+    height: 30px;
+    line-height: 30px;
+}
+.select-label{
+    line-height: 30px;
+}
+.triangle-down {
+    margin-top: -14px;
+}
+.select-label li {
+    height: 25px;
+    line-height: 25px;
+}
+#addraisebutton{
+	height: 30px;
+}
+.mailConfirmTxt{
+	margin: 5px auto;
+	text-align: center;
+}
+.mailConfirmBtn{
+	margin: 15px auto 0px;
+}
+.popup .popup-content .select, .popup .popup-content .text-controller {
+    width: 200px;
+    height: 25px;
+}
+#newAddrTip{
+	font-size: 12px;
+}
+#authCodeAddrBtn {
+    width: 82px;
+}
+.popup .addr-mge .popup-content .adrr-box>div {
+    padding: 2px 0 5px;
+}
+.popup .addr-mge .popup-content ul li {
+    width: 290px;
+    height: 120px;
+    margin-bottom: 7px;
+}
+.reminder{
+	font-size: 12px;
+}
+#authCodeBtn{
+	width: 98px;
+    height: 30px;
+    margin-left: 5px;
+}
+#businessFlag{
+	padding: 0px;
+}
+#addrContainer{
+	height: 255px;
+}
+.errorI>div {
+    display: block;
+    margin-left: 168px;
+}
+
+/*提现提币弹窗*/
+.popup .addr-mge {
+    width: 632px;
+}
+.popup .addr-mge .popup-content {
+    width: auto;
+}
+/*账户资产*/
+.assetSpan {
+    padding-left: 30px;
+    padding-top: 10px;
+    font-size: large;
+    background-position: 10px 14px;
+}
+.assetTable td ul li a {
+	font-size: 12px;
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+}
+.assetTable td ul {
+    margin-left: 32px;
+}
+.assetTable td ul li {
+    margin-right: 12px;
+}
+.assetTable td {
+    height: 36px;
+}
+.AssetNavMargin{
+	margin-top: 141px;
+}
+
+}
+

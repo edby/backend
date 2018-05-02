@@ -1,0 +1,1562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.stockinfo.mapper.StockInfoMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="stockInfoColumns">
+        a.id as id,
+        a.stockCode as stockCode,
+        a.stockName as stockName,
+        a.stockType as stockType,
+        a.canRecharge as canRecharge,
+        a.canWithdraw as canWithdraw,
+        a.canTrade as canTrade,
+        a.canBorrow as canBorrow,
+        a.canConversion as canConversion,
+        a.canWealth as canWealth,
+        a.isExchange as isExchange,
+        a.isActive as isActive,
+        a.tradeStockinfoId as tradeStockinfoId,
+        a.capitalStockinfoId as capitalStockinfoId,
+        a.tradeDebitTotal as tradeDebitTotal,
+        a.capitalDebitTotal as capitalDebitTotal,
+        a.clearStockinfoId as clearStockinfoId,
+        a.quotationStockinfoId as quotationStockinfoId,
+        a.tradeAmtUnit as tradeAmtUnit,
+        a.tradeAmtSymbol as tradeAmtSymbol,
+        a.capitalAmtUnit as capitalAmtUnit,
+        a.capitalAmtSymbol as capitalAmtSymbol,
+        a.assetAmtUnit as assetAmtUnit,
+        a.assetAmtSymbol as assetAmtSymbol,
+        a.clearAmtUnit as clearAmtUnit,
+        a.clearAmtSymbol as clearAmtSymbol,
+        a.maxLongLever as maxLongLever,
+        a.maxShortLever as maxShortLever,
+        a.maxLongLeverSwitch as maxLongLeverSwitch,
+        a.maxShortLeverSwitch as maxShortLeverSwitch,
+        a.maxLongFuse as maxLongFuse,
+        a.maxShortFuse as maxShortFuse,
+        a.buyMaxLimitPriceUpPercent as buyMaxLimitPriceUpPercent,
+        a.buyMaxLimitPriceDownPercent as buyMaxLimitPriceDownPercent,
+        a.buyMinLimitPriceUpPercent as buyMinLimitPriceUpPercent,
+        a.buyMinLimitPriceDownPercent as buyMinLimitPriceDownPercent,
+        a.sellMaxLimitPriceUpPercent as sellMaxLimitPriceUpPercent,
+        a.sellMaxLimitPriceDownPercent as sellMaxLimitPriceDownPercent,
+        a.sellMinLimitPriceUpPercent as sellMinLimitPriceUpPercent,
+        a.sellMinLimitPriceDownPercent as sellMinLimitPriceDownPercent,
+        a.buyPricePrecision as buyPricePrecision,
+        a.buyAmountPrecision as buyAmountPrecision,
+        a.buyMinAmount as buyMinAmount,
+        a.sellPricePrecision as sellPricePrecision,
+        a.sellAmountPrecision as sellAmountPrecision,
+        a.sellMinAmount as sellMinAmount,
+        a.maxSingleBuyEntrustAmt as maxSingleBuyEntrustAmt,
+        a.maxSingleSellEntrustAmt as maxSingleSellEntrustAmt,
+        a.closePositionLongPrePercent as closePositionLongPrePercent,
+        a.closePositionShortPrePercent as closePositionShortPrePercent,
+        a.digitBorrowDayRate as digitBorrowDayRate,
+        a.legalBorrowDayRate as legalBorrowDayRate,
+        a.wealthDayRate as wealthDayRate,
+        a.tableWealthCurrent as tableWealthCurrent,
+        a.tableAsset as tableAsset,
+        a.tableDebitAsset as tableDebitAsset,
+        a.tableDebitAssetDetail as tableDebitAssetDetail,
+        a.tableEntrust as tableEntrust,
+        a.tableEntrustHis as tableEntrustHis,
+        a.tableRealDeal as tableRealDeal,
+        a.tableRealDealHis as tableRealDealHis,
+        a.tableFundCurrent as tableFundCurrent,
+        a.tableFundCurrentHis as tableFundCurrentHis,
+        a.tableQuotationKline as tableQuotationKline,
+        a.webSocketUrl as webSocketUrl,
+        a.topicKline1m as topicKline1m,
+        a.topicKline5m as topicKline5m,
+        a.topicKline15m as topicKline15m,
+        a.topicKline30m as topicKline30m,
+        a.topicKlineHour as topicKlineHour,
+        a.topicKlineDay as topicKlineDay,
+        a.topicKlineWeek as topicKlineWeek,
+        a.topicKlineMonth as topicKlineMonth,
+        a.topicEntrustDeepprice as topicEntrustDeepprice,
+        a.topicRealdealTransaction as topicRealdealTransaction,
+        a.topicRtquotationPrice as topicRtquotationPrice,
+        a.openEntrustType as openEntrustType,
+        a.settlementCycle as settlementCycle,
+        a.settlementPrice as settlementPrice,
+        a.settlementStep as settlementStep,
+        a.entrustAccumDenom as entrustAccumDenom,
+        a.tokenContactAddr as tokenContactAddr,
+        a.tokenDecimals as tokenDecimals,
+        a.unauthUserWithdrawDayUpper as unauthUserWithdrawDayUpper,
+        a.authedUserWithdrawDayUpper as authedUserWithdrawDayUpper,
+        a.smallWithdrawHotSignValue as smallWithdrawHotSignValue,
+        a.smallDepositFeeValue as smallDepositFeeValue,
+        a.smallDepositStandardValue as smallDepositStandardValue,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="stockInfoJoinColumns">
+       a.id as id,
+        a.stockCode as stockCode,
+        a.stockName as stockName,
+        a.stockType as stockType,
+        a.canRecharge as canRecharge,
+        a.canWithdraw as canWithdraw,
+        a.canTrade as canTrade,
+        a.canBorrow as canBorrow,
+        a.canConversion as canConversion,
+        a.canWealth as canWealth,
+        a.isExchange as isExchange,
+        a.isActive as isActive,
+        a.tradeStockinfoId as tradeStockinfoId,
+        a.capitalStockinfoId as capitalStockinfoId,
+        a.tradeDebitTotal as tradeDebitTotal,
+        a.capitalDebitTotal as capitalDebitTotal,
+        a.clearStockinfoId as clearStockinfoId,
+        a.quotationStockinfoId as quotationStockinfoId,
+        a.tradeAmtUnit as tradeAmtUnit,
+        a.tradeAmtSymbol as tradeAmtSymbol,
+        a.capitalAmtUnit as capitalAmtUnit,
+        a.capitalAmtSymbol as capitalAmtSymbol,
+        a.assetAmtUnit as assetAmtUnit,
+        a.assetAmtSymbol as assetAmtSymbol,
+        a.clearAmtUnit as clearAmtUnit,
+        a.clearAmtSymbol as clearAmtSymbol,
+        a.maxLongLever as maxLongLever,
+        a.maxShortLever as maxShortLever,
+        a.maxLongLeverSwitch as maxLongLeverSwitch,
+        a.maxShortLeverSwitch as maxShortLeverSwitch,
+        a.maxLongFuse as maxLongFuse,
+        a.maxShortFuse as maxShortFuse,
+        a.buyMaxLimitPriceUpPercent as buyMaxLimitPriceUpPercent,
+        a.buyMaxLimitPriceDownPercent as buyMaxLimitPriceDownPercent,
+        a.buyMinLimitPriceUpPercent as buyMinLimitPriceUpPercent,
+        a.buyMinLimitPriceDownPercent as buyMinLimitPriceDownPercent,
+        a.sellMaxLimitPriceUpPercent as sellMaxLimitPriceUpPercent,
+        a.sellMaxLimitPriceDownPercent as sellMaxLimitPriceDownPercent,
+        a.sellMinLimitPriceUpPercent as sellMinLimitPriceUpPercent,
+        a.sellMinLimitPriceDownPercent as sellMinLimitPriceDownPercent,
+        a.buyPricePrecision as buyPricePrecision,
+        a.buyAmountPrecision as buyAmountPrecision,
+        a.buyMinAmount as buyMinAmount,
+        a.sellPricePrecision as sellPricePrecision,
+        a.sellAmountPrecision as sellAmountPrecision,
+        a.sellMinAmount as sellMinAmount,
+        a.maxSingleBuyEntrustAmt as maxSingleBuyEntrustAmt,
+        a.maxSingleSellEntrustAmt as maxSingleSellEntrustAmt,
+        a.closePositionLongPrePercent as closePositionLongPrePercent,
+        a.closePositionShortPrePercent as closePositionShortPrePercent,
+        a.digitBorrowDayRate as digitBorrowDayRate,
+        a.legalBorrowDayRate as legalBorrowDayRate,
+        a.wealthDayRate as wealthDayRate,
+        a.tableWealthCurrent as tableWealthCurrent,
+        a.tableAsset as tableAsset,
+        a.tableDebitAsset as tableDebitAsset,
+        a.tableDebitAssetDetail as tableDebitAssetDetail,
+        a.tableEntrust as tableEntrust,
+        a.tableEntrustHis as tableEntrustHis,
+        a.tableRealDeal as tableRealDeal,
+        a.tableRealDealHis as tableRealDealHis,
+        a.tableFundCurrent as tableFundCurrent,
+        a.tableFundCurrentHis as tableFundCurrentHis,
+        a.tableQuotationKline as tableQuotationKline,
+        a.webSocketUrl as webSocketUrl,
+        a.topicKline1m as topicKline1m,
+        a.topicKline5m as topicKline5m,
+        a.topicKline15m as topicKline15m,
+        a.topicKline30m as topicKline30m,
+        a.topicKlineHour as topicKlineHour,
+        a.topicKlineDay as topicKlineDay,
+        a.topicKlineWeek as topicKlineWeek,
+        a.topicKlineMonth as topicKlineMonth,
+        a.topicEntrustDeepprice as topicEntrustDeepprice,
+        a.topicRealdealTransaction as topicRealdealTransaction,
+        a.topicRtquotationPrice as topicRtquotationPrice,
+        a.openEntrustType as openEntrustType,
+        a.settlementCycle as settlementCycle,
+        a.settlementPrice as settlementPrice,
+        a.settlementStep as settlementStep,
+        a.entrustAccumDenom as entrustAccumDenom,
+        a.tokenContactAddr as tokenContactAddr,
+        a.tokenDecimals as tokenDecimals,
+        a.unauthUserWithdrawDayUpper as unauthUserWithdrawDayUpper,
+        a.authedUserWithdrawDayUpper as authedUserWithdrawDayUpper,
+        a.smallWithdrawHotSignValue as smallWithdrawHotSignValue,
+        a.smallDepositFeeValue as smallDepositFeeValue,
+        a.smallDepositStandardValue as smallDepositStandardValue,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        b.trueName as createByName,
+        c.trueName as updateByName
+    </sql>
+
+    <resultMap id="stockInfoResultMap" type="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        <id column="id" property="id"/>
+        <result column="stockCode" property="stockCode"/>
+        <result column="stockName" property="stockName"/>
+        <result column="stockType" property="stockType"/>
+        <result column="canRecharge" property="canRecharge"/>
+        <result column="canWithdraw" property="canWithdraw"/>
+        <result column="canTrade" property="canTrade"/>
+        <result column="canBorrow" property="canBorrow"/>
+        <result column="canConversion" property="canConversion"/>
+        <result column="canWealth" property="canWealth"/>
+        <result column="isExchange" property="isExchange"/>
+        <result column="isActive" property="isActive" />
+        <result column="tradeStockinfoId" property="tradeStockinfoId"/>
+        <result column="capitalStockinfoId" property="capitalStockinfoId"/>
+        <result column="tradeDebitTotal" property="tradeDebitTotal"/>
+        <result column="capitalDebitTotal" property="capitalDebitTotal"/>
+        <result column="clearStockinfoId" property="clearStockinfoId"/>
+        <result column="quotationStockinfoId" property="quotationStockinfoId"/>
+        <result column="tradeAmtUnit" property="tradeAmtUnit"/>
+        <result column="tradeAmtSymbol" property="tradeAmtSymbol"/>
+        <result column="capitalAmtUnit" property="capitalAmtUnit"/>
+        <result column="capitalAmtSymbol" property="capitalAmtSymbol"/>
+        <result column="assetAmtUnit" property="assetAmtUnit"/>
+        <result column="assetAmtSymbol" property="assetAmtSymbol"/>
+        <result column="clearAmtUnit" property="clearAmtUnit"/>
+        <result column="clearAmtSymbol" property="clearAmtSymbol"/>
+        <result column="maxLongLever" property="maxLongLever"/>
+        <result column="maxShortLever" property="maxShortLever"/>
+        <result column="maxLongLeverSwitch" property="maxLongLeverSwitch"/>
+        <result column="maxShortLeverSwitch" property="maxShortLeverSwitch"/>
+        <result column="maxLongFuse" property="maxLongFuse"/>
+        <result column="maxShortFuse" property="maxShortFuse"/>
+        <result column="buyMaxLimitPriceUpPercent" property="buyMaxLimitPriceUpPercent"/>
+        <result column="buyMaxLimitPriceDownPercent" property="buyMaxLimitPriceDownPercent"/>
+        <result column="buyMinLimitPriceUpPercent" property="buyMinLimitPriceUpPercent"/>
+        <result column="buyMinLimitPriceDownPercent" property="buyMinLimitPriceDownPercent"/>
+        <result column="sellMaxLimitPriceUpPercent" property="sellMaxLimitPriceUpPercent"/>
+        <result column="sellMaxLimitPriceDownPercent" property="sellMaxLimitPriceDownPercent"/>
+        <result column="sellMinLimitPriceUpPercent" property="sellMinLimitPriceUpPercent"/>
+        <result column="sellMinLimitPriceDownPercent" property="sellMinLimitPriceDownPercent"/>
+        <result column="buyPricePrecision" property="buyPricePrecision"/>
+        <result column="buyAmountPrecision" property="buyAmountPrecision"/>
+        <result column="buyMinAmount" property="buyMinAmount"/>
+        <result column="sellPricePrecision" property="sellPricePrecision"/>
+        <result column="sellAmountPrecision" property="sellAmountPrecision"/>
+        <result column="sellMinAmount" property="sellMinAmount"/>
+        <result column="maxSingleBuyEntrustAmt" property="maxSingleBuyEntrustAmt"/>
+        <result column="maxSingleSellEntrustAmt" property="maxSingleSellEntrustAmt"/>
+        <result column="closePositionLongPrePercent" property="closePositionLongPrePercent"/>
+        <result column="closePositionShortPrePercent" property="closePositionShortPrePercent"/>
+        <result column="digitBorrowDayRate" property="digitBorrowDayRate"/>
+        <result column="legalBorrowDayRate" property="legalBorrowDayRate"/>
+        <result column="wealthDayRate" property="wealthDayRate"/>
+        <result column="tableWealthCurrent" property="tableWealthCurrent"/>
+        <result column="tableAsset" property="tableAsset"/>
+        <result column="tableDebitAsset" property="tableDebitAsset"/>
+        <result column="tableDebitAssetDetail" property="tableDebitAssetDetail"/>
+        <result column="tableEntrust" property="tableEntrust"/>
+        <result column="tableEntrustHis" property="tableEntrustHis"/>
+        <result column="tableRealDeal" property="tableRealDeal"/>
+        <result column="tableRealDealHis" property="tableRealDealHis"/>
+        <result column="tableFundCurrent" property="tableFundCurrent"/>
+        <result column="tableFundCurrentHis" property="tableFundCurrentHis"/>
+        <result column="tableQuotationKline" property="tableQuotationKline"/>
+        <result column="webSocketUrl" property="webSocketUrl"/>
+        <result column="topicKline1m" property="topicKline1m"/>
+        <result column="topicKline5m" property="topicKline5m"/>
+        <result column="topicKline15m" property="topicKline15m"/>
+        <result column="topicKline30m" property="topicKline30m"/>
+        <result column="topicKlineHour" property="topicKlineHour"/>
+        <result column="topicKlineDay" property="topicKlineDay"/>
+        <result column="topicKlineWeek" property="topicKlineWeek"/>
+        <result column="topicKlineMonth" property="topicKlineMonth"/>
+        <result column="topicEntrustDeepprice" property="topicEntrustDeepprice"/>
+        <result column="topicRealdealTransaction" property="topicRealdealTransaction"/>
+        <result column="topicRtquotationPrice" property="topicRtquotationPrice"/>
+        <result column="openEntrustType" property="openEntrustType"/>
+        <result column="settlementCycle" property="settlementCycle"/>
+        <result column="settlementPrice" property="settlementPrice"/>
+        <result column="settlementStep" property="settlementStep"/>
+        <result column="entrustAccumDenom" property="entrustAccumDenom"/>
+        <result column="tokenContactAddr" property="tokenContactAddr"/>
+        <result column="tokenDecimals" property="tokenDecimals"/>
+        <result column="unauthUserWithdrawDayUpper" property="unauthUserWithdrawDayUpper"/>
+        <result column="authedUserWithdrawDayUpper" property="authedUserWithdrawDayUpper"/>
+        <result column="smallWithdrawHotSignValue" property="smallWithdrawHotSignValue"/>
+        <result column="smallDepositFeeValue" property="smallDepositFeeValue"/>
+        <result column="smallDepositStandardValue" property="smallDepositStandardValue"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        insert into StockInfo(
+            id ,
+            stockCode ,
+            stockName ,
+            stockType ,
+            canRecharge ,
+            canWithdraw ,
+            canTrade ,
+            canBorrow ,
+            canConversion ,
+            canWealth ,
+            isExchange,
+            isActive,
+            tradeStockinfoId,
+            capitalStockinfoId,
+            tradeDebitTotal,
+            capitalDebitTotal,
+            clearStockinfoId,
+            quotationStockinfoId,
+            tradeAmtUnit,
+            tradeAmtSymbol,
+            capitalAmtUnit,
+            capitalAmtSymbol,
+            assetAmtUnit,
+            assetAmtSymbol,
+            clearAmtUnit,
+            clearAmtSymbol,
+            maxLongLever ,
+            maxShortLever ,
+            maxLongLeverSwitch ,
+            maxShortLeverSwitch ,
+            maxLongFuse,
+            maxShortFuse,
+            buyMaxLimitPriceUpPercent,
+            buyMaxLimitPriceDownPercent,
+            buyMinLimitPriceUpPercent,
+            buyMinLimitPriceDownPercent,
+            sellMaxLimitPriceUpPercent,
+            sellMaxLimitPriceDownPercent,
+            sellMinLimitPriceUpPercent,
+            sellMinLimitPriceDownPercent,
+            buyPricePrecision,
+            buyAmountPrecision,
+            buyMinAmount,
+            sellPricePrecision,
+            sellAmountPrecision,
+            sellMinAmount,
+            maxSingleBuyEntrustAmt ,
+            maxSingleSellEntrustAmt ,
+            closePositionLongPrePercent,
+            closePositionShortPrePercent,
+            digitBorrowDayRate,
+            legalBorrowDayRate,
+            wealthDayRate,
+            tableWealthCurrent,
+            tableAsset,
+            tableDebitAsset,
+            tableDebitAssetDetail,
+            tableEntrust,
+            tableEntrustHis,
+            tableRealDeal,
+            tableRealDealHis,
+            tableFundCurrent,
+            tableFundCurrentHis,
+            tableQuotationKline,
+            webSocketUrl,
+            topicKline1m,
+            topicKline5m,
+            topicKline15m,
+            topicKline30m,
+            topicKlineHour,
+            topicKlineDay,
+            topicKlineWeek,
+            topicKlineMonth,
+            topicEntrustDeepprice,
+            topicRealdealTransaction,
+            topicRtquotationPrice,
+            openEntrustType,
+            settlementCycle ,
+            settlementPrice ,
+            settlementStep ,
+            entrustAccumDenom,
+            tokenContactAddr,
+            tokenDecimals,
+            unauthUserWithdrawDayUpper,
+            authedUserWithdrawDayUpper,
+            smallWithdrawHotSignValue,
+            smallDepositFeeValue,
+            smallDepositStandardValue,
+            remark ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate
+        ) VALUES (
+            #{id} ,
+            #{stockCode} ,
+            #{stockName} ,
+            #{stockType} ,
+            #{canRecharge} ,
+            #{canWithdraw} ,
+            #{canTrade} ,
+            #{canBorrow} ,
+            #{canConversion},
+            #{canWealth},
+            #{isExchange},
+            #{isActive},
+            #{tradeStockinfoId},
+            #{capitalStockinfoId},
+            #{tradeDebitTotal},
+            #{capitalDebitTotal},
+            #{clearStockinfoId},
+            #{quotationStockinfoId},
+            #{tradeAmtUnit},
+            #{tradeAmtSymbol},
+            #{capitalAmtUnit},
+            #{capitalAmtSymbol},
+            #{assetAmtUnit},
+            #{assetAmtSymbol},
+            #{clearAmtUnit},
+            #{clearAmtSymbol},
+            #{maxLongLever} ,
+            #{maxShortLever} ,
+            #{maxLongLeverSwitch} ,
+            #{maxShortLeverSwitch} ,
+            #{maxLongFuse} ,
+            #{maxShortFuse} ,
+            #{buyMaxLimitPriceUpPercent} ,
+            #{buyMaxLimitPriceDownPercent} ,
+            #{buyMinLimitPriceUpPercent} ,
+            #{buyMinLimitPriceDownPercent} ,
+            #{sellMaxLimitPriceUpPercent} ,
+            #{sellMaxLimitPriceDownPercent} ,
+            #{sellMinLimitPriceUpPercent} ,
+            #{sellMinLimitPriceDownPercent} ,
+            #{buyPricePrecision} ,
+            #{buyAmountPrecision} ,
+            #{buyMinAmount} ,
+            #{sellPricePrecision} ,
+            #{sellAmountPrecision} ,
+            #{sellMinAmount} ,
+            #{maxSingleBuyEntrustAmt} ,
+            #{maxSingleSellEntrustAmt} ,
+            #{closePositionLongPrePercent},
+            #{closePositionShortPrePercent},
+            #{digitBorrowDayRate},
+            #{legalBorrowDayRate},
+            #{wealthDayRate},
+            #{tableWealthCurrent},
+            #{tableAsset},
+            #{tableDebitAsset},
+            #{tableDebitAssetDetail},
+            #{tableEntrust},
+            #{tableEntrustHis},
+            #{tableRealDeal},
+            #{tableRealDealHis},
+            #{tableFundCurrent},
+            #{tableFundCurrentHis},
+            #{tableQuotationKline},
+            #{webSocketUrl},
+            #{topicKline1m},
+            #{topicKline5m},
+            #{topicKline15m},
+            #{topicKline30m},
+            #{topicKlineHour},
+            #{topicKlineDay},
+            #{topicKlineWeek},
+            #{topicKlineMonth},
+            #{topicEntrustDeepprice},
+            #{topicRealdealTransaction},
+            #{topicRtquotationPrice},
+            #{openEntrustType},
+            #{settlementCycle} ,
+            #{settlementPrice} ,
+            #{settlementStep} ,
+            #{entrustAccumDenom},
+            #{tokenContactAddr},
+            #{tokenDecimals},
+            #{unauthUserWithdrawDayUpper},
+            #{authedUserWithdrawDayUpper},
+            #{smallWithdrawHotSignValue},
+            #{smallDepositFeeValue},
+            #{smallDepositStandardValue},
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{updateBy} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from StockInfo where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+       		delete from StockInfo where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        insert into StockInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="stockCode != null">
+                stockCode ,
+            </if>
+            <if test="stockName != null">
+                stockName ,
+            </if>
+            <if test="stockType != null">
+                stockType ,
+            </if>
+            <if test="canRecharge != null">
+                canRecharge ,
+            </if>
+            <if test="canWithdraw != null">
+                canWithdraw ,
+            </if>
+            <if test="canTrade != null">
+                canTrade ,
+            </if>
+            <if test="canBorrow != null">
+                canBorrow ,
+            </if>
+            <if test="canConversion != null">
+                canConversion ,
+            </if>
+            <if test="canWealth != null">
+                canWealth ,
+            </if>
+            <if test="isExchange !=null">
+                isExchange,
+            </if>
+            <if test="isActive!=null">
+                isActive,
+            </if>
+            <if test="tradeStockinfoId!=null">
+                tradeStockinfoId ,
+            </if>
+            <if test="capitalStockinfoId!=null">
+                capitalStockinfoId ,
+            </if>
+            <if test="tradeDebitTotal!=null">
+                tradeDebitTotal ,
+            </if>
+            <if test="capitalDebitTotal!=null">
+                capitalDebitTotal ,
+            </if>
+            <if test="clearStockinfoId!=null">
+                clearStockinfoId ,
+            </if>
+            <if test="quotationStockinfoId!=null">
+                quotationStockinfoId ,
+            </if>
+            <if test="tradeAmtUnit!=null">
+                tradeAmtUnit ,
+            </if>
+            <if test="tradeAmtSymbol!=null">
+                tradeAmtSymbol ,
+            </if>
+            <if test="capitalAmtUnit!=null">
+                capitalAmtUnit ,
+            </if>
+            <if test="capitalAmtSymbol!=null">
+                capitalAmtSymbol ,
+            </if>
+            <if test="assetAmtUnit!=null">
+                assetAmtUnit ,
+            </if>
+            <if test="assetAmtSymbol!=null">
+                assetAmtSymbol ,
+            </if>
+            <if test="clearAmtUnit!=null">
+                clearAmtUnit ,
+            </if>
+            <if test="clearAmtSymbol!=null">
+                clearAmtSymbol ,
+            </if>
+            <if test="maxLongLever != null">
+                maxLongLever ,
+            </if>
+            <if test="maxShortLever != null">
+                maxShortLever ,
+            </if>
+            <if test="maxLongLeverSwitch != null">
+                maxLongLeverSwitch ,
+            </if>
+            <if test="maxShortLeverSwitch != null">
+                maxShortLeverSwitch ,
+            </if>
+            <if test="maxLongFuse != null">
+                maxLongFuse ,
+            </if>
+            <if test="maxShortFuse != null">
+                maxShortFuse ,
+            </if>
+            <if test="buyMaxLimitPriceUpPercent != null">
+                buyMaxLimitPriceUpPercent ,
+            </if>
+            <if test="buyMaxLimitPriceDownPercent != null">
+                buyMaxLimitPriceDownPercent ,
+            </if>
+            <if test="buyMinLimitPriceUpPercent != null">
+                buyMinLimitPriceUpPercent ,
+            </if>
+            <if test="buyMinLimitPriceDownPercent != null">
+                buyMinLimitPriceDownPercent ,
+            </if>
+            <if test="sellMaxLimitPriceUpPercent != null">
+                sellMaxLimitPriceUpPercent ,
+            </if>
+            <if test="sellMaxLimitPriceDownPercent != null">
+                sellMaxLimitPriceDownPercent ,
+            </if>
+            <if test="sellMinLimitPriceUpPercent != null">
+                sellMinLimitPriceUpPercent ,
+            </if>
+            <if test="sellMinLimitPriceDownPercent != null">
+                sellMinLimitPriceDownPercent ,
+            </if>
+            <if test="buyPricePrecision != null">
+                buyPricePrecision ,
+            </if>
+            <if test="buyAmountPrecision != null">
+                buyAmountPrecision ,
+            </if>
+            <if test="buyMinAmount != null">
+                buyMinAmount ,
+            </if>
+            <if test="sellPricePrecision != null">
+                sellPricePrecision ,
+            </if>
+            <if test="sellAmountPrecision != null">
+                sellAmountPrecision ,
+            </if>
+            <if test="sellMinAmount != null">
+                sellMinAmount ,
+            </if>
+            <if test="maxSingleBuyEntrustAmt != null">
+                maxSingleBuyEntrustAmt ,
+            </if>
+            <if test="maxSingleSellEntrustAmt != null">
+                maxSingleSellEntrustAmt ,
+            </if>
+            <if test="closePositionLongPrePercent != null">
+                closePositionLongPrePercent ,
+            </if>
+            <if test="closePositionShortPrePercent != null">
+                closePositionShortPrePercent ,
+            </if>
+            <if test="digitBorrowDayRate != null">
+                digitBorrowDayRate ,
+            </if>
+            <if test="legalBorrowDayRate != null">
+                legalBorrowDayRate ,
+            </if>
+            <if test="wealthDayRate != null">
+                wealthDayRate ,
+            </if>
+            <if test="tableWealthCurrent != null">
+                tableWealthCurrent ,
+            </if>
+            <if test="tableAsset != null">
+                tableAsset ,
+            </if>
+            <if test="tableDebitAsset != null">
+                tableDebitAsset ,
+            </if>
+            <if test="tableDebitAssetDetail != null">
+                tableDebitAssetDetail ,
+            </if>
+            <if test="tableEntrust != null">
+                tableEntrust ,
+            </if>
+            <if test="tableEntrustHis != null">
+                tableEntrustHis ,
+            </if>
+            <if test="tableRealDeal != null">
+                tableRealDeal ,
+            </if>
+            <if test="tableRealDealHis != null">
+                tableRealDealHis ,
+            </if>
+            <if test="tableFundCurrent != null">
+                tableFundCurrent ,
+            </if>
+            <if test="tableFundCurrentHis != null">
+                tableFundCurrentHis ,
+            </if>
+            <if test="tableQuotationKline != null">
+                tableQuotationKline ,
+            </if>
+            <if test="webSocketUrl != null">
+                webSocketUrl ,
+            </if>
+            <if test="topicKline1m != null">
+                topicKline1m ,
+            </if>
+            <if test="topicKline5m != null">
+                topicKline5m ,
+            </if>
+            <if test="topicKline15m != null">
+                topicKline15m ,
+            </if>
+            <if test="topicKline30m != null">
+                topicKline30m ,
+            </if>
+            <if test="topicKlineHour != null">
+                topicKlineHour ,
+            </if>
+            <if test="topicKlineDay != null">
+                topicKlineDay ,
+            </if>
+            <if test="topicKlineWeek != null">
+                topicKlineWeek ,
+            </if>
+            <if test="topicKlineMonth != null">
+                topicKlineMonth ,
+            </if>
+            <if test="topicEntrustDeepprice != null">
+                topicEntrustDeepprice ,
+            </if>
+            <if test="topicRealdealTransaction != null">
+                topicRealdealTransaction ,
+            </if>
+            <if test="topicRtquotationPrice != null">
+                topicRtquotationPrice ,
+            </if>
+            <if test="openEntrustType != null">
+                openEntrustType ,
+            </if>
+            <if test="settlementCycle != null">
+                settlementCycle ,
+            </if>
+            <if test="settlementPrice != null">
+                settlementPrice ,
+            </if>
+            <if test="settlementStep != null">
+                settlementStep ,
+            </if>
+            <if test="entrustAccumDenom != null">
+                entrustAccumDenom ,
+            </if>
+            <if test="tokenContactAddr != null">
+                tokenContactAddr ,
+            </if>
+            <if test="tokenDecimals != null">
+                tokenDecimals ,
+            </if>
+            <if test="unauthUserWithdrawDayUpper != null">
+                unauthUserWithdrawDayUpper ,
+            </if>
+            <if test="authedUserWithdrawDayUpper != null">
+                authedUserWithdrawDayUpper ,
+            </if>
+            <if test="smallWithdrawHotSignValue != null">
+                smallWithdrawHotSignValue ,
+            </if>
+            <if test="smallDepositFeeValue != null">
+                smallDepositFeeValue ,
+            </if>
+            <if test="smallDepositStandardValue != null">
+                smallDepositStandardValue ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateBy != null">
+                updateBy ,
+            </if>
+            <if test="updateDate != null">
+                updateDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="stockCode != null">
+                #{stockCode} ,
+            </if>
+            <if test="stockName != null">
+                #{stockName} ,
+            </if>
+            <if test="stockType != null">
+                #{stockType} ,
+            </if>
+            <if test="canRecharge != null">
+                #{canRecharge} ,
+            </if>
+            <if test="canWithdraw != null">
+                #{canWithdraw} ,
+            </if>
+            <if test="canTrade != null">
+                #{canTrade} ,
+            </if>
+            <if test="canBorrow != null">
+                #{canBorrow} ,
+            </if>
+            <if test="canConversion != null">
+                #{canConversion} ,
+            </if>
+            <if test="canWealth != null">
+                #{canWealth} ,
+            </if>
+            <if test="isExchange !=null">
+                #{isExchange},
+            </if>
+            <if test="isActive != null">
+                #{isActive},
+            </if>
+            <if test="tradeStockinfoId!=null">
+                #{tradeStockinfoId},
+            </if>
+            <if test="capitalStockinfoId!=null">
+                #{capitalStockinfoId},
+            </if>
+            <if test="tradeDebitTotal!=null">
+                #{tradeDebitTotal},
+            </if>
+            <if test="capitalDebitTotal!=null">
+                #{capitalDebitTotal},
+            </if>
+            <if test="clearStockinfoId!=null">
+                #{clearStockinfoId},
+            </if>
+            <if test="quotationStockinfoId!=null">
+                #{quotationStockinfoId},
+            </if>
+            <if test="tradeAmtUnit!=null">
+                #{tradeAmtUnit},
+            </if>
+            <if test="tradeAmtSymbol!=null">
+                #{tradeAmtSymbol},
+            </if>
+            <if test="capitalAmtUnit!=null">
+                #{capitalAmtUnit},
+            </if>
+            <if test="capitalAmtSymbol!=null">
+                #{capitalAmtSymbol},
+            </if>
+            <if test="assetAmtUnit!=null">
+                #{assetAmtUnit},
+            </if>
+            <if test="assetAmtSymbol!=null">
+                #{assetAmtSymbol},
+            </if>
+            <if test="clearAmtUnit!=null">
+                #{clearAmtUnit},
+            </if>
+            <if test="clearAmtSymbol!=null">
+                #{clearAmtSymbol},
+            </if>
+            <if test="maxLongLever != null">
+                #{maxLongLever} ,
+            </if>
+            <if test="maxShortLever != null">
+                #{maxShortLever} ,
+            </if>
+            <if test="maxLongLeverSwitch != null">
+                #{maxLongLeverSwitch} ,
+            </if>
+            <if test="maxShortLeverSwitch != null">
+                #{maxShortLeverSwitch} ,
+            </if>
+            <if test="maxLongFuse != null">
+                #{maxLongFuse} ,
+            </if>
+            <if test="maxShortFuse != null">
+                #{maxShortFuse} ,
+            </if>
+            <if test="buyMaxLimitPriceUpPercent != null">
+                #{buyMaxLimitPriceUpPercent} ,
+            </if>
+            <if test="buyMaxLimitPriceDownPercent != null">
+                #{buyMaxLimitPriceDownPercent} ,
+            </if>
+            <if test="buyMinLimitPriceUpPercent != null">
+                #{buyMinLimitPriceUpPercent} ,
+            </if>
+            <if test="buyMinLimitPriceDownPercent != null">
+                #{buyMinLimitPriceDownPercent} ,
+            </if>
+            <if test="sellMaxLimitPriceUpPercent != null">
+                #{sellMaxLimitPriceUpPercent} ,
+            </if>
+            <if test="sellMaxLimitPriceDownPercent != null">
+                #{sellMaxLimitPriceDownPercent} ,
+            </if>
+            <if test="sellMinLimitPriceUpPercent != null">
+                #{sellMinLimitPriceUpPercent} ,
+            </if>
+            <if test="sellMinLimitPriceDownPercent != null">
+                #{sellMinLimitPriceDownPercent} ,
+            </if>
+            <if test="buyPricePrecision != null">
+                #{buyPricePrecision} ,
+            </if>
+            <if test="buyAmountPrecision != null">
+                #{buyAmountPrecision} ,
+            </if>
+            <if test="buyMinAmount != null">
+                #{buyMinAmount} ,
+            </if>
+            <if test="sellPricePrecision != null">
+                #{sellPricePrecision} ,
+            </if>
+            <if test="sellAmountPrecision != null">
+                #{sellAmountPrecision} ,
+            </if>
+            <if test="sellMinAmount != null">
+                #{sellMinAmount} ,
+            </if>
+            <if test="maxSingleBuyEntrustAmt != null">
+                #{maxSingleBuyEntrustAmt} ,
+            </if>
+            <if test="maxSingleSellEntrustAmt != null">
+                #{maxSingleSellEntrustAmt} ,
+            </if>
+            <if test="closePositionLongPrePercent != null">
+                #{closePositionLongPrePercent} ,
+            </if>
+            <if test="closePositionShortPrePercent != null">
+                #{closePositionShortPrePercent} ,
+            </if>
+            <if test="digitBorrowDayRate != null">
+                #{digitBorrowDayRate} ,
+            </if>
+            <if test="legalBorrowDayRate != null">
+                #{legalBorrowDayRate} ,
+            </if>
+            <if test="wealthDayRate != null">
+                #{wealthDayRate} ,
+            </if>
+            <if test="tableWealthCurrent != null">
+                #{tableWealthCurrent} ,
+            </if>
+            <if test="tableAsset != null">
+                #{tableAsset} ,
+            </if>
+            <if test="tableDebitAsset != null">
+                #{tableDebitAsset} ,
+            </if>
+            <if test="tableDebitAssetDetail != null">
+                #{tableDebitAssetDetail} ,
+            </if>
+            <if test="tableEntrust != null">
+                #{tableEntrust} ,
+            </if>
+            <if test="tableEntrustHis != null">
+                #{tableEntrustHis} ,
+            </if>
+            <if test="tableRealDeal != null">
+                #{tableRealDeal} ,
+            </if>
+            <if test="tableRealDealHis != null">
+                #{tableRealDealHis} ,
+            </if>
+            <if test="tableFundCurrent != null">
+                #{tableFundCurrent} ,
+            </if>
+            <if test="tableFundCurrentHis != null">
+                #{tableFundCurrentHis} ,
+            </if>
+            <if test="tableQuotationKline != null">
+                #{tableQuotationKline} ,
+            </if>
+            <if test="webSocketUrl != null">
+                #{webSocketUrl} ,
+            </if>
+            <if test="topicKline1m != null">
+                #{topicKline1m} ,
+            </if>
+            <if test="topicKline5m != null">
+                #{topicKline5m} ,
+            </if>
+            <if test="topicKline15m != null">
+                #{topicKline15m} ,
+            </if>
+            <if test="topicKline30m != null">
+                #{topicKline30m} ,
+            </if>
+            <if test="topicKlineHour != null">
+                #{topicKlineHour} ,
+            </if>
+            <if test="topicKlineDay != null">
+                #{topicKlineDay} ,
+            </if>
+            <if test="topicKlineWeek != null">
+                #{topicKlineWeek} ,
+            </if>
+            <if test="topicKlineMonth != null">
+                #{topicKlineMonth} ,
+            </if>
+            <if test="topicEntrustDeepprice != null">
+                #{topicEntrustDeepprice} ,
+            </if>
+            <if test="topicRealdealTransaction != null">
+                #{topicRealdealTransaction} ,
+            </if>
+            <if test="topicRtquotationPrice != null">
+                #{topicRtquotationPrice} ,
+            </if>
+            <if test="openEntrustType != null">
+                #{openEntrustType} ,
+            </if>
+            <if test="settlementCycle != null">
+                #{settlementCycle} ,
+            </if>
+            <if test="settlementPrice != null">
+                #{settlementPrice} ,
+            </if>
+            <if test="settlementStep != null">
+                #{settlementStep} ,
+            </if>
+            <if test="entrustAccumDenom != null">
+                #{entrustAccumDenom} ,
+            </if>
+            <if test="tokenContactAddr != null">
+                #{tokenContactAddr} ,
+            </if>
+            <if test="tokenDecimals != null">
+                #{tokenDecimals} ,
+            </if>
+            <if test="unauthUserWithdrawDayUpper != null">
+                #{unauthUserWithdrawDayUpper} ,
+            </if>
+            <if test="authedUserWithdrawDayUpper != null">
+                #{authedUserWithdrawDayUpper} ,
+            </if>
+            <if test="smallWithdrawHotSignValue != null">
+                #{smallWithdrawHotSignValue} ,
+            </if>
+            <if test="smallDepositFeeValue != null">
+                #{smallDepositFeeValue} ,
+            </if>
+            <if test="smallDepositStandardValue != null">
+                #{smallDepositStandardValue} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        update StockInfo
+        <set>
+            <if test="stockCode != null">
+                stockCode = #{stockCode} ,
+            </if>
+            <if test="stockName != null">
+                stockName = #{stockName} ,
+            </if>
+            <if test="stockType != null">
+                stockType = #{stockType} ,
+            </if>
+            <if test="canRecharge != null">
+                canRecharge = #{canRecharge} ,
+            </if>
+            <if test="canWithdraw != null">
+                canWithdraw = #{canWithdraw} ,
+            </if>
+            <if test="canTrade != null">
+                canTrade = #{canTrade} ,
+            </if>
+            <if test="canBorrow != null">
+                canBorrow = #{canBorrow} ,
+            </if>
+            <if test="canConversion != null">
+                canConversion = #{canConversion} ,
+            </if>
+            <if test="canWealth != null">
+                canWealth = #{canWealth} ,
+            </if>
+            <if test="isExchange!=null">
+                isExchange = #{isExchange},
+            </if>
+            <if test="isActive !=null">
+                isActive = #{isActive},
+            </if>
+            <if test="tradeStockinfoId!=null">
+                tradeStockinfoId = #{tradeStockinfoId},
+            </if>
+            <if test="capitalStockinfoId!=null">
+                capitalStockinfoId = #{capitalStockinfoId},
+            </if>
+            <if test="tradeDebitTotal!=null">
+                tradeDebitTotal = #{tradeDebitTotal},
+            </if>
+            <if test="capitalDebitTotal!=null">
+                capitalDebitTotal = #{capitalDebitTotal},
+            </if>
+            <if test="clearStockinfoId!=null">
+                clearStockinfoId = #{clearStockinfoId},
+            </if>
+            <if test="quotationStockinfoId!=null">
+                quotationStockinfoId = #{quotationStockinfoId},
+            </if>
+            <if test="tradeAmtUnit!=null">
+                tradeAmtUnit = #{tradeAmtUnit},
+            </if>
+            <if test="tradeAmtSymbol!=null">
+                tradeAmtSymbol = #{tradeAmtSymbol},
+            </if>
+            <if test="capitalAmtUnit!=null">
+                capitalAmtUnit = #{capitalAmtUnit},
+            </if>
+            <if test="capitalAmtSymbol!=null">
+                capitalAmtSymbol = #{capitalAmtSymbol},
+            </if>
+            <if test="assetAmtUnit!=null">
+                assetAmtUnit = #{assetAmtUnit},
+            </if>
+            <if test="assetAmtSymbol!=null">
+                assetAmtSymbol = #{assetAmtSymbol},
+            </if>
+            <if test="clearAmtUnit!=null">
+                clearAmtUnit = #{clearAmtUnit},
+            </if>
+            <if test="clearAmtSymbol!=null">
+                clearAmtSymbol = #{clearAmtSymbol},
+            </if>
+            <if test="maxLongLever != null">
+                maxLongLever = #{maxLongLever} ,
+            </if>
+            <if test="maxShortLever != null">
+                maxShortLever = #{maxShortLever} ,
+            </if>
+            <if test="maxLongLeverSwitch != null">
+                maxLongLeverSwitch = #{maxLongLeverSwitch } ,
+            </if>
+            <if test="maxShortLeverSwitch  != null">
+                maxShortLeverSwitch = #{maxShortLeverSwitch } ,
+            </if>
+            <if test="maxLongFuse  != null">
+                maxLongFuse = #{maxLongFuse } ,
+            </if>
+            <if test="maxShortFuse  != null">
+                maxShortFuse = #{maxShortFuse } ,
+            </if>
+            <if test="buyMaxLimitPriceUpPercent != null">
+                buyMaxLimitPriceUpPercent = #{buyMaxLimitPriceUpPercent} ,
+            </if>
+            <if test="buyMaxLimitPriceDownPercent != null">
+                buyMaxLimitPriceDownPercent = #{buyMaxLimitPriceDownPercent} ,
+            </if>
+            <if test="buyMinLimitPriceUpPercent != null">
+                buyMinLimitPriceUpPercent = #{buyMinLimitPriceUpPercent} ,
+            </if>
+            <if test="buyMinLimitPriceDownPercent != null">
+                buyMinLimitPriceDownPercent = #{buyMinLimitPriceDownPercent} ,
+            </if>
+            <if test="sellMaxLimitPriceUpPercent != null">
+                sellMaxLimitPriceUpPercent = #{sellMaxLimitPriceUpPercent} ,
+            </if>
+            <if test="sellMaxLimitPriceDownPercent != null">
+                sellMaxLimitPriceDownPercent = #{sellMaxLimitPriceDownPercent} ,
+            </if>
+            <if test="sellMinLimitPriceUpPercent != null">
+                sellMinLimitPriceUpPercent = #{sellMinLimitPriceUpPercent} ,
+            </if>
+            <if test="sellMinLimitPriceDownPercent != null">
+                sellMinLimitPriceDownPercent = #{sellMinLimitPriceDownPercent} ,
+            </if>
+            <if test="buyPricePrecision != null">
+                buyPricePrecision = #{buyPricePrecision} ,
+            </if>
+            <if test="buyAmountPrecision != null">
+                buyAmountPrecision = #{buyAmountPrecision} ,
+            </if>
+            <if test="buyMinAmount != null">
+                buyMinAmount = #{buyMinAmount} ,
+            </if>
+            <if test="sellPricePrecision != null">
+                sellPricePrecision = #{sellPricePrecision} ,
+            </if>
+            <if test="sellAmountPrecision != null">
+                sellAmountPrecision = #{sellAmountPrecision} ,
+            </if>
+            <if test="sellMinAmount != null">
+                sellMinAmount = #{sellMinAmount} ,
+            </if>
+            <if test="maxSingleBuyEntrustAmt != null">
+                maxSingleBuyEntrustAmt = #{maxSingleBuyEntrustAmt} ,
+            </if>
+            <if test="maxSingleSellEntrustAmt != null">
+                maxSingleSellEntrustAmt = #{maxSingleSellEntrustAmt} ,
+            </if>
+            <if test="closePositionLongPrePercent != null">
+                closePositionLongPrePercent = #{closePositionLongPrePercent} ,
+            </if>
+            <if test="closePositionShortPrePercent != null">
+                closePositionShortPrePercent = #{closePositionShortPrePercent} ,
+            </if>
+            <if test="digitBorrowDayRate != null">
+                digitBorrowDayRate = #{digitBorrowDayRate} ,
+            </if>
+            <if test="legalBorrowDayRate != null">
+                legalBorrowDayRate = #{legalBorrowDayRate} ,
+            </if>
+            <if test="wealthDayRate != null">
+                wealthDayRate = #{wealthDayRate} ,
+            </if>
+            <if test="tableWealthCurrent != null">
+                tableWealthCurrent = #{tableWealthCurrent} ,
+            </if>
+            <if test="tableAsset != null">
+                tableAsset = #{tableAsset} ,
+            </if>
+            <if test="tableDebitAsset != null">
+                tableDebitAsset = #{tableDebitAsset} ,
+            </if>
+            <if test="tableDebitAssetDetail != null">
+                tableDebitAssetDetail = #{tableDebitAssetDetail} ,
+            </if>
+            <if test="tableEntrust != null">
+                tableEntrust = #{tableEntrust} ,
+            </if>
+            <if test="tableEntrustHis != null">
+                tableEntrustHis = #{tableEntrustHis} ,
+            </if>
+            <if test="tableRealDeal != null">
+                tableRealDeal = #{tableRealDeal} ,
+            </if>
+            <if test="tableRealDealHis != null">
+                tableRealDealHis = #{tableRealDealHis} ,
+            </if>
+            <if test="tableFundCurrent != null">
+                tableFundCurrent = #{tableFundCurrent} ,
+            </if>
+            <if test="tableFundCurrentHis != null">
+                tableFundCurrentHis = #{tableFundCurrentHis} ,
+            </if>
+            <if test="tableQuotationKline != null">
+                tableQuotationKline = #{tableQuotationKline} ,
+            </if>
+            <if test="webSocketUrl != null">
+                webSocketUrl = #{webSocketUrl} ,
+            </if>
+            <if test="topicKline1m != null">
+                topicKline1m = #{topicKline1m} ,
+            </if>
+            <if test="topicKline5m != null">
+                topicKline5m = #{topicKline5m} ,
+            </if>
+            <if test="topicKline15m != null">
+                topicKline15m = #{topicKline15m} ,
+            </if>
+            <if test="topicKline30m != null">
+                topicKline30m = #{topicKline30m} ,
+            </if>
+            <if test="topicKlineHour != null">
+                topicKlineHour = #{topicKlineHour} ,
+            </if>
+            <if test="topicKlineDay != null">
+                topicKlineDay = #{topicKlineDay} ,
+            </if>
+            <if test="topicKlineWeek != null">
+                topicKlineWeek = #{topicKlineWeek} ,
+            </if>
+            <if test="topicKlineMonth != null">
+                topicKlineMonth = #{topicKlineMonth} ,
+            </if>
+            <if test="topicEntrustDeepprice != null">
+                topicEntrustDeepprice = #{topicEntrustDeepprice} ,
+            </if>
+            <if test="topicRealdealTransaction != null">
+                topicRealdealTransaction = #{topicRealdealTransaction} ,
+            </if>
+            <if test="topicRtquotationPrice != null">
+                topicRtquotationPrice = #{topicRtquotationPrice} ,
+            </if>
+            <if test="openEntrustType != null">
+                openEntrustType = #{openEntrustType} ,
+            </if>
+            <if test="settlementCycle != null">
+                settlementCycle = #{settlementCycle} ,
+            </if>
+            <if test="settlementPrice != null">
+                settlementPrice = #{settlementPrice} ,
+            </if>
+            <if test="settlementStep != null">
+                settlementStep = #{settlementStep} ,
+            </if>
+            <if test="entrustAccumDenom != null">
+                entrustAccumDenom = #{entrustAccumDenom} ,
+            </if>
+            <if test="tokenContactAddr != null">
+                tokenContactAddr = #{tokenContactAddr} ,
+            </if>
+            <if test="tokenDecimals != null">
+                tokenDecimals = #{tokenDecimals} ,
+            </if>
+            <if test="unauthUserWithdrawDayUpper != null">
+                unauthUserWithdrawDayUpper = #{unauthUserWithdrawDayUpper} ,
+            </if>
+            <if test="authedUserWithdrawDayUpper != null">
+                authedUserWithdrawDayUpper = #{authedUserWithdrawDayUpper} ,
+            </if>
+            <if test="smallWithdrawHotSignValue != null">
+                smallWithdrawHotSignValue = #{smallWithdrawHotSignValue} ,
+            </if>
+            <if test="smallDepositFeeValue != null">
+                smallDepositFeeValue = #{smallDepositFeeValue} ,
+            </if>
+            <if test="smallDepositStandardValue != null">
+                smallDepositStandardValue = #{smallDepositStandardValue} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        update StockInfo set
+            stockCode = #{stockCode} ,
+            stockName = #{stockName} ,
+            stockType = #{stockType} ,
+            canRecharge = #{canRecharge} ,
+            canWithdraw = #{canWithdraw} ,
+            canTrade = #{canTrade} ,
+            canBorrow = #{canBorrow} ,
+            canConversion = #{canConversion},
+            canWealth = #{canWealth},
+            isExchange = #{isExchange},
+            isActive = #{isActive},
+            tradeStockinfoId = #{tradeStockinfoId},
+            capitalStockinfoId = #{capitalStockinfoId},
+            tradeDebitTotal = #{tradeDebitTotal},
+            capitalDebitTotal = #{capitalDebitTotal},
+            clearStockinfoId = #{clearStockinfoId},
+            quotationStockinfoId = #{quotationStockinfoId},
+            tradeAmtUnit = #{tradeAmtUnit},
+            tradeAmtSymbol = #{tradeAmtSymbol},
+            capitalAmtUnit = #{capitalAmtUnit},
+            capitalAmtSymbol = #{capitalAmtSymbol},
+            assetAmtUnit = #{assetAmtUnit},
+            assetAmtSymbol = #{assetAmtSymbol},
+            clearAmtUnit = #{clearAmtUnit},
+            clearAmtSymbol = #{clearAmtSymbol},
+            maxLongLever = #{maxLongLever} ,
+            maxShortLever = #{maxShortLever} ,
+            maxLongLeverSwitch = #{maxLongLeverSwitch} ,
+            maxShortLeverSwitch = #{maxShortLeverSwitch} ,
+            maxLongFuse = #{maxLongFuse} ,
+            maxShortFuse = #{maxShortFuse} ,
+            buyMaxLimitPriceUpPercent = #{buyMaxLimitPriceUpPercent} ,
+            buyMaxLimitPriceDownPercent = #{buyMaxLimitPriceDownPercent} ,
+            buyMinLimitPriceUpPercent = #{buyMinLimitPriceUpPercent} ,
+            buyMinLimitPriceDownPercent = #{buyMinLimitPriceDownPercent} ,
+            sellMaxLimitPriceUpPercent = #{sellMaxLimitPriceUpPercent} ,
+            sellMaxLimitPriceDownPercent = #{sellMaxLimitPriceDownPercent} ,
+            sellMinLimitPriceUpPercent = #{sellMinLimitPriceUpPercent} ,
+            sellMinLimitPriceDownPercent = #{sellMinLimitPriceDownPercent} ,
+            buyPricePrecision = #{buyPricePrecision} ,
+            buyAmountPrecision = #{buyAmountPrecision} ,
+            buyMinAmount = #{buyMinAmount} ,
+            sellPricePrecision = #{sellPricePrecision} ,
+            sellAmountPrecision = #{sellAmountPrecision} ,
+            sellMinAmount = #{sellMinAmount} ,
+            maxSingleBuyEntrustAmt = #{maxSingleBuyEntrustAmt} ,
+            maxSingleSellEntrustAmt = #{maxSingleSellEntrustAmt} ,
+            closePositionLongPrePercent = #{closePositionLongPrePercent} ,
+            closePositionShortPrePercent = #{closePositionShortPrePercent} ,
+            digitBorrowDayRate = #{digitBorrowDayRate} ,
+            legalBorrowDayRate = #{legalBorrowDayRate} ,
+            wealthDayRate = #{wealthDayRate} ,
+            tableWealthCurrent = #{tableWealthCurrent} ,
+            tableAsset = #{tableAsset} ,
+            tableDebitAsset = #{tableDebitAsset} ,
+            tableDebitAssetDetail = #{tableDebitAssetDetail} ,
+            tableEntrust = #{tableEntrust} ,
+            tableEntrustHis = #{tableEntrustHis} ,
+            tableRealDeal = #{tableRealDeal} ,
+            tableRealDealHis = #{tableRealDealHis} ,
+            tableFundCurrent = #{tableFundCurrent} ,
+            tableFundCurrentHis = #{tableFundCurrentHis} ,
+            tableQuotationKline = #{tableQuotationKline} ,
+            webSocketUrl = #{webSocketUrl},
+            topicKline1m = #{topicKline1m},
+            topicKline5m = #{topicKline5m},
+            topicKline15m = #{topicKline15m},
+            topicKline30m = #{topicKline30m},
+            topicKlineHour = #{topicKlineHour},
+            topicKlineDay = #{topicKlineDay},
+            topicKlineWeek = #{topicKlineWeek},
+            topicKlineMonth = #{topicKlineMonth},
+            topicEntrustDeepprice = #{topicEntrustDeepprice},
+            topicRealdealTransaction = #{topicRealdealTransaction},
+            topicRtquotationPrice = #{topicRtquotationPrice},
+            openEntrustType = #{openEntrustType},
+            settlementCycle = #{settlementCycle} ,
+            settlementPrice = #{settlementPrice} ,
+            settlementStep = #{settlementStep} ,
+            entrustAccumDenom = #{entrustAccumDenom} ,
+            tokenContactAddr = #{tokenContactAddr} ,
+            tokenDecimals = #{tokenDecimals} ,
+            unauthUserWithdrawDayUpper = #{unauthUserWithdrawDayUpper} ,
+            authedUserWithdrawDayUpper = #{authedUserWithdrawDayUpper} ,
+            smallWithdrawHotSignValue = #{smallWithdrawHotSignValue} ,
+            smallDepositFeeValue = #{smallDepositFeeValue} ,
+            smallDepositStandardValue = #{smallDepositStandardValue} ,
+            remark = #{remark} ,
+            updateBy = #{updateBy} ,
+            updateDate = #{updateDate}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        select
+        <include refid="stockInfoColumns"/>
+        from StockInfo a where a.id = #{id}
+    </select>
+
+    <!-- 按合约地址查询 -->
+    <select id="findByContractAddr" parameterType="java.lang.String" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        select
+        <include refid="stockInfoColumns"/>
+        from StockInfo a where a.tokenContactAddr = #{addr}
+        and a.stocktype='pureSpot'
+    </select>
+    <!-- 查找一条未激活的证券信息 -->
+    <select id="findOneNotActive" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        select <include refid="stockInfoColumns"/>
+        from (
+            select
+            *
+            from StockInfo a where a.tokenContactAddr is null
+            and a.stocktype='pureSpot' and a.isactive!='yes'
+            order by a.id asc
+        ) a  where rownum=1
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo" useCache="false">
+        SELECT
+        <include refid="stockInfoJoinColumns"/>
+        FROM StockInfo a left join UserInfo b on a.createBy = b.id
+        left join UserInfo c on a.updateBy = c.id
+        WHERE 1=1
+        <if test="stockType != null and stockType != ''">
+            and a.stockType = #{stockType}
+        </if>
+        <if test="stockCode != null and stockCode != ''">
+            and a.stockCode = #{stockCode}
+        </if>
+        <if test="stockName != null">
+            and a.stockName like '%'||#{stockName}||'%'
+        </if>
+        <if test="canTrade !=null and canTrade!=''">
+            and a.canTrade = #{canTrade}
+        </if>
+        <if test="canBorrow !=null and canBorrow!=''">
+            and a.canBorrow = #{canBorrow}
+        </if>
+        <if test="isExchange !=null and isExchange!=''">
+            and a.isExchange = #{isExchange}
+        </if>
+        <if test="canWealth !=null and canWealth!=''">
+            and a.canWealth = #{canWealth}
+        </if>
+        <if test="id !=null ">
+            and a.id = #{id}
+        </if>
+        <if test="tradeStockinfoId !=null ">
+            and a.tradeStockinfoId = #{tradeStockinfoId}
+        </if>
+        <if test="capitalStockinfoId !=null ">
+            and a.capitalStockinfoId = #{capitalStockinfoId}
+        </if>
+        <if test="tokenContactAddr !=null and tokenContactAddr!='' ">
+            and a.tokenContactAddr = #{tokenContactAddr}
+        </if>
+        <if test="remark !=null and remark!='' ">
+            and a.remark = #{remark}
+        </if>
+        <if test="isActive !=null and isActive!='no' ">
+            and a.isActive='yes'
+        </if>
+        order by a.stockCode asc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo" useCache="false">
+        SELECT
+        <include refid="stockInfoJoinColumns"/>
+        FROM StockInfo a left join UserInfo b on a.createBy = b.id
+        left join UserInfo c on a.updateBy = c.id
+        where a.isActive='yes'
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo" useCache="false">
+        SELECT
+        <include refid="stockInfoColumns"/>
+        FROM StockInfo a
+        where 1=1
+    </select>
+
+    <select id="findListByIds" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        SELECT
+        <include refid="stockInfoColumns"/>
+        FROM StockInfo a where 1=1 and a.isActive='yes'
+        <if test="ids !=null and ids!=''">
+            and a.id in
+            <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="findListByTypes" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        SELECT
+        <include refid="stockInfoColumns"/>
+        FROM StockInfo a where 1=1  and a.isActive='yes'
+        <if test="type !=null and type!=''">
+            and a.stockType in
+            <foreach item="item" index="index" collection="type" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!-- 只取交易对的计价市场 -->
+    <select id="findLIstByDistinctCaptalId" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        select d.id as id,d.stockCode as stockCode from STOCKINFO d where id in(
+          select distinct capitalstockinfoid from STOCKINFO a where a.cantrade='yes' and a.isActive='yes'
+        )
+    </select>
+
+</mapper>
+

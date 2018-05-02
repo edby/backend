@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorPlatBalMapper">
+    <!-- 基础列 -->
+    <sql id="monitorPlatBalColumns">
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.stockinfoId as stockinfoId,
+        a.externalRBal as externalRBal,
+        a.externalWBal as externalWBal,
+        a.externalEBal as externalEBal,
+        a.internalBal as internalBal,
+        a.differenceBal as differenceBal,
+        a.externalWarnValue as externalWarnValue,
+        a.internalWarnValue as internalWarnValue,
+        a.externalForbidValue as externalForbidValue,
+        a.internalForbidValue as internalForbidValue,
+        a.monitorDesc as monitorDesc,
+        a.chkResult as chkResult,
+        a.chkDate as chkDate
+    </sql>
+
+    <sql id="monitorPlatBalJoinColumns">
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.stockinfoId as stockinfoId,
+        a.externalRBal as externalRBal,
+        a.hotpaybal as hotPayBal,
+        a.coldpaybal as coldPayBal,
+        a.externalEBal as externalEBal,
+        a.internalBal as internalBal,
+        a.differenceBal as differenceBal,
+        a.minparamval as minParamVal,
+        a.maxparamval as maxParamVal,
+        a.monitorDesc as monitorDesc,
+        a.chkResult as chkResult,
+        a.chkDate as chkDate,
+        b.stockName as stockName
+    </sql>
+
+    <resultMap id="monitorPlatBalResultMap" type="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        <id column="id" property="id" />
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="monitorType" property="monitorType"/>
+        <result column="monitorSubType" property="monitorSubType"/>
+        <result column="externalRBal" property="externalRBal"/>
+        <result column="externalWBal" property="externalWBal"/>
+        <result column="externalEBal" property="externalEBal"/>
+        <result column="internalBal" property="internalBal"/>
+        <result column="differenceBal" property="differenceBal"/>
+        <result column="externalWarnValue" property="externalWarnValue"/>
+        <result column="internalWarnValue" property="internalWarnValue"/>
+        <result column="externalForbidValue" property="externalForbidValue"/>
+        <result column="internalForbidValue" property="internalForbidValue"/>
+        <result column="monitorDesc" property="monitorDesc"/>
+        <result column="chkResult" property="chkResult"/>
+        <result column="chkDate" property="chkDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        insert into MonitorPlatBal(
+            monitorType ,
+            monitorSubType ,
+            stockinfoId ,
+            externalRBal ,
+            externalWBal ,
+            externalEBal ,
+            internalBal ,
+            differenceBal ,
+            externalWarnValue ,
+            internalWarnValue ,
+            externalForbidValue ,
+            internalForbidValue ,
+            monitorDesc ,
+            chkResult ,
+            chkDate 
+        ) VALUES (
+            #{monitorType} ,
+            #{monitorSubType} ,
+            #{stockinfoId} ,
+            #{externalRBal} ,
+            #{externalWBal} ,
+            #{externalEBal} ,
+            #{internalBal} ,
+            #{differenceBal} ,
+            #{externalWarnValue} ,
+            #{internalWarnValue} ,
+            #{externalForbidValue} ,
+            #{internalForbidValue} ,
+            #{monitorDesc} ,
+            #{chkResult} ,
+            #{chkDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorPlatBal where stockinfoId = #{stockinfoId}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from MonitorPlatBal where stockinfoId = #{stockinfoId}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        insert into MonitorPlatBal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="monitorType != null">
+                monitorType ,
+        </if>
+        <if test="monitorSubType != null">
+                monitorSubType ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="externalRBal != null">
+                externalRBal ,
+        </if>
+        <if test="externalWBal != null">
+                externalWBal ,
+        </if>
+        <if test="externalEBal != null">
+                externalEBal ,
+        </if>
+        <if test="internalBal != null">
+                internalBal ,
+        </if>
+        <if test="differenceBal != null">
+                differenceBal ,
+        </if>
+        <if test="externalWarnValue != null">
+                externalWarnValue ,
+        </if>
+        <if test="internalWarnValue != null">
+                internalWarnValue ,
+        </if>
+        <if test="externalForbidValue != null">
+                externalForbidValue ,
+        </if>
+        <if test="internalForbidValue != null">
+                internalForbidValue ,
+        </if>
+        <if test="monitorDesc != null">
+                monitorDesc ,
+        </if>
+        <if test="chkResult != null">
+                chkResult ,
+        </if>
+        <if test="chkDate != null">
+                chkDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="monitorType != null">
+                #{monitorType} ,
+        </if>
+        <if test="monitorSubType != null">
+                #{monitorSubType} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="externalRBal != null">
+                #{externalRBal} ,
+        </if>
+        <if test="externalWBal != null">
+                #{externalWBal} ,
+        </if>
+        <if test="externalEBal != null">
+                #{externalEBal} ,
+        </if>
+        <if test="internalBal != null">
+                #{internalBal} ,
+        </if>
+        <if test="differenceBal != null">
+                #{differenceBal} ,
+        </if>
+        <if test="externalWarnValue != null">
+                #{externalWarnValue} ,
+        </if>
+        <if test="internalWarnValue != null">
+                #{internalWarnValue} ,
+        </if>
+        <if test="externalForbidValue != null">
+                #{externalForbidValue} ,
+        </if>
+        <if test="internalForbidValue != null">
+                #{internalForbidValue} ,
+        </if>
+        <if test="monitorDesc != null">
+                #{monitorDesc} ,
+        </if>
+        <if test="chkResult != null">
+                #{chkResult} ,
+        </if>
+        <if test="chkDate != null">
+                #{chkDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        update MonitorPlatBal
+           <set>
+            <if test="monitorType != null">
+                monitorType = #{monitorType} ,
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType = #{monitorSubType} ,
+            </if>
+            <if test="externalRBal != null">
+                externalRBal = #{externalRBal} ,
+            </if>
+            <if test="externalWBal != null">
+                externalWBal = #{externalWBal} ,
+            </if>
+            <if test="externalEBal != null">
+                externalEBal = #{externalEBal} ,
+            </if>
+            <if test="internalBal != null">
+                internalBal = #{internalBal} ,
+            </if>
+            <if test="differenceBal != null">
+                differenceBal = #{differenceBal} ,
+            </if>
+            <if test="externalWarnValue != null">
+                externalWarnValue = #{externalWarnValue} ,
+            </if>
+            <if test="internalWarnValue != null">
+                internalWarnValue = #{internalWarnValue} ,
+            </if>
+            <if test="externalForbidValue != null">
+                externalForbidValue = #{externalForbidValue} ,
+            </if>
+            <if test="internalForbidValue != null">
+                internalForbidValue = #{internalForbidValue} ,
+            </if>
+            <if test="monitorDesc != null">
+                monitorDesc = #{monitorDesc} ,
+            </if>
+            <if test="chkResult != null">
+                chkResult = #{chkResult} ,
+            </if>
+            <if test="chkDate != null">
+                chkDate = #{chkDate} 
+            </if>
+           </set>
+        where stockinfoId = #{stockinfoId}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorPlatBal(
+            monitorType ,
+            monitorSubType ,
+            stockinfoId ,
+            externalRBal ,
+            externalWBal ,
+            externalEBal ,
+            internalBal ,
+            differenceBal ,
+            externalWarnValue ,
+            internalWarnValue ,
+            externalForbidValue ,
+            internalForbidValue ,
+            monitorDesc ,
+            chkResult ,
+            chkDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.monitorType} ,
+            #{item.monitorSubType} ,
+            #{item.stockinfoId} ,
+            #{item.externalRBal} ,
+            #{item.externalWBal} ,
+            #{item.externalEBal} ,
+            #{item.internalBal} ,
+            #{item.differenceBal} ,
+            #{item.externalWarnValue} ,
+            #{item.internalWarnValue} ,
+            #{item.externalForbidValue} ,
+            #{item.internalForbidValue} ,
+            #{item.monitorDesc} ,
+            #{item.chkResult} ,
+            #{item.chkDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MonitorPlatBal set
+            monitorType = #{item.monitorType} ,
+            monitorSubType = #{item.monitorSubType} ,
+            externalRBal = #{item.externalRBal} ,
+            externalWBal = #{item.externalWBal} ,
+            externalEBal = #{item.externalEBal} ,
+            internalBal = #{item.internalBal} ,
+            differenceBal = #{item.differenceBal} ,
+            externalWarnValue = #{item.externalWarnValue} ,
+            internalWarnValue = #{item.internalWarnValue} ,
+            externalForbidValue = #{item.externalForbidValue} ,
+            internalForbidValue = #{item.internalForbidValue} ,
+            monitorDesc = #{item.monitorDesc} ,
+            chkResult = #{item.chkResult} ,
+            chkDate = #{item.chkDate} 
+            where stockinfoId = #{item.stockinfoId}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        update MonitorPlatBal set
+            monitorType = #{monitorType} ,
+            monitorSubType = #{monitorSubType} ,
+            externalRBal = #{externalRBal} ,
+            externalWBal = #{externalWBal} ,
+            externalEBal = #{externalEBal} ,
+            internalBal = #{internalBal} ,
+            differenceBal = #{differenceBal} ,
+            externalWarnValue = #{externalWarnValue} ,
+            internalWarnValue = #{internalWarnValue} ,
+            externalForbidValue = #{externalForbidValue} ,
+            internalForbidValue = #{internalForbidValue} ,
+            monitorDesc = #{monitorDesc} ,
+            chkResult = #{chkResult} ,
+            chkDate = #{chkDate} 
+        where stockinfoId = #{stockinfoId}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        select <include refid="monitorPlatBalColumns"/> from MonitorPlatBal a where a.stockinfoId = #{stockinfoId}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        SELECT
+        <include refid="monitorPlatBalColumns"/>
+        FROM MonitorPlatBal a WHERE 1=1
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="monitorType != null">
+            and a.monitorType like '%'||#{monitorType}||'%'
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType like '%'||#{monitorSubType}||'%'
+        </if>
+        <if test="externalRBal != null">
+            and a.externalRBal = #{externalRBal}
+        </if>
+        <if test="externalWBal != null">
+            and a.externalWBal = #{externalWBal}
+        </if>
+        <if test="externalEBal != null">
+            and a.externalEBal = #{externalEBal}
+        </if>
+        <if test="internalBal != null">
+            and a.internalBal = #{internalBal}
+        </if>
+        <if test="differenceBal != null">
+            and a.differenceBal = #{differenceBal}
+        </if>
+        <if test="externalWarnValue != null">
+            and a.externalWarnValue = #{externalWarnValue}
+        </if>
+        <if test="internalWarnValue != null">
+            and a.internalWarnValue = #{internalWarnValue}
+        </if>
+        <if test="externalForbidValue != null">
+            and a.externalForbidValue = #{externalForbidValue}
+        </if>
+        <if test="internalForbidValue != null">
+            and a.internalForbidValue = #{internalForbidValue}
+        </if>
+        <if test="monitorDesc != null">
+            and a.monitorDesc like '%'||#{monitorDesc}||'%'
+        </if>
+        <if test="chkResult != null">
+            and a.chkResult = #{chkResult}
+        </if>
+        <if test="chkDate != null">
+            and a.chkDate = #{chkDate}
+        </if>
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findMonitorPlatBalList" resultType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        SELECT
+        <include refid="monitorPlatBalJoinColumns"/>
+        FROM (SELECT MONITORTYPE,
+        MONITORSUBTYPE,
+        STOCKINFOID,
+        A1.EXTERNALRBAL,
+        A1.EXTERNALWBAL      HOTPAYBAL,
+        0                    COLDPAYBAL,
+        A1.EXTERNALEBAL,
+        A1.INTERNALBAL,
+        A1.DIFFERENCEBAL,
+        A1.INTERNALWARNVALUE MINPARAMVAL,
+        A1.EXTERNALWARNVALUE MAXPARAMVAL,
+        A1.MONITORDESC,
+        A1.CHKRESULT,
+        A1.CHKDATE
+        FROM MONITORPLATBAL A1
+        UNION ALL
+        SELECT MONITORTYPE,
+        MONITORSUBTYPE,
+        STOCKINFOID,
+        0                    EXTERNALRBAL,
+        A2.EXTERNALHBAL      HOTPAYBAL,
+        A2.EXTERNALCBAL      COLDPAYBAL,
+        A2.EXTERNALEBAL,
+        A2.INTERNALBAL,
+        A2.DIFFERENCEBAL,
+        A2.INTERNALWARNVALUE MINPARAMVAL,
+        A2.EXTERNALWARNVALUE MAXPARAMVAL,
+        A2.MONITORDESC,
+        A2.CHKRESULT,
+        A2.CHKDATE
+        FROM MONITORERC20BAL A2)a LEFT JOIN StockInfo b ON a.stockinfoId=b.id WHERE 1=1
+
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="monitorType != null">
+            and a.monitorType = #{monitorType}
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="chkResult != null">
+            <choose>
+                <when test="chkResult == 1 ">
+                    and a.chkResult = 1
+                </when >
+
+                <otherwise>
+                    and a.chkResult != 1
+                </otherwise>
+            </choose>
+        </if>
+        <if test="timeStart != null ">
+            and a.chkDate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.chkDate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.STOCKINFOID
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        SELECT
+        <include refid="monitorPlatBalColumns"/>
+        FROM MonitorPlatBal a WHERE 1=1
+    </select>
+
+    <select id="findRiskInfo" resultType="com.blocain.bitms.monitor.entity.MonitorPlatBal">
+        select
+        count(1) as abNormalCount
+        from MonitorPlatBal where
+        chkResult &lt; 0
+    </select>
+
+</mapper>
+

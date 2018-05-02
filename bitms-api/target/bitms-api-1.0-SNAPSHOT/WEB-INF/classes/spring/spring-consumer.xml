@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:consumer check="false"/>
+
+    <!-- 行情服务 -->
+    <dubbo:reference id="quotationService" interface="com.blocain.bitms.quotation.service.QuotationService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="rtQuotationInfoService" interface="com.blocain.bitms.quotation.service.RtQuotationInfoService" mock="return null" version="1.0.0"/>
+
+</beans>

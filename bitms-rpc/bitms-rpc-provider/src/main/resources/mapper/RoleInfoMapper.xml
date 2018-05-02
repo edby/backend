@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.system.mapper.RoleInfoMapper">
+    <!-- 基础列 -->
+    <sql id="roleInfoColumns">
+        a.id as id,
+        a.roleCode as roleCode,
+        a.roleName as roleName,
+        a.roleDest as roleDest,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        a.needGa as needGa ,
+        a.delFlag as delFlag
+    </sql>
+
+    <sql id="roleInfoJoinColumns">
+        a.id as id,
+        a.roleCode as roleCode,
+        a.roleName as roleName,
+        a.roleDest as roleDest,
+        a.createBy as createBy,
+        b.trueName as createByName,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        a.needGa as needGa,
+        a.delFlag as delFlag
+    </sql>
+
+    <resultMap id="roleInfoResultMap" type="com.blocain.bitms.boss.system.entity.RoleInfo">
+        <id column="id" property="id" />
+        <result column="roleCode" property="roleCode"/>
+        <result column="roleName" property="roleName"/>
+        <result column="roleDest" property="roleDest"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+        <result column="needGa" property="needGa"/>
+        <result column="delFlag" property="delFlag"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        insert into RoleInfo(
+            id ,
+            roleCode ,
+            roleName ,
+            roleDest ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate ,
+            needGa,
+            delFlag 
+        ) VALUES (
+            #{id} ,
+            #{roleCode} ,
+            #{roleName} ,
+            #{roleDest} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{updateBy} ,
+            #{updateDate} ,
+            #{needGa},
+            #{delFlag} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from RoleInfo where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update RoleInfo set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        insert into RoleInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="roleCode != null">
+                roleCode ,
+        </if>
+        <if test="roleName != null">
+                roleName ,
+        </if>
+        <if test="roleDest != null">
+                roleDest ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateBy != null">
+                updateBy ,
+        </if>
+        <if test="updateDate != null">
+                updateDate ,
+        </if>
+        <if test="needGa != null">
+            needGa ,
+        </if>
+        <if test="delFlag != null">
+                delFlag 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="roleCode != null">
+                #{roleCode} ,
+        </if>
+        <if test="roleName != null">
+                #{roleName} ,
+        </if>
+        <if test="roleDest != null">
+                #{roleDest} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateBy != null">
+                #{updateBy} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} ,
+        </if>
+        <if test="needGa != null">
+                needGa ,
+        </if>
+        <if test="delFlag != null">
+                #{delFlag} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        update RoleInfo
+           <set>
+            <if test="roleCode != null">
+                roleCode = #{roleCode} ,
+            </if>
+            <if test="roleName != null">
+                roleName = #{roleName} ,
+            </if>
+            <if test="roleDest != null">
+                roleDest = #{roleDest} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} ,
+            </if>
+            <if test="needGa != null">
+                needGa = #{needGa} ,
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into RoleInfo(
+            id ,
+            roleCode ,
+            roleName ,
+            roleDest ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate ,
+            needGa,
+            delFlag 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.roleCode} ,
+            #{item.roleName} ,
+            #{item.roleDest} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.updateBy} ,
+            #{item.updateDate} ,
+            #{item.needGa},
+            #{item.delFlag} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update RoleInfo set
+            roleCode = #{item.roleCode} ,
+            roleName = #{item.roleName} ,
+            roleDest = #{item.roleDest} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            updateBy = #{item.updateBy} ,
+            updateDate = #{item.updateDate} ,
+            needGa = #{item.needGa},
+            delFlag = #{item.delFlag} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        update RoleInfo set
+            roleCode = #{roleCode} ,
+            roleName = #{roleName} ,
+            roleDest = #{roleDest} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            updateBy = #{updateBy} ,
+            updateDate = #{updateDate} ,
+            needGa = #{needGa},
+            delFlag = #{delFlag} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        select <include refid="roleInfoColumns"/> from RoleInfo a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        SELECT
+        <include refid="roleInfoJoinColumns"/>
+        FROM RoleInfo a left join UserInfo b
+        on b.id = a.createBy
+        WHERE a.delFlag = 0
+        <if test="roleCode != null">
+            and a.roleCode like '%'||#{roleCode}||'%'
+        </if>
+        <if test="roleName != null">
+            and a.roleName like '%'||#{roleName}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateBy != null">
+            and a.updateBy = #{updateBy}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        SELECT
+        <include refid="roleInfoColumns"/>
+        FROM RoleInfo a WHERE a.delFlag = 0
+    </select>
+
+    <select id="findByUserId" resultType="com.blocain.bitms.boss.system.entity.RoleInfo">
+        SELECT
+        <include refid="roleInfoColumns"/>
+        FROM RoleInfo a ,UserRole b
+        WHERE a.id = b.roleId AND a.delFlag = 0
+        AND b.userId = #{userId}
+    </select>
+
+
+</mapper>
+

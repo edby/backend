@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorMarginMapper">
+    <!-- 基础列 -->
+    <sql id="monitorMarginColumns">
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.capitalStockinfoId as capitalStockinfoId,
+        a.targetStockinfoId as targetStockinfoId,
+        a.capitalBal as capitalBal,
+        a.targetBal as targetBal,
+        a.capitalDebtBal as capitalDebtBal,
+        a.targetDebtBal as targetDebtBal,
+        a.platPrice as platPrice,
+        a.lever as lever,
+        a.warnRatio as warnRatio,
+        a.marginratio as marginratio,
+        a.monitordesc as monitordesc,
+        a.chkResult as chkResult,
+        a.chkDate as chkDate,
+         a.acctattr as acctattr,
+        a.explosionPrice as explosionPrice,
+        a.riskRate as riskRate,
+        a.criticalCPPercent as criticalCPPercent
+    </sql>
+    <sql id="monitorMarginJoinColumns">
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.capitalStockinfoId as capitalStockinfoId,
+        a.targetStockinfoId as targetStockinfoId,
+        a.capitalBal as capitalBal,
+        a.targetBal as targetBal,
+        a.capitalDebtBal as capitalDebtBal,
+        a.targetDebtBal as targetDebtBal,
+        a.platPrice as platPrice,
+        a.lever as lever,
+        a.warnRatio as warnRatio,
+        a.marginratio as marginratio,
+        a.monitordesc as monitordesc,
+        a.chkResult as chkResult,
+        a.chkDate as chkDate,
+        a.acctattr as acctattr,
+        a.explosionPrice as explosionPrice,
+        a.riskRate as riskRate,
+        a.criticalCPPercent as criticalCPPercent,
+        b.accountName as accountName
+    </sql>
+
+    <resultMap id="monitorMarginResultMap" type="com.blocain.bitms.monitor.entity.MonitorMargin">
+        <result column="monitorType" property="monitorType"/>
+        <result column="monitorSubType" property="monitorSubType"/>
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="capitalStockinfoId" property="capitalStockinfoId"/>
+        <result column="targetStockinfoId" property="targetStockinfoId"/>
+        <result column="capitalBal" property="capitalBal"/>
+        <result column="targetBal" property="targetBal"/>
+        <result column="capitalDebtBal" property="capitalDebtBal"/>
+        <result column="targetDebtBal" property="targetDebtBal"/>
+        <result column="platPrice" property="platPrice"/>
+        <result column="lever" property="lever"/>
+        <result column="warnRatio" property="warnRatio"/>
+        <result column="marginratio" property="marginratio"/>
+        <result column="monitordesc" property="monitordesc"/>
+        <result column="chkResult" property="chkResult"/>
+        <result column="chkDate" property="chkDate"/>
+        <result column="acctattr" property="acctattr"/>
+        <result column="explosionPrice" property="explosionPrice"/>
+        <result column="riskRate" property="riskRate"/>
+        <result column="criticalCPPercent" property="criticalCPPercent"/>
+    </resultMap>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        update MonitorMargin
+        <set>
+            <if test="monitorType != null">
+                monitorType = #{monitorType} ,
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType = #{monitorSubType} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="capitalStockinfoId != null">
+                capitalStockinfoId = #{capitalStockinfoId} ,
+            </if>
+            <if test="targetStockinfoId != null">
+                targetStockinfoId = #{targetStockinfoId} ,
+            </if>
+            <if test="capitalBal != null">
+                capitalBal = #{capitalBal} ,
+            </if>
+            <if test="targetBal != null">
+                targetBal = #{targetBal} ,
+            </if>
+            <if test="capitalDebtBal != null">
+                capitalDebtBal = #{capitalDebtBal} ,
+            </if>
+            <if test="targetDebtBal != null">
+                targetDebtBal = #{targetDebtBal} ,
+            </if>
+            <if test="platPrice != null">
+                platPrice = #{platPrice} ,
+            </if>
+            <if test="lever != null">
+                lever = #{lever} ,
+            </if>
+            <if test="warnRatio != null">
+                warnRatio = #{warnRatio} ,
+            </if>
+            <if test="marginratio != null">
+                marginratio = #{marginratio} ,
+            </if>
+            <if test="monitordesc != null">
+                monitordesc = #{monitordesc} ,
+            </if>
+            <if test="chkResult != null">
+                chkResult = #{chkResult} ,
+            </if>
+            <if test="acctattr != null">
+                acctattr = #{acctattr} ,
+            </if>
+            <if test="explosionPrice != null">
+                explosionPrice = #{explosionPrice} ,
+            </if>
+            <if test="riskRate != null">
+                riskRate = #{riskRate} ,
+            </if>
+            <if test="criticalCPPercent != null">
+                criticalCPPercent = #{criticalCPPercent}
+            </if>
+        </set>
+        where accountId = #{accountId}  and targetStockinfoId = #{targetStockinfoId} and capitalStockinfoId = #{capitalStockinfoId}
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        update MonitorMargin set
+        monitorType = #{monitorType} ,
+        monitorSubType = #{monitorSubType} ,
+        stockinfoId = #{stockinfoId} ,
+        capitalStockinfoId = #{capitalStockinfoId} ,
+        targetStockinfoId = #{targetStockinfoId} ,
+        capitalBal = #{capitalBal} ,
+        targetBal = #{targetBal} ,
+        capitalDebtBal = #{capitalDebtBal} ,
+        targetDebtBal = #{targetDebtBal} ,
+        platPrice = #{platPrice} ,
+        lever = #{lever} ,
+        warnRatio = #{warnRatio} ,
+        marginratio = #{marginratio} ,
+        monitordesc = #{monitordesc} ,
+        chkResult = #{chkResult} ,
+        acctattr = #{acctattr} ,
+        explosionPrice = #{explosionPrice} ,
+        riskRate = #{riskRate},
+        criticalCPPercent = #{criticalCPPercent}
+        where accountId = #{accountId}  and targetStockinfoId = #{targetStockinfoId} and capitalStockinfoId = #{capitalStockinfoId}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        select
+        <include refid="monitorMarginColumns"/>
+        from MonitorMargin a where a.id = #{id}
+    </select>
+
+    <select id="findListByIds" resultType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        SELECT
+        <include refid="monitorMarginJoinColumns"/>
+        FROM MonitorMargin a LEFT JOIN Account b ON a.accountId=b.id
+        where 1=0
+        <foreach item="item" collection="mapList" open="" separator="" close="">
+            or ( accountId = #{item.accountId} and targetStockinfoId = #{item.targetStockinfoId} and capitalStockinfoId = #{item.capitalStockinfoId})
+        </foreach>
+        order by a.chkResult asc , a.chkDate desc
+    </select>
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        SELECT
+        <include refid="monitorMarginJoinColumns"/>
+        FROM MonitorMargin a LEFT JOIN Account b ON a.accountId=b.id WHERE 1=1
+        <if test="monitorType != null and monitorType!=''">
+            and a.monitorType= #{monitorType}
+        </if>
+        <if test="monitorSubType != null and monitorSubType!=''">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and d.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="capitalStockinfoId != null">
+            and a.capitalStockinfoId = #{capitalStockinfoId}
+        </if>
+        <if test="targetStockinfoId != null">
+            and a.targetStockinfoId = #{targetStockinfoId}
+        </if>
+        <if test="chkResult != null">
+            and a.chkResult = #{chkResult}
+        </if>
+        order by a.chkResult asc , a.chkDate desc
+    </select>
+
+    <!-- 保证金的对象查询 -->
+    <select id="findMarginList" resultType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        SELECT
+        <include refid="monitorMarginJoinColumns"/>,
+        (CASE WHEN (a.riskRate &gt;95 and a.riskRate &lt;105) THEN  1 ELSE 0 END) AS aaa
+        FROM MonitorMargin a LEFT JOIN Account b ON a.accountId=b.id WHERE  a.CAPITALBAL >0 or CAPITALDEBTBAL >0
+        <if test="monitorType != null and monitorType!=''">
+            and a.monitorType= #{monitorType}
+        </if>
+        <if test="monitorSubType != null and monitorSubType!=''">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="acctattr != null and acctattr!=''">
+            and a.acctattr = #{acctattr}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="capitalStockinfoId != null">
+            and a.capitalStockinfoId = #{capitalStockinfoId}
+        </if>
+        <if test="targetStockinfoId != null">
+            and a.targetStockinfoId = #{targetStockinfoId}
+        </if>
+        <if test="chkResult != null">
+            and a.chkResult = #{chkResult}
+        </if>
+        order by aaa desc,a.chkDate desc
+
+    </select>
+
+    <!-- 查询已爆仓的监控数据  -->
+    <select id="findClosePositionDataList" resultType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        SELECT
+        <include refid="monitorMarginJoinColumns"/>
+        FROM MonitorMargin a LEFT JOIN Account b ON a.accountId=b.id WHERE 1=1
+        and a.accountId &gt; 200000000000
+        and ( (a.acctattr=1 and a.riskRate &lt;= a.criticalCPPercent and a.riskRate&gt;0 )
+        or (a.acctattr=-1 and a.riskRate &gt;= a.criticalCPPercent) )
+        order by a.chkDate desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        SELECT
+        <include refid="monitorMarginColumns"/>
+        FROM MonitorMargin a WHERE 1=1
+    </select>
+
+    <!-- 查询风险相关信息：监控结果 -->
+    <select id="findRiskInfo" resultType="com.blocain.bitms.monitor.entity.MonitorMargin">
+        select bullAbNormalCount,bearAbNormalCount
+        from
+        (select
+        count(*) as bullAbNormalCount
+        from MonitorMargin a
+        where chkDate in (
+        select max(chkDate) from MonitorMargin)
+        and a.acctattr = 1
+        and a.riskRate &lt;= 105
+        and a.riskRate &gt;= 0
+        )
+        ,
+        (select
+        count(*) as bearAbNormalCount
+        from MonitorMargin b
+        where chkDate in (
+        select max(chkDate) from MonitorMargin)
+        and b.acctattr = -1
+        and b.riskRate &gt;= 95)
+    </select>
+
+</mapper>
+

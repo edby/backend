@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.settlement.mapper.SettlementAccountAssetMapper">
+    <!-- 基础列 -->
+    <sql id="settlementAccountAssetColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.settlementType as settlementType,
+        a.settlementTime as settlementTime,
+        a.settlementPrice as settlementPrice,
+        a.periodInitAmt as periodInitAmt,
+        a.periodInflowAmt as periodInflowAmt,
+        a.periodOutflowAmt as periodOutflowAmt,
+        a.periodLastAmt as periodLastAmt,
+        a.periodAssessmentAmt as periodAssessmentAmt,
+        a.periodAssessmentRate as periodAssessmentRate,
+        a.remark as remark
+    </sql>
+
+    <sql id="settlementAccountAssetJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.settlementType as settlementType,
+        a.settlementTime as settlementTime,
+        a.settlementPrice as settlementPrice,
+        a.periodInitAmt as periodInitAmt,
+        a.periodInflowAmt as periodInflowAmt,
+        a.periodOutflowAmt as periodOutflowAmt,
+        a.periodLastAmt as periodLastAmt,
+        a.periodAssessmentAmt as periodAssessmentAmt,
+        a.periodAssessmentRate as periodAssessmentRate,
+        a.remark as remark,
+        b.accountName as accountName,
+        c.stockCode as stockCode
+    </sql>
+
+    <resultMap id="settlementAccountAssetResultMap" type="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="settlementType" property="settlementType"/>
+        <result column="settlementTime" property="settlementTime"/>
+        <result column="settlementPrice" property="settlementPrice"/>
+        <result column="periodInitAmt" property="periodInitAmt"/>
+        <result column="periodInflowAmt" property="periodInflowAmt"/>
+        <result column="periodOutflowAmt" property="periodOutflowAmt"/>
+        <result column="periodLastAmt" property="periodLastAmt"/>
+        <result column="periodAssessmentAmt" property="periodAssessmentAmt"/>
+        <result column="periodAssessmentRate" property="periodAssessmentRate"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        insert into SettlementAccountAsset(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            settlementType ,
+            settlementTime ,
+            settlementPrice ,
+            periodInitAmt ,
+            periodInflowAmt ,
+            periodOutflowAmt ,
+            periodLastAmt ,
+            periodAssessmentAmt ,
+            periodAssessmentRate ,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{settlementType} ,
+            #{settlementTime} ,
+            #{settlementPrice} ,
+            #{periodInitAmt} ,
+            #{periodInflowAmt} ,
+            #{periodOutflowAmt} ,
+            #{periodLastAmt} ,
+            #{periodAssessmentAmt} ,
+            #{periodAssessmentRate} ,
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SettlementAccountAsset where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SettlementAccountAsset set delFlag = 1 where id = #{id}
+    </update>
+
+    <!-- 每次交割批量插入 -->
+    <insert id="insertFromAsset" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        insert into SettlementAccountAsset(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            settlementType ,
+            settlementTime ,
+            settlementPrice ,
+            periodInitAmt ,
+            periodInflowAmt ,
+            periodOutflowAmt ,
+            periodLastAmt ,
+            periodAssessmentAmt ,
+            periodAssessmentRate ,
+            remark
+        )
+        select
+          to_number(to_char(systimestamp, 'yyyymmddhh24missff3'))+rownum  ,
+          a.accountId,
+          a.stockinfoId,
+          a.relatedStockinfoId,
+          #{settlementType},
+          #{settlementTime} ,
+          #{settlementPrice} ,
+          nvl(a.initialAmt,0),
+          nvl(a.flowInAmt,0) ,
+          nvl(a.flowOutAmt,0),
+          a.amount-#{periodAssessmentRate}*(CASE WHEN (a.amount-a.initialAmt-a.flowInAmt+a.flowOutAmt) > 0 THEN (a.amount-a.initialAmt-a.flowInAmt+a.flowOutAmt) ELSE 0 END),
+          #{periodAssessmentRate}*(CASE WHEN (a.amount-a.initialAmt-a.flowInAmt+a.flowOutAmt) > 0 THEN (a.amount-a.initialAmt-a.flowInAmt+a.flowOutAmt) ELSE 0 END),
+           #{periodAssessmentRate},
+          #{remark}
+        FROM ${tableAsset}  a WHERE a.stockinfoId = #{stockinfoId}
+        and a.relatedStockinfoId =#{relatedStockinfoId}
+        and a.accountId &gt;200000000000
+    </insert>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        insert into SettlementAccountAsset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+        </if>
+        <if test="settlementType != null">
+                settlementType ,
+        </if>
+        <if test="settlementTime != null">
+                settlementTime ,
+        </if>
+        <if test="settlementPrice != null">
+                settlementPrice ,
+        </if>
+        <if test="periodInitAmt != null">
+                periodInitAmt ,
+        </if>
+        <if test="periodInflowAmt != null">
+                periodInflowAmt ,
+        </if>
+        <if test="periodOutflowAmt != null">
+                periodOutflowAmt ,
+        </if>
+        <if test="periodLastAmt != null">
+                periodLastAmt ,
+        </if>
+        <if test="periodAssessmentAmt != null">
+                periodAssessmentAmt ,
+        </if>
+        <if test="periodAssessmentRate != null">
+                periodAssessmentRate ,
+        </if>
+        <if test="remark != null">
+                remark 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+        </if>
+        <if test="settlementType != null">
+                #{settlementType} ,
+        </if>
+        <if test="settlementTime != null">
+                #{settlementTime} ,
+        </if>
+        <if test="settlementPrice != null">
+                #{settlementPrice} ,
+        </if>
+        <if test="periodInitAmt != null">
+                #{periodInitAmt} ,
+        </if>
+        <if test="periodInflowAmt != null">
+                #{periodInflowAmt} ,
+        </if>
+        <if test="periodOutflowAmt != null">
+                #{periodOutflowAmt} ,
+        </if>
+        <if test="periodLastAmt != null">
+                #{periodLastAmt} ,
+        </if>
+        <if test="periodAssessmentAmt != null">
+                #{periodAssessmentAmt} ,
+        </if>
+        <if test="periodAssessmentRate != null">
+                #{periodAssessmentRate} ,
+        </if>
+        <if test="remark != null">
+                #{remark} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        update SettlementAccountAsset
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="settlementType != null">
+                settlementType = #{settlementType} ,
+            </if>
+            <if test="settlementTime != null">
+                settlementTime = #{settlementTime} ,
+            </if>
+            <if test="settlementPrice != null">
+                settlementPrice = #{settlementPrice} ,
+            </if>
+            <if test="periodInitAmt != null">
+                periodInitAmt = #{periodInitAmt} ,
+            </if>
+            <if test="periodInflowAmt != null">
+                periodInflowAmt = #{periodInflowAmt} ,
+            </if>
+            <if test="periodOutflowAmt != null">
+                periodOutflowAmt = #{periodOutflowAmt} ,
+            </if>
+            <if test="periodLastAmt != null">
+                periodLastAmt = #{periodLastAmt} ,
+            </if>
+            <if test="periodAssessmentAmt != null">
+                periodAssessmentAmt = #{periodAssessmentAmt} ,
+            </if>
+            <if test="periodAssessmentRate != null">
+                periodAssessmentRate = #{periodAssessmentRate} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SettlementAccountAsset(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            settlementType ,
+            settlementTime ,
+            settlementPrice ,
+            periodInitAmt ,
+            periodInflowAmt ,
+            periodOutflowAmt ,
+            periodLastAmt ,
+            periodAssessmentAmt ,
+            periodAssessmentRate ,
+            remark 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.settlementType} ,
+            #{item.settlementTime} ,
+            #{item.settlementPrice} ,
+            #{item.periodInitAmt} ,
+            #{item.periodInflowAmt} ,
+            #{item.periodOutflowAmt} ,
+            #{item.periodLastAmt} ,
+            #{item.periodAssessmentAmt} ,
+            #{item.periodAssessmentRate} ,
+            #{item.remark} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SettlementAccountAsset set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            settlementType = #{item.settlementType} ,
+            settlementTime = #{item.settlementTime} ,
+            settlementPrice = #{item.settlementPrice} ,
+            periodInitAmt = #{item.periodInitAmt} ,
+            periodInflowAmt = #{item.periodInflowAmt} ,
+            periodOutflowAmt = #{item.periodOutflowAmt} ,
+            periodLastAmt = #{item.periodLastAmt} ,
+            periodAssessmentAmt = #{item.periodAssessmentAmt} ,
+            periodAssessmentRate = #{item.periodAssessmentRate} ,
+            remark = #{item.remark} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        update SettlementAccountAsset set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            settlementType = #{settlementType} ,
+            settlementTime = #{settlementTime} ,
+            settlementPrice = #{settlementPrice} ,
+            periodInitAmt = #{periodInitAmt} ,
+            periodInflowAmt = #{periodInflowAmt} ,
+            periodOutflowAmt = #{periodOutflowAmt} ,
+            periodLastAmt = #{periodLastAmt} ,
+            periodAssessmentAmt = #{periodAssessmentAmt} ,
+            periodAssessmentRate = #{periodAssessmentRate} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        select <include refid="settlementAccountAssetColumns"/> from SettlementAccountAsset a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        SELECT
+        <include refid="settlementAccountAssetJoinColumns"/>
+        FROM SettlementAccountAsset a
+        left join stockInfo c on a.stockinfoId=c.id
+        left join Account b on a.accountId=b.id
+        WHERE 1=1
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="settlementType != null">
+            and a.settlementType = #{settlementType}
+        </if>
+        <if test="timeStart != null ">
+            and a.settlementTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.settlementTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="settlementPrice != null">
+            and a.settlementPrice = #{settlementPrice}
+        </if>
+        <if test="periodInitAmt != null">
+            and a.periodInitAmt = #{periodInitAmt}
+        </if>
+        <if test="periodInflowAmt != null">
+            and a.periodInflowAmt = #{periodInflowAmt}
+        </if>
+        <if test="periodOutflowAmt != null">
+            and a.periodOutflowAmt = #{periodOutflowAmt}
+        </if>
+        <if test="periodLastAmt != null">
+            and a.periodLastAmt = #{periodLastAmt}
+        </if>
+        <if test="periodAssessmentAmt != null">
+            and a.periodAssessmentAmt = #{periodAssessmentAmt}
+        </if>
+        <if test="periodAssessmentRate != null">
+            and a.periodAssessmentRate = #{periodAssessmentRate}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.settlement.entity.SettlementAccountAsset">
+        SELECT
+        <include refid="settlementAccountAssetColumns"/>
+        FROM SettlementAccountAsset a WHERE 1=1
+    </select>
+
+
+</mapper>
+

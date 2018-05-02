@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorRunLogsMapper">
+    <!-- 基础列 -->
+    <sql id="monitorRunLogsColumns">
+        a.monitorCode as monitorCode,
+        a.createDate as createDate,
+        a.logDesc as logDesc
+    </sql>
+
+    <sql id="monitorRunLogsJoinColumns">
+        a.monitorCode as monitorCode,
+        a.createDate as createDate,
+        a.logDesc as logDesc,
+        b.monitorName as monitorName
+    </sql>
+
+    <resultMap id="monitorRunLogsResultMap" type="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        <result column="createDate" property="createDate"/>
+        <result column="monitorCode" property="monitorCode"/>
+        <result column="logDesc" property="logDesc"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        insert into MonitorRunLogs(
+            monitorCode ,
+            createDate ,
+            logDesc 
+        ) VALUES (
+            #{monitorCode} ,
+            #{createDate} ,
+            #{logDesc} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorRunLogs where 1=1
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+         delete from MonitorRunLogs where 1=1
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        insert into MonitorRunLogs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="monitorCode != null">
+                monitorCode ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="logDesc != null">
+                logDesc
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="monitorCode != null">
+                #{monitorCode} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="logDesc != null">
+                #{logDesc}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        update MonitorRunLogs
+        <set>
+            <if test="monitorCode != null">
+                monitorCode = #{monitorCode} ,
+            </if>
+            <if test="logDesc != null">
+                logDesc = #{logDesc}
+            </if>
+        </set>
+        where createDate = #{createDate}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorRunLogs(
+        monitorCode ,
+        createDate ,
+        logDesc
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.monitorCode} ,
+            #{item.createDate} ,
+            #{item.logDesc}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MonitorRunLogs set
+            monitorCode = #{item.monitorCode} ,
+            logDesc = #{item.logDesc}
+            where createDate = #{item.createDate}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        update MonitorRunLogs set
+            monitorCode = #{monitorCode} ,
+            logDesc = #{logDesc} 
+        where createDate = #{createDate}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" resultType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        select
+        <include refid="monitorRunLogsColumns"/>
+        from MonitorRunLogs a where a.createDate = #{createDate}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        SELECT
+        <include refid="monitorRunLogsColumns"/>
+        FROM MonitorRunLogs a WHERE 1=1
+        <if test="monitorCode != null">
+            and a.monitorCode like '%'||#{monitorCode}||'%'
+        </if>
+        <if test="logDesc != null">
+            and a.logDesc like '%'||#{logDesc}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        SELECT
+        <include refid="monitorRunLogsColumns"/>
+        FROM MonitorRunLogs a WHERE a.delFlag = 0
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findMonitorRunLogsList" resultType="com.blocain.bitms.monitor.entity.MonitorRunLogs">
+        SELECT
+        <include refid="monitorRunLogsJoinColumns"/>
+        FROM MonitorRunLogs a LEFT JOIN MonitorConfig b ON a.monitorCode=b.monitorCode WHERE 1=1
+
+        <if test="monitorCode != null">
+            and a.monitorCode = #{monitorCode}
+        </if>
+
+        <if test="timeStart != null ">
+            and a.createDate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.createDate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.createDate desc
+    </select>
+
+
+</mapper>
+

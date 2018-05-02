@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorERC20BalMapper">
+    <!-- 基础列 -->
+    <sql id="monitorERC20BalColumns">
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.stockinfoId as stockinfoId,
+        a.externalHBal as externalHBal,
+        a.externalCBal as externalCBal,
+        a.externalEBal as externalEBal,
+        a.internalbal as internalBal,
+        a.differenceBal as differenceBal,
+        a.externalWarnValue as externalWarnValue,
+        a.internalWarnValue as internalWarnValue,
+        a.externalForbidValue as externalForbidValue,
+        a.internalForbidValue as internalForbidValue,
+        a.monitordesc as monitordesc,
+        a.chkResult as chkResult,
+        a.chkDate as chkDate
+    </sql>
+
+    <!-- 基础列 -->
+    <sql id="monitorERC20BalJoinColumns">
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.stockinfoId as stockinfoId,
+        a.externalHBal as externalHBal,
+        a.externalCBal as externalCBal,
+        a.externalEBal as externalEBal,
+        a.internalbal as internalbal,
+        a.differenceBal as differenceBal,
+        a.externalWarnValue as externalWarnValue,
+        a.internalWarnValue as internalWarnValue,
+        a.externalForbidValue as externalForbidValue,
+        a.internalForbidValue as internalForbidValue,
+        a.monitordesc as monitordesc,
+        a.chkResult as chkResult,
+        a.chkDate as chkDate,
+        b.stockName as stockName
+    </sql>
+
+    <resultMap id="monitorERC20BalResultMap" type="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        <result column="monitorType" property="monitorType"/>
+        <result column="monitorSubType" property="monitorSubType"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="externalHBal" property="externalHBal"/>
+        <result column="externalCBal" property="externalCBal"/>
+        <result column="externalEBal" property="externalEBal"/>
+        <result column="internalbal" property="internalbal"/>
+        <result column="differenceBal" property="differenceBal"/>
+        <result column="externalWarnValue" property="externalWarnValue"/>
+        <result column="internalWarnValue" property="internalWarnValue"/>
+        <result column="externalForbidValue" property="externalForbidValue"/>
+        <result column="internalForbidValue" property="internalForbidValue"/>
+        <result column="monitordesc" property="monitordesc"/>
+        <result column="chkResult" property="chkResult"/>
+        <result column="chkDate" property="chkDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        insert into MonitorERC20Bal(
+            monitorType ,
+            monitorSubType ,
+            stockinfoId ,
+            externalHBal ,
+            externalCBal ,
+            externalEBal ,
+            internalbal ,
+            differenceBal ,
+            externalWarnValue ,
+            internalWarnValue ,
+            externalForbidValue ,
+            internalForbidValue ,
+            monitordesc ,
+            chkResult ,
+            chkDate 
+        ) VALUES (
+            #{monitorType} ,
+            #{monitorSubType} ,
+            #{stockinfoId} ,
+            #{externalHBal} ,
+            #{externalCBal} ,
+            #{externalEBal} ,
+            #{internalbal} ,
+            #{differenceBal} ,
+            #{externalWarnValue} ,
+            #{internalWarnValue} ,
+            #{externalForbidValue} ,
+            #{internalForbidValue} ,
+            #{monitordesc} ,
+            #{chkResult} ,
+            #{chkDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorERC20Bal where stockinfoId = #{stockinfoId}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+         delete from MonitorERC20Bal where stockinfoId = #{stockinfoId}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        insert into MonitorERC20Bal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="monitorType != null">
+                monitorType ,
+        </if>
+        <if test="monitorSubType != null">
+                monitorSubType ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="externalHBal != null">
+                externalHBal ,
+        </if>
+        <if test="externalCBal != null">
+                externalCBal ,
+        </if>
+        <if test="externalEBal != null">
+                externalEBal ,
+        </if>
+        <if test="internalbal != null">
+                internalbal ,
+        </if>
+        <if test="differenceBal != null">
+                differenceBal ,
+        </if>
+        <if test="externalWarnValue != null">
+                externalWarnValue ,
+        </if>
+        <if test="internalWarnValue != null">
+                internalWarnValue ,
+        </if>
+        <if test="externalForbidValue != null">
+                externalForbidValue ,
+        </if>
+        <if test="internalForbidValue != null">
+                internalForbidValue ,
+        </if>
+        <if test="monitordesc != null">
+                monitordesc ,
+        </if>
+        <if test="chkResult != null">
+                chkResult ,
+        </if>
+        <if test="chkDate != null">
+                chkDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="monitorType != null">
+                #{monitorType} ,
+        </if>
+        <if test="monitorSubType != null">
+                #{monitorSubType} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="externalHBal != null">
+                #{externalHBal} ,
+        </if>
+        <if test="externalCBal != null">
+                #{externalCBal} ,
+        </if>
+        <if test="externalEBal != null">
+                #{externalEBal} ,
+        </if>
+        <if test="internalbal != null">
+                #{internalbal} ,
+        </if>
+        <if test="differenceBal != null">
+                #{differenceBal} ,
+        </if>
+        <if test="externalWarnValue != null">
+                #{externalWarnValue} ,
+        </if>
+        <if test="internalWarnValue != null">
+                #{internalWarnValue} ,
+        </if>
+        <if test="externalForbidValue != null">
+                #{externalForbidValue} ,
+        </if>
+        <if test="internalForbidValue != null">
+                #{internalForbidValue} ,
+        </if>
+        <if test="monitordesc != null">
+                #{monitordesc} ,
+        </if>
+        <if test="chkResult != null">
+                #{chkResult} ,
+        </if>
+        <if test="chkDate != null">
+                #{chkDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        update MonitorERC20Bal
+           <set>
+            <if test="monitorType != null">
+                monitorType = #{monitorType} ,
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType = #{monitorSubType} ,
+            </if>
+            <if test="externalHBal != null">
+                externalHBal = #{externalHBal} ,
+            </if>
+            <if test="externalCBal != null">
+                externalCBal = #{externalCBal} ,
+            </if>
+            <if test="externalEBal != null">
+                externalEBal = #{externalEBal} ,
+            </if>
+            <if test="internalbal != null">
+                internalbal = #{internalbal} ,
+            </if>
+            <if test="differenceBal != null">
+                differenceBal = #{differenceBal} ,
+            </if>
+            <if test="externalWarnValue != null">
+                externalWarnValue = #{externalWarnValue} ,
+            </if>
+            <if test="internalWarnValue != null">
+                internalWarnValue = #{internalWarnValue} ,
+            </if>
+            <if test="externalForbidValue != null">
+                externalForbidValue = #{externalForbidValue} ,
+            </if>
+            <if test="internalForbidValue != null">
+                internalForbidValue = #{internalForbidValue} ,
+            </if>
+            <if test="monitordesc != null">
+                monitordesc = #{monitordesc} ,
+            </if>
+            <if test="chkResult != null">
+                chkResult = #{chkResult} ,
+            </if>
+            <if test="chkDate != null">
+                chkDate = #{chkDate} 
+            </if>
+           </set>
+        where stockinfoId = #{stockinfoId}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorERC20Bal(
+            monitorType ,
+            monitorSubType ,
+            stockinfoId ,
+            externalHBal ,
+            externalCBal ,
+            externalEBal ,
+            internalbal ,
+            differenceBal ,
+            externalWarnValue ,
+            internalWarnValue ,
+            externalForbidValue ,
+            internalForbidValue ,
+            monitordesc ,
+            chkResult ,
+            chkDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.monitorType} ,
+            #{item.monitorSubType} ,
+            #{item.stockinfoId} ,
+            #{item.externalHBal} ,
+            #{item.externalCBal} ,
+            #{item.externalEBal} ,
+            #{item.internalbal} ,
+            #{item.differenceBal} ,
+            #{item.externalWarnValue} ,
+            #{item.internalWarnValue} ,
+            #{item.externalForbidValue} ,
+            #{item.internalForbidValue} ,
+            #{item.monitordesc} ,
+            #{item.chkResult} ,
+            #{item.chkDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MonitorERC20Bal set
+            monitorType = #{item.monitorType} ,
+            monitorSubType = #{item.monitorSubType} ,
+            externalHBal = #{item.externalHBal} ,
+            externalCBal = #{item.externalCBal} ,
+            externalEBal = #{item.externalEBal} ,
+            internalbal = #{item.internalbal} ,
+            differenceBal = #{item.differenceBal} ,
+            externalWarnValue = #{item.externalWarnValue} ,
+            internalWarnValue = #{item.internalWarnValue} ,
+            externalForbidValue = #{item.externalForbidValue} ,
+            internalForbidValue = #{item.internalForbidValue} ,
+            monitordesc = #{item.monitordesc} ,
+            chkResult = #{item.chkResult} ,
+            chkDate = #{item.chkDate} 
+            where stockinfoId = #{item.stockinfoId}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        update MonitorERC20Bal set
+            monitorType = #{monitorType} ,
+            monitorSubType = #{monitorSubType} ,
+            externalHBal = #{externalHBal} ,
+            externalCBal = #{externalCBal} ,
+            externalEBal = #{externalEBal} ,
+            internalbal = #{internalbal} ,
+            differenceBal = #{differenceBal} ,
+            externalWarnValue = #{externalWarnValue} ,
+            internalWarnValue = #{internalWarnValue} ,
+            externalForbidValue = #{externalForbidValue} ,
+            internalForbidValue = #{internalForbidValue} ,
+            monitordesc = #{monitordesc} ,
+            chkResult = #{chkResult} ,
+            chkDate = #{chkDate} 
+        where stockinfoId = #{stockinfoId}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        select <include refid="monitorERC20BalColumns"/> from MonitorERC20Bal a where a.stockinfoId = #{stockinfoId}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        SELECT
+        <include refid="monitorERC20BalColumns"/>
+        FROM MonitorERC20Bal a WHERE 1=1
+        <if test="monitorType != null">
+            and a.monitorType = #{monitorType}
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="externalHBal != null">
+            and a.externalHBal = #{externalHBal}
+        </if>
+        <if test="externalCBal != null">
+            and a.externalCBal = #{externalCBal}
+        </if>
+        <if test="externalEBal != null">
+            and a.externalEBal = #{externalEBal}
+        </if>
+        <if test="internalbal != null">
+            and a.internalbal = #{internalbal}
+        </if>
+        <if test="differenceBal != null">
+            and a.differenceBal = #{differenceBal}
+        </if>
+        <if test="externalWarnValue != null">
+            and a.externalWarnValue = #{externalWarnValue}
+        </if>
+        <if test="internalWarnValue != null">
+            and a.internalWarnValue = #{internalWarnValue}
+        </if>
+        <if test="externalForbidValue != null">
+            and a.externalForbidValue = #{externalForbidValue}
+        </if>
+        <if test="internalForbidValue != null">
+            and a.internalForbidValue = #{internalForbidValue}
+        </if>
+        <if test="monitordesc != null">
+            and a.monitordesc like '%'||#{monitordesc}||'%'
+        </if>
+        <if test="chkResult != null">
+            and a.chkResult = #{chkResult}
+        </if>
+        <if test="chkDate != null">
+            and a.chkDate = #{chkDate}
+        </if>
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findJoinList" resultType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        SELECT
+        <include refid="monitorERC20BalJoinColumns"/>
+        FROM MonitorERC20Bal a ,Stockinfo b WHERE 1=1
+        and a.stockinfoId = b.id(+)
+        <if test="monitorType != null">
+            and a.monitorType = #{monitorType}
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="externalHBal != null">
+            and a.externalHBal = #{externalHBal}
+        </if>
+        <if test="externalCBal != null">
+            and a.externalCBal = #{externalCBal}
+        </if>
+        <if test="externalEBal != null">
+            and a.externalEBal = #{externalEBal}
+        </if>
+        <if test="internalbal != null">
+            and a.internalbal = #{internalbal}
+        </if>
+        <if test="differenceBal != null">
+            and a.differenceBal = #{differenceBal}
+        </if>
+        <if test="externalWarnValue != null">
+            and a.externalWarnValue = #{externalWarnValue}
+        </if>
+        <if test="internalWarnValue != null">
+            and a.internalWarnValue = #{internalWarnValue}
+        </if>
+        <if test="externalForbidValue != null">
+            and a.externalForbidValue = #{externalForbidValue}
+        </if>
+        <if test="internalForbidValue != null">
+            and a.internalForbidValue = #{internalForbidValue}
+        </if>
+        <if test="monitordesc != null">
+            and a.monitordesc like '%'||#{monitordesc}||'%'
+        </if>
+        <if test="chkResult != null">
+            <choose>
+                <when test="chkResult == 1 ">
+                    and a.chkResult = 1
+                </when >
+
+                <otherwise>
+                    and a.chkResult != 1
+                </otherwise>
+            </choose>
+        </if>
+        <if test="timeStart != null ">
+            and a.chkDate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.chkDate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.chkDate desc
+
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        SELECT
+        <include refid="monitorERC20BalColumns"/>
+        FROM MonitorERC20Bal a WHERE 1=1
+    </select>
+
+    <select id="findRiskInfo" resultType="com.blocain.bitms.monitor.entity.MonitorERC20Bal">
+        select
+        count(1) as abNormalCount
+        from MonitorERC20Bal where
+        chkResult &lt; 0
+    </select>
+
+
+</mapper>
+

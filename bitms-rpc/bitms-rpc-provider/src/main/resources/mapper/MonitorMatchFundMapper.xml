@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorMatchFundMapper">
+    <!-- 基础列 -->
+    <sql id="monitorMatchFundColumns">
+        a.id as id,
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.stockinfoId as stockinfoId,
+        a.bizCategoryId as bizCategoryId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.assetBal as assetBal,
+        a.assetFrozenBal as assetFrozenBal,
+        a.debetBal as debetBal,
+        a.curAssetBal as curAssetBal,
+        a.curFrozenBal as curFrozenBal,
+        a.curDebetBal as curDebetBal,
+        a.inBal as inBal,
+        a.outBal as outBal,
+        a.borrowDebetBal as borrowDebetBal,
+        a.feeBal as feeBal,
+        a.closePositionDebetBal as closePositionDebetBal,
+        a.closePositionAssetBal as closePositionAssetBal,
+        a.closePositionReturnBal as closePositionReturnBal,
+        a.monitorDesc as monitorDesc,
+        a.chkResult as chkResult,
+        a.chkDate as chkDate,
+        a.acctAssetType as acctAssetType
+    </sql>
+    <sql id="monitorMatchFundJoinColumns">
+    a.id as id,
+    a.monitorType as monitorType,
+    a.monitorSubType as monitorSubType,
+    a.stockinfoId as stockinfoId,
+    a.bizCategoryId as bizCategoryId,
+    a.relatedStockinfoId as relatedStockinfoId,
+    a.assetBal as assetBal,
+    a.assetFrozenBal as assetFrozenBal,
+    a.debetBal as debetBal,
+    a.curAssetBal as curAssetBal,
+    a.curFrozenBal as curFrozenBal,
+    a.curDebetBal as curDebetBal,
+    a.inBal as inBal,
+    a.outBal as outBal,
+    a.borrowDebetBal as borrowDebetBal,
+    a.feeBal as feeBal,
+    a.closePositionDebetBal as closePositionDebetBal,
+    a.closePositionAssetBal as closePositionAssetBal,
+    a.closePositionReturnBal as closePositionReturnBal,
+    a.monitorDesc as monitorDesc,
+    a.chkResult as chkResult,
+    a.chkDate as chkDate,
+    a.acctAssetType as acctAssetType,
+    b.stockName as stockName
+    --         b.stockType as stockType
+</sql>
+
+    <sql id="monitorMatchFundDColumns">
+        stockinfoId as stockinfoId,
+        min(id) as id,
+        sum(assetBal) as assetBal,
+        sum(assetFrozenBal) as assetFrozenBal,
+        sum(debetBal) as debetBal,
+        sum(curAssetBal) as curAssetBal,
+        sum(curFrozenBal) as curFrozenBal,
+        sum(curDebetBal) as curDebetBal,
+        sum(inBal) as inBal,
+        sum(outBal) as outBal,
+        sum(borrowDebetBal) as borrowDebetBal,
+        sum(feeBal) as feeBal,
+        sum(closePositionDebetBal) as closePositionDebetBal,
+        sum(closePositionAssetBal) as closePositionAssetBal,
+        sum(closePositionReturnBal) as closePositionReturnBal,
+        min(chkResult) as chkResult,
+        (listagg(monitordesc, ',')  within  group(order by monitordesc)) as monitordesc
+    </sql>
+
+    <resultMap id="monitorMatchFundResultMap"
+               type="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        <result column="id" property="id"/>
+        <result column="monitorType" property="monitorType"/>
+        <result column="monitorSubType" property="monitorSubType"/>
+        <result column="stockType" property="stockType"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="bizCategoryId" property="bizCategoryId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="assetBal" property="assetBal"/>
+        <result column="assetFrozenBal" property="assetFrozenBal"/>
+        <result column="debetBal" property="debetBal"/>
+        <result column="curAssetBal" property="curAssetBal"/>
+        <result column="curFrozenBal" property="curFrozenBal"/>
+        <result column="curDebetBal" property="curDebetBal"/>
+        <result column="inBal" property="inBal"/>
+        <result column="outBal" property="outBal"/>
+        <result column="borrowDebetBal" property="borrowDebetBal"/>
+        <result column="feeBal" property="feeBal"/>
+        <result column="closePositionDebetBal" property="closePositionDebetBal"/>
+        <result column="closePositionAssetBal" property="closePositionAssetBal"/>
+        <result column="closePositionReturnBal" property="closePositionReturnBal"/>
+        <result column="chkResult" property="chkResult"/>
+        <result column="chkDate" property="chkDate"/>
+        <result column="acctAssetType" property="acctAssetType"/>
+        <result column="monitorDesc" property="monitorDesc"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert"
+            parameterType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        insert into MonitorMatchFundCur(
+        monitorType,
+        monitorSubType,
+        stockinfoId,
+        bizCategoryId,
+        relatedStockinfoId,
+        assetBal,
+        assetFrozenBal,
+        debetBal,
+        curAssetBal,
+        curFrozenBal,
+        curDebetBal,
+        inBal,
+        outBal,
+        borrowDebetBal,
+        feeBal,
+        closePositionDebetBal,
+        closePositionAssetBal,
+        closePositionReturnBal,
+        chkResult ,
+        chkDate,
+        monitorDesc,
+        acctAssetType
+        ) VALUES (
+        #{monitorType} ,
+        #{monitorSubType} ,
+        #{stockinfoId} ,
+        #{bizCategoryId} ,
+        #{relatedStockinfoId},
+        #{assetBal} ,
+        #{assetFrozenBal} ,
+        #{debetBal} ,
+        #{curAssetBal} ,
+        #{curFrozenBal} ,
+        #{curDebetBal} ,
+        #{inBal} ,
+        #{outBal} ,
+        #{borrowDebetBal} ,
+        #{feeBal} ,
+        #{closePositionDebetBal} ,
+        #{closePositionAssetBal} ,
+        #{closePositionReturnBal} ,
+        #{chkResult} ,
+        #{chkDate},
+        #{monitorDesc},
+        #{acctAssetType}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorMatchFundCur
+        where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+         delete from MonitorMatchFundCur
+        where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective"
+            parameterType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        insert into MonitorMatchFundCur
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="monitorType != null">
+                monitorType ,
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId,
+            </if>
+            <if test="bizCategoryId != null">
+                bizCategoryId,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId,
+            </if>
+            <if test="assetBal != null">
+                assetBal,
+            </if>
+            <if test="assetFrozenBal != null">
+                assetFrozenBal,
+            </if>
+            <if test="debetBal != null">
+                debetBal,
+            </if>
+            <if test="curAssetBal != null">
+                curAssetBal,
+            </if>
+            <if test="curFrozenBal != null">
+                curFrozenBal,
+            </if>
+            <if test="curDebetBal != null">
+                curDebetBal,
+            </if>
+
+            <if test="inBal != null">
+                inBal,
+            </if>
+            <if test="outBal != null">
+                outBal,
+            </if>
+            <if test="borrowDebetBal != null">
+                borrowDebetBal,
+            </if>
+            <if test="feeBal != null">
+                feeBal,
+            </if>
+            <if test="closePositionDebetBal != null">
+                closePositionDebetBal,
+            </if>
+            <if test="closePositionAssetBal != null">
+                closePositionAssetBal,
+            </if>
+            <if test="closePositionReturnBal != null">
+                closePositionReturnBal,
+            </if>
+            <if test="chkResult != null">
+                chkResult ,
+            </if>
+            <if test="chkDate != null">
+                chkDate,
+            </if>
+            <if test="monitorDesc != null">
+                monitorDesc,
+            </if>
+            <if test="acctAssetType != null">
+                acctAssetType
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="monitorType != null">
+                #{monitorType} ,
+            </if>
+            <if test="monitorSubType != null">
+                #{monitorSubType} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId},
+            </if>
+            <if test="bizCategoryId != null">
+                #{bizCategoryId},
+            </if>
+            <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId},
+            </if>
+            <if test="assetBal != null">
+                #{assetBal},
+            </if>
+            <if test="assetFrozenBal != null">
+                #{assetFrozenBal},
+            </if>
+            <if test="debetBal != null">
+                #{debetBal},
+            </if>
+            <if test="curAssetBal != null">
+                #{curAssetBal},
+            </if>
+            <if test="curFrozenBal != null">
+                #{curFrozenBal},
+            </if>
+            <if test="curDebetBal != null">
+                #{curDebetBal},
+            </if>
+            <if test="inBal != null">
+                #{inBal},
+            </if>
+            <if test="outBal != null">
+                #{outBal},
+            </if>
+            <if test="borrowDebetBal != null">
+                #{borrowDebetBal},
+            </if>
+            <if test="feeBal != null">
+                #{feeBal},
+            </if>
+            <if test="closePositionDebetBal != null">
+                #{closePositionDebetBal},
+            </if>
+            <if test="closePositionAssetBal != null">
+                #{closePositionAssetBal},
+            </if>
+            <if test="closePositionReturnBal != null">
+                #{closePositionReturnBal},
+            </if>
+            <if test="chkResult != null">
+                #{chkResult} ,
+            </if>
+            <if test="chkDate != null">
+                #{chkDate},
+            </if>
+            <if test="monitorDesc != null">
+                #{monitorDesc},
+            </if>
+            <if test="acctAssetType != null">
+                #{acctAssetType}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        update MonitorMatchFundCur
+        <set>
+            <if test="monitorType != null">
+                monitorType = #{monitorType} ,
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType = #{monitorSubType} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId},
+            </if>
+            <if test="bizCategoryId != null">
+                bizCategoryId = #{bizCategoryId},
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId},
+            </if>
+            <if test="assetBal != null">
+                assetBal = #{assetBal},
+            </if>
+            <if test="assetFrozenBal != null">
+                assetFrozenBal = #{assetFrozenBal},
+            </if>
+            <if test="debetBal != null">
+                debetBal = #{debetBal},
+            </if>
+            <if test="curAssetBal != null">
+                curAssetBal = #{curAssetBal},
+            </if>
+            <if test="curFrozenBal != null">
+                curFrozenBal = #{curFrozenBal},
+            </if>
+            <if test="curDebetBal != null">
+                curDebetBal = #{curDebetBal},
+            </if>
+            <if test="inBal != null">
+                inBal = #{inBal},
+            </if>
+            <if test="outBal != null">
+                outBal = #{outBal},
+            </if>
+            <if test="borrowDebetBal != null">
+                borrowDebetBal = #{borrowDebetBal},
+            </if>
+            <if test="feeBal != null">
+                feeBal = #{feeBal},
+            </if>
+            <if test="closePositionDebetBal != null">
+                closePositionDebetBal = #{closePositionDebetBal},
+            </if>
+            <if test="closePositionAssetBal != null">
+                closePositionAssetBal = #{closePositionAssetBal},
+            </if>
+            <if test="closePositionReturnBal != null">
+                closePositionReturnBal = #{closePositionReturnBal},
+            </if>
+            <if test="chkResult != null">
+                chkResult = #{chkResult} ,
+            </if>
+            <if test="chkDate != null">
+                chkDate = #{chkDate},
+            </if>
+            <if test="monitorDesc != null">
+                monitorDesc = #{monitorDesc},
+            </if>
+            <if test="acctAssetType != null">
+                acctAssetType = #{acctAssetType}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorMatchFundCur(
+        monitorType,
+        monitorSubType,
+        stockinfoId,
+        bizCategoryId,
+        relatedStockinfoId,
+        assetBal,
+        assetFrozenBal,
+        debetBal,
+        curAssetBal,
+        curFrozenBal,
+        curDebetBal,
+        inBal,
+        outBal,
+        borrowDebetBal,
+        feeBal,
+        closePositionDebetBal,
+        closePositionAssetBal,
+        closePositionReturnBal,
+        chkResult ,
+        chkDate,
+        monitorDesc,
+        acctAssetType
+        )
+        <foreach close=")" collection="list" item="item" index="index"
+                 open="(" separator="union">
+            select
+            #{monitorType} ,
+            #{monitorSubType} ,
+            #{stockinfoId} ,
+            #{bizCategoryId} ,
+            #{relatedStockinfoId},
+            #{assetBal} ,
+            #{assetFrozenBal} ,
+            #{debetBal} ,
+            #{curAssetBal} ,
+            #{curFrozenBal} ,
+            #{curDebetBal} ,
+            #{inBal} ,
+            #{outBal} ,
+            #{borrowDebetBal} ,
+            #{feeBal} ,
+            #{closePositionDebetBal} ,
+            #{closePositionAssetBal} ,
+            #{closePositionReturnBal} ,
+            #{chkResult} ,
+            #{chkDate},
+            #{monitorDesc},
+            #{acctAssetType}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 根据主键批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin"
+                 close=";end;" separator=";">
+            update MonitorMatchFundCur set
+            monitorType = #{item.monitorType} ,
+            monitorSubType = #{item.monitorSubType} ,
+            stockinfoId = #{item.stockinfoId},
+            bizCategoryId = #{item.bizCategoryId},
+            relatedStockinfoId = #{item.relatedStockinfoId},
+            assetBal = #{item.assetBal},
+            assetFrozenBal = #{item.assetFrozenBal},
+            debetBal = #{item.debetBal},
+            curAssetBal = #{item.curAssetBal},
+            curFrozenBal = #{item.curFrozenBal},
+            curDebetBal = #{item.curDebetBal},
+            inBal = #{item.inBal},
+            outBal = #{item.outBal},
+            borrowDebetBal = #{item.borrowDebetBal},
+            feeBal = #{item.feeBal},
+            closePositionDebetBal = #{item.closePositionDebetBal},
+            closePositionAssetBal = #{item.closePositionAssetBal},
+            closePositionReturnBal = #{item.closePositionReturnBal},
+            chkResult = #{item.chkResult} ,
+            chkDate = #{item.chkDate},
+            monitorDesc = #{item.monitorDesc},
+            acctAssetType = #{item.acctAssetType}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey"
+            parameterType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        update MonitorMatchFundCur set
+        monitorType = #{monitorType} ,
+        monitorSubType = #{monitorSubType} ,
+        stockinfoId = #{stockinfoId},
+        bizCategoryId = #{bizCategoryId},
+        relatedStockinfoId = #{relatedStockinfoId},
+        assetBal = #{assetBal},
+        assetFrozenBal = #{assetFrozenBal},
+        debetBal = #{debetBal},
+        curAssetBal = #{curAssetBal},
+        curFrozenBal = #{curFrozenBal},
+        curDebetBal = #{curDebetBal},
+        inBal = #{inBal},
+        outBal = #{outBal},
+        borrowDebetBal = #{borrowDebetBal},
+        feeBal = #{feeBal},
+        closePositionDebetBal = #{closePositionDebetBal},
+        closePositionAssetBal = #{closePositionAssetBal},
+        closePositionReturnBal = #{closePositionReturnBal},
+        chkResult = #{chkResult} ,
+        chkDate = #{chkDate},
+        monitorDesc = #{monitorDesc},
+        acctAssetType = #{acctAssetType}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.String"
+            resultType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        select
+        <include refid="monitorMatchFundColumns"/>
+        from MonitorMatchFundCur
+        where id = #{id}
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll"
+            resultType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        SELECT
+        <include refid="monitorMatchFundColumns"/>
+        FROM MonitorMatchFundCur a
+        WHERE 1=1
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findMonitorMatchFundList1" resultType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        SELECT
+        <include refid="monitorMatchFundJoinColumns"/>
+        FROM MonitorMatchFundCur a LEFT JOIN StockInfo b ON a.stockinfoId=b.id WHERE 1=1
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="monitorType != null">
+            and a.monitorType = #{monitorType}
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="stockType != null">
+            and b.stockType = #{stockType}
+        </if>
+        <if test="chkResult != null">
+            and a.chkResult = #{chkResult}
+        </if>
+        <if test="timeStart != null ">
+            and a.chkDate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.chkDate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.chkResult,a.bizcategoryid,a.relatedstockinfoid
+    </select>
+
+
+    <select id="findMonitorMatchFundList" resultType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        SELECT
+        a.id as id,
+        a.bizCategoryId as bizCategoryId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.chkDate as chkDate,
+        b.stockName as stockName,
+        d.stockinfoId as stockinfoId,
+        d.assetBal as assetBal,
+        d.assetFrozenBal as assetFrozenBal,
+        d.debetBal as debetBal,
+        d.curAssetBal as curAssetBal,
+        d.curFrozenBal as curFrozenBal,
+        d.curDebetBal as curDebetBal,
+        d.inBal as inBal,
+        d.outBal as outBal,
+        d.borrowDebetBal as borrowDebetBal,
+        d.feeBal as feeBal,
+        d.closePositionDebetBal as closePositionDebetBal,
+        d.closePositionAssetBal as closePositionAssetBal,
+        d.closePositionReturnBal as closePositionReturnBal,
+        d.chkResult as chkResult,
+        d.monitorDesc as monitorDesc
+        FROM
+        (SELECT
+        <include refid="monitorMatchFundDColumns"/>
+        FROM MonitorMatchFundCur  group by stockinfoId) d ,
+        MonitorMatchFundCur a,
+        StockInfo b
+        where d.id = a.id
+        and a.stockinfoId=b.id
+        <if test="stockinfoId != null">
+            and d.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="chkResult != null">
+            and d.chkResult = #{chkResult}
+        </if>
+        <if test="timeStart != null ">
+            and a.chkDate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.chkDate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.chkDate desc
+    </select>
+
+    <!-- 查询证券信息表中证券类型为现金货币、数字货币的证券名称 -->
+    <select id="selectByCurType" resultType="com.blocain.bitms.trade.stockinfo.entity.StockInfo">
+        select
+        id,stockName
+        from StockInfo where
+        stockType in ('cashCoin','digitalCoin','erc20Token')
+    </select>
+
+    <!-- 查询风险相关信息：监控结果 -->
+    <select id="findRiskInfo" resultType="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+        select
+        count(*) as abNormalCount
+        from MonitorMatchFundCur where
+        chkResult = -1
+    </select>
+</mapper>
+

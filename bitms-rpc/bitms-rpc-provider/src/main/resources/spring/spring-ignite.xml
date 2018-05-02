@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--&lt;!&ndash; Load external properties file. &ndash;&gt;-->
+    <!--<context:property-placeholder ignore-unresolvable="true" location="classpath*:cache.properties"/>-->
+    <!---->
+    <!--&lt;!&ndash;账户流水缓存配置&ndash;&gt;-->
+    <!--<bean id="accountFundCurrentCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="AccountFundCurrentCache"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.fund.entity.AccountFundCurrent</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;钱包账户资产缓存配置&ndash;&gt;-->
+    <!--<bean id="accountWalletAssetCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="AccountWalletAssetCache"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.fund.entity.AccountWalletAsset</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;btc2eur&ndash;&gt;-->
+    <!--&lt;!&ndash;委托信息缓存配置&ndash;&gt;-->
+    <!--<bean id="btc2eur_entrustVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.btc2eur.entrust}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;成交信息缓存配置&ndash;&gt;-->
+    <!--<bean id="btc2eur_realDealVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.btc2eur.realdeal}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;成交历史信息缓存配置&ndash;&gt;-->
+    <!--<bean id="btc2eur_realDealVCoinMoneyHisCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.btc2eur.realdealhis}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;btc2usd&ndash;&gt;-->
+    <!--&lt;!&ndash;委托信息缓存配置&ndash;&gt;-->
+    <!--<bean id="btc2usd_entrustVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.btc2usd.entrust}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;成交信息缓存配置&ndash;&gt;-->
+    <!--<bean id="btc2usd_realDealVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.btc2usd.realdeal}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;成交历史信息缓存配置&ndash;&gt;-->
+    <!--<bean id="btc2usd_realDealVCoinMoneyHisCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.btc2usd.realdealhis}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;biex2btc&ndash;&gt;-->
+    <!--&lt;!&ndash;委托信息缓存配置&ndash;&gt;-->
+    <!--<bean id="biex2btc_entrustVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.biex2btc.entrust}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;成交信息缓存配置&ndash;&gt;-->
+    <!--<bean id="biex2btc_realDealVCoinMoneyCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.biex2btc.realdeal}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;成交历史信息缓存配置&ndash;&gt;-->
+    <!--<bean id="biex2btc_realDealVCoinMoneyHisCache" class="org.apache.ignite.configuration.CacheConfiguration">-->
+        <!--<property name="name" value="${cache.biex2btc.realdealhis}"/>-->
+        <!--<property name="cacheMode" value="REPLICATED"/>-->
+        <!--<property name="atomicityMode" value="TRANSACTIONAL"/>-->
+        <!--<property name="indexedTypes">-->
+            <!--<list>-->
+                <!--<value>java.lang.Long</value>-->
+                <!--<value>com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;Ignite Configuration&ndash;&gt;-->
+    <!--<bean id="igniteCfg" class="org.apache.ignite.configuration.IgniteConfiguration">-->
+        <!--<property name="igniteInstanceName" value="BiexIgnite"/>-->
+        <!--<property name="clientMode" value="true"/>-->
+        <!--<property name="cacheConfiguration">-->
+            <!--<list>-->
+                <!--<ref bean="accountFundCurrentCache"/>-->
+                <!--<ref bean="accountWalletAssetCache"/>-->
+                <!--<ref bean="btc2eur_entrustVCoinMoneyCache"/>-->
+                <!--<ref bean="btc2eur_realDealVCoinMoneyCache"/>-->
+                <!--<ref bean="btc2eur_realDealVCoinMoneyHisCache"/>-->
+                <!--<ref bean="btc2usd_entrustVCoinMoneyCache"/>-->
+                <!--<ref bean="btc2usd_realDealVCoinMoneyCache"/>-->
+                <!--<ref bean="btc2usd_realDealVCoinMoneyHisCache"/>-->
+                <!--<ref bean="biex2btc_entrustVCoinMoneyCache"/>-->
+                <!--<ref bean="biex2btc_realDealVCoinMoneyCache"/>-->
+                <!--<ref bean="biex2btc_realDealVCoinMoneyHisCache"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; Provide Ignite instance name. &ndash;&gt;-->
+    <!--<bean id="transactionManager" class="org.apache.ignite.transactions.spring.SpringTransactionManager">-->
+        <!--<property name="igniteInstanceName" value="BiexIgnite"/>-->
+        <!--<property name="transactionConcurrency" value="PESSIMISTIC"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;Ignite&ndash;&gt;-->
+    <!--<bean class="com.blocain.bitms.ignite.config.BiexIgniteCfg" />-->
+
+    <!--&lt;!&ndash; Use annotation-driven transaction configuration. &ndash;&gt;-->
+    <!--<tx:annotation-driven/>-->
+
+</beans>

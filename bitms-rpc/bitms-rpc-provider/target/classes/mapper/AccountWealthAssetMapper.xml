@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountWealthAssetMapper">
+    <!-- 基础列 -->
+    <sql id="accountWealthAssetColumns">
+        a.id as id,
+        a.wealthAccountId as wealthAccountId,
+        a.issuerAccountId as issuerAccountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.wealthAmt as wealthAmt,
+        a.accumulateInterest as accumulateInterest,
+        a.lastInterestDay as lastInterestDay,
+        a.remark as remark,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="accountWealthAssetJionColumns">
+        a.id as id,
+        a.wealthAccountId as wealthAccountId,
+        a.issuerAccountId as issuerAccountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.wealthAmt as wealthAmt,
+        a.accumulateInterest as accumulateInterest,
+        a.lastInterestDay as lastInterestDay,
+        a.remark as remark,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode,
+        c.stockName as stockName,
+        d.stockName as relatedStockName,
+        c.canRecharge as canRecharge,
+        c.canWithdraw as canWithdraw,
+        c.canTrade as canTrade,
+        c.canBorrow as canBorrow,
+        c.isExchange as isExchange,
+        c.canConversion as canConversion,
+        c.canWealth as canWealth
+    </sql>
+
+    <resultMap id="accountWealthAssetResultMap" type="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        <id column="id" property="id" />
+        <result column="wealthAccountId" property="wealthAccountId"/>
+        <result column="issuerAccountId" property="issuerAccountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="wealthAmt" property="wealthAmt"/>
+        <result column="accumulateInterest" property="accumulateInterest"/>
+        <result column="lastInterestDay" property="lastInterestDay"/>
+        <result column="remark" property="remark"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        insert into AccountWealthAsset(
+            id ,
+            wealthAccountId ,
+            issuerAccountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            wealthAmt ,
+            accumulateInterest ,
+            lastInterestDay ,
+            remark ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{wealthAccountId} ,
+            #{issuerAccountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{wealthAmt} ,
+            #{accumulateInterest} ,
+            #{lastInterestDay} ,
+            #{remark} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountWealthAsset where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountWealthAsset set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        insert into AccountWealthAsset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="wealthAccountId != null">
+                wealthAccountId ,
+        </if>
+        <if test="issuerAccountId != null">
+                issuerAccountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+        </if>
+        <if test="wealthAmt != null">
+                wealthAmt ,
+        </if>
+        <if test="accumulateInterest != null">
+                accumulateInterest ,
+        </if>
+        <if test="lastInterestDay != null">
+                lastInterestDay ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="wealthAccountId != null">
+                #{wealthAccountId} ,
+        </if>
+        <if test="issuerAccountId != null">
+                #{issuerAccountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+        </if>
+        <if test="wealthAmt != null">
+                #{wealthAmt} ,
+        </if>
+        <if test="accumulateInterest != null">
+                #{accumulateInterest} ,
+        </if>
+        <if test="lastInterestDay != null">
+                #{lastInterestDay} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        update AccountWealthAsset
+           <set>
+            <if test="wealthAccountId != null">
+                wealthAccountId = #{wealthAccountId} ,
+            </if>
+            <if test="issuerAccountId != null">
+                issuerAccountId = #{issuerAccountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="wealthAmt != null">
+                wealthAmt = #{wealthAmt} ,
+            </if>
+            <if test="accumulateInterest != null">
+                accumulateInterest = #{accumulateInterest} ,
+            </if>
+            <if test="lastInterestDay != null">
+                lastInterestDay = #{lastInterestDay} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountWealthAsset(
+            id ,
+            wealthAccountId ,
+            issuerAccountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            wealthAmt ,
+            accumulateInterest ,
+            lastInterestDay ,
+            remark ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.wealthAccountId} ,
+            #{item.issuerAccountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.wealthAmt} ,
+            #{item.accumulateInterest} ,
+            #{item.lastInterestDay} ,
+            #{item.remark} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountWealthAsset set
+            wealthAccountId = #{item.wealthAccountId} ,
+            issuerAccountId = #{item.issuerAccountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            wealthAmt = #{item.wealthAmt} ,
+            accumulateInterest = #{item.accumulateInterest} ,
+            lastInterestDay = #{item.lastInterestDay} ,
+            remark = #{item.remark} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        update AccountWealthAsset set
+            wealthAccountId = #{wealthAccountId} ,
+            issuerAccountId = #{issuerAccountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            wealthAmt = #{wealthAmt} ,
+            accumulateInterest = #{accumulateInterest} ,
+            lastInterestDay = #{lastInterestDay} ,
+            remark = #{remark} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        select <include refid="accountWealthAssetColumns"/> from AccountWealthAsset a where a.id = #{id}
+    </select>
+
+    <!-- 根据主键取数据 加行锁 -->
+    <select id="selectByPrimaryKeyForUpdate"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        select <include refid="accountWealthAssetColumns"/> from AccountWealthAsset a where a.id = #{id} for update wait 3
+    </select>
+
+    <select id="findListForWealth" resultType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        SELECT
+        <include refid="accountWealthAssetColumns"/>
+        FROM AccountWealthAsset a WHERE 1=1
+        <if test="wealthAccountId != null">
+            and a.wealthAccountId = #{wealthAccountId}
+        </if>
+        <if test="issuerAccountId != null">
+            and a.issuerAccountId = #{issuerAccountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="lastInterestDay != null">
+            and a.lastInterestDay &lt; #{lastInterestDay}
+        </if>
+        and a.wealthAmt &gt;0
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        SELECT
+        <include refid="accountWealthAssetJionColumns"/>
+        FROM AccountWealthAsset a
+        left join Account b on a.wealthAccountId=b.id
+        left join stockinfo c on a.stockinfoId=c.id
+        left join stockinfo d on d.id=a.relatedStockinfoId
+        WHERE 1=1
+        <if test="wealthAccountId != null">
+            and a.wealthAccountId = #{wealthAccountId}
+        </if>
+        <if test="issuerAccountId != null">
+            and a.issuerAccountId = #{issuerAccountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="wealthAmt != null">
+            and a.wealthAmt = #{wealthAmt}
+        </if>
+        <if test="accumulateInterest != null">
+            and a.accumulateInterest = #{accumulateInterest}
+        </if>
+        <if test="lastInterestDay != null">
+            and a.lastInterestDay = #{lastInterestDay}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountWealthAsset">
+        SELECT
+        <include refid="accountWealthAssetColumns"/>
+        FROM AccountWealthAsset a WHERE 1=1
+    </select>
+
+
+</mapper>
+

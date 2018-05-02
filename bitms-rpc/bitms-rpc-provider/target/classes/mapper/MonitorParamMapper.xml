@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorParamMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="monitorParamColumns">
+        a.id as id,
+        a.paramType as paramType,
+        a.paramCode as paramCode,
+        a.paramName as paramName,
+        a.paramValue as paramValue,
+        a.createBy as createBy,
+        a.paramDesc as paramDesc,
+        a.createDate as createDate
+    </sql>
+
+    <resultMap id="monitorParamResultMap" type="com.blocain.bitms.monitor.entity.MonitorParam">
+        <id column="id" property="id" />
+        <result column="paramType" property="paramType"/>
+        <result column="paramCode" property="paramCode"/>
+        <result column="paramName" property="paramName"/>
+        <result column="paramValue" property="paramValue"/>
+        <result column="createBy" property="createBy"/>
+        <result column="paramDesc" property="paramDesc"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorParam">
+        insert into MonitorParam(
+            id ,
+            paramType ,
+            paramCode ,
+            paramName ,
+            paramValue ,
+            createBy ,
+            paramDesc ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{paramType} ,
+            #{paramCode} ,
+            #{paramName} ,
+            #{paramValue} ,
+            #{createBy} ,
+            #{paramDesc} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorParam where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from MonitorParam where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorParam">
+        insert into MonitorParam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="paramType != null">
+                paramType ,
+        </if>
+        <if test="paramCode != null">
+                paramCode ,
+        </if>
+        <if test="paramName != null">
+                paramName ,
+        </if>
+        <if test="paramValue != null">
+                paramValue ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="paramDesc != null">
+                paramDesc ,
+        </if>
+        <if test="createDate != null">
+                createDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="paramType != null">
+                #{paramType} ,
+        </if>
+        <if test="paramCode != null">
+                #{paramCode} ,
+        </if>
+        <if test="paramName != null">
+                #{paramName} ,
+        </if>
+        <if test="paramValue != null">
+                #{paramValue} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="paramDesc != null">
+                #{paramDesc} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorParam">
+        update MonitorParam
+           <set>
+            <if test="paramType != null">
+                paramType = #{paramType} ,
+            </if>
+            <if test="paramCode != null">
+                paramCode = #{paramCode} ,
+            </if>
+            <if test="paramName != null">
+                paramName = #{paramName} ,
+            </if>
+            <if test="paramValue != null">
+                paramValue = #{paramValue} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="paramDesc != null">
+                paramDesc = #{paramDesc} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorParam(
+            id ,
+            paramType ,
+            paramCode ,
+            paramName ,
+            paramValue ,
+            createBy ,
+            paramDesc ,
+            createDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.paramType} ,
+            #{item.paramCode} ,
+            #{item.paramName} ,
+            #{item.paramValue} ,
+            #{item.createBy} ,
+            #{item.paramDesc} ,
+            #{item.createDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MonitorParam set
+            paramType = #{item.paramType} ,
+            paramCode = #{item.paramCode} ,
+            paramName = #{item.paramName} ,
+            paramValue = #{item.paramValue} ,
+            createBy = #{item.createBy} ,
+            paramDesc = #{item.paramDesc} ,
+            createDate = #{item.createDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorParam">
+        update MonitorParam set
+            paramType = #{paramType} ,
+            paramCode = #{paramCode} ,
+            paramName = #{paramName} ,
+            paramValue = #{paramValue} ,
+            createBy = #{createBy} ,
+            paramDesc = #{paramDesc} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.monitor.entity.MonitorParam">
+        select <include refid="monitorParamColumns"/> from MonitorParam a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorParam">
+        SELECT
+        <include refid="monitorParamColumns"/>
+        FROM MonitorParam a WHERE 1=1
+        <if test="paramType != null">
+            and a.paramType like '%'||#{paramType}||'%'
+        </if>
+        <if test="paramCode != null">
+            and a.paramCode like '%'||#{paramCode}||'%'
+        </if>
+        <if test="paramName != null">
+            and a.paramName like '%'||#{paramName}||'%'
+        </if>
+        <if test="paramValue != null">
+            and a.paramValue like '%'||#{paramValue}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy like '%'||#{createBy}||'%'
+        </if>
+        <if test="paramDesc != null">
+            and a.paramDesc like '%'||#{paramDesc}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorParam">
+        SELECT
+        <include refid="monitorParamColumns"/>
+        FROM MonitorParam a WHERE 1=1
+    </select>
+
+
+    <!-- 查询参数类型为消息提醒（包括短信和邮件）的所有记录 -->
+    <select id="findRelatedList" resultType="com.blocain.bitms.monitor.entity.MonitorParam">
+        SELECT
+        <include refid="monitorParamColumns"/>
+        FROM MonitorParam a
+        WHERE a.paramType = 'Message'
+
+    </select>
+
+
+</mapper>
+

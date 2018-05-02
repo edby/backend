@@ -1,0 +1,460 @@
+/*Push页面*/
+.push-wrap{
+	position: relative;
+}
+.push-wrap .push-content{
+	position: relative;
+	border: 1px solid #23333f;
+    background-color: #151922;
+    padding: 16px;
+}
+.push-wrap .push-content .nav{
+	position: relative;
+	border-bottom: 1px solid #23333f;
+	padding-bottom: 15px;	
+    list-style: none;
+    overflow: hidden;
+}
+.push-wrap .push-content .nav li a{
+	margin-left: 10px;
+	margin-top: 10px;
+	float: left;
+	width: 108px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+    border-radius: 2px;
+    text-align: center;
+	cursor: pointer;
+	color: #536b32;
+}
+.push-wrap .push-content .nav li a:hover{
+	font-weight: bold;
+	background-color: #536b32;
+	color: #fff;
+}
+.push-wrap .push-content .input-wrap{
+    margin-top: 16px;
+}
+.push-wrap .push-content .input-wrap .field-label{
+	width: 150px;
+	margin-right: 36px;
+}
+.push-wrap .push-content .input-wrap .size1{
+	height: 36px;
+    width: 250px;
+    text-indent: 10px;
+    font-size: small;
+    padding: 5px;
+    margin-right: 10px;
+}
+.push-wrap .push-content .sizeSelect{
+	height: 36px;
+    width: 250px;
+    text-indent: 10px;
+    font-size: small;
+    padding: 5px;
+    margin-right: 10px;
+	border-radius: 2px;
+}
+.push-wrap .push-content .input-wrap .size2{
+	height: 36px;
+    width: 250px;
+    text-indent: 10px;
+    font-size: small;
+    padding: 5px;
+}
+.push-wrap .push-content .input-wrap .size3{
+	height: 36px;
+	width: 250px;
+    text-indent: 10px;
+    font-size: small;
+    padding: 5px;
+}
+.push-wrap .push-content .input-wrap .coin{
+	position: absolute;
+    margin-left: 230px;
+    margin-top: 10px;
+}
+.push-wrap .push-content .input-wrap .distance{
+	display: inline-block;
+	margin-right: 0px;
+}
+.push-wrap .push-content .input-wrap .checkDiv{
+	display: inline-block;
+	margin-left: 184px;
+}
+.push-wrap .push-content .input-wrap .checkBox{
+	border: 1px solid #5d7b3c;
+	background-color: greenyellow;
+	border-radius: 5px;
+	width: 12px;
+	height: 12px;
+	margin-left: 5px;
+    vertical-align: -1px;
+}
+.push-wrap .push-content .input-wrap .text1{
+	color: #7F7F7F;
+}
+.push-wrap .push-content .input-wrap .text2{
+	color: #5d7b3c;
+}
+.push-wrap .push-content .commit-wrap{
+    border-top: 1px solid #23333f;
+    padding-top: 12px;
+	padding-left: 180px;
+}
+/*popup弹窗*/
+.popup{
+	position: absolute;
+	margin-left: 35%;
+	margin-top: 10%;
+	width: 35%;                 
+	background-color: #040c17;
+	border: 5px solid #1b262d;
+	z-index: 99;
+}
+.popup .popup-wrap{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+.popup .popup-wrap .popup-margin{
+	margin-top: 16px;
+}
+.popup .popup-wrap h3{
+	margin-left: 10px;
+	color: #5d7b3c;
+	line-height: 50px;
+	font-size: 16px;
+	border-bottom: 1px solid #23333f;
+}
+.popup .popup-wrap img{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+}
+.popup .popup-wrap .popup-title {
+    margin-left: 17%;
+    width: 120px;
+    display: inline-block;
+    line-height: 36px;
+}
+.popup .popup-wrap .popup-size1{
+	width: 250px;
+	height: 36px;
+	text-indent: 10px;
+}
+.popup .popup-wrap .popup-size2{
+	width: 170px;
+	height: 36px;
+	margin-right: 10px;
+}
+.popup .popup-wrap .spBtn1{
+	width: 86px;
+	height: 36px;
+} 
+.popup .popup-wrap .spBtn2 {
+   	margin-left: 232px;
+    height: 36px;
+    line-height: 36px;
+}
+.popup .popup-wrap .popupPos{
+	text-align: center;
+}
+/*Push页面（Receive.send)*/
+.push-wrap .push-content .nav-content{
+	position: relative;
+    background-color: #1e222d;
+    padding: 20px;
+	border-radius: 2px;
+}
+.push-wrap .push-content .none{
+	border: none;
+}
+.push-wrap .push-content .menu{
+	width: 100px;
+    height: 36px;
+    background-color: #1e222d;
+    color: #5d7b3c;
+    border: 1px solid #323944;
+    line-height: 30px;
+    text-align: center;
+    text-indent: 4px;
+    margin-right: 15px;
+}
+.push-wrap .push-content .positionBtn{
+	position: absolute;
+	width: 150px;
+	height: 40px;
+	left: 200px;
+	top: 50px;
+	cursor: pointer;
+}
+.push-wrap .push-content #txt{
+	color: #5d7b3c;
+	margin-left: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 18px;
+}
+.push-wrap .push-content .pushReceive{
+	width: 96%;
+	margin: 10px auto;
+}
+.push-wrap .push-content .pushReceive tbody tr:hover{
+	background-color: #1e2428;
+}
+.push-wrap .push-content .pushReceive tbody tr:hover div{
+	display: inline-block;
+}
+.push-wrap .push-content .pushReceive tbody tr:hover p{
+	display: none;
+}
+.push-wrap .push-content .pushReceive thead tr{
+	background-color: #151922;
+}
+.push-wrap .push-content .pushReceive tbody tr{
+	background-color: #1e222d;
+}
+.push-wrap .push-content .pushReceive th{
+	height: 42px;
+	line-height: 42px;
+	border: 1px solid #293641;
+}
+.push-wrap .push-content .pushReceive td{
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid #293641;
+}
+.push-wrap .push-content .pushReceive .oBtn{
+	display: none;
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+}
+/*改*/
+.tab-content2>div {
+    display: none;
+}
+.borderNone{
+	border: none;
+}
+.pushDataMargin{
+	margin-top: 34px;
+}
+.errorPushPop>div{
+	margin-left: 233px;
+}
+#pushEmaiCode{
+	width: 105px;
+    height: 40px;
+}
+.errorPush>div{
+	margin-left: 190px;
+}
+#reciveSearchButton{
+	height: 36px;
+    line-height: 36px;
+	width: 80px;
+}
+#sendSearchButton{
+	height: 36px;
+    line-height: 36px;
+	width: 80px;
+}
+#reciveSelectDiv{
+	display: inline-block;
+}
+#sendSelectDiv{
+	display: inline-block;
+}
+.oBtn{
+    height: 25px;
+    width: 70px;
+    margin-left: 0px;
+    line-height: 25px;
+}
+.sendCodeBtn{
+	width: 50%;
+	display: auto;
+}
+#authCodeBtn{
+	display: none;
+	width: 121px;
+}
+#authCodeBtnRecive{
+	display: none;
+	width: 120px;
+}
+@media (max-width: 1680px) {
+/*push页面*/
+.push-wrap .push-content {
+    padding: 10px;
+}
+.push-wrap .push-content .input-wrap .size1 {
+    height: 30px;
+    width: 200px;
+    margin-right: 10px;
+}
+.push-wrap .push-content .input-wrap .size2 {
+    height: 30px;
+    width: 120px;;
+    margin-right: 10px;
+}
+.push-wrap .push-content .input-wrap .size3 {
+    height: 30px;
+    width: 300px;
+    margin-right: 10px;
+}
+.push-wrap .push-content .input-wrap .sizeSelect {
+    height: 30px;
+    width: 200px;
+    margin-right: 10px;
+}
+.push-wrap .push-content .input-wrap .field-label{
+    margin-right: 0px;
+}
+.greenBtn{
+	border: none;
+    vertical-align: baseline;
+    height: 25px;
+    width: 50px;
+    line-height: 25px;
+    font-size: 12px;
+    margin-left: 0px;
+}
+.push-wrap .push-content .nav{
+	padding-bottom: 10px;
+}
+.push-wrap .push-content .nav li a{
+	height: 25px;
+	line-height: 25px;
+	font-size: xx-small;
+    width: 80px;
+}
+.push-wrap .push-content .nav li a:hover {
+    font-size: xx-small;
+    background-color: #536b32;
+    color: #fff;
+}
+.push-wrap .push-content .input-wrap .coin{
+    margin-left: 182px;
+	margin-top: 6px;
+}
+.push-wrap .push-content .commit-wrap {
+    padding-top: 10px;
+    padding-left: 154px;
+}
+.push-wrap .push-content .input-wrap .checkDiv {
+    display: inline-block;
+    margin-left: 148px;
+}
+/*receive页面*/
+.push-wrap .push-content .menu {
+	height: 30px;
+    line-height: 30px;
+}
+.push-wrap .push-content .positionBtn {
+    width: 100px;
+    height: 30px;
+    left: 140px;
+    top: 32px;
+    line-height: 30px;
+}
+.push-wrap .push-content #txt {
+    color: #5d7b3c;
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: small;
+}
+.push-wrap .push-content .pushReceive th {
+    height: 36px;
+    line-height: 36px;
+}
+.push-wrap .push-content .pushReceive td {
+    height: 35px;
+    line-height: 35px;
+}
+.popup{
+	width: 40%;
+}
+.popup .popup-wrap .popup-margin {
+    margin-top: 20px;
+}
+.popup .popup-wrap .popup-title{
+	margin-left: 15%;
+    width: 95px;
+	display: inline-block;
+	line-height: 30px;
+}
+.popup .popup-wrap .popup-size1 {
+	width: 200px;
+    height: 30px;
+}
+.popup .popup-wrap .popup-size2 {
+	width: 120px;
+    height: 30px;
+}
+.popup .popup-wrap .spBtn1 {
+	width: 76px;
+    height: 30px;
+    line-height: 30px;
+}
+.popup .popup-wrap .spBtn2 {
+    height: 30px;
+    line-height: 30px;
+    width: 75px;
+   	margin-left: 170px;
+}
+/*改*/
+.pushDataMargin{
+	margin-top: 12px;
+}
+.errorPushPop>div{
+	margin-left: 169px;
+}
+#pushEmaiCode {
+    width: 66px;
+    height: 30px;
+}
+#pushButton {
+	height: 30px;
+    width: 75px;
+    line-height: 30px;
+}
+.errorPush>div {
+    margin-left: 153px;
+}
+#reciveSearchButton{
+	height: 30px;
+    line-height: 30px;
+    width: 60px;
+}
+#sendSearchButton{
+    height: 30px;
+    line-height: 30px;
+    width: 60px;
+}
+.oBtn {
+    height: 20px;
+    width: 43px;
+    line-height: 20px;
+}
+.select {
+    height: 30px;
+}
+#authCodeBtn {
+    width: 82px;
+    height: 30px;
+    line-height: 30px;
+}
+#authCodeBtnRecive{
+	display: none;
+	width: 82px;
+    height: 30px;
+    line-height: 30px;
+}
+}

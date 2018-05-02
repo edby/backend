@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.quotation.mapper.QuotationMapper">
+    <!-- 基础列 -->
+    <sql id="quotationColumns">
+        a.id as id,
+        a.stockId as stockId,
+        a.idxPrice as idxPrice,
+        a.dateTime as dateTime,
+        a.channel as channel
+    </sql>
+
+    <resultMap id="quotationResultMap" type="com.blocain.bitms.quotation.entity.Quotation">
+        <id column="id" property="id"/>
+        <result column="stockId" property="stockId"/>
+        <result column="idxPrice" property="idxPrice"/>
+        <result column="dateTime" property="dateTime"/>
+        <result column="channel" property="channel"/>
+        <result column="idxPriceAvg" property="idxPriceAvg"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.quotation.entity.Quotation">
+        INSERT INTO Quotation (
+            id,
+            stockId,
+            idxPrice,
+            dateTime,
+            channel
+        ) VALUES (
+            #{id},
+            #{stockId},
+            #{idxPrice},
+            #{dateTime},
+            #{channel}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE FROM Quotation
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        UPDATE Quotation
+        SET delFlag = 1
+        WHERE id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.quotation.entity.Quotation">
+        insert into Quotation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="stockId != null">
+                stockId ,
+            </if>
+            <if test="idxPrice != null">
+                idxPrice ,
+            </if>
+            <if test="dateTime != null">
+                dateTime ,
+            </if>
+            <if test="channel != null">
+                channel
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="stockId != null">
+                #{stockId} ,
+            </if>
+            <if test="idxPrice != null">
+                #{idxPrice} ,
+            </if>
+            <if test="dateTime != null">
+                #{dateTime} ,
+            </if>
+            <if test="channel != null">
+                #{channel}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.quotation.entity.Quotation">
+        update Quotation
+        <set>
+            <if test="stockId != null">
+                stockId = #{stockId} ,
+            </if>
+            <if test="idxPrice != null">
+                idxPrice = #{idxPrice} ,
+            </if>
+            <if test="dateTime != null">
+                dateTime = #{dateTime} ,
+            </if>
+            <if test="channel != null">
+                channel = #{channel}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Quotation(
+        id ,
+        stockId ,
+        idxPrice ,
+        dateTime ,
+        channel
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.stockId} ,
+            #{item.idxPrice} ,
+            #{item.dateTime} ,
+            #{item.channel}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Quotation set
+            stockId = #{item.stockId} ,
+            idxPrice = #{item.idxPrice} ,
+            dateTime = #{item.dateTime} ,
+            channel = #{item.channel}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.quotation.entity.Quotation">
+        UPDATE Quotation
+        SET
+            stockId  = #{stockId},
+            idxPrice = #{idxPrice},
+            dateTime = #{dateTime},
+            channel  = #{channel}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.quotation.entity.Quotation" >
+        select
+        <include refid="quotationColumns"/>
+        from Quotation a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.quotation.entity.Quotation">
+        SELECT
+        <include refid="quotationColumns"/>
+        FROM Quotation a WHERE 1 = 1
+        <if test="stockId != null">
+            and a.stockId like '%'||#{stockId}||'%'
+        </if>
+        <if test="idxPrice != null">
+            and a.idxPrice = #{idxPrice}
+        </if>
+        <if test="dateTime != null">
+            and a.dateTime = #{dateTime}
+        </if>
+        <if test="channel != null">
+            and a.channel like '%'||#{channel}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.quotation.entity.Quotation" >
+        SELECT
+        <include refid="quotationColumns"/>
+        FROM Quotation a
+    </select>
+
+
+    <select id="findQuotationByLastTime" parameterType="com.blocain.bitms.quotation.entity.Quotation" resultType="com.blocain.bitms.quotation.entity.Quotation">
+        select nvl(a.id,#{id}) id,nvl(a.channel,'bitfienex') channel,nvl(a.stockid,#{stockId})stockid,nvl(a.idxPrice,0) idxPrice,b.idxPriceAvg from
+        (select
+        id, channel,stockid,idxPrice
+        FROM  (select  id, channel,stockid,idxPrice from Quotation WHERE  id=(select max(id) from Quotation where id &gt;= #{id} and stockId = #{stockId} and channel ='bitfienex')
+        union all
+        select  id, channel,stockid,idxPrice from Quotation WHERE  id=(select max(id) from Quotation where id &gt;= #{id} and stockId = #{stockId} and channel ='internalConversion')))a,
+        (select stockid,avg(idxPrice) idxPriceAvg from
+        (select  stockid,idxPrice
+        FROM  (select stockid,idxPrice from Quotation  WHERE stockId = #{stockId} and channel='bitfienex'  order by id desc)
+        WHERE  rownum &lt;= 30
+        union all
+        select  stockid,idxPrice
+        FROM  (select stockid,idxPrice from Quotation  WHERE stockId = #{stockId} and channel='bitstamp'  order by id desc)
+        WHERE  rownum &lt;= 30
+        union all
+        select  stockid,idxPrice
+        FROM  (select stockid,idxPrice from Quotation  WHERE stockId = #{stockId} and channel='coinbase'  order by id desc)
+        WHERE  rownum &lt;= 30
+        union all
+        select  stockid,idxPrice
+        FROM  (select stockid,idxPrice from Quotation  WHERE stockId = #{stockId} and channel='kraken'  order by id desc)
+        WHERE  rownum &lt;= 30
+        union all
+        select  stockid,idxPrice
+        FROM  (select stockid,idxPrice from Quotation  WHERE stockId = #{stockId} and channel='internalConversion'  order by id desc)
+        WHERE  rownum &lt;= 30)
+        group by stockid)b
+        where a.stockid(+) = b.stockid
+
+    </select>
+
+</mapper>
+

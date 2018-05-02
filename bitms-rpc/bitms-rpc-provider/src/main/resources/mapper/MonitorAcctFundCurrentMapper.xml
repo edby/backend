@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorAcctFundCurrentMapper">
+	<!-- 基础列 -->
+	<sql id="monitorAcctFundCurrentColumns">
+		a.monitorType as monitorType,
+		a.monitorSubType as monitorSubType,
+		a.accountId as accountId,
+		a.stockinfoId as stockinfoId,
+		a.platTotalBal as platTotalBal,
+		a.platBal as platBal,
+		a.platFrozenBal as platFrozenBal,
+		a.acctBal as acctBal,
+		a.acctFrozenBal as acctFrozenBal,
+		a.feeBal as feeBal,
+		a.monitordesc as monitorDesc,
+		a.chkResult as chkResult,
+		a.chkDate as chkDate
+	</sql>
+
+	<resultMap id="monitorAcctFundCurrentResultMap"
+		type="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		<id column="id" property="id" />
+		<result column="monitorType" property="monitorType" />
+		<result column="monitorSubType" property="monitorSubType" />
+		<result column="accountId" property="accountId" />
+		<result column="stockinfoId" property="stockinfoId" />
+		<result column="platTotalBal" property="platTotalBal" />
+		<result column="platBal" property="platBal" />
+		<result column="platFrozenBal" property="platFrozenBal" />
+		<result column="acctBal" property="acctBal" />
+		<result column="acctFrozenBal" property="acctFrozenBal" />
+		<result column="feeBal" property="feeBal" />
+		<result column="chkResult" property="chkResult" />
+		<result column="chkDate" property="chkDate" />
+		<result column="monitordesc" property="monitorDesc" />
+		<result column="unid" property="unid" />
+		<result column="accountname" property="accountname" />
+		<result column="status" property="status" />
+		<result column="stockname" property="stockName" />
+	</resultMap>
+
+	<!-- 普通插入 -->
+	<insert id="insert"
+		parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		insert into MonitorAcctFundCurrent(
+		monitorType ,
+		monitorSubType ,
+		accountId ,
+		stockinfoId ,
+		platTotalBal ,
+		platBal ,
+		platFrozenBal ,
+		acctBal ,
+		acctFrozenBal ,
+		feeBal ,
+		chkResult ,
+		chkDate
+		) VALUES (
+		#{monitorType} ,
+		#{monitorSubType} ,
+		#{accountId} ,
+		#{stockinfoId} ,
+		#{platTotalBal} ,
+		#{platBal} ,
+		#{platFrozenBal} ,
+		#{acctBal} ,
+		#{acctFrozenBal} ,
+		#{feeBal} ,
+		#{chkResult} ,
+		#{chkDate}
+		)
+	</insert>
+	<!-- 根据主键物理删除 -->
+	<delete id="remove" parameterType="java.lang.Long">
+		delete from MonitorAcctFundCurrent where id = #{id}
+	</delete>
+
+	<!-- 根据主键逻辑删除 -->
+	<update id="delete" parameterType="java.lang.Long">
+		update MonitorAcctFundCurrent set delFlag = 1 where id = #{id}
+	</update>
+
+	<!--根据条件是否插入数据 -->
+	<insert id="insertSelective"
+		parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		insert into MonitorAcctFundCurrent
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="monitorType != null">
+				monitorType ,
+			</if>
+			<if test="monitorSubType != null">
+				monitorSubType ,
+			</if>
+			<if test="accountId != null">
+				accountId ,
+			</if>
+			<if test="stockinfoId != null">
+				stockinfoId ,
+			</if>
+			<if test="platTotalBal != null">
+				platTotalBal ,
+			</if>
+			<if test="platBal != null">
+				platBal ,
+			</if>
+			<if test="platFrozenBal != null">
+				platFrozenBal ,
+			</if>
+			<if test="acctBal != null">
+				acctBal ,
+			</if>
+			<if test="acctFrozenBal != null">
+				acctFrozenBal ,
+			</if>
+			<if test="feeBal != null">
+				feeBal ,
+			</if>
+			<if test="chkResult != null">
+				chkResult ,
+			</if>
+			<if test="chkDate != null">
+				chkDate
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="monitorType != null">
+				#{monitorType} ,
+			</if>
+			<if test="monitorSubType != null">
+				#{monitorSubType} ,
+			</if>
+			<if test="accountId != null">
+				#{accountId} ,
+			</if>
+			<if test="stockinfoId != null">
+				#{stockinfoId} ,
+			</if>
+			<if test="platTotalBal != null">
+				#{platTotalBal} ,
+			</if>
+			<if test="platBal != null">
+				#{platBal} ,
+			</if>
+			<if test="platFrozenBal != null">
+				#{platFrozenBal} ,
+			</if>
+			<if test="acctBal != null">
+				#{acctBal} ,
+			</if>
+			<if test="acctFrozenBal != null">
+				#{acctFrozenBal} ,
+			</if>
+			<if test="feeBal != null">
+				#{feeBal} ,
+			</if>
+			<if test="chkResult != null">
+				#{chkResult} ,
+			</if>
+			<if test="chkDate != null">
+				#{chkDate}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 选择性更新数据 -->
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		update MonitorAcctFundCurrent
+		<set>
+			<if test="monitorType != null">
+				monitorType = #{monitorType} ,
+			</if>
+			<if test="monitorSubType != null">
+				monitorSubType = #{monitorSubType} ,
+			</if>
+			<if test="platTotalBal != null">
+				platTotalBal = #{platTotalBal} ,
+			</if>
+			<if test="platBal != null">
+				platBal = #{platBal} ,
+			</if>
+			<if test="platFrozenBal != null">
+				platFrozenBal = #{platFrozenBal} ,
+			</if>
+			<if test="acctBal != null">
+				acctBal = #{acctBal} ,
+			</if>
+			<if test="acctFrozenBal != null">
+				acctFrozenBal = #{acctFrozenBal} ,
+			</if>
+			<if test="feeBal != null">
+				feeBal = #{feeBal} ,
+			</if>
+			<if test="chkResult != null">
+				chkResult = #{chkResult} ,
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="list">
+		insert into MonitorAcctFundCurrent(
+		monitorType ,
+		monitorSubType ,
+		accountId ,
+		stockinfoId ,
+		platTotalBal ,
+		platBal ,
+		platFrozenBal ,
+		acctBal ,
+		acctFrozenBal ,
+		feeBal ,
+		chkResult ,
+		chkDate
+		)
+		<foreach close=")" collection="list" item="item" index="index"
+			open="(" separator="union">
+			select
+			#{item.monitorType} ,
+			#{item.monitorSubType} ,
+			#{item.accountId} ,
+			#{item.stockinfoId} ,
+			#{item.platTotalBal} ,
+			#{item.platBal} ,
+			#{item.platFrozenBal} ,
+			#{item.acctBal} ,
+			#{item.acctFrozenBal} ,
+			#{item.feeBal} ,
+			#{item.chkResult} ,
+			#{item.chkDate}
+			from dual
+		</foreach>
+	</insert>
+
+	<!-- 批量修改 -->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="begin"
+			close=";end;" separator=";">
+			update MonitorAcctFundCurrent set
+			monitorType = #{item.monitorType} ,
+			monitorSubType = #{item.monitorSubType} ,
+			platTotalBal = #{item.platTotalBal} ,
+			platBal = #{item.platBal} ,
+			platFrozenBal = #{item.platFrozenBal} ,
+			acctBal = #{item.acctBal} ,
+			acctFrozenBal = #{item.acctFrozenBal} ,
+			feeBal = #{item.feeBal} ,
+			chkResult = #{item.chkResult} ,
+			where id = #{item.id}
+		</foreach>
+	</update>
+
+	<!-- 根据主键更新一条信息所有数据 -->
+	<update id="updateByPrimaryKey"
+		parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		update MonitorAcctFundCurrent set
+		monitorType = #{monitorType} ,
+		monitorSubType = #{monitorSubType} ,
+		platTotalBal = #{platTotalBal} ,
+		platBal = #{platBal} ,
+		platFrozenBal = #{platFrozenBal} ,
+		acctBal = #{acctBal} ,
+		acctFrozenBal = #{acctFrozenBal} ,
+		feeBal = #{feeBal} ,
+		chkResult = #{chkResult} ,
+		where id = #{id}
+	</update>
+
+	<!-- 根据主键取数据 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		select
+		<include refid="monitorAcctFundCurrentColumns" />
+		from MonitorAcctFundCurrent a where a.id = #{id}
+	</select>
+
+	<!-- 可分页的对象查询 -->
+	<select id="findList"
+		resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		SELECT
+		<include refid="monitorAcctFundCurrentColumns" />
+		FROM MonitorAcctFundCurrent a WHERE a.delFlag = 0
+		<if test="monitorType != null">
+			and a.monitorType like '%'||#{monitorType}||'%'
+		</if>
+		<if test="monitorSubType != null">
+			and a.monitorSubType like '%'||#{monitorSubType}||'%'
+		</if>
+		<if test="platTotalBal != null">
+			and a.platTotalBal = #{platTotalBal}
+		</if>
+		<if test="platBal != null">
+			and a.platBal = #{platBal}
+		</if>
+		<if test="platFrozenBal != null">
+			and a.platFrozenBal = #{platFrozenBal}
+		</if>
+		<if test="acctBal != null">
+			and a.acctBal = #{acctBal}
+		</if>
+		<if test="acctFrozenBal != null">
+			and a.acctFrozenBal = #{acctFrozenBal}
+		</if>
+		<if test="feeBal != null">
+			and a.feeBal = #{feeBal}
+		</if>
+		<if test="chkResult != null">
+			and a.chkResult like '%'||#{chkResult}||'%'
+		</if>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="selectAll"
+		resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		SELECT
+		<include refid="monitorAcctFundCurrentColumns" />
+		FROM MonitorAcctFundCurrent a WHERE a.delFlag = 0
+	</select>
+
+	<!-- 可分页的对象查询 -->
+	<select id="findAcctFundCurList"
+		resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCurrent">
+		select a.*,
+		stock.stockname,
+		nvl(acct.unid,0) unid,
+		nvl(acct.accountname,'总账') accountname,
+		nvl(acct.status,0) status
+		from MonitorAcctFundCurrent a, account acct,stockinfo stock
+		where a.accountid = acct.id(+)
+		  and a.stockinfoid = stock.id
+		<if test="accountName != null">
+			and acct.accountName like '%'||#{accountName}||'%'
+		</if>
+		<if test="unid != null ">
+			and acct.unid = #{unid}
+		</if>
+		<if test="monitorSubType != null">
+			and a.monitorSubType = #{monitorSubType}
+		</if>
+		<if test="chkResult != null">
+			and a.chkResult = #{chkResult}
+		</if>
+		<if test="timeStart != null ">
+			and a.chkdate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+		</if>
+		<if test="timeEnd != null ">
+			and a.chkdate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+		</if>
+		order by a.chkdate desc
+	</select>
+
+
+</mapper>
+

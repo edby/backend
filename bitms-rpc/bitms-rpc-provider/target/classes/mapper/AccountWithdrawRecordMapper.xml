@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountWithdrawRecordMapper">
+    <!-- 基础列 -->
+    <sql id="accountWithdrawRecordColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.originalBusinessId as originalBusinessId,
+        a.accountAssetType as accountAssetType,
+        a.accountAssetId as accountAssetId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.contractAmt as contractAmt,
+        a.orgAmt as orgAmt,
+        a.occurDirect as occurDirect,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.transId as transId,
+        a.collectStatus as collectStatus,
+        a.chargeAddr as chargeAddr,
+        a.withdrawAddr as withdrawAddr,
+        a.fee as fee,
+        a.netFee  as netFee ,
+        a.status as status,
+        a.approveStatus as approveStatus,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate,
+        a.checkBy as checkBy,
+        a.checkDate as checkDate,
+        a.forzenOrgAmt as forzenOrgAmt,
+      	a.forzenLastAmt as forzenLastAmt,
+      	a.occurForzenAmt as occurForzenAmt,
+        a.transferStatus as transferStatus
+    </sql>
+     <sql id="accountWithdrawRecordJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.originalBusinessId as originalBusinessId,
+        a.accountAssetType as accountAssetType,
+        a.accountAssetId as accountAssetId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.contractAmt as contractAmt,
+        a.orgAmt as orgAmt,
+        a.occurDirect as occurDirect,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.transId as transId,
+        a.collectStatus as collectStatus,
+        a.chargeAddr as chargeAddr,
+        a.withdrawAddr as withdrawAddr,
+        a.fee as fee,
+        a.netFee  as netFee ,
+        a.status as status,
+        a.approveStatus as approveStatus,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate,
+        a.checkBy as checkBy,
+        a.checkDate as checkDate,
+        a.forzenOrgAmt as forzenOrgAmt,
+      	a.forzenLastAmt as forzenLastAmt,
+      	a.occurForzenAmt as occurForzenAmt,
+        a.transferStatus as transferStatus,
+        b.accountName as accountName,
+        d.stockCode as stockCode,
+        d.stockName as stockName,
+        d.stockType as stockType
+    </sql>
+
+    <sql id="accountWithdrawRecordJoinTransferColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.originalBusinessId as originalBusinessId,
+        a.accountAssetType as accountAssetType,
+        a.accountAssetId as accountAssetId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.contractAmt as contractAmt,
+        a.orgAmt as orgAmt,
+        a.occurDirect as occurDirect,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.transId as transId,
+        a.collectStatus as collectStatus,
+        a.chargeAddr as chargeAddr,
+        a.withdrawAddr as withdrawAddr,
+        a.fee as fee,
+        a.netFee  as netFee ,
+        a.status as status,
+        a.approveStatus as approveStatus,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate,
+        a.checkBy as checkBy,
+        a.checkDate as checkDate,
+        a.forzenOrgAmt as forzenOrgAmt,
+        a.forzenLastAmt as forzenLastAmt,
+        a.occurForzenAmt as occurForzenAmt,
+        a.transferStatus as transferStatus,
+        b.accountName as accountName,
+        b.unid as unid,
+        d.stockCode as stockCode,
+        d.stockName as stockName,
+        d.stockType as stockType,
+        e.pendingApproval as pendingApproval,
+        e.realTransferFee as realTransferFee,
+        e.confirmStatus as confirmStatus
+    </sql>
+
+    <sql id="accountWithdrawRecordJoin2Columns">
+        a.id as id,
+        a.accountId as accountId,
+        a.originalBusinessId as originalBusinessId,
+        a.accountAssetType as accountAssetType,
+        a.accountAssetId as accountAssetId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.currentDate as currentDate,
+        a.businessFlag as businessFlag,
+        a.contractAmt as contractAmt,
+        a.orgAmt as orgAmt,
+        a.occurDirect as occurDirect,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.transId as transId,
+        a.collectStatus as collectStatus,
+        a.chargeAddr as chargeAddr,
+        a.withdrawAddr as withdrawAddr,
+        a.fee as fee,
+        a.netFee  as netFee ,
+        a.status as status,
+        a.approveStatus as approveStatus,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate,
+        a.checkBy as checkBy,
+        a.checkDate as checkDate,
+        a.forzenOrgAmt as forzenOrgAmt,
+        a.forzenLastAmt as forzenLastAmt,
+        a.occurForzenAmt as occurForzenAmt,
+        a.transferStatus as transferStatus,
+        b.accountName as accountName,
+        d.stockCode as stockCode,
+        d.stockName as stockName,
+        d.stockType as stockType,
+        e.stockName as relatedStockName
+    </sql>
+
+    <resultMap id="accountWithdrawRecordResultMap" type="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="originalBusinessId" property="originalBusinessId"/>
+        <result column="accountAssetType" property="accountAssetType"/>
+        <result column="accountAssetId" property="accountAssetId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="currentDate" property="currentDate"/>
+        <result column="businessFlag" property="businessFlag"/>
+        <result column="contractAmt" property="contractAmt"/>
+        <result column="orgAmt" property="orgAmt"/>
+        <result column="occurDirect" property="occurDirect"/>
+        <result column="occurAmt" property="occurAmt"/>
+        <result column="lastAmt" property="lastAmt"/>
+        <result column="transId" property="transId"/>
+        <result column="collectStatus" property="collectStatus"/>
+        <result column="chargeAddr" property="chargeAddr"/>
+        <result column="withdrawAddr" property="withdrawAddr"/>
+        <result column="fee" property="fee"/>
+        <result column="netFee" property="netFee"/>
+        <result column="status" property="status"/>
+        <result column="approveStatus" property="approveStatus"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="auditBy" property="auditBy"/>
+        <result column="auditDate" property="auditDate"/>
+        <result column="checkBy" property="checkBy"/>
+        <result column="checkDate" property="checkDate"/>
+        <result column="forzenOrgAmt" property="forzenOrgAmt"/>
+        <result column="forzenLastAmt" property="forzenLastAmt"/>
+        <result column="occurForzenAmt" property="occurForzenAmt"/>
+        <result column="transferStatus" property="transferStatus"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        insert into accountWithdrawRecord(
+            id ,
+            accountId ,
+            originalBusinessId ,
+            accountAssetType ,
+            accountAssetId,
+        	stockinfoId,
+        	relatedStockinfoId,
+            currentDate ,
+            businessFlag ,
+            contractAmt ,
+            orgAmt ,
+            occurDirect ,
+            occurAmt ,
+            lastAmt ,
+            transId,
+            collectStatus,
+            chargeAddr ,
+            withdrawAddr ,
+            fee ,
+            netFee,
+            status ,
+            approveStatus ,
+            remark ,
+            createBy ,
+            createDate,
+            auditBy,
+		    auditDate,
+	    	checkBy,
+	    	checkDate,
+	    	forzenOrgAmt,
+      		forzenLastAmt,
+      		occurForzenAmt,
+            transferStatus 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{originalBusinessId },
+            #{accountAssetType} ,
+            #{accountAssetId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId},
+            systimestamp ,
+            #{businessFlag} ,
+            #{contractAmt} ,
+            #{orgAmt} ,
+            #{occurDirect} ,
+            #{occurAmt} ,
+            #{lastAmt} ,
+            #{transId},
+            #{collectStatus},
+            #{chargeAddr} ,
+            #{withdrawAddr} ,
+            #{fee} ,
+            #{netFee},
+            #{status} ,
+            #{approveStatus} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{auditBy} ,
+            #{auditDate} ,
+            #{checkBy} ,
+            #{checkDate} ,
+            #{forzenOrgAmt} ,
+            #{forzenLastAmt} ,
+            #{occurForzenAmt},
+            #{transferStatus}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" >
+        delete from accountWithdrawRecord where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" >
+        update accountWithdrawRecord set delFlag = 1 where id = #{id} 
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        insert into accountWithdrawRecord
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="originalBusinessId != null">
+                originalBusinessId ,
+        </if>
+        <if test="accountAssetType != null">
+                accountAssetType ,
+        </if>
+        <if test="accountAssetId != null">
+                accountAssetId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+            </if>
+        <if test="currentDate != null">
+                currentDate ,
+        </if>
+        <if test="businessFlag != null">
+                businessFlag ,
+        </if>
+        <if test="contractAmt != null">
+                contractAmt ,
+        </if>
+        <if test="orgAmt != null">
+                orgAmt ,
+        </if>
+        <if test="occurDirect != null">
+                occurDirect ,
+        </if>
+        <if test="occurAmt != null">
+                occurAmt ,
+        </if>
+        <if test="lastAmt != null">
+                lastAmt ,
+        </if>
+        <if test="transId != null">
+                transId ,
+        </if>
+        <if test="collectStatus != null">
+                collectStatus ,
+        </if>
+        <if test="chargeAddr != null">
+                chargeAddr ,
+        </if>
+        <if test="withdrawAddr != null">
+                withdrawAddr ,
+        </if>
+        <if test="fee != null">
+                fee ,
+        </if>
+        <if test="netFee != null">
+                netFee ,
+        </if>
+        <if test="status != null">
+                status ,
+        </if>
+        <if test="approveStatus != null">
+                approveStatus ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate
+        </if>
+        <if test="auditBy != null">
+                auditBy
+        </if>
+        <if test="auditDate != null">
+                auditDate
+        </if>
+        <if test="checkBy != null">
+                checkBy
+        </if>
+        <if test="checkDate != null">
+                checkDate
+        </if>
+        <if test="forzenOrgAmt != null">
+                forzenOrgAmt
+        </if>
+        <if test="forzenLastAmt != null">
+                forzenLastAmt
+        </if>
+         <if test="occurForzenAmt != null">
+             occurForzenAmt
+         </if>
+        <if test="transferStatus != null">
+                transferStatus
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="originalBusinessId != null">
+                #{originalBusinessId} ,
+        </if>
+        <if test="accountAssetType != null">
+                #{accountAssetType} ,
+        </if>
+        <if test="accountAssetId != null">
+                #{accountAssetId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+            <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+            </if>
+
+        <if test="currentDate != null">
+                #{currentDate} ,
+        </if>
+        <if test="businessFlag != null">
+                #{businessFlag} ,
+        </if>
+        <if test="contractAmt != null">
+                #{contractAmt} ,
+        </if>
+        <if test="orgAmt != null">
+                #{orgAmt} ,
+        </if>
+        <if test="occurDirect != null">
+                #{occurDirect} ,
+        </if>
+        <if test="occurAmt != null">
+                #{occurAmt} ,
+        </if>
+        <if test="lastAmt != null">
+                #{lastAmt} ,
+        </if>
+        <if test="transId != null">
+                #{transId} ,
+        </if>
+        <if test="collectStatus != null">
+                #{collectStatus} ,
+        </if>
+        <if test="chargeAddr != null">
+                #{chargeAddr} ,
+        </if>
+        <if test="withdrawAddr != null">
+                #{withdrawAddr} ,
+        </if>
+        <if test="fee != null">
+                #{fee} ,
+        </if>
+        <if test="netFee != null">
+                #{netFee} ,
+        </if>
+        <if test="status != null">
+                #{status} ,
+        </if>
+        <if test="approveStatus != null">
+                #{approveStatus} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate}
+        </if>
+        <if test="auditBy != null">
+                #{auditBy}
+        </if>
+        <if test="auditDate != null">
+                #{auditDate}
+        </if>
+        <if test="checkBy != null">
+                #{checkBy}
+        </if>
+        <if test="checkDate != null">
+                #{checkDate}
+        </if>
+        <if test="forzenOrgAmt != null">
+                #{forzenOrgAmt}
+        </if>
+        <if test="forzenLastAmt != null">
+                #{forzenLastAmt}
+        </if>
+        <if test="occurForzenAmt != null">
+                #{occurForzenAmt}
+        </if>
+        <if test="transferStatus != null">
+                #{transferStatus}
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        update accountWithdrawRecord
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="originalBusinessId != null">
+                originalBusinessId = #{originalBusinessId} ,
+            </if>
+            <if test="accountAssetType != null">
+                accountAssetType = #{accountAssetType} ,
+            </if>
+            <if test="accountAssetId != null">
+                accountAssetId = #{accountAssetId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="currentDate != null">
+                currentDate = #{currentDate} ,
+            </if>
+               <if test="relatedStockinfoId != null">
+                   relatedStockinfoId = #{relatedStockinfoId} ,
+               </if>
+
+            <if test="businessFlag != null">
+                businessFlag = #{businessFlag} ,
+            </if>
+            <if test="contractAmt != null">
+                contractAmt = #{contractAmt} ,
+            </if>
+            <if test="orgAmt != null">
+                orgAmt = #{orgAmt} ,
+            </if>
+            <if test="occurDirect != null">
+                occurDirect = #{occurDirect} ,
+            </if>
+            <if test="occurAmt != null">
+                occurAmt = #{occurAmt} ,
+            </if>
+            <if test="lastAmt != null">
+                lastAmt = #{lastAmt} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="collectStatus != null">
+                collectStatus = #{collectStatus} ,
+            </if>
+            <if test="chargeAddr != null">
+                chargeAddr = #{chargeAddr} ,
+            </if>
+            <if test="withdrawAddr != null">
+                withdrawAddr = #{withdrawAddr} ,
+            </if>
+            <if test="fee != null">
+                fee = #{fee} ,
+            </if>
+            <if test="netFee != null">
+                netFee = #{netFee} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="approveStatus != null">
+                approveStatus = #{approveStatus} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="auditBy != null">
+	            auditBy = #{auditBy} ,
+	        </if>
+	        <if test="auditDate != null">
+	           auditDate = #{auditDate} ,
+	        </if>
+	        <if test="checkBy != null">
+	           checkBy = #{checkBy} ,
+	        </if>
+	        <if test="checkDate != null">
+	           checkDate = #{checkDate} ,
+	        </if>
+	        <if test="forzenOrgAmt != null">
+	           forzenOrgAmt = #{forzenOrgAmt} ,
+	        </if>
+	        <if test="forzenLastAmt != null">
+	           forzenLastAmt = #{forzenLastAmt} ,
+	        </if>
+            <if test="occurForzenAmt != null">
+                occurForzenAmt = #{occurForzenAmt} ,
+            </if>
+            <if test="transferStatus != null">
+                transferStatus = #{transferStatus}
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into accountWithdrawRecord(
+            id ,
+            accountId ,
+            originalBusinessId ,
+            accountAssetType ,
+            accountAssetId,
+       	 	stockinfoId,
+            relatedStockinfoId,
+            currentDate ,
+            businessFlag ,
+            contractAmt ,
+            orgAmt ,
+            occurDirect ,
+            occurAmt ,
+            lastAmt ,
+            transId,
+            collectStatus,
+            chargeAddr ,
+            withdrawAddr ,
+            fee ,
+            netFee,
+            status ,
+            approveStatus ,
+            remark ,
+            createBy ,
+            createDate ,
+            auditBy,
+		    auditDate,
+	    	checkBy,
+	    	checkDate,
+	    	forzenOrgAmt,
+      		forzenLastAmt,
+            occurForzenAmt,
+            transferStatus
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.originalBusinessId},
+            #{item.accountAssetType} ,
+            #{item.accountAssetId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId},
+            systimestamp ,
+            #{item.businessFlag} ,
+            #{item.contractAmt} ,
+            #{item.orgAmt} ,
+            #{item.occurDirect} ,
+            #{item.occurAmt} ,
+            #{item.lastAmt} ,
+            #{item.transId} ,
+            #{item.collectStatus} ,
+            #{item.chargeAddr} ,
+            #{item.withdrawAddr} ,
+            #{item.fee} ,
+            #{item.netFee},
+            #{item.status} ,
+            #{item.approveStatus} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.auditBy} ,
+            #{item.auditDate} ,
+            #{item.checkBy} ,
+            #{item.checkDate} ,
+            #{item.forzenOrgAmt} ,
+            #{item.forzenLastAmt} ,
+            #{item.occurForzenAmt},
+            #{item.transferStatus}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update accountWithdrawRecord set
+            accountId = #{item.accountId} ,
+            originalBusinessId = #{item.originalBusinessId} ,
+            accountAssetType = #{item.accountAssetType} ,
+            accountAssetId = #{item.accountAssetId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId},
+            currentDate = #{item.currentDate} ,
+            businessFlag = #{item.businessFlag} ,
+            contractAmt = #{item.contractAmt} ,
+            orgAmt = #{item.orgAmt} ,
+            occurDirect = #{item.occurDirect} ,
+            occurAmt = #{item.occurAmt} ,
+            lastAmt = #{item.lastAmt} ,
+            transId = #{item.transId} ,
+            collectStatus = #{item.collectStatus} ,
+            chargeAddr = #{item.chargeAddr} ,
+            withdrawAddr = #{item.withdrawAddr} ,
+            fee = #{item.fee} ,
+            netFee= #{item.netFee},
+            status = #{item.status} ,
+            approveStatus = #{item.approveStatus} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            auditBy = #{item.auditBy} ,
+            auditDate = #{item.auditDate} ,
+            checkBy = #{item.checkBy} ,
+            checkDate = #{item.checkDate} ,
+            forzenOrgAmt = #{item.forzenOrgAmt} ,
+            forzenLastAmt = #{item.forzenLastAmt} ,
+            occurForzenAmt= #{item.occurForzenAmt},
+            transferStatus = #{item.transferStatus}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        update accountWithdrawRecord set
+            accountId = #{accountId} ,
+            originalBusinessId = #{originalBusinessId} ,
+            accountAssetType = #{accountAssetType} ,
+            accountAssetId = #{accountAssetId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId},
+            currentDate = #{currentDate} ,
+            businessFlag = #{businessFlag} ,
+            contractAmt = #{contractAmt} ,
+            orgAmt = #{orgAmt} ,
+            occurDirect = #{occurDirect} ,
+            occurAmt = #{occurAmt} ,
+            lastAmt = #{lastAmt} ,
+            transId = #{transId} ,
+            collectStatus = #{collectStatus} ,
+            chargeAddr = #{chargeAddr} ,
+            withdrawAddr = #{withdrawAddr} ,
+            fee = #{fee} ,
+            netFee=#{netFee},
+            status = #{status} ,
+            approveStatus = #{approveStatus} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            auditBy = #{auditBy} ,
+            auditDate = #{auditDate} ,
+            checkBy = #{checkBy} ,
+            checkDate = #{checkDate} ,
+            forzenOrgAmt = #{forzenOrgAmt} ,
+            forzenLastAmt = #{forzenLastAmt} ,
+            occurForzenAmt = #{occurForzenAmt},
+            transferStatus = #{transferStatus}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"   resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        select <include refid="accountWithdrawRecordColumns"/> from accountWithdrawRecord a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        SELECT
+        <include refid="accountWithdrawRecordJoinTransferColumns"/>
+        FROM Account b ,StockInfo d,accountWithdrawRecord a
+        left join accountfundtransfer e on e.originalCurrentId = a.id
+        WHERE d.id=a.stockinfoId and  a.accountId=b.id
+        <if test="businessFlag != null">
+            and a.businessFlag  = #{businessFlag }
+        </if>
+        <if test="accountAssetType != null">
+            and a.accountAssetType  = #{accountAssetType }
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId  = #{relatedStockinfoId }
+        </if>
+        <if test="pendingApproval != null and pendingApproval !=''">
+            and e.pendingApproval  like '%'||#{pendingApproval }||'%'
+        </if>
+        <if test="transId != null and transId !=''">
+            and a.transId  like '%'||#{transId }||'%'
+        </if>
+        <if test="unid != null">
+            and b.unid  = #{unid }
+        </if>
+        <if test="accountId != null">
+            and a.accountId  = #{accountId }
+        </if>
+        <if test="originalBusinessId != null">
+            and a.originalBusinessId  = #{originalBusinessId }
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId  = #{stockinfoId }
+        </if>
+        <if test="approveStatus != null">
+            and a.approveStatus = #{approveStatus}
+        </if>
+        <if test="accountName != null">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="collectStatus != null">
+            and a.collectStatus = #{collectStatus}
+        </if>
+        <if test="transferStatus != null">
+            and a.transferStatus = #{transferStatus}
+        </if>
+        <if test="occurDirect != null">
+            and a.occurDirect = #{occurDirect}
+        </if>
+        <if test="timeStart != null">
+            and a.currentDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null">
+            and a.currentDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.currentDate desc
+    </select>
+
+    <select id="countByAccount" resultType="java.lang.Long">
+        SELECT
+         count(*)
+        FROM AccountWithdrawRecord a ,Account b ,StockInfo d
+        WHERE d.id=a.stockinfoId and  a.accountId=b.id  and a.accountId  = #{accountWithdrawRecord.accountId }
+        and a.orgAmt != a.lastAmt
+        <if test="accountWithdrawRecord.businessFlag != null">
+            and a.businessFlag  = #{accountWithdrawRecord.businessFlag }
+        </if>
+        <if test="accountWithdrawRecord.accountAssetType != null">
+            and a.accountAssetType  = #{accountWithdrawRecord.accountAssetType }
+        </if>
+        <if test="accountWithdrawRecord.relatedStockinfoId != null">
+            and a.relatedStockinfoId  = #{accountWithdrawRecord.relatedStockinfoId }
+        </if>
+        <if test="accountWithdrawRecord.stockinfoId != null">
+            and a.stockinfoId  = #{accountWithdrawRecord.stockinfoId }
+        </if>
+        <if test="accountWithdrawRecord.approveStatus != null">
+            and a.approveStatus = #{accountWithdrawRecord.approveStatus}
+        </if>
+        <if test="accountWithdrawRecord.timeStart != null">
+            and a.currentDate &gt;=to_date(#{accountWithdrawRecord.timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="accountWithdrawRecord.timeEnd != null">
+            and a.currentDate &lt;=to_date(#{accountWithdrawRecord.timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+       <!-- <if test="businessFlags !=null">
+            and a.businessFlag in
+            <foreach item="item" collection="businessFlags" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>-->
+    </select>
+
+    <!-- 交割平仓 剩余借款-已还数据 -->
+    <select id="findDebitRepaySettlemenet" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        SELECT
+        <include refid="accountWithdrawRecordJoinColumns"/>
+        FROM AccountWithdrawRecord a ,Account b ,StockInfo d
+        WHERE d.id=a.stockinfoId and  a.accountId=b.id
+        <if test="accountWithdrawRecord.accountAssetType != null">
+            and a.accountAssetType  = #{accountWithdrawRecord.accountAssetType }
+        </if>
+        <if test="accountWithdrawRecord.relatedStockinfoId != null">
+            and a.relatedStockinfoId  = #{accountWithdrawRecord.relatedStockinfoId }
+        </if>
+        <if test="accountWithdrawRecord.timeStart != null">
+            and a.currentDate &gt;=to_date(#{accountWithdrawRecord.timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="accountWithdrawRecord.timeEnd != null">
+            and a.currentDate &lt;=to_date(#{accountWithdrawRecord.timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="businessFlags !=null">
+            and a.businessFlag in
+            <foreach item="item" collection="businessFlags" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        order by a.currentDate desc
+    </select>
+
+    <!-- 可分页的对象查询 查询用户资金流水 -->
+    <select id="findListByAccount" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        SELECT
+          *
+        FROM
+        (
+            SELECT
+            t.*, ROWNUM rn
+            FROM
+            (
+                SELECT
+                  <include refid="accountWithdrawRecordJoin2Columns"/>
+                FROM Account b ,StockInfo d ,AccountWithdrawRecord a
+                left join stockinfo e on a.relatedStockinfoId=e.id
+                WHERE d.id=a.stockinfoId and  a.accountId=b.id  and a.accountId  = #{accountWithdrawRecord.accountId }
+                and a.orgAmt != a.lastAmt
+                <if test="accountWithdrawRecord.businessFlag != null">
+                    and a.businessFlag  = #{accountWithdrawRecord.businessFlag }
+                </if>
+                <if test="accountWithdrawRecord.accountAssetType != null">
+                    and a.accountAssetType  = #{accountWithdrawRecord.accountAssetType }
+                </if>
+                <if test="accountWithdrawRecord.relatedStockinfoId != null">
+                    and a.relatedStockinfoId  = #{accountWithdrawRecord.relatedStockinfoId }
+                </if>
+                <if test="accountWithdrawRecord.stockinfoId != null">
+                    and a.stockinfoId  = #{accountWithdrawRecord.stockinfoId }
+                </if>
+                <if test="accountWithdrawRecord.approveStatus != null">
+                    and a.approveStatus = #{accountWithdrawRecord.approveStatus}
+                </if>
+                <if test="accountWithdrawRecord.timeStart != null">
+                    and a.currentDate &gt;=to_date(#{accountWithdrawRecord.timeStart},'YYYY-MM-DD hh24:mi:ss')
+                </if>
+                <if test="accountWithdrawRecord.timeEnd != null">
+                    and a.currentDate &lt;=to_date(#{accountWithdrawRecord.timeEnd},'YYYY-MM-DD hh24:mi:ss')
+                </if>
+               <!-- <if test="businessFlags !=null">
+                    and a.businessFlag in
+                    <foreach item="item" collection="businessFlags" open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </if>-->
+                order by a.currentDate desc
+            ) t
+            WHERE
+            ROWNUM &lt;= #{page.endIndex}
+        )
+        WHERE rn > #{page.startIndex}
+    </select>
+
+     <!-- 查询账户已提现数量  -->
+    <select id="findSumAmtByAccount" resultType="java.math.BigDecimal">
+        select nvl(sum(OCCURAMT-netFee),0) from accountWithdrawRecord
+		where accountId=#{accountId } and  accountAssetType='walletAccountAsset' and businessFlag='walletWithdraw'
+		and (approveStatus!='cancel' and approveStatus!='auditReject'  and approveStatus!='checkReject'   )
+        <if test="stockinfoId != null">
+            and stockinfoId  = #{stockinfoId }
+        </if>
+        <if test="timeStart != null">
+            and currentDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null">
+            and currentDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+    </select>
+
+    <!-- 查询所有账户本周总流入或流出BTC数量（不包括超级账户） （如果accountId 不为空 则查询个人）  -->
+    <select id="findCurrentWeekSumAmtByAccount" resultType="java.math.BigDecimal">
+        select nvl(sum(OCCURAMT),0) from accountWithdrawRecord a
+        where a.accountId &gt; 200000000000
+        and currentDate &gt; (select nvl(max(r.settlementtime),(systimestamp + NUMTODSINTERVAL(-7*24,'hour'))) from SETTLEMENTRECORD r where r.relatedStockinfoId  = #{relatedStockinfoId })
+        <if test="accountAssetType != null">
+            and a.accountAssetType  = #{accountAssetType }
+        </if>
+        <if test="accountId != null">
+            and a.accountId  = #{accountId }
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId  = #{stockinfoId }
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId  = #{relatedStockinfoId }
+        </if>
+        <if test="occurDirect != null">
+            and a.occurDirect = #{occurDirect}
+        </if>
+         <if test="businessFlag != null and businessFlag != ''">
+            and a.businessFlag = #{businessFlag}
+        </if>
+    </select>
+
+    <!-- 查询账户已充值数量  -->
+    <select id="findSumChargeAmtByAccount" resultType="java.math.BigDecimal">
+        select nvl(sum(OCCURAMT),0) from accountWithdrawRecord
+        where accountId=#{accountId } and  accountAssetType='walletAccountAsset' and businessFlag='walletRecharge'
+        <if test="stockinfoId != null">
+            and stockinfoId  = #{stockinfoId }
+        </if>
+        <if test="timeStart != null">
+            and currentDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null">
+            and currentDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+    </select>
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+         SELECT
+        <include refid="accountWithdrawRecordJoinColumns"/>
+        FROM accountWithdrawRecord a ,Account b ,StockInfo d WHERE d.id=a.stockinfoId
+        and  a.accountId=b.id  and a.accountAssetType=#{accountAssetType}
+        and a.businessFlag=#{businessFlag}
+    </select>
+
+    <!-- 查询实体 -->
+    <select id="findFundCurrent" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        SELECT
+        <include refid="accountWithdrawRecordColumns"/>
+        FROM accountWithdrawRecord a WHERE a.stockinfoId=#{stockinfoId} and a.transId=#{transId} and a.withdrawAddr=#{withdrawAddr}
+    </select>
+
+    <!-- 查询实体列表 -->
+    <select id="findFundCurrentList" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        SELECT
+        <include refid="accountWithdrawRecordColumns"/>
+        FROM accountWithdrawRecord a WHERE a.stockinfoId=#{stockinfoId} and a.accountId=#{accountId}
+        and a.businessFlag=#{businessFlag} and a.accountAssetType=#{accountAssetType}
+        <if test="timeStart != null">
+            and a.currentDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null">
+            and a.currentDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.createDate desc
+    </select>
+
+    <select id="findFundCurrentChargeListCount" resultType="java.lang.Long">
+        select count(*) from (
+        select a.lastAmt as walletLastAmt ,b.*,d.stockCode as stockCode,d.stockName as stockName from (
+        select id,transId,lastAmt  from AccountWithdrawRecordView a where
+        (a.businessFlag='wallet2Contract' or a.businessFlag='contract2Wallet')
+        and a.accountAssetType='walletAccountAsset' and stockinfoId=#{accountWithdrawRecord.stockinfoId} and accountId=#{accountWithdrawRecord.accountId})
+        a left join (
+        <if test="tableNames !=null">
+            <foreach item="table" collection="tableNames"  index="index"  open="" separator="" close="">
+                <if test="index !=0">
+                    union all
+                </if>
+                (
+                select * from ${table}  where (businessFlag='wallet2Contract' or businessFlag='contract2Wallet')
+                and accountAssetType='contractAccountAsset' and stockinfoId=#{accountWithdrawRecord.stockinfoId} and accountId=#{accountWithdrawRecord.accountId}
+                )
+            </foreach>
+        </if>
+        ) b on a.transId=b.transId and a.id!=b.id
+        left join stockinfo d on b.relatedstockinfoid=d.id
+        where b.id is not null)
+
+    </select>
+
+    <!-- 查询转帐实体列表 -->
+    <select id="findFundCurrentChargeList" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        t.*, ROWNUM rn
+        FROM
+        (
+            select a.lastAmt as walletLastAmt ,b.*,d.stockCode as stockCode,d.stockName as stockName from (
+            select id,transId,lastAmt  from AccountWithdrawRecordView a where
+            (a.businessFlag='wallet2Contract' or a.businessFlag='contract2Wallet')
+            and a.accountAssetType='walletAccountAsset' and stockinfoId=#{accountWithdrawRecord.stockinfoId} and accountId=#{accountWithdrawRecord.accountId})
+            a left join (
+            <if test="tableNames !=null">
+                <foreach item="table" collection="tableNames"  index="index"  open="" separator="" close="">
+                    <if test="index !=0">
+                        union all
+                    </if>
+                    (
+                    select * from ${table}  where (businessFlag='wallet2Contract' or businessFlag='contract2Wallet')
+                    and accountAssetType='contractAccountAsset' and stockinfoId=#{accountWithdrawRecord.stockinfoId} and accountId=#{accountWithdrawRecord.accountId}
+                    )
+                </foreach>
+            </if>
+            ) b on a.transId=b.transId and a.id!=b.id
+            left join stockinfo d on b.relatedstockinfoid=d.id
+            where b.id is not null
+            order by b.createDate desc
+        ) t
+        WHERE
+        ROWNUM &lt;= #{page.endIndex}
+        )
+        WHERE rn > #{page.startIndex}
+    </select>
+
+    <!-- 查询最近一笔资金流水 -->
+    <select id="findTheLatestFundCurrent" resultType="com.blocain.bitms.trade.fund.entity.AccountWithdrawRecord">
+        SELECT
+        <include refid="accountWithdrawRecordColumns"/>
+        FROM accountWithdrawRecord a WHERE a.id =(select nvl(max(id),0) from accountWithdrawRecord)
+    </select>
+
+    <!-- 返回最近一段时间内的资金变动账户ID -->
+    <select id="getChangeAcctListByTimestamp" resultType="Long">
+        select distinct a.accountid
+          from accountWithdrawRecord a
+         where currentdate &gt;= #{currentdate}
+           and a.accountid &gt;200000000000
+    </select>
+</mapper>
+

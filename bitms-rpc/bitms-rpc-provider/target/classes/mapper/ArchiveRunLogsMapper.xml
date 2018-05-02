@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.ArchiveRunLogsMapper">
+    <!-- 基础列 -->
+    <sql id="archiveRunLogsColumns">
+        a.procCode as procCode,
+        a.logDesc as logDesc,
+        a.recTime as recTime
+    </sql>
+
+    <resultMap id="archiveRunLogsResultMap" type="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        <id column="id" property="id" />
+        <result column="procCode" property="procCode"/>
+        <result column="logDesc" property="logDesc"/>
+        <result column="recTime" property="recTime"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        insert into ArchiveRunLogs(
+            procCode ,
+            logDesc ,
+            recTime 
+        ) VALUES (
+            #{procCode} ,
+            #{logDesc} ,
+            #{recTime} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from ArchiveRunLogs where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from ArchiveRunLogs where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        insert into ArchiveRunLogs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="procCode != null">
+                procCode ,
+        </if>
+        <if test="logDesc != null">
+                logDesc ,
+        </if>
+        <if test="recTime != null">
+                recTime 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="procCode != null">
+                #{procCode} ,
+        </if>
+        <if test="logDesc != null">
+                #{logDesc} ,
+        </if>
+        <if test="recTime != null">
+                #{recTime} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        update ArchiveRunLogs
+           <set>
+            <if test="procCode != null">
+                procCode = #{procCode} ,
+            </if>
+            <if test="logDesc != null">
+                logDesc = #{logDesc} ,
+            </if>
+            <if test="recTime != null">
+                recTime = #{recTime} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into ArchiveRunLogs(
+            procCode ,
+            logDesc ,
+            recTime 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.procCode} ,
+            #{item.logDesc} ,
+            #{item.recTime} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update ArchiveRunLogs set
+            procCode = #{item.procCode} ,
+            logDesc = #{item.logDesc} ,
+            recTime = #{item.recTime} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        update ArchiveRunLogs set
+            procCode = #{procCode} ,
+            logDesc = #{logDesc} ,
+            recTime = #{recTime} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        select <include refid="archiveRunLogsColumns"/> from ArchiveRunLogs a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        SELECT
+        <include refid="archiveRunLogsColumns"/>
+        FROM ArchiveRunLogs a WHERE 1=1
+        <if test="procCode != null">
+            and a.procCode = #{procCode}
+        </if>
+        <if test="logDesc != null">
+            and a.logDesc like '%'||#{logDesc}||'%'
+        </if>
+        <if test="recTime != null">
+            and a.recTime = #{recTime}
+        </if>
+        <if test="timeStart != null ">
+            and a.recTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.recTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.recTime desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.ArchiveRunLogs">
+        SELECT
+        <include refid="archiveRunLogsColumns"/>
+        FROM ArchiveRunLogs a WHERE 1=1
+    </select>
+
+
+</mapper>
+

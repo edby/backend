@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+    <description>Spring-WebSocket</description>
+
+    <!-- pureSpot_154444444402 -->
+    <bean id="pureSpot15402_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15402_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15402_Session"/>
+        <property name="topicConst" ref="pureSpot15402_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15402" handler="pureSpot15402_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444403 -->
+    <bean id="pureSpot15403_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15403_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15403_Session"/>
+        <property name="topicConst" ref="pureSpot15403_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15403" handler="pureSpot15403_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444404 -->
+    <bean id="pureSpot15404_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15404_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15404_Session"/>
+        <property name="topicConst" ref="pureSpot15404_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15404" handler="pureSpot15404_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444405 -->
+    <bean id="pureSpot15405_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15405_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15405_Session"/>
+        <property name="topicConst" ref="pureSpot15405_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15405" handler="pureSpot15405_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444406 -->
+    <bean id="pureSpot15406_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15406_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15406_Session"/>
+        <property name="topicConst" ref="pureSpot15406_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15406" handler="pureSpot15406_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444407 -->
+    <bean id="pureSpot15407_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15407_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15407_Session"/>
+        <property name="topicConst" ref="pureSpot15407_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15407" handler="pureSpot15407_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444408 -->
+    <bean id="pureSpot15408_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15408_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15408_Session"/>
+        <property name="topicConst" ref="pureSpot15408_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15408" handler="pureSpot15408_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444409 -->
+    <bean id="pureSpot15409_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15409_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15409_Session"/>
+        <property name="topicConst" ref="pureSpot15409_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15409" handler="pureSpot15409_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- pureSpot_154444444410 -->
+    <bean id="pureSpot15410_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot15410_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot15410_Session"/>
+        <property name="topicConst" ref="pureSpot15410_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot15410" handler="pureSpot15410_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- 全行情 -->
+    <bean id="allQuotationSessionConst" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="allQuotationWebSocketHandler"
+          class="com.blocain.bitms.trade.quotation.websocket.AllQuotationWebSocketHandler">
+        <property name="sessionConst" ref="allQuotationSessionConst"/>
+        <property name="topicConst" ref="allQuotationTopicConst" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/allRtQuotation" handler="allQuotationWebSocketHandler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+</beans>

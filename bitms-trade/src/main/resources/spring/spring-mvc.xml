@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <description>Spring-MVC配置</description>
+
+    <!-- 启用aspectj 代理 -->
+    <aop:aspectj-autoproxy/>
+
+    <mvc:default-servlet-handler/>
+
+    <!-- 静态资源映射-->
+    <mvc:resources mapping="/styles/**" location="/styles/" cache-period="2592000"/>
+    <mvc:resources mapping="/images/**" location="/images/" cache-period="2592000"/>
+    <mvc:resources mapping="/scripts/**" location="/scripts/" cache-period="2592000"/>
+    <mvc:resources mapping="/iconfont/**" location="/iconfont/" cache-period="2592000"/>
+
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:bitms.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:spring-mvc.properties"/>
+    <!-- 自动包扫描，只扫描Controller注解 -->
+    <context:component-scan base-package="com.blocain.bitms.trade">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- 默认的注解映射的支持-->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <ref bean="byteArrayHttpMessageConverter"/>
+            <ref bean="stringHttpMessageConverter"/>
+            <ref bean="fastJsonHttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <mvc:interceptors>
+        <!--RPC拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/client/**"/>
+            <bean class="com.blocain.bitms.security.interceptor.ClientApiInterceptor">
+                <property name="clientKey" value="${bitms.rpc.key.prop}"/>
+            </bean>
+        </mvc:interceptor>
+        <!-- CSRF 拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/client/**"/>
+            <mvc:exclude-mapping path="/scripts/**"/>
+            <mvc:exclude-mapping path="/styles/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/webjars/**"/>
+            <mvc:exclude-mapping path="/callback/**"/>
+            <mvc:exclude-mapping path="/v2/api-docs/**"/>
+            <mvc:exclude-mapping path="/swagger-ui.html/**"/>
+            <mvc:exclude-mapping path="/swagger-resources/**"/>
+            <bean class="com.blocain.bitms.security.interceptor.CSRFHandlerInterceptor">
+                <property name="redisTemplate" ref="redisTemplate"/>
+                <property name="csrfTokenManager" ref="csrfTokenManager"/>
+                <property name="accountLogNoSql" ref="accountLogNoSql"/>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- SwaggerConfig -->
+    <bean class="com.blocain.bitms.trade.common.swagger.SwaggerConfig"/>
+
+    <!-- csrf 令牌管理 -->
+    <bean id="csrfTokenManager" class="com.blocain.bitms.security.interceptor.CSRFTokenManager">
+        <property name="redisSessionManager" ref="redisSessionManager"/>
+    </bean>
+
+    <!-- CSRF 表单中加入隐藏CSRF token域   form 表单中加入隐藏form token域 -->
+    <bean name="requestDataValueProcessor" class="com.blocain.bitms.security.interceptor.CSRFDataValueProcessor">
+        <property name="csrfTokenManager" ref="csrfTokenManager"/>
+    </bean>
+
+    <bean id="byteArrayHttpMessageConverter" class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+
+    <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+        <constructor-arg value="UTF-8"/>
+        <property name="supportedMediaTypes">
+            <list>
+                <value>${web.content.html.type}</value>
+                <value>${web.content.text.type}</value>
+            </list>
+        </property>
+    </bean>
+    <!-- JSON支持，避免IE执行AJAX时,返回JSON出现下载文件 -->
+    <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>${web.content.html.type}</value>
+                <value>${web.content.text.type}</value>
+                <value>${web.content.json.type}</value>
+            </list>
+        </property>
+        <property name="fastJsonConfig">
+            <bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
+                <property name="serializerFeatures">
+                    <list>
+                        <value>WriterLongToString</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- 视图文件解析配置 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="5"/>
+        <property name="prefix" value="${web.view.prefix}"/>
+        <property name="suffix" value="${web.view.suffix}"/>
+    </bean>
+
+    <!-- 验证码服务 -->
+    <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+        <property name="config">
+            <bean class="com.google.code.kaptcha.util.Config">
+                <constructor-arg type="java.util.Properties">
+                    <props>
+                        <prop key="kaptcha.border">yes</prop>
+                        <prop key="kaptcha.image.width">200</prop>
+                        <prop key="kaptcha.image.height">50</prop>
+                        <prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.DefaultNoise</prop>
+                        <prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.WaterRipple</prop>
+                        <prop key="kaptcha.textproducer.font.size">30</prop>
+                        <prop key="kaptcha.textproducer.char.space">10</prop>
+                        <prop key="kaptcha.textproducer.font.color">red</prop>
+                        <prop key="kaptcha.textproducer.char.string">
+                            1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+                        </prop>
+                        <prop key="kaptcha.textproducer.char.length">6</prop>
+                    </props>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- 视图文件解析配置 -->
+    <bean id="handlerExceptionResolver" class="com.blocain.bitms.security.handler.HandlerMethodExceptionResolver">
+        <property name="order" value="1"/>
+        <property name="defaultErrorView" value="/error/500"/><!-- 错误页面 -->
+        <property name="messageConverters" ref="fastJsonHttpMessageConverter"/>
+    </bean>
+
+    <!-- 文件上传支持 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding">
+            <value>${web.encode}</value>
+        </property>
+        <property name="maxUploadSize">
+            <value>${web.max.size}</value>
+        </property>
+        <property name="maxInMemorySize">
+            <value>${web.upload.memory}</value>
+        </property>
+    </bean>
+
+    <!-- AOP式方法级权限检查-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!-- 定义国际化消息 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames" value="locale/message"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <!-- 基于Session的本地化解析器-->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <!--<property name="cookieDomain" value="${cookie.domain}"/>-->
+        <property name="cookieName" value="locale"/>
+        <property name="cookiePath" value="/"/>
+        <property name="defaultLocale" value="en_US"/>
+        <property name="cookieMaxAge" value="2592000"/>
+    </bean>
+
+</beans>

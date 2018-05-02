@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountCollectAddrCheckLogMapper">
+    <!-- 基础列 -->
+    <sql id="accountCollectAddrCheckLogColumns">
+        a.id as id,
+        a.collectAddrId as collectAddrId,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate
+    </sql>
+    <sql id="accountCollectAddrCheckLogJoinColumns">
+        a.id as id,
+        a.collectAddrId as collectAddrId,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        b.userName as userName,
+        b.trueName as trueName
+    </sql>
+    <resultMap id="accountCollectAddrCheckLogResultMap" type="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        <id column="id" property="id" />
+        <result column="collectAddrId" property="collectAddrId"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        insert into AccountCollectAddrCheckLog(
+            id ,
+            collectAddrId ,
+            remark ,
+            createBy ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{collectAddrId} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountCollectAddrCheckLog where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountCollectAddrCheckLog set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        insert into AccountCollectAddrCheckLog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="collectAddrId != null">
+                collectAddrId ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="collectAddrId != null">
+                #{collectAddrId} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        update AccountCollectAddrCheckLog
+           <set>
+            <if test="collectAddrId != null">
+                collectAddrId = #{collectAddrId} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountCollectAddrCheckLog(
+            id ,
+            collectAddrId ,
+            remark ,
+            createBy ,
+            createDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.collectAddrId} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountCollectAddrCheckLog set
+            collectAddrId = #{item.collectAddrId} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        update AccountCollectAddrCheckLog set
+            collectAddrId = #{collectAddrId} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        select <include refid="accountCollectAddrCheckLogColumns"/> from AccountCollectAddrCheckLog a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        SELECT
+        <include refid="accountCollectAddrCheckLogJoinColumns"/>
+        FROM AccountCollectAddrCheckLog a
+        left join UserInfo b on b.id=a.createBy
+        WHERE 1=1
+        <if test="collectAddrId != null">
+            and a.collectAddrId = #{collectAddrId}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        order by a.createDate desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountCollectAddrCheckLog">
+        SELECT
+        <include refid="accountCollectAddrCheckLogColumns"/>
+        FROM AccountCollectAddrCheckLog a WHERE 1=1
+    </select>
+
+
+</mapper>
+

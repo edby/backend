@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.system.mapper.ResourcesMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="resourcesColumns">
+        a.id as id,
+        a.parentId as parentId,
+        a.resCode as resCode,
+        a.resName as resName,
+        a.resDest as resDest,
+        a.type as type,
+        a.icon as icon,
+        a.sortNum as sortNum,
+        a.resUrl as resUrl,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        a.delFlag as delFlag
+    </sql>
+
+    <sql id="resourcesJoinColumns">
+        a.id as id,
+        a.parentId as parentId,
+        a.resCode as resCode,
+        a.resName as resName,
+        a.resDest as resDest,
+        a.type as type,
+        a.icon as icon,
+        a.sortNum as sortNum,
+        a.resUrl as resUrl,
+        a.createBy as createBy,
+        b.trueName as createByName,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        a.delFlag as delFlag
+    </sql>
+
+    <resultMap id="resourcesResultMap" type="com.blocain.bitms.boss.system.entity.Resources">
+        <id column="a.id" property="id" />
+        <result column="a.parentId" property="parentId"/>
+        <result column="a.resCode" property="resCode"/>
+        <result column="a.resName" property="resName"/>
+        <result column="a.resDest" property="resDest"/>
+        <result column="a.type" property="type"/>
+        <result column="a.icon" property="icon"/>
+        <result column="a.sortNum" property="sortNum"/>
+        <result column="a.resUrl" property="resUrl"/>
+        <result column="a.createBy" property="createBy"/>
+        <result column="a.createDate" property="createDate"/>
+        <result column="a.updateBy" property="updateBy"/>
+        <result column="a.updateDate" property="updateDate"/>
+        <result column="a.delFlag" property="delFlag"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.system.entity.Resources">
+        insert into Resources(
+            id ,
+            parentId ,
+            resCode ,
+            resName ,
+            resDest ,
+            type ,
+            icon ,
+            sortNum ,
+            resUrl ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate ,
+            delFlag 
+        ) VALUES (
+            #{id} ,
+            #{parentId} ,
+            #{resCode} ,
+            #{resName} ,
+            #{resDest} ,
+            #{type} ,
+            #{icon} ,
+            #{sortNum} ,
+            #{resUrl} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{updateBy} ,
+            #{updateDate} ,
+            #{delFlag} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Resources where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update Resources set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.system.entity.Resources">
+        insert into Resources
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="parentId != null">
+                parentId ,
+            </if>
+            <if test="resCode != null">
+                resCode ,
+            </if>
+            <if test="resName != null">
+                resName ,
+            </if>
+            <if test="resDest != null">
+                resDest ,
+            </if>
+            <if test="type != null">
+                type ,
+            </if>
+            <if test="icon != null">
+                icon ,
+            </if>
+            <if test="sortNum != null">
+                sortNum ,
+            </if>
+            <if test="resUrl != null">
+                resUrl ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateBy != null">
+                updateBy ,
+            </if>
+            <if test="updateDate != null">
+                updateDate ,
+            </if>
+            <if test="delFlag != null">
+                delFlag
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="parentId != null">
+                #{parentId} ,
+            </if>
+            <if test="resCode != null">
+                #{resCode} ,
+            </if>
+            <if test="resName != null">
+                #{resName} ,
+            </if>
+            <if test="resDest != null">
+                #{resDest} ,
+            </if>
+            <if test="type != null">
+                #{type} ,
+            </if>
+            <if test="icon != null">
+                #{icon} ,
+            </if>
+            <if test="sortNum != null">
+                #{sortNum} ,
+            </if>
+            <if test="resUrl != null">
+                #{resUrl} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate} ,
+            </if>
+            <if test="delFlag != null">
+                #{delFlag}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.system.entity.Resources">
+        update Resources
+        <set>
+            <if test="parentId != null">
+                parentId = #{parentId} ,
+            </if>
+            <if test="resCode != null">
+                resCode = #{resCode} ,
+            </if>
+            <if test="resName != null">
+                resName = #{resName} ,
+            </if>
+            <if test="resDest != null">
+                resDest = #{resDest} ,
+            </if>
+            <if test="type != null">
+                type = #{type} ,
+            </if>
+            <if test="icon != null">
+                icon = #{icon} ,
+            </if>
+            <if test="sortNum != null">
+                sortNum = #{sortNum} ,
+            </if>
+            <if test="resUrl != null">
+                resUrl = #{resUrl} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} ,
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Resources(
+        id ,
+        parentId ,
+        resCode ,
+        resName ,
+        resDest ,
+        type ,
+        icon ,
+        sortNum ,
+        resUrl ,
+        createBy ,
+        createDate ,
+        updateBy ,
+        updateDate ,
+        delFlag
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.parentId} ,
+            #{item.resCode} ,
+            #{item.resName} ,
+            #{item.resDest} ,
+            #{item.type} ,
+            #{item.icon} ,
+            #{item.sortNum} ,
+            #{item.resUrl} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.updateBy} ,
+            #{item.updateDate} ,
+            #{item.delFlag}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Resources set
+            parentId = #{item.parentId} ,
+            resCode = #{item.resCode} ,
+            resName = #{item.resName} ,
+            resDest = #{item.resDest} ,
+            type = #{item.type} ,
+            icon = #{item.icon} ,
+            sortNum = #{item.sortNum} ,
+            resUrl = #{item.resUrl} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            updateBy = #{item.updateBy} ,
+            updateDate = #{item.updateDate} ,
+            delFlag = #{item.delFlag}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.system.entity.Resources">
+        update Resources set
+            parentId = #{parentId} ,
+            resCode = #{resCode} ,
+            resName = #{resName} ,
+            resDest = #{resDest} ,
+            type = #{type} ,
+            icon = #{icon} ,
+            sortNum = #{sortNum} ,
+            resUrl = #{resUrl} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            updateBy = #{updateBy} ,
+            updateDate = #{updateDate} ,
+            delFlag = #{delFlag} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.boss.system.entity.Resources">
+        select <include refid="resourcesColumns"/> from Resources a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.system.entity.Resources">
+        SELECT
+        <include refid="resourcesJoinColumns"/>
+        FROM Resources a LEFT JOIN UserInfo b
+        ON  a.createBy = b.id
+        WHERE a.delFlag = 0
+        <if test="parentId != null">
+            and a.parentId = #{parentId}
+        </if>
+        <if test="resCode != null">
+            and a.resCode like '%'||#{resCode}||'%'
+        </if>
+        <if test="resName != null">
+            and a.resName like '%'||#{resName}||'%'
+        </if>
+        <if test="type != null">
+            and a.type = #{type}
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateBy != null">
+            and a.updateBy = #{updateBy}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+        order by sortNum
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.system.entity.Resources">
+        SELECT
+        <include refid="resourcesColumns"/>
+        FROM Resources a WHERE a.delFlag = 0
+    </select>
+
+    <select id="findByRoleId" resultType="com.blocain.bitms.boss.system.entity.Resources" useCache="false">
+        SELECT
+        <include refid="resourcesColumns"/>
+        FROM Resources a, RoleRes b
+        WHERE a.id = b.resId
+        AND b.roleId = #{roleId}
+        AND a.delFlag = 0
+        order by a.sortNum
+    </select>
+
+    <select id="findByParentId" parameterType="hashmap" resultType="com.blocain.bitms.boss.system.entity.Resources">
+        SELECT
+        <include refid="resourcesColumns"/>
+        FROM Resources a
+        WHERE a.delFlag = 0
+        <if test="parentId != null and parentId != ''">
+            AND a.parentId =  #{parentId}
+        </if>
+    </select>
+
+
+</mapper>
+

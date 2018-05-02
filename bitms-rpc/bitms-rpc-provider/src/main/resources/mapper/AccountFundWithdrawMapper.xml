@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountFundWithdrawMapper">
+    <!-- 基础列 -->
+    <sql id="accountFundWithdrawColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.withdrawDate as withdrawDate,
+        a.withdrawAddr as withdrawAddr,
+        a.withdrawAddrAuth as withdrawAddrAuth,
+        a.withdrawAmt as withdrawAmt,
+        a.netFee as netFee,
+        a.status as status,
+        a.confirmCode as confirmCode,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="accountFundWithdrawJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.withdrawDate as withdrawDate,
+        a.withdrawAddr as withdrawAddr,
+        a.withdrawAddrAuth as withdrawAddrAuth,
+        a.withdrawAmt as withdrawAmt,
+        a.netFee as netFee,
+        a.status as status,
+        a.confirmCode as confirmCode,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        b.confirmStatus as confirmStatus
+    </sql>
+
+    <resultMap id="accountFundWithdrawResultMap" type="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        <id column="id" property="id"/>
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="withdrawDate" property="withdrawDate"/>
+        <result column="withdrawAddr" property="withdrawAddr"/>
+        <result column="withdrawAddrAuth" property="withdrawAddrAuth"/>
+        <result column="withdrawAmt" property="withdrawAmt"/>
+        <result column="netFee" property="netFee"/>
+        <result column="status" property="status"/>
+        <result column="confirmCode" property="confirmCode"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        insert into AccountFundWithdraw(
+            id ,
+            accountId ,
+            stockinfoId ,
+            withdrawDate ,
+            withdrawAddr ,
+            withdrawAddrAuth ,
+            withdrawAmt ,
+            netFee ,
+            status ,
+            confirmCode ,
+            sign ,
+            randomKey ,
+            remark ,
+            createBy ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{withdrawDate} ,
+            #{withdrawAddr} ,
+            #{withdrawAddrAuth} ,
+            #{withdrawAmt} ,
+            #{netFee} ,
+            #{status} ,
+            #{confirmCode} ,
+            #{sign} ,
+            #{randomKey} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountFundWithdraw where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountFundWithdraw set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        insert into AccountFundWithdraw
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="withdrawDate != null">
+                withdrawDate ,
+            </if>
+            <if test="withdrawAddr != null">
+                withdrawAddr ,
+            </if>
+            <if test="withdrawAddrAuth != null">
+                withdrawAddrAuth ,
+            </if>
+            <if test="withdrawAmt != null">
+                withdrawAmt ,
+            </if>
+            <if test="netFee != null">
+                netFee ,
+            </if>
+            <if test="status != null">
+                status ,
+            </if>
+            <if test="confirmCode != null">
+                confirmCode ,
+            </if>
+
+            <if test="sign != null">
+                sign ,
+            </if>
+            <if test="randomKey != null">
+                randomKey ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="withdrawDate != null">
+                #{withdrawDate} ,
+            </if>
+            <if test="withdrawAddr != null">
+                #{withdrawAddr} ,
+            </if>
+            <if test="withdrawAddrAuth != null">
+                #{withdrawAddrAuth} ,
+            </if>
+            <if test="withdrawAmt != null">
+                #{withdrawAmt} ,
+            </if>
+            <if test="netFee != null">
+                #{netFee} ,
+            </if>
+            <if test="status != null">
+                #{status} ,
+            </if>
+            <if test="confirmCode != null">
+                #{confirmCode} ,
+            </if>
+            <if test="sign != null">
+                #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        update AccountFundWithdraw
+        <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="withdrawDate != null">
+                withdrawDate = #{withdrawDate} ,
+            </if>
+            <if test="withdrawAddr != null">
+                withdrawAddr = #{withdrawAddr} ,
+            </if>
+            <if test="withdrawAddrAuth != null">
+                withdrawAddrAuth = #{withdrawAddrAuth} ,
+            </if>
+            <if test="withdrawAmt != null">
+                withdrawAmt = #{withdrawAmt} ,
+            </if>
+            <if test="netFee != null">
+                netFee = #{netFee} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="confirmCode != null">
+                confirmCode = #{confirmCode} ,
+            </if>
+
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountFundWithdraw(
+        id ,
+        accountId ,
+        stockinfoId ,
+        withdrawDate ,
+        withdrawAddr ,
+        withdrawAddrAuth ,
+        withdrawAmt ,
+        netFee ,
+        status ,
+        confirmCode ,
+        sign ,
+        randomKey ,
+        remark ,
+        createBy ,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.withdrawDate} ,
+            #{item.withdrawAddr} ,
+            #{item.withdrawAddrAuth} ,
+            #{item.withdrawAmt} ,
+            #{item.netFee} ,
+            #{item.status} ,
+            #{item.confirmCode} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountFundWithdraw set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            withdrawDate = #{item.withdrawDate} ,
+            withdrawAddr = #{item.withdrawAddr} ,
+            withdrawAddrAuth = #{item.withdrawAddrAuth} ,
+            withdrawAmt = #{item.withdrawAmt} ,
+            netFee = #{item.netFee} ,
+            status = #{item.status} ,
+            confirmCode = #{item.confirmCode},
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        update AccountFundWithdraw set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            withdrawDate = #{withdrawDate} ,
+            withdrawAddr = #{withdrawAddr} ,
+            withdrawAddrAuth = #{withdrawAddrAuth} ,
+            withdrawAmt = #{withdrawAmt} ,
+            netFee = #{netFee} ,
+            status = #{status} ,
+            confirmCode = #{confirmCode},
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        select
+        <include refid="accountFundWithdrawColumns"/>
+        from AccountFundWithdraw a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        SELECT
+        <include refid="accountFundWithdrawJoinColumns"/>
+        FROM AccountFundWithdraw a
+        left join  AccountFundTransfer b on b.originalCurrentId = a.id
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountFundWithdraw">
+        SELECT
+        <include refid="accountFundWithdrawColumns"/>
+        FROM AccountFundWithdraw a WHERE 1=1
+    </select>
+
+
+</mapper>
+

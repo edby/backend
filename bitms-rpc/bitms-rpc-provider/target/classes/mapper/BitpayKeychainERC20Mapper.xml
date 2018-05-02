@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.bitpay.mapper.BitpayKeychainERC20Mapper">
+    <!-- 基础列 -->
+    <sql id="bitpayKeychainERC20Columns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletId as walletId,
+        a.walletName as walletName,
+        a.walletPwd as walletPwd,
+        a.walletType as walletType,
+        a.coin as coin,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="bitpayKeychainERC20JoinColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletId as walletId,
+        a.walletName as walletName,
+        a.walletPwd as walletPwd,
+        a.walletType as walletType,
+        a.coin as coin,
+        a.createDate as createDate,
+        b.stockName as stockName
+    </sql>
+
+    <resultMap id="bitpayKeychainERC20ResultMap" type="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        <id column="id" property="id" />
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="walletId" property="walletId"/>
+        <result column="walletName" property="walletName"/>
+        <result column="walletPwd" property="walletPwd"/>
+        <result column="walletType" property="walletType"/>
+        <result column="coin" property="coin"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        insert into BitpayKeychainERC20(
+            id ,
+            stockinfoId ,
+            walletId ,
+            walletName ,
+            walletPwd ,
+            walletType ,
+            coin ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{stockinfoId} ,
+            #{walletId} ,
+            #{walletName} ,
+            #{walletPwd} ,
+            #{walletType} ,
+            #{coin} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from BitpayKeychainERC20 where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from BitpayKeychainERC20 where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        insert into BitpayKeychainERC20
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="walletId != null">
+                walletId ,
+        </if>
+        <if test="walletName != null">
+                walletName ,
+        </if>
+        <if test="walletPwd != null">
+                walletPwd ,
+        </if>
+        <if test="walletType != null">
+                walletType ,
+        </if>
+        <if test="coin != null">
+                coin ,
+        </if>
+        <if test="createDate != null">
+                createDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="walletId != null">
+                #{walletId} ,
+        </if>
+        <if test="walletName != null">
+                #{walletName} ,
+        </if>
+        <if test="walletPwd != null">
+                #{walletPwd} ,
+        </if>
+        <if test="walletType != null">
+                #{walletType} ,
+        </if>
+        <if test="coin != null">
+                #{coin} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        update BitpayKeychainERC20
+           <set>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="walletId != null">
+                walletId = #{walletId} ,
+            </if>
+            <if test="walletName != null">
+                walletName = #{walletName} ,
+            </if>
+            <if test="walletPwd != null">
+                walletPwd = #{walletPwd} ,
+            </if>
+            <if test="walletType != null">
+                walletType = #{walletType} ,
+            </if>
+            <if test="coin != null">
+                coin = #{coin} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into BitpayKeychainERC20(
+            id ,
+            stockinfoId ,
+            walletId ,
+            walletName ,
+            walletPwd ,
+            walletType ,
+            coin ,
+            createDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.stockinfoId} ,
+            #{item.walletId} ,
+            #{item.walletName} ,
+            #{item.walletPwd} ,
+            #{item.walletType} ,
+            #{item.coin} ,
+            #{item.createDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update BitpayKeychainERC20 set
+            stockinfoId = #{item.stockinfoId} ,
+            walletId = #{item.walletId} ,
+            walletName = #{item.walletName} ,
+            walletPwd = #{item.walletPwd} ,
+            walletType = #{item.walletType} ,
+            coin = #{item.coin} ,
+            createDate = #{item.createDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        update BitpayKeychainERC20 set
+            stockinfoId = #{stockinfoId} ,
+            walletId = #{walletId} ,
+            walletName = #{walletName} ,
+            walletPwd = #{walletPwd} ,
+            walletType = #{walletType} ,
+            coin = #{coin} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        select <include refid="bitpayKeychainERC20Columns"/> from BitpayKeychainERC20 a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        SELECT
+        <include refid="bitpayKeychainERC20Columns"/>
+        FROM BitpayKeychainERC20 a WHERE 1=1
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="walletName != null">
+            and a.walletName like '%'||#{walletName}||'%'
+        </if>
+
+        <if test="walletType != null">
+            and a.walletType = #{walletType}
+        </if>
+        <if test="coin != null">
+            and a.coin =#{coin}
+        </if>
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findJoinList" resultType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        SELECT
+        <include refid="bitpayKeychainERC20JoinColumns"/>
+        FROM BitpayKeychainERC20 a ,Stockinfo b WHERE 1=1
+        and a.stockinfoid = b.id
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="walletName != null">
+            and a.walletName like '%'||#{walletName}||'%'
+        </if>
+
+        <if test="walletType != null">
+            and a.walletType = #{walletType}
+        </if>
+        <if test="coin != null">
+            and a.coin =#{coin}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.bitpay.entity.BitpayKeychainERC20">
+        SELECT
+        <include refid="bitpayKeychainERC20Columns"/>
+        FROM BitpayKeychainERC20 a WHERE 1=1
+    </select>
+
+
+</mapper>
+

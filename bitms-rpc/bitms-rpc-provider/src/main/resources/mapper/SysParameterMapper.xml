@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.common.mapper.SysParameterMapper">
+    <cache eviction="FIFO" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="sysParameterColumns">
+        a.id as id,
+        a.systemName as systemName,
+        a.parameterName as parameterName,
+        a.describe as describe,
+        a.division as division,
+        a.type as type,
+        a.valueBound as valueBound,
+        a.value as value,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="sysParameterJoinColumns">
+        a.id as id,
+        a.systemName as systemName,
+        a.parameterName as parameterName,
+        a.describe as describe,
+        a.division as division,
+        a.type as type,
+        a.valueBound as valueBound,
+        a.value as value,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        b.trueName as createByName,
+        c.trueName as updateByName
+    </sql>
+
+    <resultMap id="sysParameterResultMap" type="com.blocain.bitms.boss.common.entity.SysParameter">
+        <id column="id" property="id"/>
+        <result column="systemName" property="systemName"/>
+        <result column="parameterName" property="parameterName"/>
+        <result column="describe" property="describe"/>
+        <result column="division" property="division"/>
+        <result column="type" property="type"/>
+        <result column="valueBound" property="valueBound"/>
+        <result column="value" property="value"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.common.entity.SysParameter">
+        insert into SysParameter(
+            id ,
+            systemName ,
+            parameterName ,
+            describe ,
+            division ,
+            type ,
+            valueBound ,
+            value ,
+            remark ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{systemName} ,
+            #{parameterName} ,
+            #{describe} ,
+            #{division} ,
+            #{type} ,
+            #{valueBound} ,
+            #{value} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{updateBy} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SysParameter where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SysParameter set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.common.entity.SysParameter">
+        insert into SysParameter
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="systemName != null">
+                systemName ,
+            </if>
+            <if test="parameterName != null">
+                parameterName ,
+            </if>
+            <if test="describe != null">
+                describe ,
+            </if>
+            <if test="division != null">
+                division ,
+            </if>
+            <if test="type != null">
+                type ,
+            </if>
+            <if test="valueBound != null">
+                valueBound ,
+            </if>
+            <if test="value != null">
+                value ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateBy != null">
+                updateBy ,
+            </if>
+            <if test="updateDate != null">
+                updateDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="systemName != null">
+                #{systemName} ,
+            </if>
+            <if test="parameterName != null">
+                #{parameterName} ,
+            </if>
+            <if test="describe != null">
+                #{describe} ,
+            </if>
+            <if test="division != null">
+                #{division} ,
+            </if>
+            <if test="type != null">
+                #{type} ,
+            </if>
+            <if test="valueBound != null">
+                #{valueBound} ,
+            </if>
+            <if test="value != null">
+                #{value} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.common.entity.SysParameter">
+        update SysParameter
+        <set>
+            <if test="systemName != null">
+                systemName = #{systemName} ,
+            </if>
+            <if test="parameterName != null">
+                parameterName = #{parameterName} ,
+            </if>
+            <if test="describe != null">
+                describe = #{describe} ,
+            </if>
+            <if test="division != null">
+                division = #{division} ,
+            </if>
+            <if test="type != null">
+                type = #{type} ,
+            </if>
+            <if test="valueBound != null">
+                valueBound = #{valueBound} ,
+            </if>
+            <if test="value != null">
+                value = #{value} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SysParameter(
+        id ,
+        systemName ,
+        parameterName ,
+        describe ,
+        division ,
+        type ,
+        valueBound ,
+        value ,
+        remark ,
+        createBy ,
+        createDate ,
+        updateBy ,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.systemName} ,
+            #{item.parameterName} ,
+            #{item.describe} ,
+            #{item.division} ,
+            #{item.type} ,
+            #{item.valueBound} ,
+            #{item.value} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.updateBy} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SysParameter set
+            systemName = #{item.systemName} ,
+            parameterName = #{item.parameterName} ,
+            describe = #{item.describe} ,
+            division = #{item.division} ,
+            type = #{item.type} ,
+            valueBound = #{item.valueBound} ,
+            value = #{item.value} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            updateBy = #{item.updateBy} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.common.entity.SysParameter">
+        update SysParameter set
+            systemName = #{systemName} ,
+            parameterName = #{parameterName} ,
+            describe = #{describe} ,
+            division = #{division} ,
+            type = #{type} ,
+            valueBound = #{valueBound} ,
+            value = #{value} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            updateBy = #{updateBy} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.boss.common.entity.SysParameter">
+        select
+        <include refid="sysParameterColumns"/>
+        from SysParameter a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.common.entity.SysParameter"  useCache="false">
+        SELECT
+        <include refid="sysParameterJoinColumns"/>
+        FROM SysParameter a left join UserInfo b on a.createBy = b.id
+        left join UserInfo c on a.updateBy = c.id WHERE 1=1
+        <if test="systemName != null">
+            and a.systemName like '%'||#{systemName}||'%'
+        </if>
+        <if test="parameterName != null">
+            and a.parameterName like '%'||#{parameterName}||'%'
+        </if>
+        <if test="describe != null">
+            and a.describe like '%'||#{describe}||'%'
+        </if>
+        <if test="division != null">
+            and a.division like '%'||#{division}||'%'
+        </if>
+        <if test="type != null and type != ''">
+            and a.type like '%'||#{type}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.common.entity.SysParameter">
+        SELECT
+        <include refid="sysParameterColumns"/>
+        FROM SysParameter a WHERE 1=1
+    </select>
+
+    <!-- 多个参数查多个参数值  -->
+    <select id="getSysValueByParams" parameterType="map" resultType="com.blocain.bitms.boss.common.entity.SysParameter">
+        SELECT
+        <include refid="sysParameterColumns"/>
+        FROM SysParameter a WHERE systemName=#{systemName}
+        <if test="params !=null and params!=''">
+            and a.parameterName in
+            <foreach item="item" collection="params" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <!-- 根据条件获取实体 -->
+    <select id="getSysParameterByEntity" parameterType="com.blocain.bitms.boss.common.entity.SysParameter"
+            resultType="com.blocain.bitms.boss.common.entity.SysParameter">
+        select
+        <include refid="sysParameterColumns"/>
+        from SysParameter a where 1=1
+        <if test="systemName != null and systemName != ''">
+            and a.systemName = #{systemName}
+        </if>
+        <if test="parameterName != null and parameterName != ''">
+            and a.parameterName = #{parameterName}
+        </if>
+
+    </select>
+
+</mapper>
+

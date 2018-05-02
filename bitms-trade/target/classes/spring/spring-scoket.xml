@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+    <description>Spring-WebSocket</description>
+
+    <!-- btc2eur pureSpot_133333333302 -->
+    <bean id="pureSpot302_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot302_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot302_Session"/>
+        <property name="topicConst" ref="pureSpot302_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot302" handler="pureSpot302_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- biex2btc pureSpot_144444444402 -->
+    <bean id="pureSpot402_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot402_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot402_Session"/>
+        <property name="topicConst" ref="pureSpot402_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot402" handler="pureSpot402_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- eth2btc pureSpot_144444444403 -->
+    <bean id="pureSpot403_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="pureSpot403_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="pureSpot403_Session"/>
+        <property name="topicConst" ref="pureSpot403_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/pureSpot403" handler="pureSpot403_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- btc2usd leveragedSpot_155555555502 -->
+    <bean id="leveragedSpot502_Session" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="leveragedSpot502_Handler"
+          class="com.blocain.bitms.trade.quotation.websocket.QuotationWebSocketHandler">
+        <property name="sessionConst" ref="leveragedSpot502_Session"/>
+        <property name="topicConst" ref="leveragedSpot502_Topic" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/leveragedSpot502" handler="leveragedSpot502_Handler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+    <!-- 全行情 -->
+    <bean id="allQuotationSessionConst" class="com.blocain.bitms.trade.quotation.consts.SessionConst"/>
+    <bean id="allQuotationWebSocketHandler"
+          class="com.blocain.bitms.trade.quotation.websocket.AllQuotationWebSocketHandler">
+        <property name="sessionConst" ref="allQuotationSessionConst"/>
+        <property name="topicConst" ref="allQuotationTopicConst" />
+    </bean>
+    <websocket:handlers allowed-origins="*">
+        <websocket:mapping path="/ws/allRtQuotation" handler="allQuotationWebSocketHandler"/>
+        <websocket:handshake-interceptors>
+            <bean class="com.blocain.bitms.trade.quotation.interceptor.HandshakeInterceptor"/>
+        </websocket:handshake-interceptors>
+    </websocket:handlers>
+
+
+</beans>

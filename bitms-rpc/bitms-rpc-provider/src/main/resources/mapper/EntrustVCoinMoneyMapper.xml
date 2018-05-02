@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.trade.mapper.EntrustVCoinMoneyMapper">
+    <!-- 基础列 -->
+    <sql id="entrustVCoinMoneyColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.entrustTime as entrustTime,
+        a.entrustSource as entrustSource,
+        a.businessFlag as businessFlag,
+        a.tradeType as tradeType,
+        a.entrustType as entrustType,
+        a.entrustDirect as entrustDirect,
+        a.entrustStockinfoId as entrustStockinfoId,
+        a.entrustRelatedStockinfoId as entrustRelatedStockinfoId,
+        a.entrustAmt as entrustAmt,
+        a.entrustPrice as entrustPrice,
+        a.entrustRemark as entrustRemark,
+        a.entrustAccountType as entrustAccountType,
+        a.feeRate as feeRate,
+        a.feeStockinfoId as feeStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealBalance as dealBalance,
+        a.dealFee as dealFee,
+        a.status as status,
+        a.updateTime as updateTime,
+        a.remark as remark
+    </sql>
+
+    <sql id="entrustVCoinMoneyJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.entrustTime as entrustTime,
+        a.entrustSource as entrustSource,
+        a.businessFlag as businessFlag,
+        a.tradeType as tradeType,
+        a.entrustType as entrustType,
+        a.entrustDirect as entrustDirect,
+        a.entrustStockinfoId as entrustStockinfoId,
+        a.entrustRelatedStockinfoId as entrustRelatedStockinfoId,
+        a.entrustAmt as entrustAmt,
+        a.entrustPrice as entrustPrice,
+        a.entrustRemark as entrustRemark,
+        a.entrustAccountType as entrustAccountType,
+        a.feeRate as feeRate,
+        a.feeStockinfoId as feeStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealBalance as dealBalance,
+        a.dealFee as dealFee,
+        a.status as status,
+        a.updateTime as updateTime,
+        a.remark as remark,
+        b.accountName as accountName
+    </sql>
+
+    <sql id="entrustVCoinMoneyJoin2Columns">
+        a.id as id,
+        a.accountId as accountId,
+        a.entrustTime as entrustTime,
+        a.entrustSource as entrustSource,
+        a.businessFlag as businessFlag,
+        a.tradeType as tradeType,
+        a.entrustType as entrustType,
+        a.entrustDirect as entrustDirect,
+        a.entrustStockinfoId as entrustStockinfoId,
+        a.entrustRelatedStockinfoId as entrustRelatedStockinfoId,
+        a.entrustAmt as entrustAmt,
+        a.entrustPrice as entrustPrice,
+        a.entrustRemark as entrustRemark,
+        a.entrustAccountType as entrustAccountType,
+        a.feeRate as feeRate,
+        a.feeStockinfoId as feeStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealBalance as dealBalance,
+        a.dealFee as dealFee,
+        a.status as status,
+        a.updateTime as updateTime,
+        a.remark as remark,
+        b.stockCode as stockCode,
+        b.stockName as stockName,
+        c.accountName as accountName
+    </sql>
+    <!-- 过滤用户敏感信息 -->
+    <sql id="entrustVCoinMoneyJoinNoAccountHisColumns">
+        a.id as id,
+        a.entrustTime as entrustTime,
+        a.entrustSource as entrustSource,
+        a.businessFlag as businessFlag,
+        a.tradeType as tradeType,
+        a.entrustType as entrustType,
+        a.entrustDirect as entrustDirect,
+        a.entrustStockinfoId as entrustStockinfoId,
+        a.entrustRelatedStockinfoId as entrustRelatedStockinfoId,
+        a.entrustAmt as entrustAmt,
+        a.entrustPrice as entrustPrice,
+        a.entrustRemark as entrustRemark,
+        a.entrustAccountType as entrustAccountType,
+        a.feeRate as feeRate,
+        a.feeStockinfoId as feeStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealBalance as dealBalance,
+        a.dealFee as dealFee,
+        a.status as status,
+        a.updateTime as updateTime,
+        a.remark as remark,
+        b.stockCode as stockCode,
+        b.stockName as stockName
+    </sql>
+    <sql id="entrustVCoinMoneyJoinNoAccountDoingColumns">
+        a.id as id,
+        a.entrustTime as entrustTime,
+        a.entrustSource as entrustSource,
+        a.businessFlag as businessFlag,
+        a.tradeType as tradeType,
+        a.entrustType as entrustType,
+        a.entrustDirect as entrustDirect,
+        a.entrustStockinfoId as entrustStockinfoId,
+        a.entrustRelatedStockinfoId as entrustRelatedStockinfoId,
+        a.entrustAmt as entrustAmt,
+        a.entrustPrice as entrustPrice,
+        a.entrustRemark as entrustRemark,
+        a.entrustAccountType as entrustAccountType,
+        a.feeRate as feeRate,
+        a.feeStockinfoId as feeStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealBalance as dealBalance,
+        a.dealFee as dealFee,
+        a.status as status,
+        a.updateTime as updateTime,
+        a.remark as remark
+    </sql>
+    <resultMap id="entrustVCoinMoneyResultMap" type="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="entrustTime" property="entrustTime"/>
+        <result column="entrustSource" property="entrustSource"/>
+        <result column="businessFlag" property="businessFlag"/>
+        <result column="tradeType" property="tradeType"/>
+        <result column="entrustType" property="entrustType"/>
+        <result column="entrustDirect" property="entrustDirect"/>
+        <result column="entrustStockinfoId" property="entrustStockinfoId"/>
+        <result column="entrustRelatedStockinfoId" property="entrustRelatedStockinfoId"/>
+        <result column="entrustAmt" property="entrustAmt"/>
+        <result column="entrustPrice" property="entrustPrice"/>
+        <result column="entrustRemark" property="entrustRemark"/>
+        <result column="entrustAccountType" property="entrustAccountType"/>
+        <result column="feeRate" property="feeRate"/>
+        <result column="feeStockinfoId" property="feeStockinfoId"/>
+        <result column="dealAmt" property="dealAmt"/>
+        <result column="dealBalance" property="dealBalance"/>
+        <result column="dealFee" property="dealFee"/>
+        <result column="status" property="status"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        insert into ${tableName}(
+            id ,
+            accountId ,
+            entrustTime ,
+            entrustSource ,
+            businessFlag ,
+            tradeType ,
+            entrustType ,
+            entrustDirect ,
+            entrustStockinfoId ,
+            entrustRelatedStockinfoId ,
+            entrustAmt ,
+            entrustPrice ,
+            entrustRemark ,
+            entrustAccountType ,
+            feeRate ,
+            feeStockinfoId ,
+            dealAmt ,
+            dealBalance ,
+            dealFee ,
+            status ,
+            updateTime ,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            systimestamp ,
+            #{entrustSource} ,
+            #{businessFlag} ,
+            #{tradeType} ,
+            #{entrustType} ,
+            #{entrustDirect} ,
+            #{entrustStockinfoId} ,
+            #{entrustRelatedStockinfoId},
+            #{entrustAmt} ,
+            #{entrustPrice} ,
+            #{entrustRemark} ,
+            #{entrustAccountType} ,
+            #{feeRate} ,
+            #{feeStockinfoId} ,
+            #{dealAmt} ,
+            #{dealBalance} ,
+            #{dealFee} ,
+            #{status} ,
+            #{updateTime} ,
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from ${tableName} where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        delete from ${tableName} where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        insert into ${tableName}
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="entrustTime != null">
+                entrustTime ,
+        </if>
+        <if test="entrustSource != null">
+                entrustSource ,
+        </if>
+        <if test="businessFlag != null">
+                businessFlag ,
+        </if>
+        <if test="tradeType != null">
+                tradeType ,
+        </if>
+        <if test="entrustType != null">
+                entrustType ,
+        </if>
+        <if test="entrustDirect != null">
+                entrustDirect ,
+        </if>
+        <if test="entrustStockinfoId != null">
+                entrustStockinfoId ,
+        </if>
+            <if test="entrustRelatedStockinfoId!=null">
+                entrustRelatedStockinfoId,
+            </if>
+        <if test="entrustAmt != null">
+                entrustAmt ,
+        </if>
+        <if test="entrustPrice != null">
+                entrustPrice ,
+        </if>
+        <if test="entrustRemark != null">
+                entrustRemark ,
+        </if>
+        <if test="entrustAccountType != null">
+                entrustAccountType ,
+        </if>
+        <if test="feeRate != null">
+                feeRate ,
+        </if>
+        <if test="feeStockinfoId != null">
+                feeStockinfoId ,
+        </if>
+        <if test="dealAmt != null">
+                dealAmt ,
+        </if>
+        <if test="dealBalance != null">
+                dealBalance ,
+        </if>
+        <if test="dealFee != null">
+                dealFee ,
+        </if>
+        <if test="status != null">
+                status ,
+        </if>
+        <if test="updateTime != null">
+                updateTime ,
+        </if>
+        <if test="remark != null">
+                remark 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="entrustTime != null">
+                systimestamp ,
+        </if>
+        <if test="entrustSource != null">
+                #{entrustSource} ,
+        </if>
+        <if test="businessFlag != null">
+                #{businessFlag} ,
+        </if>
+        <if test="tradeType != null">
+                #{tradeType} ,
+        </if>
+        <if test="entrustType != null">
+                #{entrustType} ,
+        </if>
+        <if test="entrustDirect != null">
+                #{entrustDirect} ,
+        </if>
+        <if test="entrustStockinfoId != null">
+                #{entrustStockinfoId} ,
+        </if>
+            <if test="entrustRelatedStockinfoId!=null">
+                #{entrustRelatedStockinfoId},
+            </if>
+        <if test="entrustAmt != null">
+                #{entrustAmt} ,
+        </if>
+        <if test="entrustPrice != null">
+                #{entrustPrice} ,
+        </if>
+        <if test="entrustRemark != null">
+                #{entrustRemark} ,
+        </if>
+        <if test="entrustAccountType != null">
+                #{entrustAccountType} ,
+        </if>
+        <if test="feeRate != null">
+                #{feeRate} ,
+        </if>
+        <if test="feeStockinfoId != null">
+                #{feeStockinfoId} ,
+        </if>
+        <if test="dealAmt != null">
+                #{dealAmt} ,
+        </if>
+        <if test="dealBalance != null">
+                #{dealBalance} ,
+        </if>
+        <if test="dealFee != null">
+                #{dealFee} ,
+        </if>
+        <if test="status != null">
+                #{status} ,
+        </if>
+        <if test="updateTime != null">
+                #{updateTime} ,
+        </if>
+        <if test="remark != null">
+                #{remark} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        update ${tableName}
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="entrustTime != null">
+                entrustTime = #{entrustTime} ,
+            </if>
+            <if test="entrustSource != null">
+                entrustSource = #{entrustSource} ,
+            </if>
+            <if test="businessFlag != null">
+                businessFlag = #{businessFlag} ,
+            </if>
+            <if test="tradeType != null">
+                tradeType = #{tradeType} ,
+            </if>
+            <if test="entrustType != null">
+                entrustType = #{entrustType} ,
+            </if>
+            <if test="entrustDirect != null">
+                entrustDirect = #{entrustDirect} ,
+            </if>
+            <if test="entrustStockinfoId != null">
+                entrustStockinfoId = #{entrustStockinfoId} ,
+            </if>
+               <if test="entrustRelatedStockinfoId!=null">
+                   entrustRelatedStockinfoId = #{entrustRelatedStockinfoId},
+               </if>
+            <if test="entrustAmt != null">
+                entrustAmt = #{entrustAmt} ,
+            </if>
+            <if test="entrustPrice != null">
+                entrustPrice = #{entrustPrice} ,
+            </if>
+            <if test="entrustRemark != null">
+                entrustRemark = #{entrustRemark} ,
+            </if>
+            <if test="entrustAccountType != null">
+                entrustAccountType = #{entrustAccountType} ,
+            </if>
+            <if test="feeRate != null">
+                feeRate = #{feeRate} ,
+            </if>
+            <if test="feeStockinfoId != null">
+                feeStockinfoId = #{feeStockinfoId} ,
+            </if>
+            <if test="dealAmt != null">
+                dealAmt = #{dealAmt} ,
+            </if>
+            <if test="dealBalance != null">
+                dealBalance = #{dealBalance} ,
+            </if>
+            <if test="dealFee != null">
+                dealFee = #{dealFee} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="updateTime != null">
+                updateTime = #{updateTime} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into ${tableName}(
+            id ,
+            accountId ,
+            entrustTime ,
+            entrustSource ,
+            businessFlag ,
+            tradeType ,
+            entrustType ,
+            entrustDirect ,
+            entrustStockinfoId ,
+            entrustRelatedStockinfoId ,
+            entrustAmt ,
+            entrustPrice ,
+            entrustRemark ,
+            entrustAccountType ,
+            feeRate ,
+            feeStockinfoId ,
+            dealAmt ,
+            dealBalance ,
+            dealFee ,
+            status ,
+            updateTime ,
+            remark 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            systimestamp ,
+            #{item.entrustSource} ,
+            #{item.businessFlag} ,
+            #{item.tradeType} ,
+            #{item.entrustType} ,
+            #{item.entrustDirect} ,
+            #{item.entrustStockinfoId} ,
+            #{item.entrustRelatedStockinfoId},
+            #{item.entrustAmt} ,
+            #{item.entrustPrice} ,
+            #{item.entrustRemark} ,
+            #{item.entrustAccountType} ,
+            #{item.feeRate} ,
+            #{item.feeStockinfoId} ,
+            #{item.dealAmt} ,
+            #{item.dealBalance} ,
+            #{item.dealFee} ,
+            #{item.status} ,
+            #{item.updateTime} ,
+            #{item.remark} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update ${tableName} set
+            accountId = #{item.accountId} ,
+            entrustTime = #{item.entrustTime} ,
+            entrustSource = #{item.entrustSource} ,
+            businessFlag = #{item.businessFlag} ,
+            tradeType = #{item.tradeType} ,
+            entrustType = #{item.entrustType} ,
+            entrustDirect = #{item.entrustDirect} ,
+            entrustStockinfoId = #{item.entrustStockinfoId} ,
+            entrustRelatedStockinfoId = #{item.entrustRelatedStockinfoId},
+            entrustAmt = #{item.entrustAmt} ,
+            entrustPrice = #{item.entrustPrice} ,
+            entrustRemark = #{item.entrustRemark} ,
+            entrustAccountType = #{item.entrustAccountType} ,
+            feeRate = #{item.feeRate} ,
+            feeStockinfoId = #{item.feeStockinfoId} ,
+            dealAmt = #{item.dealAmt} ,
+            dealBalance = #{item.dealBalance} ,
+            dealFee = #{item.dealFee} ,
+            status = #{item.status} ,
+            updateTime = #{item.updateTime} ,
+            remark = #{item.remark} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        update ${tableName} set
+            accountId = #{accountId} ,
+            entrustTime = #{entrustTime} ,
+            entrustSource = #{entrustSource} ,
+            businessFlag = #{businessFlag} ,
+            tradeType = #{tradeType} ,
+            entrustType = #{entrustType} ,
+            entrustDirect = #{entrustDirect} ,
+            entrustStockinfoId = #{entrustStockinfoId} ,
+            entrustRelatedStockinfoId = #{entrustRelatedStockinfoId},
+            entrustAmt = #{entrustAmt} ,
+            entrustPrice = #{entrustPrice} ,
+            entrustRemark = #{entrustRemark} ,
+            entrustAccountType = #{entrustAccountType} ,
+            feeRate = #{feeRate} ,
+            feeStockinfoId = #{feeStockinfoId} ,
+            dealAmt = #{dealAmt} ,
+            dealBalance = #{dealBalance} ,
+            dealFee = #{dealFee} ,
+            status = #{status} ,
+            updateTime = #{updateTime} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        select <include refid="entrustVCoinMoneyColumns"/> from ${tableName} a where a.id = #{id}
+    </select>
+
+    <!-- 根据主键取数据 行级锁 -->
+    <select id="selectByPrimaryKeyOnRowLock" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        select <include refid="entrustVCoinMoneyColumns"/> from ${tableName} a where a.id = #{id} for update wait 3
+    </select>
+
+    <!-- 查询单账户撮合交易还在委托的委托数量 -->
+    <select id="findSumMatchEntrustVCoinMoneyAmtByAccount" resultType="java.math.BigDecimal">
+        SELECT nvl(sum(a.entrustAmt),0)
+        FROM ${tableName} a
+        WHERE a.accountId = #{accountId} and a.entrustStockinfoId = #{entrustStockinfoId}
+        and a.tradeType = 'matchTrade'
+        and (status='init' or status='noDeal' or status='partialDeal')
+        and (a.entrustDirect = 'spotSell' or a.entrustDirect = 'spotBuy' )
+        and ( a.entrustDirect != 'spotBuy' and a.entrustType != 'marketPrice' )
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoin2Columns"/>
+        FROM ${tableName} a left join stockInfo b on a.entrustStockinfoId=b.id
+        left join Account c on a.accountId=c.id
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and c.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="tradeType != null and tradeType!=''">
+            and a.tradeType =#{tradeType}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType =#{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect = #{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="status != null and status!=''">
+            and a.status = #{status}
+        </if>
+        <if test="timeStart != null ">
+            and a.entrustTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.entrustTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="entrustAccountType != null and entrustAccountType!=''">
+            and a.entrustAccountType = #{entrustAccountType}
+        </if>
+        order by a.entrustTime desc
+    </select>
+
+    <!-- 查询所有表的数据 -->
+    <select id="searchAll" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        select * from (
+            (
+            SELECT
+            <include refid="entrustVCoinMoneyJoin2Columns"/>
+            FROM EntrustVcoinMoney02View a left join stockInfo b on a.entrustStockinfoId=b.id
+            left join
+            Account c on a.accountId=c.id
+            WHERE 1=1
+            <if test="accountId != null">
+                and a.accountId = #{accountId}
+            </if>
+            <if test="accountName != null and accountName!=''">
+                and c.accountName like '%'||#{accountName}||'%'
+            </if>
+            <if test="tradeType != null and tradeType!=''">
+                and a.tradeType =#{tradeType}
+            </if>
+            <if test="entrustType != null and entrustType!=''">
+                and a.entrustType =#{entrustType}
+            </if>
+            <if test="entrustDirect != null and entrustDirect!=''">
+                and a.entrustDirect = #{entrustDirect}
+            </if>
+            <if test="entrustStockinfoId != null">
+                and a.entrustStockinfoId = #{entrustStockinfoId}
+            </if>
+            <if test="status != null and status!=''">
+                and a.status = #{status}
+            </if>
+            <if test="timeStart != null ">
+                and a.entrustTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+            </if>
+            <if test="timeEnd != null ">
+                and a.entrustTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+            </if>
+            <if test="entrustAccountType != null and entrustAccountType!=''">
+                and a.entrustAccountType = #{entrustAccountType}
+            </if>
+            )
+        UNION ALL
+        (
+        SELECT
+        <include refid="entrustVCoinMoneyJoin2Columns"/>
+        FROM EntrustVcoinMoney03View a left join stockInfo b on a.entrustStockinfoId=b.id
+        left join
+        Account c on a.accountId=c.id
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and c.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="tradeType != null and tradeType!=''">
+            and a.tradeType =#{tradeType}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType =#{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect = #{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="status != null and status!=''">
+            and a.status = #{status}
+        </if>
+        <if test="timeStart != null ">
+            and a.entrustTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.entrustTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="entrustAccountType != null and entrustAccountType!=''">
+            and a.entrustAccountType = #{entrustAccountType}
+        </if>
+        )
+        UNION ALL
+        (
+        SELECT
+        <include refid="entrustVCoinMoneyJoin2Columns"/>
+        FROM EntrustVcoinMoney04View a left join stockInfo b on a.entrustStockinfoId=b.id
+        left join
+        Account c on a.accountId=c.id
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and c.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="tradeType != null and tradeType!=''">
+            and a.tradeType =#{tradeType}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType =#{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect = #{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="status != null and status!=''">
+            and a.status = #{status}
+        </if>
+        <if test="timeStart != null ">
+            and a.entrustTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.entrustTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="entrustAccountType != null and entrustAccountType!=''">
+            and a.entrustAccountType = #{entrustAccountType}
+        </if>
+        )
+
+        )
+        order by entrustTime desc
+    </select>
+
+    <!-- 查询超级用户委托下单 -->
+    <select id="findAdminEnturstList" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoin2Columns"/>
+        FROM ${tableName} a left join stockInfo b on a.entrustRelatedStockinfoId=b.id
+        left join Account c on a.accountId=c.id
+        WHERE 1=1
+        and a.accountId &lt;= 200000000000
+        <if test="tradeType != null and tradeType!=''">
+            and a.tradeType =#{tradeType}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType =#{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect = #{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="status != null and status!=''">
+            and a.status = #{status}
+        </if>
+       <!-- <if test="timeStart != null ">
+            and a.entrustTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.entrustTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        -->
+        and a.entrustTime &gt; (select nvl(max(r.settlementtime),(systimestamp + NUMTODSINTERVAL(-7*24,'hour'))) from SETTLEMENTRECORD r where r.relatedStockinfoId  = a.entrustRelatedStockinfoId)
+        <if test="entrustAccountType != null and entrustAccountType!=''">
+            and a.entrustAccountType = #{entrustAccountType}
+        </if>
+        order by a.entrustTime desc
+    </select>
+
+    <!-- 查询委托中的委托 -->
+    <select id="findAllInEntrust" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoinColumns"/>
+        FROM ${tableName} a left join Account b on a.accountId=b.id WHERE  a.status='init' or a.status='noDeal' or a.status='partialDeal'
+        order by a.id desc
+    </select>
+
+    <!-- 查询用户委托中的委托 -->
+    <select id="findAccountInEntrust" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoinColumns"/>
+        FROM ${tableName} a left join Account b on a.accountId=b.id WHERE  a.accountId=#{accountId}
+        and (a.status='init' or a.status='noDeal' or a.status='partialDeal')
+        order by a.id desc
+    </select>
+
+    <!-- 查询已被系统交割撤掉的委托 -->
+    <select id="findWithdrawBySysEntrust" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoinColumns"/>
+        FROM ${tableName} a left join Account b on a.accountId=b.id WHERE a.status='withDrawed'
+        and a.updatetime &gt;=(select s.updatedate from sysparameter s where s.systemname='TRADE' and s.parametername='MatchTradeSwitch')
+        order by a.id desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyColumns"/>
+        FROM ${tableName} a WHERE 1=1
+    </select>
+
+    <!-- 查询账户所有未成交的委托 -->
+    <select id="getAccountDoingEntrustVCoinMoneyList" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoinNoAccountDoingColumns"/>
+        FROM ${tableName} a left join Account b on a.accountId=b.id WHERE 1=1
+        and (a.status='init' or a.status='noDeal' or a.status='partialDeal')
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType = #{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect =#{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="tradeType != null and tradeType!=''">
+            and a.tradeType =#{tradeType}
+        </if>
+        order by a.entrustTime desc
+    </select>
+
+    <!-- 查询账户所有未成交的委托,按委托价降序排列 -->
+    <select id="getAccountDoingEntrustVCoinMoneyListByPrice" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoinNoAccountDoingColumns"/>
+        FROM ${tableName} a left join Account b on a.accountId=b.id WHERE 1=1
+        and (a.status='init' or a.status='noDeal' or a.status='partialDeal')
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType = #{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect =#{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="tradeType != null and tradeType!=''">
+            and a.tradeType =#{tradeType}
+        </if>
+        order by a.entrustPrice desc
+    </select>
+
+    <!-- 查询账户所有未成交的委托 -->
+    <select id="getAccountDoingEntrustVCoinMoneyCnt" resultType="java.lang.Long">
+        SELECT
+        count(*)
+        FROM ${tableName} a left join Account b on a.accountId=b.id WHERE 1=1
+        and (a.status='init' or a.status='noDeal' or a.status='partialDeal')
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+    </select>
+
+    <!-- 查询所有未撮合的委托 -->
+    <select id="getMoneyDoingEntrustVCoinMoneyCnt" resultType="java.lang.Long">
+        SELECT count(*)  FROM (
+        SELECT *  FROM ${tableName}  ORDER BY ID ASC) a
+        WHERE (( ENTRUSTDIRECT='spotBuy' and ENTRUSTTYPE='limitPrice'
+        AND  STATUS IN('init','noDeal','partialDeal')
+        AND ENTRUSTPRICE &gt;=(
+        SELECT min(ENTRUSTPRICE) FROM  ${tableName}
+        WHERE ENTRUSTDIRECT='spotSell' and ENTRUSTTYPE='limitPrice'
+        AND STATUS IN('init','noDeal','partialDeal')
+        )*0.9 )
+        OR ( ENTRUSTDIRECT='spotSell' and ENTRUSTTYPE='limitPrice' AND
+        STATUS IN('init','noDeal','partialDeal') AND ENTRUSTPRICE &lt;=(
+        SELECT max(ENTRUSTPRICE)  FROM ${tableName} WHERE ENTRUSTDIRECT='spotBuy'
+        and ENTRUSTTYPE='limitPrice' AND STATUS IN('init','noDeal','partialDeal'))*1.1 )
+        )
+    </select>
+
+
+    <!-- 查询账户所有历史委托 -->
+    <select id="getAccountHistoryEntrustVCoinMoneyList"  resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyJoinNoAccountHisColumns"/>,substr(#{tableName},length(#{tableName})-4 ) as tableName
+        FROM ${tableName} a
+        left join Account c on a.accountId=c.id
+        left join stockinfo b on b.id=a.entrustRelatedStockinfoId
+        WHERE  1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType = #{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect =#{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="status != null and status!=''">
+            and a.status = #{status}
+        </if>
+        <if test="timeStart != null ">
+            and a.entrustTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.entrustTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.id desc
+    </select>
+    <!-- 空头爆仓 超级用户挂单的盈利情况 -->
+    <select id="findSumShortReserveAllocation" resultType="java.math.BigDecimal" >
+        select nvl(sum(a.entrustprice*a.dealamt - a.dealbalance),0) as reserveAllocation
+        from ${tableName} a
+        where a.tradetype = 'matchTrade' and a.entrustaccounttype = 1 and a.entrustdirect = 'spotBuy'
+        and a.entrustTime &gt; (select nvl(max(r.settlementtime),(systimestamp + NUMTODSINTERVAL(-7*24,'hour'))) from SETTLEMENTRECORD r where r.relatedStockinfoId  = a.entrustRelatedStockinfoId)
+    </select>
+    <!-- 多头爆仓  超级用户挂单的盈利情况 -->
+    <select id="findSumLongReserveAllocation" resultType="java.math.BigDecimal" >
+        select nvl(sum(a.dealbalance - a.entrustprice*a.dealamt),0) as reserveAllocation
+        from ${tableName} a
+        where a.tradetype = 'matchTrade' and a.entrustaccounttype = 1 and a.entrustdirect = 'spotSell'
+        and a.entrustTime &gt; (select nvl(max(r.settlementtime),(systimestamp + NUMTODSINTERVAL(-7*24,'hour'))) from SETTLEMENTRECORD r where r.relatedStockinfoId  = a.entrustRelatedStockinfoId)
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findListAfterPreSettlement" resultType="com.blocain.bitms.trade.trade.entity.EntrustVCoinMoney">
+        SELECT
+        <include refid="entrustVCoinMoneyColumns"/>
+        FROM ${tableName} a WHERE 1=1
+        and a.entrustTime &gt; (select nvl(max(r.settlementtime),(systimestamp + NUMTODSINTERVAL(-7*24,'hour'))) from SETTLEMENTRECORD r where r.relatedStockinfoId  = a.entrustRelatedStockinfoId)
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="tradeType != null and tradeType!=''">
+            and a.tradeType =#{tradeType}
+        </if>
+        <if test="entrustType != null and entrustType!=''">
+            and a.entrustType =#{entrustType}
+        </if>
+        <if test="entrustDirect != null and entrustDirect!=''">
+            and a.entrustDirect = #{entrustDirect}
+        </if>
+        <if test="entrustStockinfoId != null">
+            and a.entrustStockinfoId = #{entrustStockinfoId}
+        </if>
+        <if test="status != null and status!=''">
+            and a.status = #{status}
+        </if>
+        <if test="entrustAccountType != null and entrustAccountType!=''">
+            and a.entrustAccountType = #{entrustAccountType}
+        </if>
+        order by a.entrustTime desc
+    </select>
+
+    <!--  统计多头超级用户挂单未成交数量金额-->
+    <select id="clearCalcLongSuperAccountLossAmt" resultType="java.math.BigDecimal">
+        select nvl(sum( (a.entrustprice - #{clearPrice}) * (a.entrustamt - a.dealamt)), 0) as superLossAmt
+        from ${tableName} a
+        where a.tradetype = 'matchTrade' and a.entrustaccounttype = 1 and a.entrustdirect = 'spotSell'
+        and a.entrustTime &gt;
+          (select nvl(max(r.settlementtime),(systimestamp + NUMTODSINTERVAL(-7*24,'hour'))) from SETTLEMENTRECORD r where r.relatedStockinfoId  = a.entrustRelatedStockinfoId)
+    </select>
+
+    <!--  统计空头超级用户挂单未成交数量金额-->
+    <select id="clearCalcShortSuperAccountLossAmt" resultType="java.math.BigDecimal">
+        select nvl(sum( (#{clearPrice} - a.entrustprice) * (a.entrustamt - a.dealamt)), 0) as superLossAmt
+        from ${tableName} a
+        where a.tradetype = 'matchTrade' and a.entrustaccounttype = 1 and a.entrustdirect = 'spotBuy'
+        and a.entrustTime &gt;
+        (select nvl(max(r.settlementtime),(systimestamp + NUMTODSINTERVAL(-7*24,'hour'))) from SETTLEMENTRECORD r where r.relatedStockinfoId  = a.entrustRelatedStockinfoId)
+    </select>
+
+    <select id="selectSumFeeNeedAward" resultType="com.blocain.bitms.trade.trade.model.FeeModel">
+        select a.accountId as accountId,a.tradeFee as tradeFee,a.captalFee as captalFee,b.id from
+        (select t.accountId,
+        sum(CASE t.stockinfoid
+        WHEN s.tradestockinfoid THEN t.fee
+          ELSE 0
+        END
+        ) as tradeFee,
+        sum(CASE t.stockinfoid
+        WHEN s.capitalstockinfoid THEN t.fee
+          ELSE 0
+        END
+        ) as captalFee
+        from ${tableName} t,stockinfo s where
+        s.id = t.relatedstockinfoid
+        and t.businessflag='matchTradeSpotSellEntrustDeal'
+        and to_char(t.currentdate,'yyyy-mm-dd')=#{yestoday}
+        group by t.accountId
+        ) a
+        left join AccountCandyRecord b on a.accountId = b.accountId and to_char(b.currentdate,'yyyy-mm-dd')=#{today}
+        where a.captalFee &gt;0
+        and b.id is null
+    </select>
+</mapper>
+

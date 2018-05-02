@@ -1,0 +1,260 @@
+/*icoMint页面*/
+.icoMint-wrap {
+	position: relative;
+}
+.icoMint-wrap .icoMint-content {
+	position: relative;
+	border: 1px solid #23333f;
+    background-color: #151922;
+    padding-bottom: 16px;
+    width: 100%;
+}
+.icoMint-wrap .icoMint-content .icoMint-title{
+	margin-top: 16px;
+    margin-left: 35px;
+    margin-bottom: 16px;
+}
+.icoMint-wrap .icoMint-content .icoMint-title .greenTxt{
+	color: #536b32;
+	font-size: 18px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav{
+	margin-left: 16px;
+	margin-right: 16px;
+	height: 150px;
+	background-color: #1e222d;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav .icoMint-size{
+	margin-top: 10px;
+	width: 200px;
+	height: 36px;
+	font-size: 12px;
+	text-indent: 5px;
+}
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+	font-size:12px;
+} 
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+	font-size:12px;
+} 
+input::-moz-placeholer { /* Mozilla Firefox 19+ */ 
+	font-size:12px;
+} 
+input:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+	font-size:12px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav .forgingPos{
+	margin-top: 30px;
+	font-size: 14px;
+	height: 36px;
+    line-height: 36px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav ul{
+	padding-top: 34px;
+	overflow: hidden;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav ul li{
+	float: left;
+	margin-left: 30px;
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav ul li:nth-child(1){
+	margin-left: 15px;
+}
+#doMintButton{
+	position: absolute;
+    left: 560px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav ul li:nth-child(3){
+	line-height: 85px;
+	color: #536b32;
+}
+/*gif*/
+/* .mintGif{
+	display: none;
+    position: absolute;
+    z-index: 10000;
+    top: 30%;
+    left: 38%;
+}
+.mintGif #mintXX{
+	display: block;
+	position: absolute;
+    right: 0px;
+    top: 60px;
+    cursor: pointer;
+}
+.gifMask{
+	display: none;
+	position: absolute;
+    background-color: #000000;
+    opacity: 0.7;
+    z-index: 9999;
+    top:0;
+    left:0;
+    right:0;
+} */
+.hammerGif{
+	margin-top: -20px;
+    position: absolute;
+    left: 725px;
+}
+.myHodingIcon{
+	width: 17px;
+	height: 17px;
+	vertical-align: sub;
+}
+.holdingNum{
+	font-size: 18px;
+}
+.mintPercentTxt{
+	font-size: 12px;
+	margin-top: 5px;
+}
+.icoMint-wrap .icoMint-data{
+	position: relative;
+	margin-top: 16px;
+	border: 1px solid #23333f;
+    background-color: #151922;
+    width: 100%;
+}
+.icoMint-wrap .icoMint-data h3{
+	margin-top: 20px;
+	margin-left: 30px;
+	color: #536b32;
+	font-size: 18px;
+}
+.icoMint-wrap .icoMint-data table{
+	width: 96%;
+	margin-top: 20px;
+	margin-left: 30px;
+    border-collapse: collapse;
+}
+.icoMint-wrap .icoMint-data table thead tr{
+    height: 50px;
+  	background-color: #1e222d;
+}
+.icoMint-wrap .icoMint-data table thead tr th{
+	text-align: center;
+	width: 10%;
+	vertical-align: middle;
+}
+.icoMint-wrap .icoMint-data table tbody tr{
+    line-height: 25px;
+    height: 25px;
+}
+.icoMint-wrap .icoMint-data table tbody tr:hover{
+	background-color: #1a1f23;
+}
+.icoMint-wrap .icoMint-data table tbody tr td{
+	text-align: center;
+}
+.icoMint-wrap .icoMint-data table tbody .red{
+	color: #DC605A;
+}
+.icoMint-wrap .icoMint-data table tbody .green{
+	color: #536b32;
+}
+.MintNavMargin{
+	margin-top: 22px;
+}
+/*滑动条*/
+.slider{
+    position: relative;
+    width: 200px;
+    margin: 10px 0px;
+    border-top: 1px solid #4f5156;
+    border-radius: 2px;
+    height: 1px;
+}
+.slider>div.slider-pos {
+    width: 0px;
+    display: inline-block;
+    position: absolute;
+    height: 0;
+    border-top: 1px solid #98c55a;
+    top: -1px;
+}
+.slider>span {
+    position: absolute;
+    display: inline-block;
+    left: -5px;
+    top: -9px;
+    width: 16px;
+    height: 16px;
+	background-image: url(../../images/bitms/Layer-108.png);
+	cursor: pointer;
+}
+@media (max-width: 1680px) {
+.icoMint-wrap .icoMint-content {
+    padding-bottom: 10px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav .icoMint-size{
+	height: 30px;
+}
+.mintPercentTxt {
+    margin-top: 2px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav .forgingPos {
+    height: 30px;
+    line-height: 30px;
+}
+.icoMint-wrap .icoMint-content .icoMint-title .greenTxt{
+	color: #536b32;
+	font-size: 16px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav p,span{
+	font-size: 12px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav ul{
+	padding-top: 20px;
+}
+.icoMint-wrap .icoMint-content .icoMint-nav {
+    height: 115px;
+}
+.icoMint-wrap .icoMint-content .icoMint-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 29px;
+}
+.icoMint-wrap .icoMint-data h3 {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-weight: normal;
+    font-size: 16px;
+}
+.icoMint-wrap .icoMint-data table {
+    margin-top: 15px;
+    margin-left: 20px;
+}
+.icoMint-wrap .icoMint-data table thead tr {
+    height: 30px;
+}
+.icoMint-wrap .icoMint-data table tbody tr {
+    line-height: 16px;
+    height: 16px;
+}
+.holdingNum {
+    font-size: 16px;
+}
+.MintNavMargin{
+	margin-top: 20px;
+}
+/*gif*/
+/* .mintGif{
+    width: 350px;
+}
+.mintGif #mintXX{
+    top: 50px;
+    width: 15px;
+} */
+.hammerGif{
+    position: absolute;
+    left: 690px;
+}
+}

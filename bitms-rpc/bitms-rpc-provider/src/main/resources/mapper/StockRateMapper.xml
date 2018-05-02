@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.stockinfo.mapper.StockRateMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="stockRateColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.rateType as rateType,
+        a.rate as rate,
+        a.rateValueType as rateValueType,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate
+    </sql>
+    
+     <sql id="stockRateJoinColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.rateType as rateType,
+        a.rate as rate,
+        a.rateValueType as rateValueType,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        d.stockCode,
+        d.stockName,
+        b.trueName as createByName,
+        c.trueName as updateByName
+    </sql>
+
+    <resultMap id="stockRateResultMap" type="com.blocain.bitms.trade.stockinfo.entity.StockRate">
+        <id column="id" property="id" />
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="rateType" property="rateType"/>
+        <result column="rateValueType" property="rateValueType"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockRate">
+        insert into StockRate(
+            id ,
+            stockinfoId ,
+            rateType ,
+            rate,
+            rateValueType,
+            remark ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{stockinfoId} ,
+            #{rateType} ,
+            #{rate} ,
+            #{rateValueType},
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{updateBy} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from StockRate where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from StockRate  where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockRate">
+        insert into StockRate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="rateType != null">
+                rateType ,
+        </if>
+        <if test="rate != null">
+                rate ,
+        </if>
+        <if test="rateValueType != null">
+            rateValueType,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateBy != null">
+                updateBy ,
+        </if>
+        <if test="updateDate != null">
+                updateDate ,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="rateType != null">
+                #{rateType} ,
+        </if>
+        <if test="rate != null">
+                #{rate} ,
+        </if>
+        <if test="rateValueType != null">
+            #{rateValueType},
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateBy != null">
+                #{updateBy} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockRate">
+        update StockRate
+           <set>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="rateType != null">
+                rateType = #{rateType} ,
+            </if>
+            <if test="rate != null">
+                rate = #{rate} ,
+            </if>
+            <if test="rateValueType!= null">
+                rateValueType = #{rateValueType},
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.stockinfo.entity.StockRate">
+        update StockRate set
+            stockinfoId = #{stockinfoId} ,
+            rateType = #{rateType} ,
+            rate = #{rate} ,
+            rateValueType = #{rateValueType},
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            updateBy = #{updateBy} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.stockinfo.entity.StockRate">
+        select <include refid="stockRateColumns"/> from StockRate a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.stockinfo.entity.StockRate" useCache="false">
+        SELECT
+        <include refid="stockRateJoinColumns"/>
+        FROM StockInfo d,StockRate a left join UserInfo b on a.createBy = b.id
+		left join UserInfo c on  a.updateBy = c.id
+        WHERE d.id=a.stockinfoId
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="rateType != null and rateType!=''">
+            and a.rateType = #{rateType}
+        </if>
+        <if test="stockCode != null">
+            and d.stockCode like '%'||#{stockCode}||'%'
+        </if>
+        <if test="stockName != null">
+            and d.stockName like '%'||#{stockName}||'%'
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.stockinfo.entity.StockRate"  useCache="false">
+         SELECT
+        <include refid="stockRateJoinColumns"/>
+        FROM StockInfo d,StockRate a left join UserInfo b on a.createBy = b.id 
+		left join UserInfo c on  a.updateBy = c.id 
+        WHERE d.id=a.stockinfoId 
+    </select>
+
+
+</mapper>
+

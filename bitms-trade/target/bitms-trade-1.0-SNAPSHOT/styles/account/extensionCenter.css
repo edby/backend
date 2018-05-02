@@ -1,0 +1,78 @@
+.extensionCenter-wrap{
+	position: relative;
+}
+.extensionCenter-wrap .extensionCenter-content {
+    position: relative;
+    border: 1px solid #23333f;
+    background-color: #151922;
+    padding-bottom: 15px;
+    width: 100%;
+}
+.extensionCenter-wrap .extensionCenter-content ul{
+	overflow: hidden;
+	margin-top: 40px;
+	margin-left: 30px;
+}
+.extensionCenter-wrap .extensionCenter-content ul li{
+	float: left;
+}
+.extensionCenter-wrap .extensionCenter-content ul li:nth-child(1){
+    height: 36px;
+    width: 125px;
+    text-align: center;
+    line-height: 36px;
+    background-color: #5d7b3c;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.extensionCenter-wrap .extensionCenter-content ul li:nth-child(2){
+    height: 36px;
+    width: 186px;
+    text-align: center;
+    line-height: 36px;
+    background-color: #05101d;
+    border-radius: 2px;
+}
+.extensionCenter-wrap .extensionCenter-content ul li:nth-child(3){
+	margin-left: 20px;
+	line-height: 36px;
+	cursor: pointer;
+}
+.extensionCenter-wrap .extensionCenter-content span{
+	display: block;
+	margin-top: 15px;
+	margin-left: 30px;
+	margin-bottom: 20px;
+}
+.extensionCenterNavMargin {
+    margin-top: 70px;
+}
+@media (max-width: 1680px) {
+.extensionCenter-wrap .extensionCenter-content ul{
+	margin-top: 30px;
+	margin-left: 20px;
+	font-size: 12px;
+}
+.extensionCenter-wrap .extensionCenter-content ul li:nth-child(1){
+    height: 30px;
+    line-height: 30px;
+}
+.extensionCenter-wrap .extensionCenter-content ul li:nth-child(2){
+    height: 30px;
+    line-height: 30px;
+}
+.extensionCenter-wrap .extensionCenter-content ul li:nth-child(3){
+	line-height: 30px;
+}
+.extensionCenter-wrap .extensionCenter-content span{
+	display: block;
+	margin-top: 15px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+.extensionCenterNavMargin {
+    margin-top: 42px;
+}	
+}

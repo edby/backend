@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <description>MQ Configuration</description>
+    <bean id="btc2ethxBizCategoryHandler" class="com.blocain.bitms.api.quotationMassageHandler">
+        <property name="topicConst" ref="btc2ethxTopicConst" />
+    </bean>
+    <bean id="btc2ethxTopicConst" class="com.blocain.bitms.api.consts.TopicConst">
+        <constructor-arg name="props" value="quotation/btc2ethx.properties"/>
+    </bean>
+
+    <!-- btc2ethx消息接收器 -->
+    <bean id="btc2ethxDeepPriceMessageListener"
+          class="com.blocain.bitms.api.listener.DeepPriceMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxRealDealMessageListener"
+          class="com.blocain.bitms.api.listener.RealDealMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxRtQuotationMessageListener"
+          class="com.blocain.bitms.api.listener.RtQuotationMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler"/>
+    </bean>
+    <bean id="btc2ethxKLine1MinMessageListener"
+          class="com.blocain.bitms.api.listener.KLine1MinMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxKLine5MinMessageListener"
+          class="com.blocain.bitms.api.listener.KLine5MinMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxKLine15MinMessageListener"
+          class="com.blocain.bitms.api.listener.KLine15MinMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxKLine30MinMessageListener"
+          class="com.blocain.bitms.api.listener.KLine30MinMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxKLineHourMessageListener"
+          class="com.blocain.bitms.api.listener.KLineHourMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxKLineDayMessageListener"
+          class="com.blocain.bitms.api.listener.KLineDayMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxKLineMonthMessageListener"
+          class="com.blocain.bitms.api.listener.KLineMonthMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+    <bean id="btc2ethxKLineWeekMessageListener"
+          class="com.blocain.bitms.api.listener.KLineWeekMessageListener">
+        <property name="bizCategoryHandler" ref="btc2ethxBizCategoryHandler" />
+    </bean>
+
+    <!-- 监听管理器 -->
+    <bean id="btc2ethxTopicContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer"
+          destroy-method="destroy">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="messageListeners">
+            <map>
+                <!--btc2ethx-->
+                <entry key-ref="btc2ethxKLine1MinMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLine1MinChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxKLine5MinMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLine5MinChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxKLine15MinMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLine15MinChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxKLine30MinMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLine30MinChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxKLineHourMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLineHourChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxKLineDayMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLineDayChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxKLineWeekMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLineWeekChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxKLineMonthMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.KLineMonthChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxDeepPriceMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.DeepPriceChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxRealDealMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.RealDealChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+                <entry key-ref="btc2ethxRtQuotationMessageListener">
+                    <bean class="com.blocain.bitms.api.topic.RtQuotationChannelTopic">
+                        <constructor-arg name="topicConst" ref="btc2ethxTopicConst"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

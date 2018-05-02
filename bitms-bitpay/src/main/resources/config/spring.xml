@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
+
+    <description>Spring基本配置</description>
+    
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:config/properties/jdbc.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:config/properties/druid.properties"/>
+
+    <context:component-scan base-package="com.blocain"><!-- base-package 如果多个，用“,”分隔 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- SpringContextUtils -->
+    <!-- <bean class="com.baomidou.framework.spring.SpringContextHolder"/>  -->
+    <import resource="spring-jdbc.xml"/>
+</beans>

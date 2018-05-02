@@ -1,0 +1,17 @@
+com\blocain\bitms\ignite\repository\AccountFundCurrentRepository.class
+com\blocain\bitms\ignite\service\impl\AccountWalletAssetIgniteImpl.class
+com\blocain\bitms\ignite\service\AccountWalletAssetIgnite.class
+com\blocain\bitms\ignite\service\EntrustVCoinMoneyIgnite.class
+com\blocain\bitms\ignite\repository\RealDealVCoinMoneyHisRepository.class
+com\blocain\bitms\ignite\config\BiexIgniteCfg.class
+com\blocain\bitms\ignite\service\AccountFundCurrentIgnite.class
+com\blocain\bitms\ignite\repository\AccountWalletAssetRepository.class
+com\blocain\bitms\ignite\repository\EntrustVCoinMoneyRepository.class
+com\blocain\bitms\ignite\repository\RealDealVCoinMoneyRepository.class
+com\blocain\bitms\ignite\config\IgniteConsts.class
+com\blocain\bitms\ignite\service\impl\EntrustVCoinMoneyIgniteImpl.class
+com\blocain\bitms\ignite\startup\ServerNodeSpringStartup.class
+com\blocain\bitms\ignite\service\RealDealVCoinMoneyIgnite.class
+com\blocain\bitms\ignite\service\impl\RealDealVCoinMoneyIgniteImpl.class
+com\blocain\bitms\ignite\service\impl\AccountFundCurrentIgniteImpl.class
+com\blocain\bitms\ignite\startup\ClientNodeSpringStartup.class

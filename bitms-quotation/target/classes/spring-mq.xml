@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <description>MQ Configuration</description>
+    <!-- 消息接收器 -->
+    <bean id="pushMessageListener"
+          class="com.blocain.bitms.quotation.listener.QuotationPushListener">
+    </bean>
+    <!-- 全行情-->
+    <bean id="allQuotationMessageListener"
+          class="com.blocain.bitms.quotation.listener.AllRtQuotationMessageListener">
+    </bean>
+    <!-- 监听管理器 -->
+    <bean id="quotationTopicContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer"
+          destroy-method="destroy">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="messageListeners">
+            <map>
+                <entry key-ref="pushMessageListener">
+                    <bean class="com.blocain.bitms.quotation.topic.QuotationChannelTopic"/>
+                </entry>
+                <!-- 全行情-->
+                <entry key-ref="allQuotationMessageListener">
+                    <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                        <constructor-arg value="allRtQuotation.doPush"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

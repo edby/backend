@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <!-- 测试任务【任务执行完再走下一个任务】
+    <bean id="testTask" class="com.blocain.bitms.task.demo.TestTask"/>
+    <bean id="testJobDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="testTask"/>
+        <property name="targetMethod" value="task"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="testQuartzTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="testJobDetail"/>
+        <property name="cronExpression" value="0/1 * * * * ? *"/>
+    </bean>
+    -->
+
+    <!--平台帐户解冻轮询-->
+    <bean id="accountQuartzTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.account.AccountQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0 0/10 * * ? *"/>
+    </bean>
+
+    <!--BTC区块交易确认轮询-->
+    <bean id="btcBlockTransConfirmTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.payment.BlockTransConfirmQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0/2 * * * ? *"/>
+    </bean>
+
+    <!--BTC钱包地址总接收轮询轮询-->
+    <bean id="btcWalletAddrReceivedQuartzTask" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.payment.WalletAddrReceivedQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0/5 * * * ? *"/>
+    </bean>
+
+    <!--解冻MSC资产轮询-->
+    <bean id="fundUnfrozenBmsAssetTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.FundUnfrozenBmsAssetQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0 0/10 * * * ? *"/>
+    </bean>
+
+    <!--杠杆借贷资产计息轮询-->
+    <bean id="debitAssetInterestTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.trade.DebitAssetInterestQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!--<property name="cronExpression" value="0 0 0 * * ? *"/>-->
+        <property name="cronExpression" value="0 0/5 0-3 * * ? *"/>
+    </bean>
+
+    <!--投资理财资产计息轮询-->
+    <bean id="wealthAssetInterestTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.trade.WealthAssetInterestQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!--<property name="cronExpression" value="0 0 0 * * ? *"/>-->
+        <property name="cronExpression" value="0 0/5 10-21 * * ? *"/>
+    </bean>
+
+    <!--营收(资产负债统计)轮询-->
+    <bean id="sheetBalanceTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.SheetBalanceQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 每天23点59分触发 -->
+        <property name="cronExpression" value="0 59 23 ? * *"/>
+    </bean>
+
+    <!-- BTC bitGo划拨状态轮询-->
+    <bean id="btcAccountFundTransferTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.FundTransferQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 两分钟一次 -->
+        <property name="cronExpression" value="0 0/2 * * * ? *"/>
+    </bean>
+
+    <!-- ERC2O TOKEN 划拨轮询交易状态 -->
+    <bean id="erc20TokenTransacionTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.Erc20TokenWithdrawQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 5分钟一次 -->
+        <property name="cronExpression" value="0 0/5 * * * ? *"/>
+    </bean>
+
+    <!-- ERC2O TOKEN 关闭激活状态轮询 -->
+    <bean id="erc20TokenActiveTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.stockinfo.Erc20TokenQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 九点一次 -->
+        <property name="cronExpression" value="0 0 9 * * ? *"/>
+    </bean>
+
+    <!-- USD交易奖励BIEX(糖果奖励) -->
+    <bean id="accountCandyTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.AccountCandyQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 两分钟一次 -->
+        <property name="cronExpression" value="0 0/10 1-2 * * ? *"/>
+    </bean>
+
+    <!-- 纯正现货类快照 -->
+    <bean id="pureSpotSnapTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.PureSpotSnapQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 凌晨一次 -->
+        <property name="cronExpression" value="0 0 0 * * ? *"/>
+        <!-- <property name="cronExpression" value="0 */20 * * * ? *"/> -->
+    </bean>
+    <!-- 杠杆现货类快照 -->
+    <bean id="leveragedSpotSnapTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.LeveragedSpotSnapQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 凌晨一次 -->
+        <property name="cronExpression" value="0 0 0 * * ? *"/>
+        <!-- <property name="cronExpression" value="0 */20 * * * ? *"/> -->
+    </bean>
+    <!-- 杠杆现货溢价费计算 -->
+    <bean id="premiumFeeTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.PremiumFeeQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 0-2点 十五分钟一次 -->
+        <property name="cronExpression" value="0 0/15 0-2 * * ? *"/>
+        <!-- <property name="cronExpression" value="0 */30 15-16 * * ? *"/> -->
+    </bean>
+
+    <!-- 证券提现费率 -->
+    <bean id="stockRateTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.stockinfo.StockRateQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 凌晨一次 -->
+        <property name="cronExpression" value="0 0 0 * * ? *"/>
+        <!-- <property name="cronExpression" value="0 */20 * * * ? *"/> -->
+    </bean>
+
+    <!-- K线数据归档 -->
+    <bean id="klineArchiveTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.archive.KlineArchiveQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 每天凌晨3点执行-->
+        <property name="cronExpression" value="0 0 3 * * ? *"/>
+    </bean>
+    <!-- 外部指数行情归档 -->
+    <bean id="quotationArchiveTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.archive.QuotationArchiveQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 每天凌晨3点执行-->
+        <property name="cronExpression" value="0 0 3 * * ? *"/>
+    </bean>
+    <!-- 资金流水归档 -->
+    <bean id="fundCurrentArchiveTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.archive.FundCurrentArchiveQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 每天凌晨3点执行-->
+        <property name="cronExpression" value="0 0 3 * * ? *"/>
+    </bean>
+    <!-- 交易相关流水归档 -->
+    <bean id="tradeArchiveTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.archive.TradeArchiveQuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 每天凌晨3点执行-->
+        <property name="cronExpression" value="0 0 3 * * ? *"/>
+    </bean>
+
+    <!-- 检查token平台内部累计已充值是否已大于发行总量 -->
+    <bean id="accountWalletAssetErc20Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                <property name="jobClass">
+                    <value>com.blocain.bitms.task.fund.AccountWalletAssetErc20QuartzTask</value>
+                </property>
+            </bean>
+        </property>
+        <!-- 每30分钟执行一次 -->
+        <property name="cronExpression" value="0 0/30 * * * ? *"/>
+    </bean>
+
+    <!-- 计划调度 -->
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="startupDelay" value="1"/>
+        <property name="applicationContextSchedulerContextKey">
+            <value>applicationContext</value>
+        </property>
+        <property name="triggers">
+            <list>
+                <!--comm-->
+                <ref bean="accountQuartzTaskTrigger"/>
+
+                <ref bean="quotationArchiveTrigger"/>
+                <ref bean="klineArchiveTrigger"/>
+                <ref bean="fundCurrentArchiveTrigger"/>
+                <ref bean="tradeArchiveTrigger"/>
+
+                <ref bean="erc20TokenTransacionTrigger"/>
+
+                <!--<ref bean="accountWalletAssetErc20Trigger"/>-->
+                <!--bitms-->
+                <ref bean="btcBlockTransConfirmTaskTrigger"/>
+                <ref bean="btcWalletAddrReceivedQuartzTask"/>
+                <ref bean="btcAccountFundTransferTaskTrigger"/>
+                <ref bean="debitAssetInterestTaskTrigger"/>
+                <ref bean="wealthAssetInterestTaskTrigger"/>
+                <ref bean="sheetBalanceTaskTrigger"/>
+                <ref bean="accountCandyTrigger"/>
+                <ref bean="pureSpotSnapTrigger"/>
+                <ref bean="leveragedSpotSnapTrigger"/>
+                <ref bean="premiumFeeTrigger"/>
+                <!--biex-->
+                <!--
+                <ref bean="erc20TokenActiveTrigger"/>
+                <ref bean="stockRateTrigger"/>
+                <ref bean="pureSpotSnapTrigger"/>
+                -->
+                <!--
+                <ref bean="fundUnfrozenBmsAssetTaskTrigger"/>
+                 -->
+            </list>
+        </property>
+    </bean>
+
+</beans>

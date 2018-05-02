@@ -1,0 +1,5 @@
+com\blocain\bitms\ignite\repository\AccountWalletAssetIgniteTest.class
+com\blocain\bitms\ignite\repository\EntrustVcoinMoneryRepositoryTest.class
+com\blocain\bitms\ignite\basic\AbstractService.class
+com\blocain\bitms\ignite\service\RealDealVCoinMoneyIgniteTest.class
+LoadCaches.class

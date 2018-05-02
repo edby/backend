@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountFundAdjustMapper">
+    <!-- 基础列 -->
+    <sql id="accountFundAdjustColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.adjustType as adjustType,
+        a.businessFlag as businessFlag,
+        a.adjustAmt as adjustAmt,
+        a.needLock as needLock,
+        a.lockEndDay as lockEndDay,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.lockStatus as lockStatus,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="accountFundAdjustJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.adjustType as adjustType,
+        a.businessFlag as businessFlag,
+        a.adjustAmt as adjustAmt,
+        a.needLock as needLock,
+        a.lockEndDay as lockEndDay,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.lockStatus as lockStatus,
+        a.remark as remark,
+        d.trueName as createByName,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        b.stockCode as stockCode,
+        c.accountName as accountName
+    </sql>
+
+    <resultMap id="accountFundAdjustResultMap" type="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="adjustType" property="adjustType"/>
+        <result column="businessFlag" property="businessFlag"/>
+        <result column="adjustAmt" property="adjustAmt"/>
+        <result column="needLock" property="needLock"/>
+        <result column="lockEndDay" property="lockEndDay"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="lockStatus" property="lockStatus"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        insert into AccountFundAdjust(
+            id ,
+            accountId ,
+            stockinfoId ,
+            adjustType ,
+            businessFlag,
+            adjustAmt ,
+            needLock ,
+            lockEndDay ,
+            sign ,
+			randomKey ,
+            lockStatus,
+            remark ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{adjustType} ,
+            #{businessFlag},
+            #{adjustAmt} ,
+            #{needLock} ,
+            #{lockEndDay} ,
+            #{sign} ,
+            #{randomKey} ,
+            #{lockStatus},
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{updateBy} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountFundAdjust where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountFundAdjust set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        insert into AccountFundAdjust
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="adjustType != null">
+                adjustType ,
+        </if>
+        <if test="businessFlag != null">
+                businessFlag ,
+        </if>
+        <if test="adjustAmt != null">
+                adjustAmt ,
+        </if>
+        <if test="needLock != null">
+                needLock ,
+        </if>
+        <if test="lockEndDay != null">
+                lockEndDay ,
+        </if>
+        <if test="sign != null">
+                sign ,
+        </if>
+        <if test="randomKey != null">
+                randomKey ,
+        </if>
+        <if test="lockStatus != null">
+                lockStatus ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="updateBy != null">
+                updateBy ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="adjustType != null">
+                #{adjustType} ,
+        </if>
+        <if test="businessFlag != null">
+                #{businessFlag} ,
+        </if>
+        <if test="adjustAmt != null">
+                #{adjustAmt} ,
+        </if>
+        <if test="needLock != null">
+                #{needLock} ,
+        </if>
+        <if test="lockEndDay != null">
+                #{lockEndDay} ,
+        </if>
+        <if test="sign != null">
+                #{sign} ,
+        </if>
+        <if test="randomKey != null">
+                #{randomKey} ,
+        </if>
+        <if test="lockStatus != null">
+                #{lockStatus} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="updateBy != null">
+                #{updateBy} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        update AccountFundAdjust
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="adjustType != null">
+                adjustType = #{adjustType} ,
+            </if>
+            <if test="businessFlag != null">
+                businessFlag = #{businessFlag} ,
+            </if>
+            <if test="adjustAmt != null">
+                adjustAmt = #{adjustAmt} ,
+            </if>
+            <if test="needLock != null">
+                needLock = #{needLock} ,
+            </if>
+            <if test="lockEndDay != null">
+                lockEndDay = #{lockEndDay} ,
+            </if>
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="lockStatus != null">
+                lockStatus = #{lockStatus} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountFundAdjust(
+            id ,
+            accountId ,
+            stockinfoId ,
+            adjustType ,
+            businessFlag,
+            adjustAmt ,
+            needLock ,
+            lockEndDay ,
+            sign ,
+			randomKey ,
+            lockStatus,
+            remark ,
+            createBy ,
+            createDate ,
+            updateBy ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.adjustType} ,
+            #{item.businessFlag} ,
+            #{item.adjustAmt} ,
+            #{item.needLock} ,
+            #{item.lockEndDay} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.lockStatus} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.updateBy} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountFundAdjust set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            adjustType = #{item.adjustType} ,
+            businessFlag = #{item.businessFlag} ,
+            adjustAmt = #{item.adjustAmt} ,
+            needLock = #{item.needLock} ,
+            lockEndDay = #{item.lockEndDay} ,
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            lockStatus = #{item.lockStatus} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            updateBy = #{item.updateBy} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        update AccountFundAdjust set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            adjustType = #{adjustType} ,
+            businessFlag = #{businessFlag} ,
+            adjustAmt = #{adjustAmt} ,
+            needLock = #{needLock} ,
+            lockEndDay = #{lockEndDay} ,
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            lockStatus = #{lockStatus} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            updateBy = #{updateBy} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        select <include refid="accountFundAdjustColumns"/> from AccountFundAdjust a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        SELECT
+        <include refid="accountFundAdjustJoinColumns"/>
+        FROM StockInfo b,Account c,AccountFundAdjust a  
+        left join UserInfo d on a.createby=d.id
+        WHERE a.stockinfoId=b.id and a.accountId=c.id
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="adjustType != null">
+            and a.adjustType = #{adjustType}
+        </if>
+        <if test="adjustAmt != null">
+            and a.adjustAmt = #{adjustAmt}
+        </if>
+        <if test="needLock != null">
+            and a.needLock = #{needLock}
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="updateBy != null">
+            and a.updateBy = #{updateBy}
+        </if>
+        order by a.createDate desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+        SELECT
+        <include refid="accountFundAdjustColumns"/>
+        FROM AccountFundAdjust a WHERE 1=1
+        order by a.createDate desc
+    </select>
+    
+     <!-- 查询锁定日期到 还处于锁定中的费用 -->
+    <select id="findLockedList" resultType="com.blocain.bitms.trade.fund.entity.AccountFundAdjust">
+       SELECT
+        <include refid="accountFundAdjustColumns"/>
+        FROM AccountFundAdjust a WHERE 1=1
+        <if test="lockEndDay != null">
+            and a.lockEndDay &lt;= #{lockEndDay}
+        </if>
+        and a.lockStatus != 'no'
+    </select>
+
+
+</mapper>
+

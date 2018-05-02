@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.account.mapper.MessageMapper">
+    <!-- 基础列 -->
+    <sql id="messageColumns">
+        a.id as id,
+        a.langType as langType,
+        a.title as title,
+        a.content as content,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="messageJoinColumns">
+        a.id as id,
+        a.langType as langType,
+        a.title as title,
+        a.content as content,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        c.accountName as accountName
+    </sql>
+
+    <resultMap id="messageResultMap" type="com.blocain.bitms.trade.account.entity.Message">
+        <id column="id" property="id"/>
+        <result column="langType" property="langType"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.account.entity.Message">
+        INSERT INTO Message (
+            id,
+            langType,
+            title,
+            content,
+            remark,
+            createBy,
+            createDate,
+            updateBy,
+            updateDate
+        ) VALUES (
+            #{id},
+            #{langType},
+            #{title},
+            #{content},
+            #{remark},
+            #{createBy},
+            #{createDate},
+            #{updateBy},
+            #{updateDate}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE FROM Message
+        WHERE id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        UPDATE Message
+        SET delFlag = 1
+        WHERE id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.account.entity.Message">
+        insert into Message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="langType != null">
+                langType ,
+            </if>
+            <if test="title != null">
+                title ,
+            </if>
+            <if test="content != null">
+                content ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateBy != null">
+                updateBy ,
+            </if>
+            <if test="updateDate != null">
+                updateDate ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="langType != null">
+                #{langType} ,
+            </if>
+            <if test="title != null">
+                #{title} ,
+            </if>
+            <if test="content != null">
+                #{content} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate} ,
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.account.entity.Message">
+        update Message
+        <set>
+            <if test="langType != null">
+                langType = #{langType} ,
+            </if>
+            <if test="title != null">
+                title = #{title} ,
+            </if>
+            <if test="content != null">
+                content = #{content} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} ,
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Message(
+        id ,
+        langType ,
+        title ,
+        content ,
+        remark ,
+        createBy ,
+        createDate ,
+        updateBy ,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.langType} ,
+            #{item.title} ,
+            #{item.content} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.updateBy} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Message set
+            langType = #{item.langType} ,
+            title = #{item.title} ,
+            content = #{item.content} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            updateBy = #{item.updateBy} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.account.entity.Message">
+        UPDATE Message
+        SET
+            langType   = #{langType},
+            title      = #{title},
+            content    = #{content},
+            remark     = #{remark},
+            createBy   = #{createBy},
+            createDate = #{createDate},
+            updateBy   = #{updateBy},
+            updateDate = #{updateDate}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.String"
+            resultType="com.blocain.bitms.trade.account.entity.Message">
+        select
+        <include refid="messageColumns"/>
+        from Message a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.account.entity.Message">
+        SELECT
+        <include refid="messageColumns"/>
+        FROM Message a WHERE a.delFlag = 0
+        <if test="langType != null">
+            and a.langType like '%'||#{langType}||'%'
+        </if>
+        <if test="title != null">
+            and a.title like '%'||#{title}||'%'
+        </if>
+        <if test="content != null">
+            and a.content like '%'||#{content}||'%'
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateBy != null">
+            and a.updateBy = #{updateBy}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <select id="findHistoryList" resultType="com.blocain.bitms.trade.account.entity.Message">
+        SELECT
+        <include refid="messageJoinColumns"/>
+        FROM Message a ,AccountMessage b
+        left join Account c on c.id=b.accountId
+        WHERE a.id = b.messageId
+        <if test="accountName != null and accountName!=''">
+            and c.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="timeStart != null ">
+            and a.createDate &gt;= #{timeStart}
+        </if>
+        <if test="timeEnd != null ">
+            and a.createDate &lt;= #{timeEnd}
+        </if>
+
+    </select>
+
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.account.entity.Message">
+        SELECT
+        <include refid="messageColumns"/>
+        FROM Message a WHERE a.delFlag = 0
+    </select>
+
+    <select id="countByAccount" resultType="java.lang.Long">
+        SELECT count(*) FROM Message t WHERE EXISTS (
+            SELECT 1 FROM AccountMessage
+            where messageId = t.id
+              and accountId = #{accountId}
+              and delFlag = 0
+        )
+    </select>
+
+    <select id="searchByAccount" parameterType="hashmap"
+            resultType="com.blocain.bitms.trade.account.entity.Message">
+        SELECT * FROM (
+            SELECT tbl.*, ROWNUM RN FROM (
+                SELECT * FROM Message t WHERE EXISTS (
+                    SELECT 1 FROM AccountMessage
+                      where messageId = t.id
+                        and accountId = #{message.accountId}
+                        and delFlag = 0
+                )
+            ) tbl WHERE ROWNUM &lt;= #{page.endIndex}
+        ) WHERE RN &gt; #{page.startIndex}
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountWealthDebitAssetMapper">
+    <!-- 基础列 -->
+    <sql id="accountDebitAssetColumns">
+        a.id as id,
+        a.wealthAccountId as wealthAccountId,
+        a.lenderAccountId as lenderAccountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.debitAmt as debitAmt,
+        a.accumulateInterest as accumulateInterest,
+        a.lastInterestDay as lastInterestDay,
+        a.remark as remark,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="accountDebitAssetJoinColumns">
+        a.id as id,
+        a.wealthAccountId as wealthAccountId,
+        a.lenderAccountId as lenderAccountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.debitAmt as debitAmt,
+        a.accumulateInterest as accumulateInterest,
+        a.lastInterestDay as lastInterestDay,
+        a.remark as remark,
+        a.updateDate as updateDate,
+        b.accountName as lenderAccountName,
+        c.stockCode as stockCode,
+        d.accountName as borrowerAccountName
+    </sql>
+    <sql id="accountDebitAssetJoin2Columns">
+        a.id as id,
+        a.wealthAccountId as wealthAccountId,
+        a.lenderAccountId as lenderAccountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.debitAmt as debitAmt,
+        a.accumulateInterest as accumulateInterest,
+        a.lastInterestDay as lastInterestDay,
+        a.remark as remark,
+        a.updateDate as updateDate,
+        b.accountName as lenderAccountName,
+        c.stockCode as stockCode,
+        d.accountName as borrowerAccountName,
+        e.stockCode as relatedStockCode
+    </sql>
+
+    <resultMap id="accountDebitAssetResultMap" type="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        <id column="id" property="id"/>
+        <result column="wealthAccountId" property="wealthAccountId"/>
+        <result column="lenderAccountId" property="lenderAccountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="debitAmt" property="debitAmt"/>
+        <result column="accumulateInterest" property="accumulateInterest" />
+        <result column="lastInterestDay" property="lastInterestDay" />
+        <result column="remark" property="remark"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        insert into AccountWealthDebitAsset(
+            id ,
+            wealthAccountId ,
+            lenderAccountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            debitAmt ,
+            accumulateInterest ,
+            lastInterestDay ,
+            remark ,
+            updateDate
+        ) VALUES (
+            #{id} ,
+            #{wealthAccountId} ,
+            #{lenderAccountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{debitAmt} ,
+            #{accumulateInterest},
+            #{lastInterestDay},
+            #{remark} ,
+            #{updateDate}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" >
+        delete from AccountWealthDebitAsset where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" >
+        delete from AccountWealthDebitAsset where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        insert into AccountWealthDebitAsset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="wealthAccountId != null">
+                wealthAccountId ,
+            </if>
+            <if test="lenderAccountId != null">
+                lenderAccountId ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+            </if>
+            <if test="debitAmt != null">
+                debitAmt ,
+            </if>
+            <if test="accumulateInterest != null">
+                accumulateInterest,
+            </if>
+            <if test="lastInterestDay !=null">
+                lastInterestDay ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="updateDate != null">
+                updateDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="wealthAccountId != null">
+                #{wealthAccountId} ,
+            </if>
+            <if test="lenderAccountId != null">
+                #{lenderAccountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+            </if>
+            <if test="debitAmt != null">
+                #{debitAmt} ,
+            </if>
+            <if test="accumulateInterest !=null">
+                #{accumulateInterest},
+            </if>
+            <if test="lastInterestDay != null">
+                #{lastInterestDay},
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate} ,
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        update AccountWealthDebitAsset
+        <set>
+            <if test="wealthAccountId != null">
+                wealthAccountId = #{wealthAccountId} ,
+            </if>
+            <if test="lenderAccountId != null">
+                lenderAccountId = #{lenderAccountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="debitAmt != null">
+                debitAmt = #{debitAmt} ,
+            </if>
+            <if test="accumulateInterest !=null">
+                accumulateInterest = #{accumulateInterest},
+            </if>
+            <if test="lastInterestDay != null">
+                lastInterestDay = #{lastInterestDay},
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} ,
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountWealthDebitAsset(
+        id ,
+        wealthAccountId ,
+        lenderAccountId ,
+        stockinfoId ,
+        relatedStockinfoId ,
+        debitAmt ,
+        accumulateInterest,
+        lastInterestDay ,
+        remark ,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.wealthAccountId} ,
+            #{item.lenderAccountId} ,
+            #{item.stockinfoId} ,
+            ${item.relatedStockinfoId} ,
+            #{item.debitAmt} ,
+            #{item.accumulateInterest},
+            #{item.lastInterestDay},
+            #{item.remark} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountWealthDebitAsset set
+            wealthAccountId = #{item.wealthAccountId} ,
+            lenderAccountId = #{item.lenderAccountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId },
+            debitAmt = #{item.debitAmt} ,
+            accumulateInterest = #{item.accumulateInterest},
+            lastInterestDay = #{item.lastInterestDay},
+            remark = #{item.remark} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        update AccountWealthDebitAsset set
+            wealthAccountId = #{wealthAccountId} ,
+            lenderAccountId = #{lenderAccountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId= #{relatedStockinfoId} ,
+            debitAmt = #{debitAmt} ,
+            accumulateInterest = #{accumulateInterest},
+            lastInterestDay = #{lastInterestDay},
+            remark = #{remark} ,
+            updateDate = #{updateDate}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  resultType="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        select
+        <include refid="accountDebitAssetColumns"/>
+        from AccountWealthDebitAsset a where a.id = #{id}
+    </select>
+
+    <select id="selectByPrimaryKeyForUpdate" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        select
+        <include refid="accountDebitAssetColumns"/>
+        from AccountWealthDebitAsset a where a.id = #{id} for update
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountWealthDebitAsset">
+        SELECT
+        <include refid="accountDebitAssetColumns"/>
+        FROM AccountWealthDebitAsset a
+        WHERE 1=1
+        <if test="lenderAccountId != null">
+            and a.lenderAccountId = #{lenderAccountId}
+        </if>
+        <if test="wealthAccountId != null">
+            and a.wealthAccountId = #{wealthAccountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+    </select>
+</mapper>
+

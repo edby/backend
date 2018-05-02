@@ -1,0 +1,12 @@
+com\blocain\bitms\platscan\thread\quotation\BitfinexQuotation.class
+com\blocain\bitms\platscan\thread\quotation\CoinbaseQuotation.class
+com\blocain\bitms\platscan\thread\quotation\BitstampQuotation.class
+com\blocain\bitms\platscan\thread\FundScanThread.class
+com\blocain\bitms\platscan\thread\quotation\AbstractQuotation.class
+com\blocain\bitms\platscan\PlatScanServer.class
+com\blocain\bitms\platscan\thread\quotation\KrakenQuotation.class
+com\blocain\bitms\platscan\config\PlatScanConfigLoader.class
+com\blocain\bitms\platscan\thread\QuotationThread.class
+com\blocain\bitms\platscan\thread\ClosePositionThread.class
+com\blocain\bitms\platscan\thread\DebitAssetThread.class
+com\blocain\bitms\platscan\thread\quotation\InternalConversionQuotation.class

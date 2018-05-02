@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorAcctFundCurMapper">
+    <!-- 基础列 -->
+    <sql id="monitorAcctFundCurColumns">
+        a.id as id,
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.accountId as accountId,
+        a.bizcategoryID as bizCategoryId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.assetBal as assetBal,
+        a.assetfrozenbal as assetfrozenbal,
+        a.debetBal as debetBal,
+        a.curAssetBal as curAssetBal,
+        a.curfrozenbal as curfrozenbal,
+        a.curDebetBal as curDebetBal,
+        a.differenceDebetBal as differenceDebetBal,
+        a.differenceAssetBal as differenceAssetBal,
+        a.differencefrozenbal as differencefrozenbal,
+        a.monitordesc as monitordesc,
+        a.chkResult as chkResult,
+        a.bizDate as bizDate,
+        a.chkDate as chkDate,
+        a.acctAssetType as acctAssetType
+    </sql>
+
+    <resultMap id="monitorAcctFundCurResultMap" type="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        <id column="id" property="id" />
+        <result column="monitorType" property="monitorType"/>
+        <result column="monitorSubType" property="monitorSubType"/>
+        <result column="accountId" property="accountId"/>
+        <result column="bizCategoryId" property="bizCategoryId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="assetBal" property="assetBal"/>
+        <result column="assetfrozenbal" property="assetfrozenbal"/>
+        <result column="debetBal" property="debetBal"/>
+        <result column="curAssetBal" property="curAssetBal"/>
+        <result column="curfrozenbal" property="curfrozenbal"/>
+        <result column="curDebetBal" property="curDebetBal"/>
+        <result column="differenceDebetBal" property="differenceDebetBal"/>
+        <result column="differenceAssetBal" property="differenceAssetBal"/>
+        <result column="differencefrozenbal" property="differencefrozenbal"/>
+        <result column="monitordesc" property="monitordesc"/>
+        <result column="chkResult" property="chkResult"/>
+        <result column="bizDate" property="bizDate"/>
+        <result column="chkDate" property="chkDate"/>
+        <result column="acctAssetType" property="acctAssetType"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        insert into MonitorAcctFundCur(
+            id ,
+            monitorType ,
+            monitorSubType ,
+            accountId ,
+            bizCategoryId ,
+            stockinfoId ,
+            assetBal ,
+            assetfrozenbal ,
+            debetBal ,
+            curAssetBal ,
+            curfrozenbal ,
+            curDebetBal ,
+            differenceDebetBal ,
+            differenceAssetBal ,
+            differencefrozenbal ,
+            monitordesc ,
+            chkResult ,
+            bizDate ,
+            chkDate ,
+            acctAssetType
+        ) VALUES (
+            #{id} ,
+            #{monitorType} ,
+            #{monitorSubType} ,
+            #{accountId} ,
+            #{bizCategoryId} ,
+            #{stockinfoId} ,
+            #{assetBal} ,
+            #{assetfrozenbal} ,
+            #{debetBal} ,
+            #{curAssetBal} ,
+            #{curfrozenbal} ,
+            #{curDebetBal} ,
+            #{differenceDebetBal} ,
+            #{differenceAssetBal} ,
+            #{differencefrozenbal} ,
+            #{monitordesc} ,
+            #{chkResult} ,
+            #{bizDate} ,
+            #{chkDate} ,
+            #{acctAssetType}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorAcctFundCur where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+       delete from MonitorAcctFundCur where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        insert into MonitorAcctFundCur
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="monitorType != null">
+                monitorType ,
+        </if>
+        <if test="monitorSubType != null">
+                monitorSubType ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="bizCategoryId != null">
+                bizCategoryId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="assetBal != null">
+                assetBal ,
+        </if>
+        <if test="assetfrozenbal != null">
+                assetfrozenbal ,
+        </if>
+        <if test="debetBal != null">
+                debetBal ,
+        </if>
+        <if test="curAssetBal != null">
+                curAssetBal ,
+        </if>
+        <if test="curfrozenbal != null">
+                curfrozenbal ,
+        </if>
+        <if test="curDebetBal != null">
+                curDebetBal ,
+        </if>
+        <if test="differenceDebetBal != null">
+                differenceDebetBal ,
+        </if>
+        <if test="differenceAssetBal != null">
+                differenceAssetBal ,
+        </if>
+        <if test="differencefrozenbal != null">
+                differencefrozenbal ,
+        </if>
+        <if test="monitordesc != null">
+                monitordesc ,
+        </if>
+        <if test="chkResult != null">
+                chkResult ,
+        </if>
+        <if test="bizDate != null">
+                bizDate ,
+        </if>
+        <if test="chkDate != null">
+                chkDate ,
+        </if>
+            <if test="acctAssetType != null">
+                acctAssetType
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="monitorType != null">
+                #{monitorType} ,
+        </if>
+        <if test="monitorSubType != null">
+                #{monitorSubType} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="bizCategoryId != null">
+                #{bizCategoryId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="assetBal != null">
+                #{assetBal} ,
+        </if>
+        <if test="assetfrozenbal != null">
+                #{assetfrozenbal} ,
+        </if>
+        <if test="debetBal != null">
+                #{debetBal} ,
+        </if>
+        <if test="curAssetBal != null">
+                #{curAssetBal} ,
+        </if>
+        <if test="curfrozenbal != null">
+                #{curfrozenbal} ,
+        </if>
+        <if test="curDebetBal != null">
+                #{curDebetBal} ,
+        </if>
+        <if test="differenceDebetBal != null">
+                #{differenceDebetBal} ,
+        </if>
+        <if test="differenceAssetBal != null">
+                #{differenceAssetBal} ,
+        </if>
+        <if test="differencefrozenbal != null">
+                #{differencefrozenbal} ,
+        </if>
+        <if test="monitordesc != null">
+                #{monitordesc} ,
+        </if>
+        <if test="chkResult != null">
+                #{chkResult} ,
+        </if>
+        <if test="bizDate != null">
+                #{bizDate} ,
+        </if>
+        <if test="chkDate != null">
+                #{chkDate} ,
+        </if>
+            <if test="acctAssetType != null">
+                #{acctAssetType}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        update MonitorAcctFundCur
+           <set>
+            <if test="monitorType != null">
+                monitorType = #{monitorType} ,
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType = #{monitorSubType} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="bizCategoryId != null">
+                bizCategoryId = #{bizCategoryId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="assetBal != null">
+                assetBal = #{assetBal} ,
+            </if>
+            <if test="assetfrozenbal != null">
+                assetfrozenbal = #{assetfrozenbal} ,
+            </if>
+            <if test="debetBal != null">
+                debetBal = #{debetBal} ,
+            </if>
+            <if test="curAssetBal != null">
+                curAssetBal = #{curAssetBal} ,
+            </if>
+            <if test="curfrozenbal != null">
+                curfrozenbal = #{curfrozenbal} ,
+            </if>
+            <if test="curDebetBal != null">
+                curDebetBal = #{curDebetBal} ,
+            </if>
+            <if test="differenceDebetBal != null">
+                differenceDebetBal = #{differenceDebetBal} ,
+            </if>
+            <if test="differenceAssetBal != null">
+                differenceAssetBal = #{differenceAssetBal} ,
+            </if>
+            <if test="differencefrozenbal != null">
+                differencefrozenbal = #{differencefrozenbal} ,
+            </if>
+            <if test="monitordesc != null">
+                monitordesc = #{monitordesc} ,
+            </if>
+            <if test="chkResult != null">
+                chkResult = #{chkResult} ,
+            </if>
+            <if test="bizDate != null">
+                bizDate = #{bizDate} ,
+            </if>
+            <if test="chkDate != null">
+                chkDate = #{chkDate} ,
+            </if>
+               <if test="acctAssetType != null">
+                   acctAssetType = #{acctAssetType}
+               </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorAcctFundCur(
+            id ,
+            monitorType ,
+            monitorSubType ,
+            accountId ,
+            bizCategoryId ,
+            stockinfoId ,
+            assetBal ,
+            assetfrozenbal ,
+            debetBal ,
+            curAssetBal ,
+            curfrozenbal ,
+            curDebetBal ,
+            differenceDebetBal ,
+            differenceAssetBal ,
+            differencefrozenbal ,
+            monitordesc ,
+            chkResult ,
+            bizDate ,
+            chkDate ,
+            acctAssetType
+
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.monitorType} ,
+            #{item.monitorSubType} ,
+            #{item.accountId} ,
+            #{item.bizCategoryId} ,
+            #{item.stockinfoId} ,
+            #{item.assetBal} ,
+            #{item.assetfrozenbal} ,
+            #{item.debetBal} ,
+            #{item.curAssetBal} ,
+            #{item.curfrozenbal} ,
+            #{item.curDebetBal} ,
+            #{item.differenceDebetBal} ,
+            #{item.differenceAssetBal} ,
+            #{item.differencefrozenbal} ,
+            #{item.monitordesc} ,
+            #{item.chkResult} ,
+            #{item.bizDate} ,
+            #{item.chkDate} ,
+            #{item.acctAssetType}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MonitorAcctFundCur set
+            monitorType = #{item.monitorType} ,
+            monitorSubType = #{item.monitorSubType} ,
+            accountId = #{item.accountId} ,
+            bizCategoryId = #{item.bizCategoryId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            assetBal = #{item.assetBal} ,
+            assetfrozenbal = #{item.assetfrozenbal} ,
+            debetBal = #{item.debetBal} ,
+            curAssetBal = #{item.curAssetBal} ,
+            curfrozenbal = #{item.curfrozenbal} ,
+            curDebetBal = #{item.curDebetBal} ,
+            differenceDebetBal = #{item.differenceDebetBal} ,
+            differenceAssetBal = #{item.differenceAssetBal} ,
+            differencefrozenbal = #{item.differencefrozenbal} ,
+            monitordesc = #{item.monitordesc} ,
+            chkResult = #{item.chkResult} ,
+            bizDate = #{item.bizDate} ,
+            chkDate = #{item.chkDate} ,
+            acctAssetType = #{item.acctAssetType}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        update MonitorAcctFundCur set
+            monitorType = #{monitorType} ,
+            monitorSubType = #{monitorSubType} ,
+            accountId = #{accountId} ,
+            bizCategoryId = #{bizCategoryId} ,
+            stockinfoId = #{stockinfoId} ,
+            assetBal = #{assetBal} ,
+            assetfrozenbal = #{assetfrozenbal} ,
+            debetBal = #{debetBal} ,
+            curAssetBal = #{curAssetBal} ,
+            curfrozenbal = #{curfrozenbal} ,
+            curDebetBal = #{curDebetBal} ,
+            differenceDebetBal = #{differenceDebetBal} ,
+            differenceAssetBal = #{differenceAssetBal} ,
+            differencefrozenbal = #{differencefrozenbal} ,
+            monitordesc = #{monitordesc} ,
+            chkResult = #{chkResult} ,
+            bizDate = #{bizDate} ,
+            chkDate = #{chkDate} ,
+            acctAssetType = #{acctAssetType}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        select <include refid="monitorAcctFundCurColumns"/> from MonitorAcctFundCur a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        SELECT
+        <include refid="monitorAcctFundCurColumns"/>
+        FROM MonitorAcctFundCur a WHERE a.delFlag = 0
+        <if test="monitorType != null">
+            and a.monitorType like '%'||#{monitorType}||'%'
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType like '%'||#{monitorSubType}||'%'
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="bizCategoryId != null">
+            and a.bizCategoryId = #{bizCategoryId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="assetBal != null">
+            and a.assetBal = #{assetBal}
+        </if>
+        <if test="assetfrozenbal != null">
+            and a.assetfrozenbal = #{assetfrozenbal}
+        </if>
+        <if test="debetBal != null">
+            and a.debetBal = #{debetBal}
+        </if>
+        <if test="curAssetBal != null">
+            and a.curAssetBal = #{curAssetBal}
+        </if>
+        <if test="curfrozenbal != null">
+            and a.curfrozenbal = #{curfrozenbal}
+        </if>
+        <if test="curDebetBal != null">
+            and a.curDebetBal = #{curDebetBal}
+        </if>
+        <if test="differenceDebetBal != null">
+            and a.differenceDebetBal = #{differenceDebetBal}
+        </if>
+        <if test="differenceAssetBal != null">
+            and a.differenceAssetBal = #{differenceAssetBal}
+        </if>
+        <if test="differencefrozenbal != null">
+            and a.differencefrozenbal = #{differencefrozenbal}
+        </if>
+        <if test="monitordesc != null">
+            and a.monitordesc like '%'||#{monitordesc}||'%'
+        </if>
+        <if test="chkResult != null">
+            and a.chkResult = #{chkResult}
+        </if>
+        <if test="bizDate != null">
+            and a.bizDate = #{bizDate}
+        </if>
+        <if test="chkDate != null">
+            and a.chkDate = #{chkDate}
+        </if>
+        <if test="acctAssetType != null">
+            and a.acctAssetType = #{acctAssetType}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        SELECT
+        <include refid="monitorAcctFundCurColumns"/>
+        FROM MonitorAcctFundCur a WHERE a.delFlag = 0
+    </select>
+    <!-- 可分页的对象查询 -->
+    <select id="findMonitorAcctFundCurList" resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        SELECT
+        <include refid="monitorAcctFundCurColumns"/>,
+        b.accountName as accountName,
+        c.stockName as stockName
+        FROM MonitorAcctFundCur a ,account b,Stockinfo c
+        where a.accountId = b.id(+)
+        and a.stockinfoId = c.id(+)
+        <if test="accountName != null">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="acctAssetType != null">
+            and a.acctAssetType = #{acctAssetType}
+        </if>
+        <if test="chkResult != null">
+            <choose>
+                <when test="chkResult==1">
+                    and chkResult = 1
+                </when>
+                <when test="chkResult==0">
+                    and chkResult != 1
+                </when>
+                <otherwise>
+                    --                     and chkResult = #{chkResult}
+                </otherwise>
+            </choose>
+        </if>
+        <if test="timeStart != null ">
+            and a.chkDate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.chkDate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.chkresult,a.accountId,a.acctassettype,a.stockinfoid
+    </select>
+
+    <!-- 总账表关联账户对象查询 -->
+    <select id="findRelatedList" resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        SELECT
+        <include refid="monitorAcctFundCurColumns"/>,
+        b.accountName as accountName
+        FROM MonitorAcctFundCur a ,account b
+        where a.accountId = b.id(+)
+        and a.stockinfoId = #{stockinfoId}
+        order by a.accountId,a.chkResult,a.acctAssetType
+    </select>
+
+    <select id="findRiskInfo" resultType="com.blocain.bitms.monitor.entity.MonitorAcctFundCur">
+        select
+        count(*) as abNormalCount
+        from MonitorAcctFundCur where
+        chkResult = -1
+    </select>
+
+
+
+</mapper>
+

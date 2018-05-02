@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+       default-autowire="byName">
+
+    <description>Spring-database配置</description>
+
+
+    <!-- MyBatis配置 -->
+    <bean id="mybatisSqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:config/sqlMapConfig.xml"/>
+        <property name="typeAliasesPackage" value="com.blocain.**.entity"/>
+        <property name="mapperLocations" value="classpath*:config/mappers/**/*Mapper.xml"/>
+    </bean>
+    <!-- 扫描basePackage下所有以@Repository标识的 接口 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.blocain.**.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="mybatisSqlSessionFactory"/>
+    </bean>
+
+     <!-- 定义数据源 -->
+    <bean id="dataSource" class="com.blocain.bitms.orm.config.CustomDruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${master.jdbc.url.prop}"/>
+        <property name="username" value="${master.jdbc.username.prop}"/>
+        <property name="password" value="${master.jdbc.password.prop}"/>
+        <property name="initialSize" value="${druid.initialSize}"/>
+        <property name="maxActive" value="${druid.maxActive}"/>
+        <property name="minIdle" value="${druid.minIdle}"/>
+        <property name="maxWait" value="${druid.maxWait}"/>
+        <property name="validationQuery" value="${jdbc.check}"/>
+        <property name="testOnBorrow" value="${druid.testOnBorrow}"/>
+        <property name="testOnReturn" value="${druid.testOnReturn}"/>
+        <property name="testWhileIdle" value="${druid.testWhileIdle}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}"/>
+        <property name="removeAbandoned" value="${druid.removeAbandoned}"/>
+        <property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}"/>
+        <property name="logAbandoned" value="${druid.logAbandoned}"/>
+        <property name="filters" value="${druid.filters}"/>
+    </bean>
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置事务特性 -->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="batch*" propagation="REQUIRED"/>
+            <tx:method name="save*" propagation="REQUIRED"/>
+            <tx:method name="join*" propagation="REQUIRED"/>
+
+            <tx:method name="list*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="load*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="search*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="is*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="has*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="*" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 配置哪些类的方法需要进行事务管理 -->
+    <aop:config>
+        <aop:pointcut id="allManagerMethod" expression="execution(* com.blocain..*.service..*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod"/>
+    </aop:config>
+</beans>

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountWalletAssetMapper">
+    <!-- 基础列 -->
+    <sql id="accountWalletAssetColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.amount as amount,
+        a.frozenAmt as frozenAmt,
+        a.chargedTotal as chargedTotal,
+        a.withdrawedTotal as withdrawedTotal,
+        a.withdrawingTotal as withdrawingTotal,
+        a.remark as remark,
+        a.isActiveTrade as isActiveTrade,
+        a.direction as direction,
+        a.price as price,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="accountWalletAssetJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.amount as amount,
+        a.frozenAmt as frozenAmt,
+        a.chargedTotal as chargedTotal,
+        a.withdrawedTotal as withdrawedTotal,
+        a.withdrawingTotal as withdrawingTotal,
+        a.remark as remark,
+        a.isActiveTrade as isActiveTrade,
+        a.direction as direction,
+        a.price as price,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode,
+        c.stockName as stockName,
+        c.stockType as stockType,
+        c.canRecharge as canRecharge,
+        c.canWithdraw as canWithdraw,
+        c.canTrade as canTrade,
+        c.canBorrow as canBorrow,
+        c.isExchange as isExchange,
+        c.canConversion as canConversion,
+        d.debitAmt as debitAmt,
+        d.accumulateInterest as accumulateInterest
+    </sql>
+
+    <sql id="accountWalletAssetJoin2Columns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.amount as amount,
+        a.frozenAmt as frozenAmt,
+        a.chargedTotal as chargedTotal,
+        a.withdrawedTotal as withdrawedTotal,
+        a.withdrawingTotal as withdrawingTotal,
+        a.remark as remark,
+        a.isActiveTrade as isActiveTrade,
+        a.direction as direction,
+        a.price as price,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode,
+        c.stockName as stockName,
+        c.stockType as stockType,
+        c.canRecharge as canRecharge,
+        c.canWithdraw as canWithdraw,
+        c.canTrade as canTrade,
+        c.canBorrow as canBorrow,
+        c.isExchange as isExchange,
+        c.canConversion as canConversion,
+        c.tokenContactAddr as tokenContactAddr
+    </sql>
+
+    <resultMap id="accountWalletAssetResultMap" type="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        <id column="id" property="id"/>
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="amount" property="amount"/>
+        <result column="frozenAmt" property="frozenAmt"/>
+        <result column="chargedTotal" property="chargedTotal"/>
+        <result column="withdrawedTotal" property="withdrawedTotal"/>
+        <result column="withdrawingTotal" property="withdrawingTotal"/>
+        <result column="remark" property="remark"/>
+        <result column="isActiveTrade" property="isActiveTrade"/>
+        <result column="direction" property="direction"/>
+        <result column="price" property="price"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        insert into AccountWalletAsset(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId,
+            amount ,
+            frozenAmt ,
+            chargedTotal,
+            withdrawedTotal,
+            withdrawingTotal,
+            remark ,
+            isActiveTrade,
+            direction,
+        	price,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId },
+            #{amount} ,
+            #{frozenAmt} ,
+            #{chargedTotal} ,
+           #{withdrawedTotal} ,
+            #{withdrawingTotal} ,
+            #{remark} ,
+            #{isActiveTrade},
+            #{direction} ,
+            #{price} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountWalletAsset where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountWalletAsset set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        insert into AccountWalletAsset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+            </if>
+            <if test="amount != null">
+                amount ,
+            </if>
+            <if test="frozenAmt != null">
+                frozenAmt ,
+            </if>
+            <if test="chargedTotal != null">
+                chargedTotal ,
+            </if>
+            <if test="withdrawedTotal != null">
+                withdrawedTotal ,
+            </if>
+            <if test="withdrawingTotal != null">
+                withdrawingTotal ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="isActiveTrade!= null">
+                isActiveTrade,
+            </if>
+            <if test="direction != null">
+                direction ,
+            </if>
+            <if test="price != null">
+                price ,
+            </if>
+            <if test="updateDate != null">
+                updateDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+            </if>
+            <if test="amount != null">
+                #{amount} ,
+            </if>
+            <if test="frozenAmt != null">
+                #{frozenAmt} ,
+            </if>
+            <if test="chargedTotal != null">
+                #{chargedTotal} ,
+            </if>
+            <if test="withdrawedTotal != null">
+                #{withdrawedTotal} ,
+            </if>
+            <if test="withdrawingTotal != null">
+                #{withdrawingTotal} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="isActiveTrade != null">
+                #{isActiveTrade},
+            </if>
+            <if test="direction != null">
+                #{direction} ,
+            </if>
+            <if test="price != null">
+                #{price} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        update AccountWalletAsset
+        <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="amount != null">
+                amount = #{amount} ,
+            </if>
+            <if test="frozenAmt != null">
+                frozenAmt = #{frozenAmt} ,
+            </if>
+            <if test="chargedTotal != null">
+                chargedTotal = #{chargedTotal} ,
+            </if>
+            <if test="withdrawedTotal != null">
+                withdrawedTotal = #{withdrawedTotal} ,
+            </if>
+            <if test="withdrawingTotal != null">
+                withdrawingTotal = #{withdrawingTotal} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="isActiveTrade!=null">
+                isActiveTrade = #{isActiveTrade},
+            </if>
+            <if test="direction != null">
+                direction = #{direction} ,
+            </if>
+            <if test="price != null">
+                price = #{price} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountWalletAsset(
+        id ,
+        accountId ,
+        stockinfoId ,
+        relatedStockinfoId,
+        amount ,
+        frozenAmt ,
+        chargedTotal,
+        withdrawedTotal,
+        withdrawingTotal,
+        remark ,
+        isActiveTrade,
+        direction,
+        price,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.amount} ,
+            #{item.frozenAmt} ,
+            #{chargedTotal},
+            #{withdrawedTotal},
+            #{withdrawingTotal},
+            #{item.remark} ,
+            #{item.isActiveTrade};
+            #{item.direction} ,
+            #{item.price} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountWalletAsset set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            amount = #{item.amount} ,
+            frozenAmt = #{item.frozenAmt} ,
+            chargedTotal = #{item.chargedTotal} ,
+            withdrawedTotal = #{item.withdrawedTotal} ,
+            withdrawingTotal = #{item.withdrawingTotal} ,
+            remark = #{item.remark} ,
+            isActiveTrade = #{item.isActiveTrade},
+            direction = #{item.direction} ,
+            price = #{item.price} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        update AccountWalletAsset set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            amount = #{amount} ,
+            frozenAmt = #{frozenAmt} ,
+            chargedTotal = #{chargedTotal} ,
+            withdrawedTotal = #{withdrawedTotal} ,
+            withdrawingTotal = #{withdrawingTotal} ,
+            remark = #{remark} ,
+            isActiveTrade = #{isActiveTrade},
+            direction = #{direction} ,
+            price = #{price} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        select
+        <include refid="accountWalletAssetColumns"/>
+        from AccountWalletAsset a where a.id = #{id}
+    </select>
+
+    <!-- 查询并加行锁 -->
+    <select id="selectForUpdate" resultType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        select
+        <include refid="accountWalletAssetColumns"/>
+        from AccountWalletAsset a where a.accountId = #{accountId} and
+        a.stockinfoId = #{stockinfoId} for update wait 3
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        SELECT
+        <include refid="accountWalletAssetJoinColumns"/>
+        FROM AccountWalletAsset a
+        left join Account b on a.accountId=b.id
+        left join stockinfo c on a.stockinfoId=c.id
+        left join accountdebitasset d on d.borroweraccountid=a.accountid and d.relatedstockinfoid=a.relatedstockinfoid
+        and d.stockinfoid = a.stockinfoid
+        WHERE 1=1
+        and c.isActive = 'yes'
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+    </select>
+    <select id="tradeXFindList" resultType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        SELECT
+        <include refid="accountWalletAssetJoin2Columns"/>
+        FROM AccountWalletAsset a
+        left join Account b on a.accountId=b.id
+        left join stockinfo c on a.stockinfoId=c.id
+        WHERE 1=1
+        and c.isActive = 'yes'
+        and c.stocktype='erc20Token'
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        order by isActiveTrade desc,c.id asc
+    </select>
+
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        SELECT
+        <include refid="accountWalletAssetColumns"/>
+        FROM AccountWalletAsset a WHERE 1=1
+    </select>
+
+    <!-- 查询实体 -->
+    <select id="findWalletAsset" resultType="com.blocain.bitms.trade.fund.entity.AccountWalletAsset">
+        SELECT
+        <include refid="accountWalletAssetColumns"/>
+        FROM AccountWalletAsset a
+        WHERE a.accountId=#{accountId}
+        and a.stockinfoId=#{stockinfoId}
+    </select>
+    <!-- 获取全平台某币种的总数量 -->
+    <select id="getPlatSumCoinByStockInfoId" resultType="java.math.BigDecimal">
+        select nvl(sum(nvl(chargedtotal,0)-nvl(withdrawedtotal,0)) ,0) from accountwalletasset where stockinfoId=#{stockinfoId}
+    </select>
+
+</mapper>
+

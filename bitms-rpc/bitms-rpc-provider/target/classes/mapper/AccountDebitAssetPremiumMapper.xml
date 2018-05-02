@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountDebitAssetPremiumMapper">
+    <!-- 基础列 -->
+    <sql id="accountDebitAssetPremiumColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.assetAmt as assetAmt,
+        a.debitAmt as debitAmt,
+        a.positionAmt as positionAmt,
+        a.paltformPrice as paltformPrice,
+        a.indexPrice as indexPrice,
+        a.premiumPrice as premiumPrice,
+        a.premiumRate as premiumRate,
+        a.premiumFeeRate as premiumFeeRate,
+        a.premiumFee as premiumFee,
+        a.remark as remark,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="accountDebitAssetPremiumJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.assetAmt as assetAmt,
+        a.debitAmt as debitAmt,
+        a.positionAmt as positionAmt,
+        a.paltformPrice as paltformPrice,
+        a.indexPrice as indexPrice,
+        a.premiumPrice as premiumPrice,
+        a.premiumRate as premiumRate,
+        a.premiumFeeRate as premiumFeeRate,
+        a.premiumFee as premiumFee,
+        a.remark as remark,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode
+    </sql>
+
+
+    <resultMap id="accountDebitAssetPremiumResultMap" type="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="assetAmt" property="assetAmt"/>
+        <result column="debitAmt" property="debitAmt"/>
+        <result column="positionAmt" property="positionAmt"/>
+        <result column="paltformPrice" property="paltformPrice"/>
+        <result column="indexPrice" property="indexPrice"/>
+        <result column="premiumPrice" property="premiumPrice"/>
+        <result column="premiumRate" property="premiumRate"/>
+        <result column="premiumFeeRate" property="premiumFeeRate"/>
+        <result column="premiumFee" property="premiumFee"/>
+        <result column="remark" property="remark"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        insert into AccountDebitAssetPremium(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            assetAmt ,
+            debitAmt ,
+            positionAmt ,
+            paltformPrice ,
+            indexPrice ,
+            premiumPrice ,
+            premiumRate ,
+            premiumFeeRate ,
+            premiumFee ,
+            remark ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{assetAmt} ,
+            #{debitAmt} ,
+            #{positionAmt} ,
+            #{paltformPrice} ,
+            #{indexPrice} ,
+            #{premiumPrice} ,
+            #{premiumRate} ,
+            #{premiumFeeRate} ,
+            #{premiumFee} ,
+            #{remark} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountDebitAssetPremium where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountDebitAssetPremium set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        insert into AccountDebitAssetPremium
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+        </if>
+        <if test="assetAmt != null">
+                assetAmt ,
+        </if>
+        <if test="debitAmt != null">
+                debitAmt ,
+        </if>
+        <if test="positionAmt != null">
+                positionAmt ,
+        </if>
+        <if test="paltformPrice != null">
+                paltformPrice ,
+        </if>
+        <if test="indexPrice != null">
+                indexPrice ,
+        </if>
+        <if test="premiumPrice != null">
+                premiumPrice ,
+        </if>
+        <if test="premiumRate != null">
+                premiumRate ,
+        </if>
+        <if test="premiumFeeRate != null">
+                premiumFeeRate ,
+        </if>
+        <if test="premiumFee != null">
+                premiumFee ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+        </if>
+        <if test="assetAmt != null">
+                #{assetAmt} ,
+        </if>
+        <if test="debitAmt != null">
+                #{debitAmt} ,
+        </if>
+        <if test="positionAmt != null">
+                #{positionAmt} ,
+        </if>
+        <if test="paltformPrice != null">
+                #{paltformPrice} ,
+        </if>
+        <if test="indexPrice != null">
+                #{indexPrice} ,
+        </if>
+        <if test="premiumPrice != null">
+                #{premiumPrice} ,
+        </if>
+        <if test="premiumRate != null">
+                #{premiumRate} ,
+        </if>
+        <if test="premiumFeeRate != null">
+                #{premiumFeeRate} ,
+        </if>
+        <if test="premiumFee != null">
+                #{premiumFee} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        update AccountDebitAssetPremium
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="assetAmt != null">
+                assetAmt = #{assetAmt} ,
+            </if>
+            <if test="debitAmt != null">
+                debitAmt = #{debitAmt} ,
+            </if>
+            <if test="positionAmt != null">
+                positionAmt = #{positionAmt} ,
+            </if>
+            <if test="paltformPrice != null">
+                paltformPrice = #{paltformPrice} ,
+            </if>
+            <if test="indexPrice != null">
+                indexPrice = #{indexPrice} ,
+            </if>
+            <if test="premiumPrice != null">
+                premiumPrice = #{premiumPrice} ,
+            </if>
+            <if test="premiumRate != null">
+                premiumRate = #{premiumRate} ,
+            </if>
+            <if test="premiumFeeRate != null">
+                premiumFeeRate = #{premiumFeeRate} ,
+            </if>
+            <if test="premiumFee != null">
+                premiumFee = #{premiumFee} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountDebitAssetPremium(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            assetAmt ,
+            debitAmt ,
+            positionAmt ,
+            paltformPrice ,
+            indexPrice ,
+            premiumPrice ,
+            premiumRate ,
+            premiumFeeRate ,
+            premiumFee ,
+            remark ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.assetAmt} ,
+            #{item.debitAmt} ,
+            #{item.positionAmt} ,
+            #{item.paltformPrice} ,
+            #{item.indexPrice} ,
+            #{item.premiumPrice} ,
+            #{item.premiumRate} ,
+            #{item.premiumFeeRate} ,
+            #{item.premiumFee} ,
+            #{item.remark} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountDebitAssetPremium set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            assetAmt = #{item.assetAmt} ,
+            debitAmt = #{item.debitAmt} ,
+            positionAmt = #{item.positionAmt} ,
+            paltformPrice = #{item.paltformPrice} ,
+            indexPrice = #{item.indexPrice} ,
+            premiumPrice = #{item.premiumPrice} ,
+            premiumRate = #{item.premiumRate} ,
+            premiumFeeRate = #{item.premiumFeeRate} ,
+            premiumFee = #{item.premiumFee} ,
+            remark = #{item.remark} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        update AccountDebitAssetPremium set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            assetAmt = #{assetAmt} ,
+            debitAmt = #{debitAmt} ,
+            positionAmt = #{positionAmt} ,
+            paltformPrice = #{paltformPrice} ,
+            indexPrice = #{indexPrice} ,
+            premiumPrice = #{premiumPrice} ,
+            premiumRate = #{premiumRate} ,
+            premiumFeeRate = #{premiumFeeRate} ,
+            premiumFee = #{premiumFee} ,
+            remark = #{remark} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        select <include refid="accountDebitAssetPremiumColumns"/> from AccountDebitAssetPremium a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        SELECT
+        <include refid="accountDebitAssetPremiumJoinColumns"/>
+        FROM AccountDebitAssetPremium a
+        left join account b on b.id=a.accountId
+        left join STOCKINFO c on c.id=a.stockinfoId
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="accountName !=null and accountName!=''">
+            and b.accountName like   '%'||#{accountName}||'%'
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="timeStart != null">
+            and a.updateDate &gt;=to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null">
+            and a.updateDate &lt;=to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.updateDate desc
+
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetPremium">
+        SELECT
+        <include refid="accountDebitAssetPremiumColumns"/>
+        FROM AccountDebitAssetPremium a
+    </select>
+
+    <!-- 获取账户资产 -->
+    <select id="getPremiumShortAccountAsset" resultType="com.blocain.bitms.trade.fund.model.AccountPremiumAssetModel">
+         SELECT
+        a.id as id,
+        a.accountId as accountId,
+        nvl(a.amount,0) as amount,
+        a.frozenAmt as frozenAmt,
+        nvl(b.debitamt,0) as debitAmt,
+        a.stockinfoid as stockinfoId,
+        a.relatedstockinfoid as relatedStockinfoId
+        FROM AccountSpotAssetSnap a left join AccountDebitAssetSnap b
+        on a.stockinfoid=b.stockinfoid and a.accountid=b.borroweraccountid and a.relatedstockinfoid=b.relatedstockinfoid
+        where nvl(a.amount,0) &gt; nvl(b.debitAmt,0)
+        and a.stockinfoId=#{stockinfoId} and a.premiumDealFlag=0 and a.accountId != 199999999993
+        and a.relatedstockinfoid=#{relatedStockinfoId}
+    </select>
+
+    <!-- 获取账户资产 -->
+    <select id="getPremiumLongAccountAsset" resultType="com.blocain.bitms.trade.fund.model.AccountPremiumAssetModel">
+        SELECT
+        a.id as id,
+        a.accountId as accountId,
+        nvl(a.amount,0) as amount,
+        a.frozenAmt as frozenAmt,
+        nvl(b.debitamt,0) as debitAmt,
+        a.stockinfoid as stockinfoId,
+        a.relatedstockinfoid as relatedStockinfoId
+        FROM AccountSpotAssetSnap a left join AccountDebitAssetSnap b
+        on a.stockinfoid=b.stockinfoid and a.accountid=b.borroweraccountid and a.relatedstockinfoid=b.relatedstockinfoid
+        where nvl(a.amount,0) &lt; nvl(b.debitAmt,0)
+        and a.stockinfoId=#{stockinfoId} and a.premiumDealFlag=0 and a.accountId != 199999999993
+        and a.relatedstockinfoid=#{relatedStockinfoId}
+    </select>
+
+</mapper>
+

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.account.mapper.AccountMessageMapper">
+    <!-- 基础列 -->
+    <sql id="accountMessageColumns">
+        a.id as id,
+        a.messageId as messageId,
+        a.accountId as accountId,
+        a.readFlag as readFlag,
+        a.delFlag as delFlag
+    </sql>
+
+    <resultMap id="accountMessageResultMap" type="com.blocain.bitms.trade.account.entity.AccountMessage">
+        <id column="id" property="id"/>
+        <result column="messageId" property="messageId"/>
+        <result column="accountId" property="accountId"/>
+        <result column="readFlag" property="readFlag"/>
+        <result column="delFlag" property="delFlag"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.account.entity.AccountMessage">
+        INSERT INTO AccountMessage (
+            id,
+            messageId,
+            accountId,
+            readFlag,
+            delFlag
+        ) VALUES (
+            #{id},
+            #{messageId},
+            #{accountId},
+            #{readFlag},
+            #{delFlag}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE FROM AccountMessage
+        WHERE id = #{id}
+    </delete>
+
+    <update id="deleteAccountMessageById" parameterType="hashmap">
+        UPDATE AccountMessage
+        SET delFlag = 1
+        WHERE accountId = #{accountId}
+        AND messageId IN
+        <foreach collection="messageIds" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        UPDATE AccountMessage
+        SET delFlag = 1
+        WHERE id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.account.entity.AccountMessage">
+        insert into AccountMessage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="messageId != null">
+                messageId ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="readFlag != null">
+                readFlag ,
+            </if>
+            <if test="delFlag != null">
+                delFlag
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="messageId != null">
+                #{messageId} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="readFlag != null">
+                #{readFlag} ,
+            </if>
+            <if test="delFlag != null">
+                #{delFlag}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.account.entity.AccountMessage">
+        update AccountMessage
+        <set>
+            <if test="messageId != null">
+                messageId = #{messageId} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="readFlag != null">
+                readFlag = #{readFlag} ,
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountMessage(
+        id ,
+        messageId ,
+        accountId ,
+        readFlag ,
+        delFlag
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.messageId} ,
+            #{item.accountId} ,
+            #{item.readFlag} ,
+            #{item.delFlag}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountMessage set
+            messageId = #{item.messageId} ,
+            accountId = #{item.accountId} ,
+            readFlag = #{item.readFlag} ,
+            delFlag = #{item.delFlag}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.account.entity.AccountMessage">
+        UPDATE AccountMessage
+        SET
+            messageId = #{messageId},
+            accountId = #{accountId},
+            readFlag  = #{readFlag},
+            delFlag   = #{delFlag}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.String"
+            resultType="com.blocain.bitms.trade.account.entity.AccountMessage">
+        select
+        <include refid="accountMessageColumns"/>
+        from AccountMessage a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.account.entity.AccountMessage">
+        SELECT
+        <include refid="accountMessageColumns"/>
+        FROM AccountMessage a WHERE a.delFlag = 0
+        <if test="messageId != null">
+            and a.messageId = #{messageId}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="readFlag != null">
+            and a.readFlag = #{readFlag}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.account.entity.AccountMessage">
+        SELECT
+        <include refid="accountMessageColumns"/>
+        FROM AccountMessage a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

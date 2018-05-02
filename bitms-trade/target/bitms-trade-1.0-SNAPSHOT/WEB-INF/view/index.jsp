@@ -1,0 +1,1 @@
+<% response.sendRedirect("/spot/leveragedSpotTrade?exchangePair=btc2usd"); %>

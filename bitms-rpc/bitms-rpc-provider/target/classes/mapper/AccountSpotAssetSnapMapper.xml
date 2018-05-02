@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountSpotAssetSnapMapper">
+    <!-- 基础列 -->
+    <sql id="accountSpotAssetSnapColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.direction as direction,
+        a.price as price,
+        a.amount as amount,
+        a.frozenAmt as frozenAmt,
+        a.premiumDealFlag as premiumDealFlag,
+        a.remark as remark,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="accountSpotAssetSnapJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.direction as direction,
+        a.price as price,
+        a.amount as amount,
+        a.frozenAmt as frozenAmt,
+        a.premiumDealFlag as premiumDealFlag,
+        a.remark as remark,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode,
+        d.stockCode as areaCode,
+        nvl(e.debitamt,0) as debitAmt
+    </sql>
+
+
+    <resultMap id="accountSpotAssetSnapResultMap" type="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="direction" property="direction"/>
+        <result column="price" property="price"/>
+        <result column="amount" property="amount"/>
+        <result column="frozenAmt" property="frozenAmt"/>
+        <result column="premiumDealFlag" property="premiumDealFlag"/>
+        <result column="remark" property="remark"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        insert into AccountSpotAssetSnap(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            direction ,
+            price ,
+            amount ,
+            frozenAmt ,
+            premiumDealFlag ,
+            remark ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{direction} ,
+            #{price} ,
+            #{amount} ,
+            #{frozenAmt} ,
+            #{premiumDealFlag} ,
+            #{remark} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountSpotAssetSnap where id = #{id}
+    </delete>
+
+    <!-- SpotAsset快照 -->
+    <insert id="insertSpotAsset">
+        insert into AccountSpotAssetSnap(id,accountId,stockinfoId,relatedStockinfoId,direction,price,amount,
+        frozenAmt ,remark, updateDate,premiumDealFlag)
+        (select id,accountId,stockinfoId,relatedStockinfoId,direction,price,amount,
+        frozenAmt ,remark, updateDate,0 from AccountSpotAsset )
+    </insert>
+
+    <delete id="deleteAll">
+        delete from AccountSpotAssetSnap where id &gt;0
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountSpotAssetSnap set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        insert into AccountSpotAssetSnap
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+        </if>
+        <if test="direction != null">
+                direction ,
+        </if>
+        <if test="price != null">
+                price ,
+        </if>
+        <if test="amount != null">
+                amount ,
+        </if>
+        <if test="frozenAmt != null">
+                frozenAmt ,
+        </if>
+        <if test="premiumDealFlag != null">
+                premiumDealFlag ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+        </if>
+        <if test="direction != null">
+                #{direction} ,
+        </if>
+        <if test="price != null">
+                #{price} ,
+        </if>
+        <if test="amount != null">
+                #{amount} ,
+        </if>
+        <if test="frozenAmt != null">
+                #{frozenAmt} ,
+        </if>
+        <if test="premiumDealFlag != null">
+                #{premiumDealFlag} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        update AccountSpotAssetSnap
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="direction != null">
+                direction = #{direction} ,
+            </if>
+            <if test="price != null">
+                price = #{price} ,
+            </if>
+            <if test="amount != null">
+                amount = #{amount} ,
+            </if>
+            <if test="frozenAmt != null">
+                frozenAmt = #{frozenAmt} ,
+            </if>
+            <if test="premiumDealFlag != null">
+                premiumDealFlag = #{premiumDealFlag} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountSpotAssetSnap(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            direction ,
+            price ,
+            amount ,
+            frozenAmt ,
+            premiumDealFlag ,
+            remark ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.direction} ,
+            #{item.price} ,
+            #{item.amount} ,
+            #{item.frozenAmt} ,
+            #{item.premiumDealFlag} ,
+            #{item.remark} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountSpotAssetSnap set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            direction = #{item.direction} ,
+            price = #{item.price} ,
+            amount = #{item.amount} ,
+            frozenAmt = #{item.frozenAmt} ,
+            premiumDealFlag = #{item.premiumDealFlag} ,
+            remark = #{item.remark} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        update AccountSpotAssetSnap set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            direction = #{direction} ,
+            price = #{price} ,
+            amount = #{amount} ,
+            frozenAmt = #{frozenAmt} ,
+            premiumDealFlag = #{premiumDealFlag} ,
+            remark = #{remark} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        select <include refid="accountSpotAssetSnapColumns"/> from AccountSpotAssetSnap a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        SELECT
+        <include refid="accountSpotAssetSnapJoinColumns"/>
+        FROM AccountSpotAssetSnap a
+        left join account b on b.id=a.accountid
+        left join stockinfo c on c.id=a.stockinfoId
+        left join stockinfo d on d.id = a.relatedStockinfoId
+        left join AccountDebitAssetSnap e on a.stockinfoid=e.stockinfoid
+        and a.accountid=e.borroweraccountid and a.relatedstockinfoid=e.relatedstockinfoid
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="premiumDealFlag != null and premiumDealFlag!=''">
+            and a.premiumDealFlag = #{premiumDealFlag}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAssetSnap">
+        SELECT
+        <include refid="accountSpotAssetSnapColumns"/>
+        FROM AccountSpotAssetSnap a WHERE 1=1
+    </select>
+
+
+</mapper>
+

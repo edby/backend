@@ -1,0 +1,467 @@
+.currency-wrapper{
+	position: relative;
+	min-width: 1533px;
+}
+.currency-wrapper .panel {
+	position: relative;
+    padding: 16px;
+}
+.currency-wrapper .tabnav {
+    border: none;
+}
+.currency-wrapper .tabnav>li{
+    min-width: 100px;
+}
+/*k线与盘口*/
+.currency-wrapper .currencyContent{
+	position: relative;
+	overflow: hidden;
+	font-size: 18px;
+}
+.currency-wrapper .currencyContent>li{
+	float: left;
+	width: 20%;
+    position: relative;
+}
+.currency-wrapper .currencyContent>li:nth-child(1){
+    margin-right: 1%;
+    width: 60%;
+    height: 525px;
+	background-color: #040c16;
+	overflow: hidden;
+	padding: 16px;
+}
+.currency-wrapper .currencyContent>li:nth-child(2){
+	background-color: #1e222d;
+    width: 25%;
+    padding: 10px;
+    border-right: 1px solid #23333f;
+    height: 525px;
+}
+.currency-wrapper .currencyContent>li:nth-child(3){
+    background-color: #1e222d;
+    width: 14%;
+    height: 525px;
+    padding: 10px;
+}
+/*K线*/
+#bit_market {
+    position: relative;
+    height: 100%;
+}
+/*搜索框*/
+.currency-wrapper .currencyContent .searchDiv{
+    margin-bottom: 10px;
+    position: relative;
+}
+.currency-wrapper .currencyContent .searchDiv .searchInput{
+	border: 1px solid #394952;
+    border-radius: 2px;
+    background-color: #1e222d;
+	height: 6%;
+    width: 100%;
+    font-size: 14px;
+    padding: 5px 10px;
+    color: #5d7b3c;
+}
+.currency-wrapper .currencyContent .searchDiv img{
+	position: absolute;
+	top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.currency-wrapper .currencyContent .searchData{
+	height: 92%;
+	overflow-y: scroll;
+	-webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}
+.currency-wrapper .currencyContent .currencyType{
+	overflow: hidden;
+}
+.currency-wrapper .currencyContent .currencyType li{
+	font-size: 15px;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+.currency-wrapper .currencyContent .currencyType li:hover{
+	color: #5d7b3c;
+}
+.currency-wrapper .currencyContent .currencyType .current{
+	color: #5d7b3c;
+}
+.currency-wrapper .currencyContent .currencyContentPlate>li{
+	margin-top: 25px;
+}
+.currency-wrapper .currencyContent .currencyContentPlate>li:nth-child(1){
+	margin-top: 0px;
+}
+/*输入框new*/
+.C2CInputWrap{
+    position: relative;
+    margin-top: 12px;
+    width: 39%;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #040c16;
+    padding: 16px;
+}
+.C2CBalance{
+    overflow: hidden;
+}
+.C2CBalance>li:nth-child(1){
+    margin-left: 0px;
+}
+.C2CBalance>li{
+    float: left;
+    font-size: 18px;
+    line-height: 48px;
+    margin-left: 16px;
+}
+.C2CInput1{
+    width: 47%;
+    margin-right: 5%;
+    height: 60px;
+    text-indent: 10px;
+    border: 1px solid #394952;
+    border-radius: 2px;
+    background-color: #1e222d;
+    color: #aeaeae;
+}
+.C2CInput2{
+    width: 47%;
+    height: 60px;
+    text-indent: 10px;
+    border: 1px solid #394952;
+    border-radius: 2px;
+    background-color: #1e222d;
+    color: #aeaeae;
+}
+.currencyBtnBuy{
+    margin-top: 25px;
+    display: inline-block;
+    height: 60px;
+    width: 47%;
+    margin-right: 5%;
+    background-color: #5d7b3c;
+    color: white;
+    border-radius: 2px;
+    font-size: 24px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+.currencyBtnSell{
+    margin-top: 25px;
+    display: inline-block;
+    height: 60px;
+    width: 47%;
+    background-color: #7a1b22;
+    color: white;
+    border-radius: 2px;
+    font-size: 24px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+/*最新成交价板块*/
+.currency-wrapper .currencyContent .currencyContentData{
+	position: relative;
+}
+.currency-wrapper .currencyContent .currencyContentData li:nth-child(2){
+    padding-bottom: 16px;
+    padding-top: 16px;
+    padding-left: 38px;
+    padding-right: 24px;
+}
+.currency-wrapper .currencyContent .currencyContentData table{
+	font-size: 14px;
+	width: 100%;
+}
+.currency-wrapper .currencyContent .currencyContentData table th,
+.currency-wrapper .currencyContent .currencyContentData table td{
+	height: 30px;
+	vertical-align: middle;
+	width: 25%;
+	font-size: 16px;
+    text-align: center;
+}
+.currency-wrapper .currencyContent .currencyContentData li:nth-child(3){
+	margin-top: 18px;
+	border-top: 1px solid #23333f;
+}
+.tableFs{
+    padding: 10px;
+}
+/*文字*/
+.tableCur>tbody>tr>td,.tableCur>tbody>tr>th{
+    font-size: 16px;
+    height: 30px;
+    vertical-align: middle;
+    padding: 0px;
+}
+.currencyContentTxt1{
+	font-size: 24px;
+	letter-spacing: 1px;
+}
+.currencyContentTxt2{
+	ont-size: 34px;
+}
+.currencyContentTxt3{
+	font-size: 14px;
+}
+.currencyContentTxt4{
+    font-size: 18px;
+}
+.currencyContentTxt5{
+	font-size: 15px;
+	margin-top: 8px;
+}
+.currencyContentTxt6{
+    font-size: 24px;
+}
+.table-data .tabnavData{
+	margin-left: 16px;
+    margin-top: 16px;
+}
+/*分割线*/
+.C2CInput .partLine1{
+    width: 1px;
+    height: 240px;
+    margin-left: 4%;
+    margin-right: 4%;
+    background-color: #23333f;
+    vertical-align: text-bottom;
+}
+.currency-wrapper .currencyContent .partLine2{
+	position: absolute;
+    top: 257px;
+    width: 425px;
+    height: 1px;
+    background-color: #23333f;
+    margin: 0px;
+}
+.currency-wrapper .currentTable{
+	margin-top: 0px;
+	border-top: 1px solid #23333f;
+}
+/*深度开关*/
+.chooseBtn {
+    display: none;
+}
+.choose-label {
+    width: 40px;
+    height: 20px;
+    display: inline-block;
+    margin-top: 9px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #bdbdbd;
+    overflow: hidden;
+}
+.choose-label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #fff;
+    z-index: 20;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+}
+.chooseBtn:checked + label.choose-label:before {
+    left: 20px;
+}
+.chooseBtn:checked + label.choose-label {
+    background-color: #5d7b3c;
+}
+/*滚动条样式*/
+.currency-wrapper .currencyContent .searchData::-webkit-scrollbar{
+	width: 2px;
+}
+.currency-wrapper .currencyContent .searchData::-webkit-scrollbar-track{
+	background-color: transparent;
+}
+.currency-wrapper .currencyContent .searchData::-webkit-scrollbar-thumb{
+	background-color: #5d7b3c;
+}
+/*输入框提示语字体*/
+::-webkit-input-placeholder { /* WebKit browsers */ 
+	font-size: 18px;
+} 
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+	font-size: 18px;
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+	font-size: 18px;
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+	font-size: 18px;
+}
+@media (max-width: 1680px){
+.currency-wrapper{
+	position: relative;
+	min-width: 1032px;
+}
+.currency-wrapper .panel {
+    padding: 10px;
+}
+.currency-wrapper .currencyContent{
+	font-size: 12px;
+}
+.currency-wrapper .currencyContent>li:nth-child(1) {
+    padding: 10px;
+    height: 355px;
+}
+.currency-wrapper .currencyContent>li:nth-child(2) {
+    height: 355px;
+}
+.currency-wrapper .currencyContent>li:nth-child(3) {
+    height: 355px;
+}
+.currency-wrapper .currencyContent .searchDiv .searchInput {
+    font-size: 12px;
+    padding: 3px 5px;
+}
+.currency-wrapper .currencyContent .searchDiv img {
+    top: 7px;
+    right: 5px;
+}
+.currency-wrapper .tabnav>li {
+    width: 120px;
+    font-size: 12px;
+    min-width: inherit;;
+    max-width: none;
+    padding: 0px;
+}
+.currency-wrapper .currencyContent .currencyType li {
+    font-size: 12px;
+    letter-spacing: 0px;
+    cursor: pointer;
+}
+.currency-wrapper .currencyContent .currencyContentPlate>li{
+	margin-top: 16px;
+}
+/*输入框new*/
+.C2CInputWrap {
+    margin-top: 8px;
+}
+.C2CBalance>li {
+    float: left;
+    font-size: 12px;
+    line-height: 38px;
+    margin-left: 16px;
+}
+.C2CInput1 {
+    height: 40px;
+}
+.C2CInput2 {
+    height: 40px;
+}
+.currencyBtnBuy {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.currencyBtnSell {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+.currency-wrapper .currencyContent .currencyContentPlate .currencySliderPresent>li {
+    float: left;
+    margin-right: 19px;
+}
+.currency-wrapper .currencyContent .currencyContentData li:nth-child(1) {
+    padding-bottom: 10px;
+}
+.currency-wrapper .currencyContent .currencyContentData li:nth-child(2) {
+    padding-bottom: 12px;
+    padding-top: 0px;
+    padding-left: 22px;
+    padding-right: 11px;
+}
+.table-data .tabnavData {
+    margin-left: 10px;
+}
+.table-data table {
+    margin-top: 10px;
+}
+/*文字*/
+.tableCur>tbody>tr>td,.tableCur>tbody>tr>th{
+    font-size: 12px;
+    height: 22px;
+}
+.currency-wrapper .currencyContent .currencyContentData table th,
+.currency-wrapper .currencyContent .currencyContentData table td{
+	font-size: 12px;
+    height: 22px;
+}
+.currencyContentTxt1{
+	font-size: 14px;
+	letter-spacing: 1px;
+}
+.currencyContentTxt2{
+	font-size: 23px;
+}
+.currencyContentTxt3{
+	font-size: 12px;
+}
+.currencyContentTxt4{
+    font-size: 12px;
+}
+.currencyContentTxt5{
+	font-size: 12px;
+    margin-top: 0px;
+}
+.currencyContentTxt6{
+    font-size: 13px;
+}
+/*分割线*/
+.C2CInput .partLine1 {
+    width: 1px;
+    height: 172px;
+    margin-left: 3%;
+    margin-right: 3%;
+    background-color: #23333f;
+}
+.currency-wrapper .currencyContent .partLine2 {
+    top: 168px;
+    width: 266px;
+}
+/*深度开关*/
+.choose-label {
+    width: 30px;
+    height: 15px;
+    margin-top: 1px;
+}
+.choose-label:before {
+    width: 15px;
+    height: 15px;
+}
+.chooseBtn:checked + label.choose-label:before {
+    left: 15px;
+}
+/*输入框提示语字体*/
+::-webkit-input-placeholder { /* WebKit browsers */ 
+	font-size: 12px;
+} 
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+	font-size: 12px;
+} 
+::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+	font-size: 12px;
+} 
+:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+	font-size: 12px;
+}
+}

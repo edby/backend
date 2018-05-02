@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.archive.mapper.ArchiveServiceMapper">
+
+	<!-- 通用归档入参 -->
+	<parameterMap id="commonArchiveParamMap" type="java.util.HashMap">
+		<parameter property="preactTime" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="unit" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	</parameterMap>
+
+	<parameterMap id="tradeArchiveParamMap" type="java.util.HashMap">
+		<parameter property="preactTime" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="unit" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="rows" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	</parameterMap>
+
+	<!-- K线数据归档 -->
+	<select id="dealQuotationKlineArchive" statementType="CALLABLE" parameterMap="commonArchiveParamMap">
+		<![CDATA[
+           {call Pkg_Archive.sp_quotationklineArchive(?,?)}
+        ]]>
+	</select>
+
+	<!-- 外部指数行情归档 -->
+	<select id="dealQuotationArchive" statementType="CALLABLE" parameterMap="commonArchiveParamMap">
+		<![CDATA[
+           {call Pkg_Archive.Sp_Quotationarchive(?,?)}
+        ]]>
+	</select>
+
+	<!-- 资金流水归档 -->
+	<select id="dealFundcurrentArchive" statementType="CALLABLE" parameterMap="commonArchiveParamMap">
+		<![CDATA[
+           {call Pkg_Archive.Sp_Fundcurrentarchive(?,?)}
+        ]]>
+	</select>
+
+	<!-- 交易相关流水归档 -->
+	<select id="dealTradeArchive" statementType="CALLABLE" parameterMap="tradeArchiveParamMap">
+		<![CDATA[
+           {call Pkg_Archive.Sp_Tradearchive(?,?,?)}
+        ]]>
+	</select>
+
+
+
+</mapper>
+

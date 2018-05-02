@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountCollectAddrMapper">
+	<!-- 基础列 -->
+	<sql id="accountCollectAddrColumns">
+		a.id as id,
+		a.accountId as accountId,
+		a.stockinfoId as stockinfoId,
+		a.collectAddr as collectAddr,
+		a.certStatus as certStatus,
+		a.sign as sign,
+		a.randomKey as randomKey,
+		a.isActivate as isActivate,
+		a.status as status,
+		a.remark as remark,
+		a.createBy as createBy,
+		a.createDate as createDate
+	</sql>
+	<sql id="accountCollectAddrJoinColumns">
+		a.id as id,
+		a.accountId as accountId,
+		a.stockinfoId as stockinfoId,
+		a.collectAddr as collectAddr,
+		a.certStatus as certStatus,
+		a.sign as sign,
+		a.randomKey as randomKey,
+		a.isActivate as isActivate,
+		a.status as status,
+		a.remark as remark,
+		a.createBy as createBy,
+		a.createDate as createDate,
+		b.stockCode as stockCode,
+		c.accountName as accountName
+	</sql>
+
+	<resultMap id="accountCollectAddrResultMap"
+		type="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		<id column="id" property="id" />
+		<result column="accountId" property="accountId" />
+		<result column="stockinfoId" property="stockinfoId" />
+		<result column="collectAddr" property="collectAddr" />
+		<result column="certStatus" property="certStatus" />
+		<result column="sign" property="sign" />
+		<result column="randomKey" property="randomKey" />
+		<result column="isActivate" property="isActivate" />
+		<result column="status" property="status" />
+		<result column="remark" property="remark" />
+		<result column="createBy" property="createBy" />
+		<result column="createDate" property="createDate" />
+	</resultMap>
+
+	<!-- 普通插入 -->
+	<insert id="insert"
+		parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		insert into AccountCollectAddr(
+		id ,
+		accountId ,
+		stockinfoId ,
+		collectAddr ,
+		certStatus ,
+		sign,
+        randomKey,
+		isActivate ,
+		status ,
+		remark ,
+		createBy ,
+		createDate
+		) VALUES (
+		#{id} ,
+		#{accountId} ,
+		#{stockinfoId} ,
+		#{collectAddr} ,
+		#{certStatus} ,
+		#{sign} ,
+		#{randomKey} ,
+		#{isActivate},
+		#{status},
+		#{remark} ,
+		#{createBy} ,
+		#{createDate}
+		)
+	</insert>
+	<!-- 根据主键物理删除 -->
+	<delete id="remove" parameterType="java.lang.Long">
+		delete from AccountCollectAddr where id = #{id}
+	</delete>
+
+	<!-- 根据主键逻辑删除 -->
+	<update id="delete" parameterType="java.lang.Long">
+		delete from  AccountCollectAddr  where id = #{id}
+	</update>
+
+	<!--根据条件是否插入数据 -->
+	<insert id="insertSelective"
+		parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		insert into AccountCollectAddr
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id ,
+			</if>
+			<if test="accountId != null">
+				accountId ,
+			</if>
+			<if test="stockinfoId != null">
+				stockinfoId ,
+			</if>
+			<if test="collectAddr != null">
+				collectAddr ,
+			</if>
+			<if test="certStatus != null">
+				certStatus ,
+			</if>
+			<if test="sign != null">
+				sign ,
+			</if>
+			<if test="randomKey != null">
+				randomKey ,
+			</if>
+			<if test="isActivate != null">
+				isActivate ,
+			</if>
+			<if test="status!=null">
+				status ,
+			</if>
+			<if test="remark != null">
+				remark ,
+			</if>
+			<if test="createBy != null">
+				createBy ,
+			</if>
+			<if test="createDate != null">
+				createDate
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id} ,
+			</if>
+			<if test="accountId != null">
+				#{accountId} ,
+			</if>
+			<if test="stockinfoId != null">
+				#{stockinfoId} ,
+			</if>
+			<if test="collectAddr != null">
+				#{collectAddr} ,
+			</if>
+			<if test="certStatus != null">
+				#{certStatus} ,
+			</if>
+			<if test="sign != null">
+				#{sign} ,
+			</if>
+			<if test="randomKey != null">
+				#{randomKey} ,
+			</if>
+			<if test="isActivate != null">
+				#{isActivate} ,
+			</if>
+			<if test="status!=null">
+				#{status},
+			</if>
+			<if test="remark != null">
+				#{remark} ,
+			</if>
+			<if test="createBy != null">
+				#{createBy} ,
+			</if>
+			<if test="createDate != null">
+				#{createDate}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 选择性更新数据 -->
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		update AccountCollectAddr
+		<set>
+			<if test="accountId != null">
+				accountId = #{accountId} ,
+			</if>
+			<if test="stockinfoId != null">
+				stockinfoId = #{stockinfoId} ,
+			</if>
+			<if test="collectAddr != null">
+				collectAddr = #{collectAddr} ,
+			</if>
+			<if test="certStatus != null">
+				certStatus = #{certStatus} ,
+			</if>
+			<if test="sign != null">
+				sign = #{sign} ,
+			</if>
+			<if test="randomKey != null">
+				randomKey = #{randomKey} ,
+			</if>
+			<if test="isActivate != null">
+				isActivate = #{isActivate} ,
+			</if>
+			<if test="status!=null">
+				status = #{status},
+			</if>
+			<if test="remark != null">
+				remark = #{remark} ,
+			</if>
+			<if test="createBy != null">
+				createBy = #{createBy} ,
+			</if>
+			<if test="createDate != null">
+				createDate = #{createDate}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="list">
+		insert into AccountCollectAddr(
+		id ,
+		accountId ,
+		stockinfoId ,
+		collectAddr ,
+		certStatus ,
+		sign,
+        randomKey,
+		isActivate ,
+		status ,
+		remark ,
+		createBy ,
+		createDate
+		)
+		<foreach close=")" collection="list" item="item" index="index"
+			open="(" separator="union">
+			select
+			#{item.id} ,
+			#{item.accountId} ,
+			#{item.stockinfoId} ,
+			#{item.collectAddr} ,
+			#{item.certStatus} ,
+			#{item.sign} ,
+			#{item.randomKey} ,
+			#{item.isActivate} ,
+			#{item.status},
+			#{item.remark} ,
+			#{item.createBy} ,
+			#{item.createDate}
+			from dual
+		</foreach>
+	</insert>
+
+	<!-- 批量修改 -->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="begin"
+			close=";end;" separator=";">
+			update AccountCollectAddr set
+			accountId = #{item.accountId} ,
+			stockinfoId = #{item.stockinfoId} ,
+			collectAddr = #{item.collectAddr} ,
+			certStatus = #{item.certStatus} ,
+			sign = #{item.sign} ,
+			randomKey = #{item.randomKey} ,
+			isActivate = #{item.isActivate} ,
+			status = #{item.status},
+			remark = #{item.remark} ,
+			createBy = #{item.createBy} ,
+			createDate = #{item.createDate}
+			where id = #{item.id}
+		</foreach>
+	</update>
+
+	<!-- 根据主键更新一条信息所有数据 -->
+	<update id="updateByPrimaryKey"
+		parameterType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		update AccountCollectAddr set
+		accountId = #{accountId} ,
+		stockinfoId = #{stockinfoId} ,
+		collectAddr = #{collectAddr} ,
+		certStatus = #{certStatus} ,
+		sign = #{sign} ,
+		randomKey = #{randomKey} ,
+		isActivate = #{isActivate} ,
+		status = #{status},
+		remark = #{remark} ,
+		createBy = #{createBy} ,
+		createDate = #{createDate}
+		where id = #{id}
+	</update>
+
+	<!-- 根据主键取数据 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		select
+		<include refid="accountCollectAddrColumns" />
+		from AccountCollectAddr a where a.id = #{id}
+	</select>
+
+	<!-- 可分页的对象查询 -->
+	<select id="findList"
+		resultType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		SELECT
+		<include refid="accountCollectAddrJoinColumns" />
+		FROM AccountCollectAddr a
+		left join StockInfo b on a.stockinfoId=b.id
+		left join Account c on a.accountId=c.id
+		WHERE 1=1
+		<if test="accountId != null">
+			and a.accountId = #{accountId}
+		</if>
+		<if test="accountName != null and accountName != ''">
+			and c.accountName like  '%'||#{accountName }||'%'
+		</if>
+		<if test="stockinfoId != null">
+			and a.stockinfoId = #{stockinfoId}
+		</if>
+		<if test="certStatus != null">
+			and a.certStatus = #{certStatus}
+		</if>
+		<if test="isActivate != null">
+			and a.isActivate = #{isActivate}
+		</if>
+		<if test="status!=null">
+			and a.status = #{status}
+		</if>
+		<if test="createBy != null">
+			and a.createBy = #{createBy}
+		</if>
+		<if test="createDate != null">
+			and a.createDate = #{createDate}
+		</if>
+		<if test="collectAddr != null and collectAddr!=''">
+			and a.collectAddr = #{collectAddr}
+		</if>
+		<if test="status!=null">
+			and a.status = #{status}
+		</if>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="selectAll"
+		resultType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		SELECT
+		<include refid="accountCollectAddrColumns" />
+		FROM AccountCollectAddr a WHERE 1=1
+	</select>
+
+	<select id="findAccountCollectAddr"
+		resultType="com.blocain.bitms.trade.fund.entity.AccountCollectAddr">
+		SELECT
+		<include refid="accountCollectAddrColumns" />
+		FROM AccountCollectAddr a WHERE 1=1
+		<if test="accountId != null">
+			and a.accountId = #{accountId}
+		</if>
+		<if test="stockinfoId != null">
+			and a.stockinfoId = #{stockinfoId}
+		</if>
+		<if test="certStatus != null">
+			and a.certStatus = #{certStatus}
+		</if>
+		<if test="isActivate != null">
+			and a.isActivate = #{isActivate}
+		</if>
+		<if test="collectAddr != null">
+			and a.collectAddr = #{collectAddr}
+		</if>
+		<if test="status!=null">
+			and a.status = #{status}
+		</if>
+	</select>
+</mapper>
+

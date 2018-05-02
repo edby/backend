@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.SystemWalletAddrERC20Mapper">
+    <!-- 基础列 -->
+    <sql id="systemWalletAddrERC20Columns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletId as walletId,
+        a.walletAddr as walletAddr,
+        a.accountId as accountId,
+        a.walletPwd as walletPwd,
+        a.received as received,
+        a.unconfirmedReceived as unconfirmedReceived,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="walletAddrJoinColumns">
+        a.id as id,
+        a.stockinfoId as stockinfoId,
+        a.walletId as walletId,
+        a.walletAddr as walletAddr,
+        a.accountId as accountId,
+        a.walletPwd as walletPwd,
+        a.received as received,
+        a.unconfirmedReceived as unconfirmedReceived,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode,
+        c.stockName as stockName,
+        c.stockType as stockType,
+        d.walletName as walletName
+    </sql>
+
+    <resultMap id="systemWalletAddrERC20ResultMap" type="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        <id column="id" property="id"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="walletId" property="walletId"/>
+        <result column="walletAddr" property="walletAddr"/>
+        <result column="accountId" property="accountId"/>
+        <result column="walletPwd" property="walletPwd"/>
+        <result column="received" property="received"/>
+        <result column="unconfirmedReceived" property="unconfirmedReceived"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        insert into SystemWalletAddrERC20(
+            id ,
+            stockinfoId ,
+            walletId ,
+            walletAddr ,
+            accountId ,
+            walletPwd,
+            received ,
+            unconfirmedReceived ,
+            sign ,
+            randomKey ,
+            remark ,
+            createBy ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{stockinfoId} ,
+            #{walletId} ,
+            #{walletAddr} ,
+            #{accountId} ,
+            #{walletPwd} ,
+            #{received} ,
+            #{unconfirmedReceived} ,
+            #{sign} ,
+            #{randomKey} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SystemWalletAddrERC20 where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SystemWalletAddrERC20 set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        insert into SystemWalletAddrERC20
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="walletId != null">
+                walletId ,
+            </if>
+            <if test="walletAddr != null">
+                walletAddr ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="walletPwd != null">
+                walletPwd ,
+            </if>
+            <if test="received != null">
+                received ,
+            </if>
+            <if test="unconfirmedReceived != null">
+                unconfirmedReceived ,
+            </if>
+            <if test="sign != null">
+                sign ,
+            </if>
+            <if test="randomKey != null">
+                randomKey ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="walletId != null">
+                #{walletId} ,
+            </if>
+            <if test="walletAddr != null">
+                #{walletAddr} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="walletPwd != null">
+                #{walletPwd} ,
+            </if>
+            <if test="received != null">
+                #{received} ,
+            </if>
+            <if test="unconfirmedReceived != null">
+                #{unconfirmedReceived} ,
+            </if>
+            <if test="sign != null">
+                #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        update SystemWalletAddrERC20
+        <set>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="walletId != null">
+                walletId = #{walletId} ,
+            </if>
+            <if test="walletAddr != null">
+                walletAddr = #{walletAddr} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="walletPwd != null">
+                walletPwd = #{walletPwd} ,
+            </if>
+            <if test="received != null">
+                received = #{received} ,
+            </if>
+            <if test="unconfirmedReceived != null">
+                unconfirmedReceived = #{unconfirmedReceived} ,
+            </if>
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SystemWalletAddrERC20(
+        id ,
+        stockinfoId ,
+        walletId ,
+        walletAddr ,
+        accountId ,
+        walletPwd,
+        received ,
+        unconfirmedReceived ,
+        sign ,
+        randomKey ,
+        remark ,
+        createBy ,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.stockinfoId} ,
+            #{item.walletId} ,
+            #{item.walletAddr} ,
+            #{item.accountId} ,
+            #{item.walletPwd} ,
+            #{item.received} ,
+            #{item.unconfirmedReceived} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SystemWalletAddrERC20 set
+            stockinfoId = #{item.stockinfoId} ,
+            walletId = #{item.walletId} ,
+            walletAddr = #{item.walletAddr} ,
+            accountId = #{item.accountId} ,
+            walletPwd = #{item.walletPwd} ,
+            received = #{item.received} ,
+            unconfirmedReceived = #{item.unconfirmedReceived} ,
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        update SystemWalletAddrERC20 set
+            stockinfoId = #{stockinfoId} ,
+            walletId = #{walletId} ,
+            walletAddr = #{walletAddr} ,
+            accountId = #{accountId} ,
+            walletPwd = #{walletPwd} ,
+            received = #{received} ,
+            unconfirmedReceived = #{unconfirmedReceived} ,
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        select
+        <include refid="systemWalletAddrERC20Columns"/>
+        from SystemWalletAddrERC20 a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        SELECT
+        <include refid="walletAddrJoinColumns"/>
+        FROM StockInfo c , SystemWalletERC20 d, SystemWalletAddrERC20 a
+        LEFT JOIN Account b ON b.id=a.accountId
+        WHERE c.id =a.stockinfoId and d.walletId=a.walletId
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="walletId != null and walletId!=''">
+            and a.walletId = #{walletId}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockType != null and stockType!=''">
+            and c.stockType = #{stockType}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="walletAddr != null and walletAddr!=''">
+            and a.walletAddr = #{walletAddr}
+        </if>
+        <if test="walletUsageType != null and walletUsageType!=''">
+            and d.walletUsageType = #{walletUsageType}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.SystemWalletAddrERC20">
+        SELECT
+        <include refid="systemWalletAddrERC20Columns"/>
+        FROM SystemWalletAddrERC20 a WHERE 1=1
+    </select>
+
+    <!-- 查询地址列表 -->
+    <select id="findAccountInterAddrsByParams" resultType="java.lang.String">
+        SELECT walletAddr
+        from SystemWalletAddrERC20 where walletAddr in
+        <foreach collection="array" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+
+    </select>
+</mapper>
+

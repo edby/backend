@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+        http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>JSTL 1.1 functions library</description>
+    <display-name>JSTL functions</display-name>
+    <tlib-version>1.1</tlib-version>
+    <short-name>fns</short-name>
+    <uri>/bitms.tld</uri>
+
+    <function>
+        <description>将精确到秒的Unix时间戳转化为指定格式的日期字符串，参数：Unix时间戳，字符串格式</description>
+        <name>getTimeFromLong</name>
+        <function-class>com.blocain.bitms.tools.utils.CalendarUtils</function-class>
+        <function-signature>java.lang.String getTimeFromLong(long,java.lang.String)
+        </function-signature>
+        <example>${fns:getTimeFromLong(long,format)}</example>
+    </function>
+
+    <function>
+        <description>将精确到秒的Unix时间戳转化为指定格式的日期字符串</description>
+        <name>getStringTime</name>
+        <function-class>com.blocain.bitms.tools.utils.CalendarUtils</function-class>
+        <function-signature>java.lang.String getStringTime(java.lang.Long,java.lang.String)
+        </function-signature>
+        <example>${fns:getStringTime(long,format)}</example>
+    </function>
+
+    <function>
+        <description>根据精确到秒的Unix时间戳计算到当前年的间隔，即年龄</description>
+        <name>getAge</name>
+        <function-class>com.blocain.bitms.tools.utils.CalendarUtils</function-class>
+        <function-signature>int getAge(long)</function-signature>
+        <example>${fns:getAge(long)}</example>
+    </function>
+
+    <function>
+        <description>获取当前系统毫秒时间</description>
+        <name>getCurrentLong</name>
+        <function-class>com.blocain.bitms.tools.utils.CalendarUtils</function-class>
+        <function-signature>long getCurrentLong()</function-signature>
+        <example>${fns:getCurrentLong()}</example>
+    </function>
+
+    <function>
+        <description>超长字符串截断, 避免页面元素样式异常</description>
+        <name>trimLongText</name>
+        <function-class>com.blocain.bitms.tools.utils.StringUtils</function-class>
+        <function-signature>
+            java.lang.String trimLongText(java.lang.String,int)
+        </function-signature>
+        <example>${fns:trimLongText("我很长长长长长长长长长长长长长长长长长长长长长长长长长长长长长", 4)}
+        </example>
+    </function>
+
+    <function>
+        <description>超长字符串截断, 避免页面元素样式异常</description>
+        <name>trimLongStringWithEllipsis</name>
+        <function-class>com.blocain.bitms.tools.utils.StringUtils</function-class>
+        <function-signature>
+            java.lang.String trimLongText(java.lang.String, int,java.lang.String)
+        </function-signature>
+        <example>
+            ${fns:trimLongStringWithEllipsis("我很长长长长长长长长长长长长长长长长长长长长长长长长长长长长长", 4, ".....")}
+        </example>
+    </function>
+
+    <function>
+        <description>隐藏电话号码</description>
+        <name>hideTelNumber</name>
+        <function-class>com.blocain.bitms.tools.utils.StringUtils</function-class>
+        <function-signature>java.lang.String hideTelNumber(java.lang.String)
+        </function-signature>
+        <example>${fns:hideTelNumbert("13600000000")}</example>
+    </function>
+
+    <function>
+        <description>隐藏文本</description>
+        <name>hideAlphaNumber</name>
+        <function-class>com.blocain.bitms.tools.utils.StringUtils</function-class>
+        <function-signature>java.lang.String hideAlphaNumber(java.lang.String)
+        </function-signature>
+        <example>${fns:hideAlphaNumber("13600000000")}</example>
+    </function>
+
+    <function>
+        <description>去除字符串中的所有html标签</description>
+        <name>cleanHtmlElems</name>
+        <function-class>com.blocain.bitms.tools.utils.StringUtils</function-class>
+        <function-signature>java.lang.String cleanHtmlElems(java.lang.String)
+        </function-signature>
+        <example>${fns:cleanHtmlElems("html")}</example>
+    </function>
+
+    <function>
+        <description>编码URL中的特殊字符</description>
+        <name>urlEncoding</name>
+        <function-class>com.blocain.bitms.tools.utils.StringUtils</function-class>
+        <function-signature>java.lang.String urlEncoding(java.lang.String)
+        </function-signature>
+        <example>${fns:urlEncoding("html")}</example>
+    </function>
+
+    <function>
+        <description>计算字符串长度，一个中文算2个长度，中文标点算2个长度</description>
+        <name>countChineseStringLength</name>
+        <function-class>com.blocain.bitms.tools.utils.StringUtils</function-class>
+        <function-signature>int countChineseStringLength(java.lang.String)
+        </function-signature>
+        <example>${fns:countChineseStringLength("html")}</example>
+    </function>
+
+    <function>
+        <description>获取网站Host</description>
+        <name>getHost</name>
+        <function-class>com.blocain.bitms.tools.utils.NetworkUtils</function-class>
+        <function-signature>java.lang.String getHost(javax.servlet.http.HttpServletRequest)</function-signature>
+        <example>${res}</example>
+    </function>
+
+    <function>
+        <description>取最新的公告</description>
+        <name>geLatestNotice</name>
+        <function-class>com.blocain.bitms.trade.account.utils.NoticeUtils</function-class>
+        <function-signature>com.blocain.bitms.trade.account.entity.Notice geLatestNotice()</function-signature>
+        <example>${geLatestNotice}</example>
+    </function>
+
+    <function>
+        <description>取安全验证策略描述文本</description>
+        <name>getSecurityPolicy</name>
+        <function-class>com.blocain.bitms.trade.account.utils.PolicyUtils</function-class>
+        <function-signature>java.lang.String getSecurityPolicy(java.lang.Integer)</function-signature>
+        <example>${getSecurityPolicy(0)}</example>
+    </function>
+
+    <function>
+        <description>取交易验证策略描述文本</description>
+        <name>getTradePolicy</name>
+        <function-class>com.blocain.bitms.trade.account.utils.PolicyUtils</function-class>
+        <function-signature>java.lang.String getTradePolicy(java.lang.Integer)</function-signature>
+        <example>${getTradePolicy(0)}</example>
+    </function>
+    <function>
+        <description>获取钱包账户余额</description>
+        <name>getWalletAsset</name>
+        <function-class>com.blocain.bitms.trade.account.utils.AssetUtils</function-class>
+        <function-signature>java.util.List getWalletAsset()</function-signature>
+        <example>${getWalletAsset}</example>
+    </function>
+    <function>
+        <description>获取用户认证信息</description>
+        <name>getCertificationInfo</name>
+        <function-class>com.blocain.bitms.trade.account.utils.AssetUtils</function-class>
+        <function-signature>com.blocain.bitms.trade.account.entity.AccountCertification getCertificationInfo()</function-signature>
+        <example>${getCertificationInfo}</example>
+    </function>
+    <function>
+        <description>获取合约账户余额</description>
+        <name>getContractAsset</name>
+        <function-class>com.blocain.bitms.trade.account.utils.AssetUtils</function-class>
+        <function-signature>java.util.List getContractAsset()</function-signature>
+        <example>${getContractAsset}</example>
+    </function>
+
+    <function>
+        <description>取区域代码信息</description>
+        <name>getRegions</name>
+        <function-class>com.blocain.bitms.trade.account.utils.RegionUtils</function-class>
+        <function-signature>java.util.List getRegions()</function-signature>
+        <example>${fns:getRegions()}</example>
+    </function>
+
+</taglib>

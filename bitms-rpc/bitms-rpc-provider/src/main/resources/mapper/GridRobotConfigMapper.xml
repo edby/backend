@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.robot.mapper.GridRobotConfigMapper">
+    <!-- 基础列 -->
+    <sql id="gridRobotConfigColumns">
+        a.id as id,
+        a.configName as configName,
+        a.accountId as accountId,
+        a.maxOrderSize as maxOrderSize,
+        a.priceGrade as priceGrade,
+        a.beginPriceGrade as beginPriceGrade,
+        a.amtType as amtType,
+        a.minAmt as minAmt,
+        a.maxAmt as maxAmt,
+        a.avgUpdateLimit as avgUpdateLimit,
+        a.maxOpenInterest as maxOpenInterest,
+        a.minOpenInterest as minOpenInterest,
+        a.reBuyOpenInterest as reBuyOpenInterest,
+        a.reSellOpenInterest as reSellOpenInterest,
+        a.cancelLimit as cancelLimit,
+        a.active as active,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="gridRobotConfigResultMap" type="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        <id column="id" property="id"/>
+        <result column="configName" property="configName"/>
+        <result column="accountId" property="accountId"/>
+        <result column="maxOrderSize" property="maxOrderSize"/>
+        <result column="priceGrade" property="priceGrade"/>
+        <result column="beginPriceGrade" property="beginPriceGrade"/>
+        <result column="amtType" property="amtType"/>
+        <result column="minAmt" property="minAmt"/>
+        <result column="maxAmt" property="maxAmt"/>
+        <result column="avgUpdateLimit" property="avgUpdateLimit"/>
+        <result column="maxOpenInterest" property="maxOpenInterest"/>
+        <result column="minOpenInterest" property="minOpenInterest"/>
+        <result column="reBuyOpenInterest" property="reBuyOpenInterest"/>
+        <result column="reSellOpenInterest" property="reSellOpenInterest"/>
+        <result column="cancelLimit" property="cancelLimit"/>
+        <result column="active" property="active"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        insert into GridRobotConfig(
+            id ,
+            configName ,
+            accountId ,
+            maxOrderSize ,
+            priceGrade ,
+            beginPriceGrade ,
+            amtType ,
+            minAmt ,
+            maxAmt ,
+            avgUpdateLimit ,
+            maxOpenInterest ,
+            minOpenInterest ,
+            reBuyOpenInterest ,
+            reSellOpenInterest ,
+            cancelLimit,
+            active ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{configName} ,
+            #{accountId} ,
+            #{maxOrderSize} ,
+            #{priceGrade} ,
+            #{beginPriceGrade} ,
+            #{amtType} ,
+            #{minAmt} ,
+            #{maxAmt} ,
+            #{avgUpdateLimit} ,
+            #{maxOpenInterest} ,
+            #{minOpenInterest} ,
+            #{reBuyOpenInterest} ,
+            #{reSellOpenInterest} ,
+            #{cancelLimit} ,
+            #{active} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from GridRobotConfig where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from GridRobotConfig where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        insert into GridRobotConfig
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="configName != null">
+                configName ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="maxOrderSize != null">
+                maxOrderSize ,
+            </if>
+            <if test="priceGrade != null">
+                priceGrade ,
+            </if>
+            <if test="beginPriceGrade != null">
+                beginPriceGrade ,
+            </if>
+            <if test="amtType != null">
+                amtType ,
+            </if>
+            <if test="minAmt != null">
+                minAmt ,
+            </if>
+            <if test="maxAmt != null">
+                maxAmt ,
+            </if>
+            <if test="avgUpdateLimit != null">
+                avgUpdateLimit ,
+            </if>
+            <if test="maxOpenInterest != null">
+                maxOpenInterest ,
+            </if>
+            <if test="minOpenInterest != null">
+                minOpenInterest ,
+            </if>
+            <if test="reBuyOpenInterest != null">
+                reBuyOpenInterest ,
+            </if>
+            <if test="reSellOpenInterest != null">
+                reSellOpenInterest ,
+            </if>
+            <if test="cancelLimit != null">
+                cancelLimit ,
+            </if>
+
+            <if test="active != null">
+                active ,
+            </if>
+            <if test="updateDate != null">
+                updateDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="configName != null">
+                #{configName} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="maxOrderSize != null">
+                #{maxOrderSize} ,
+            </if>
+            <if test="priceGrade != null">
+                #{priceGrade} ,
+            </if>
+            <if test="beginPriceGrade != null">
+                #{beginPriceGrade} ,
+            </if>
+            <if test="amtType != null">
+                #{amtType} ,
+            </if>
+            <if test="minAmt != null">
+                #{minAmt} ,
+            </if>
+            <if test="maxAmt != null">
+                #{maxAmt} ,
+            </if>
+            <if test="avgUpdateLimit != null">
+                #{avgUpdateLimit} ,
+            </if>
+            <if test="maxOpenInterest != null">
+                #{maxOpenInterest} ,
+            </if>
+            <if test="minOpenInterest != null">
+                #{minOpenInterest} ,
+            </if>
+            <if test="reBuyOpenInterest != null">
+                #{reBuyOpenInterest} ,
+            </if>
+            <if test="reSellOpenInterest != null">
+                #{reSellOpenInterest} ,
+            </if>
+            <if test="cancelLimit != null">
+                #{cancelLimit} ,
+            </if>
+            <if test="active != null">
+                #{active} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        update GridRobotConfig
+        <set>
+            <if test="configName != null">
+                configName = #{configName} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="maxOrderSize != null">
+                maxOrderSize = #{maxOrderSize} ,
+            </if>
+            <if test="priceGrade != null">
+                priceGrade = #{priceGrade} ,
+            </if>
+            <if test="beginPriceGrade != null">
+                beginPriceGrade = #{beginPriceGrade} ,
+            </if>
+            <if test="amtType != null">
+                amtType = #{amtType} ,
+            </if>
+            <if test="minAmt != null">
+                minAmt = #{minAmt} ,
+            </if>
+            <if test="maxAmt != null">
+                maxAmt = #{maxAmt} ,
+            </if>
+            <if test="avgUpdateLimit != null">
+                avgUpdateLimit = #{avgUpdateLimit} ,
+            </if>
+            <if test="maxOpenInterest != null">
+                maxOpenInterest = #{maxOpenInterest} ,
+            </if>
+            <if test="minOpenInterest != null">
+                minOpenInterest = #{minOpenInterest} ,
+            </if>
+            <if test="reBuyOpenInterest != null">
+                reBuyOpenInterest = #{reBuyOpenInterest} ,
+            </if>
+            <if test="reSellOpenInterest != null">
+                reSellOpenInterest = #{reSellOpenInterest} ,
+            </if>
+            <if test="cancelLimit != null">
+                cancelLimit = #{cancelLimit} ,
+            </if>
+            <if test="active != null">
+                active = #{active} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into GridRobotConfig(
+        id ,
+        configName ,
+        accountId ,
+        maxOrderSize ,
+        priceGrade ,
+        beginPriceGrade ,
+        amtType ,
+        minAmt ,
+        maxAmt ,
+        avgUpdateLimit ,
+        maxOpenInterest ,
+        minOpenInterest ,
+        reBuyOpenInterest ,
+        reSellOpenInterest ,
+        cancelLimit,
+        active ,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.configName} ,
+            #{item.accountId} ,
+            #{item.maxOrderSize} ,
+            #{item.priceGrade} ,
+            #{item.beginPriceGrade} ,
+            #{item.amtType} ,
+            #{item.minAmt} ,
+            #{item.maxAmt} ,
+            #{item.avgUpdateLimit} ,
+            #{item.maxOpenInterest} ,
+            #{item.minOpenInterest} ,
+            #{item.reBuyOpenInterest} ,
+            #{item.reSellOpenInterest} ,
+            #{item.cancelLimit} ,
+            #{item.active} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update GridRobotConfig set
+            configName = #{item.configName} ,
+            accountId = #{item.accountId} ,
+            maxOrderSize = #{item.maxOrderSize} ,
+            priceGrade = #{item.priceGrade} ,
+            beginPriceGrade = #{item.beginPriceGrade} ,
+            amtType = #{item.amtType} ,
+            minAmt = #{item.minAmt} ,
+            maxAmt = #{item.maxAmt} ,
+            avgUpdateLimit = #{item.avgUpdateLimit} ,
+            maxOpenInterest = #{item.maxOpenInterest} ,
+            minOpenInterest = #{item.minOpenInterest} ,
+            reBuyOpenInterest = #{item.reBuyOpenInterest} ,
+            reSellOpenInterest = #{item.reSellOpenInterest} ,
+            cancelLimit = #{item.cancelLimit} ,
+            active = #{item.active} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        update GridRobotConfig set
+            configName = #{configName} ,
+            accountId = #{accountId} ,
+            maxOrderSize = #{maxOrderSize} ,
+            priceGrade = #{priceGrade} ,
+            beginPriceGrade = #{beginPriceGrade} ,
+            amtType = #{amtType} ,
+            minAmt = #{minAmt} ,
+            maxAmt = #{maxAmt} ,
+            avgUpdateLimit = #{avgUpdateLimit} ,
+            maxOpenInterest = #{maxOpenInterest} ,
+            minOpenInterest = #{minOpenInterest} ,
+            reBuyOpenInterest = #{reBuyOpenInterest} ,
+            reSellOpenInterest = #{reSellOpenInterest} ,
+            cancelLimit = #{cancelLimit} ,
+            active = #{active} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        select
+        <include refid="gridRobotConfigColumns"/>
+        from GridRobotConfig a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        SELECT
+        <include refid="gridRobotConfigColumns"/>
+        FROM GridRobotConfig a WHERE 1=1
+        <if test="configName != null">
+            and a.configName = #{configName}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="maxOrderSize != null">
+            and a.maxOrderSize = #{maxOrderSize}
+        </if>
+        <if test="priceGrade != null">
+            and a.priceGrade = #{priceGrade}
+        </if>
+        <if test="beginPriceGrade != null">
+            and a.beginPriceGrade = #{beginPriceGrade}
+        </if>
+        <if test="amtType != null">
+            and a.amtType = #{amtType}
+        </if>
+        <if test="minAmt != null">
+            and a.minAmt = #{minAmt}
+        </if>
+        <if test="maxAmt != null">
+            and a.maxAmt = #{maxAmt}
+        </if>
+        <if test="avgUpdateLimit != null">
+            and a.avgUpdateLimit = #{avgUpdateLimit}
+        </if>
+        <if test="maxOpenInterest != null">
+            and a.maxOpenInterest = #{maxOpenInterest}
+        </if>
+        <if test="minOpenInterest != null">
+            and a.minOpenInterest = #{minOpenInterest}
+        </if>
+        <if test="reBuyOpenInterest != null">
+            and a.reBuyOpenInterest = #{reBuyOpenInterest}
+        </if>
+        <if test="reSellOpenInterest != null">
+            and a.reSellOpenInterest = #{reSellOpenInterest}
+        </if>
+        <if test="cancelLimit != null">
+            and a.cancelLimit = #{cancelLimit}
+        </if>
+        <if test="active != null">
+            and a.active = #{active}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        SELECT
+        <include refid="gridRobotConfigColumns"/>
+        FROM GridRobotConfig a WHERE 1=1
+    </select>
+
+    <!-- 根据账户id查询所有 -->
+    <select id="selectByAccountId" resultType="com.blocain.bitms.trade.robot.entity.GridRobotConfig">
+        SELECT
+        <include refid="gridRobotConfigColumns"/>
+        FROM GridRobotConfig a WHERE 1=1 and a.accountId = #{accountId}
+    </select>
+
+
+</mapper>
+

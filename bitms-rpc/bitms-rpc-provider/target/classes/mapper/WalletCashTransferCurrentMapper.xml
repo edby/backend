@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.WalletCashTransferCurrentMapper">
+    <!-- 基础列 -->
+    <sql id="walletCashTransferCurrentColumns">
+        a.id as id,
+        a.currentDate as currentDate,
+        a.stockinfoId as stockinfoId,
+        a.occurDirect as occurDirect,
+        a.orgAmt as orgAmt,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.transId as transId,
+        a.fee as fee,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="walletCashTransferCurrentJoinColumns">
+        a.id as id,
+        a.currentDate as currentDate,
+        a.stockinfoId as stockinfoId,
+        a.occurDirect as occurDirect,
+        a.orgAmt as orgAmt,
+        a.occurAmt as occurAmt,
+        a.lastAmt as lastAmt,
+        a.transId as transId,
+        a.fee as fee,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        b.trueName as accountName,
+        c.stockCode as stockCode
+    </sql>
+    <resultMap id="walletCashTransferCurrentResultMap" type="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        <id column="id" property="id" />
+        <result column="currentDate" property="currentDate"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="occurDirect" property="occurDirect"/>
+        <result column="orgAmt" property="orgAmt"/>
+        <result column="occurAmt" property="occurAmt"/>
+        <result column="lastAmt" property="lastAmt"/>
+        <result column="transId" property="transId"/>
+        <result column="fee" property="fee"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        insert into WalletCashTransferCurrent(
+            id ,
+            currentDate ,
+            stockinfoId ,
+            occurDirect ,
+            orgAmt ,
+            occurAmt ,
+            lastAmt ,
+            transId ,
+            fee ,
+            remark ,
+            createBy ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{currentDate} ,
+            #{stockinfoId} ,
+            #{occurDirect} ,
+            #{orgAmt} ,
+            #{occurAmt} ,
+            #{lastAmt} ,
+            #{transId} ,
+            #{fee} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from WalletCashTransferCurrent where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update WalletCashTransferCurrent set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        insert into WalletCashTransferCurrent
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="currentDate != null">
+                currentDate ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="occurDirect != null">
+                occurDirect ,
+        </if>
+        <if test="orgAmt != null">
+                orgAmt ,
+        </if>
+        <if test="occurAmt != null">
+                occurAmt ,
+        </if>
+        <if test="lastAmt != null">
+                lastAmt ,
+        </if>
+        <if test="transId != null">
+                transId ,
+        </if>
+        <if test="fee != null">
+                fee ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="currentDate != null">
+                #{currentDate} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="occurDirect != null">
+                #{occurDirect} ,
+        </if>
+        <if test="orgAmt != null">
+                #{orgAmt} ,
+        </if>
+        <if test="occurAmt != null">
+                #{occurAmt} ,
+        </if>
+        <if test="lastAmt != null">
+                #{lastAmt} ,
+        </if>
+        <if test="transId != null">
+                #{transId} ,
+        </if>
+        <if test="fee != null">
+                #{fee} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        update WalletCashTransferCurrent
+           <set>
+            <if test="currentDate != null">
+                currentDate = #{currentDate} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="occurDirect != null">
+                occurDirect = #{occurDirect} ,
+            </if>
+            <if test="orgAmt != null">
+                orgAmt = #{orgAmt} ,
+            </if>
+            <if test="occurAmt != null">
+                occurAmt = #{occurAmt} ,
+            </if>
+            <if test="lastAmt != null">
+                lastAmt = #{lastAmt} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="fee != null">
+                fee = #{fee} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into WalletCashTransferCurrent(
+            id ,
+            currentDate ,
+            stockinfoId ,
+            occurDirect ,
+            orgAmt ,
+            occurAmt ,
+            lastAmt ,
+            transId ,
+            fee ,
+            remark ,
+            createBy ,
+            createDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.currentDate} ,
+            #{item.stockinfoId} ,
+            #{item.occurDirect} ,
+            #{item.orgAmt} ,
+            #{item.occurAmt} ,
+            #{item.lastAmt} ,
+            #{item.transId} ,
+            #{item.fee} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update WalletCashTransferCurrent set
+            currentDate = #{item.currentDate} ,
+            stockinfoId = #{item.stockinfoId} ,
+            occurDirect = #{item.occurDirect} ,
+            orgAmt = #{item.orgAmt} ,
+            occurAmt = #{item.occurAmt} ,
+            lastAmt = #{item.lastAmt} ,
+            transId = #{item.transId} ,
+            fee = #{item.fee} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        update WalletCashTransferCurrent set
+            currentDate = #{currentDate} ,
+            stockinfoId = #{stockinfoId} ,
+            occurDirect = #{occurDirect} ,
+            orgAmt = #{orgAmt} ,
+            occurAmt = #{occurAmt} ,
+            lastAmt = #{lastAmt} ,
+            transId = #{transId} ,
+            fee = #{fee} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        select <include refid="walletCashTransferCurrentColumns"/> from WalletCashTransferCurrent a where a.id = #{id}
+    </select>
+    <select id="getLastEntity"  resultType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        select * from (select <include refid="walletCashTransferCurrentColumns"/> from WalletCashTransferCurrent a  order by a.currentdate desc) where rownum=1
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        SELECT
+        <include refid="walletCashTransferCurrentJoinColumns"/>
+        FROM WalletCashTransferCurrent a
+        left join USERINFO b on b.id=a.createBy
+        left join STOCKINFO c on c.id = a.stockinfoId
+        WHERE 1=1
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="occurDirect != null">
+            and a.occurDirect like '%'||#{occurDirect}||'%'
+        </if>
+        <if test="transId != null">
+            and a.transId like '%'||#{transId}||'%'
+        </if>
+        order by a.createDate desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.WalletCashTransferCurrent">
+        SELECT
+        <include refid="walletCashTransferCurrentColumns"/>
+        FROM WalletCashTransferCurrent a WHERE 1=1
+    </select>
+
+
+</mapper>
+

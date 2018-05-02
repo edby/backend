@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:protocol threads="1000"/>
+
+	<!-- 系统管理服务 -->
+	<!-- 机构管理 -->
+	<dubbo:service interface="com.blocain.bitms.boss.system.service.OrganizationService" ref="organizationService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 资源管理 -->
+	<dubbo:service interface="com.blocain.bitms.boss.system.service.ResourcesService" ref="resourcesService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 角色管理 -->
+	<dubbo:service interface="com.blocain.bitms.boss.system.service.RoleInfoService" ref="roleInfoService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 用户管理 -->
+	<dubbo:service interface="com.blocain.bitms.boss.system.service.UserInfoService" ref="userInfoService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!--缓存服务-->
+	<dubbo:service interface="com.blocain.bitms.boss.common.service.CacheService" ref="cacheService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 全局公共服务 -->
+	<!-- 区域代码 -->
+	<dubbo:service interface="com.blocain.bitms.boss.common.service.RegionService" ref="regionService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 数据字典 -->
+	<dubbo:service interface="com.blocain.bitms.boss.common.service.DictionaryService" ref="dictionaryService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 系统参数 -->
+	<dubbo:service interface="com.blocain.bitms.boss.common.service.SysParameterService" ref="sysParameterService" version="1.0.0" retries="2" timeout="1800000"/>
+  	<!-- 短信服务 -->
+  	<dubbo:service interface="com.blocain.bitms.boss.common.service.MsgTemplateService" ref="msgTemplateService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 消息记录 -->
+	<dubbo:service interface="com.blocain.bitms.boss.common.service.MsgRecordNoSql" ref="msgRecordService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 问题反馈 -->
+	<dubbo:service interface="com.blocain.bitms.boss.common.service.FeedbackNoSql" ref="feedbackNoSql" version="1.0.0" retries="2" timeout="1800000"/>
+
+  	<!-- 账户管理服务 -->
+  	<!-- 帐户服务 -->
+  	<dubbo:service interface="com.blocain.bitms.trade.account.service.AccountService" ref="accountService" version="1.0.0" retries="2" timeout="1800000"/>
+  	<!-- 账户邀请记录 -->
+  	<dubbo:service interface="com.blocain.bitms.trade.account.service.AccountInvitationService" ref="accountInvitationService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 实名认证服务 -->
+	<dubbo:service interface="com.blocain.bitms.trade.account.service.AccountCertificationService" ref="accountCertificationService" version="1.0.0" retries="2" timeout="1800000"/>
+  	<!-- 帐户日志服务 -->
+  	<dubbo:service interface="com.blocain.bitms.trade.account.service.AccountLogNoSql" ref="accountLogNoSql" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 通知服务 -->
+  	<dubbo:service interface="com.blocain.bitms.trade.account.service.NoticeService" ref="noticeService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 消息服务 -->
+	<dubbo:service interface="com.blocain.bitms.trade.account.service.MessageService" ref="messageService" version="1.0.0" retries="2" timeout="1800000"/>
+  	<!-- 帐户策略服务 -->
+  	<dubbo:service interface="com.blocain.bitms.trade.account.service.AccountPolicyService" ref="accountPolicyService" version="1.0.0" retries="2" timeout="1800000"/>
+
+  	<!-- 证券管理服务 -->
+  	<!-- 证券信息 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.stockinfo.service.StockInfoService" ref="stockInfoService" version="1.0.0" retries="2" timeout="1800000"/>
+ 	<!-- 证券费率 -->
+	<dubbo:service interface="com.blocain.bitms.trade.stockinfo.service.StockRateService" ref="stockRateService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 资金管理服务 -->
+	<!-- 系统钱包 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.SystemWalletService" ref="systemWalletService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 系统钱包地址 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.SystemWalletAddrService" ref="systemWalletAddrService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 区块交易确认 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.BlockTransConfirmService" ref="blockTransConfirmService" version="1.0.0" retries="2" timeout="1800000"/>
+ 	<!-- 钱包账户资产 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountWalletAssetService" ref="accountWalletAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 现货账户资产 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountSpotAssetService" ref="accountSpotAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 合约账户资产-->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountContractAssetService" ref="accountContractAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+ 	<!-- 账户收款地址-->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrService" ref="accountCollectAddrService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户收款地址审核记录-->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrCheckLogService" ref="accountCollectAddrCheckLogService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 提币划拨 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountFundTransferService" ref="accountFundTransferService" version="1.0.0" retries="2" timeout="1800000"/>
+ 	<!-- 充币归集 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountFundCollectService" ref="accountFundCollectService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户资金流水-->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountFundCurrentService" ref="accountFundCurrentService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户提现记录-->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountWithdrawRecordService" ref="accountWithdrawRecordService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户资产-->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountAssetService" ref="accountAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+ 	<!-- 资金类统一服务-->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.FundService" ref="fundService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户资产 强增强减 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountFundAdjustService" ref="accountFundAdjustService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 资金流水变化相关事务 -->
+ 	<dubbo:service interface="com.blocain.bitms.trade.fund.service.FundCurrentService" ref="fundCurrentService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 提币申请临时处理-->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountFundWithdrawService" ref="accountFundWithdrawService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户借贷 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetService" ref="accountDebitAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户借贷计息记录 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetDetailService" ref="accountDebitAssetDetailService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 平仓操作 -->
+	<dubbo:service interface="com.blocain.bitms.trade.trade.service.ClosePositionService" ref="closePositionService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 台帐 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.WalletTransferCurrentService" ref="walletTransferCurrentService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.WalletCashTransferCurrentService" ref="walletCashTransferCurrentService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 钱包转账流水表 -->
+	<dubbo:service interface="com.blocain.bitms.trade.settlement.service.ClosePositionLogService" ref="closePositionLogService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户理财资产明细表 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountWealthAssetDetailService" ref="accountWealthAssetDetailService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户理财资产表 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountWealthAssetService" ref="accountWealthAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户理财负债资产表 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountWealthDebitAssetService" ref="accountWealthDebitAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 报表资产负债表 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.SheetBalanceService" ref="sheetBalanceService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- ERC20 ADDRESS -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.EthAddrsService" ref="ercAddrsService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- ICO管理服务 -->
+
+	<!-- 风险管理服务 -->
+	<!-- 可用服务-->
+	<dubbo:service interface="com.blocain.bitms.trade.risk.service.EnableService" ref="enableService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 风控服务-->
+	<dubbo:service interface="com.blocain.bitms.trade.risk.service.RiskService" ref="riskService" version="1.0.0" retries="2" timeout="1800000"/>
+
+  	<!-- 行情服务-->
+  	<dubbo:service interface="com.blocain.bitms.quotation.service.QuotationService" ref="quotationService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.quotation.service.RtQuotationInfoService" ref="rtQuotationInfoService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 委托交易服务 -->
+	<dubbo:service interface="com.blocain.bitms.trade.trade.service.EntrustVCoinMoneyService" ref="entrustVCoinMoneyService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.trade.service.RealDealVCoinMoneyService" ref="realDealVCoinMoneyService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.trade.service.TradeService" ref="tradeService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!--交割核心处理 -->
+	<dubbo:service interface="com.blocain.bitms.trade.settlement.service.SettlementService" ref="settlementService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 支付服务 -->
+	<dubbo:service interface="com.blocain.bitms.payment.bitgo.BitGoRemoteV2Service" ref="bitGoRemoteV2Service" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.payment.bitgo.BlockmetaRemoteService" ref="blockmetaRemoteService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.payment.bitgo.BtcRemoteService" ref="btcRemoteService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.payment.eth.EthLocalService" ref="ethLocalService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.payment.eth.Erc20TokenLocalService" ref="erc20TokenLocalService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.payment.eth.EtherscanRemoteService" ref="etherscanRemoteService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 钱包管理-->
+	<dubbo:service interface="com.blocain.bitms.bitpay.service.BitpayKeychainService" ref="bitpayKeychainService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.bitpay.service.WithdrawRecordService" ref="withdrawRecordService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.bitpay.service.BitpayKeychainERC20Service" ref="bitpayKeychainERC20Service" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 监控管理 -->
+	<!-- 监控服务 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorEngineService" ref="monitorEngineService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 单账户资产检查 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.AcctAssetChkService" ref="acctAssetChkService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控日志查询 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorLogsService" ref="monitorLogsService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 资金监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorAcctFundCurrentService" ref="monitorAcctFundCurrentService" version="1.0.0" retries="2" timeout="1800000"/>
+  	<!-- 余额监控 -->
+  	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorAcctBalService" ref="monitorAcctBalService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 负资产监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorNegativeAssetService" ref="monitorNegativeAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控参数设置 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorParamService" ref="monitorParamService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 保证金监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorMarginService" ref="monitorMarginService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户余额监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorBalanceService" ref="monitorBalanceService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 撮合交易总账监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorMatchFundService" ref="monitorMatchFundService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 平台数字资产总额监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorPlatBalService" ref="monitorPlatBalService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 明细账监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorDetailService" ref="monitorDetailService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 账户资金流水监控 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorAcctFundCurService" ref="monitorAcctFundCurService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控服务配置 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorConfigService" ref="monitorConfigService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控服务运行日志 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorRunLogsService" ref="monitorRunLogsService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控内外部区块高度 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorBlockNumService" ref="monitorBlockNumService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控ERC20内外部余额 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorERC20BalService" ref="monitorERC20BalService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控指标 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorIndexService" ref="monitorIndexService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 监控阈值参数 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorLimitParamService" ref="monitorLimitParamService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 归档运行日志 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.ArchiveRunLogsService" ref="archiveRunLogsService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 糖果 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountCandyRecordService" ref="accountCandyRecordService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 归档服务 -->
+	<dubbo:service interface="com.blocain.bitms.monitor.service.MonitorArchiveService" ref="monitorArchiveService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 前端sql查询服务 -->
+	<dubbo:service interface="com.blocain.bitms.boss.common.service.SqlScriptsExecuteService" ref="sqlScriptsExecuteService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 流程日志管理-->
+	<dubbo:service interface="com.blocain.bitms.trade.settlement.service.SettlementProcessLogService" ref="settlementProcessLogService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.settlement.service.SettlementProcessService" ref="settlementProcessService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.settlement.service.SettlementRecordService" ref="settlementRecordService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.settlement.service.SettlementAccountAssetService" ref="settlementAccountAssetService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 资金扫描 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.FundScanService" ref="fundScanService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 现金充值和提现 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountCollectBankService" ref="accountCollectBankService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.BankRechargeService" ref="bankRechargeService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountCashWithdrawService" ref="accountCashWithdrawService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- ERC20 TOKEN -->
+	<dubbo:service interface="com.blocain.bitms.trade.block.service.BlockInfoERC20Service" ref="blockInfoERC20Service" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.SystemWalletERC20Service" ref="systemWalletERC20Service" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.SystemWalletAddrERC20Service" ref="systemWalletAddrERC20Service" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.BlockTransConfirmERC20Service" ref="blockTransConfirmERC20Service" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrERC20Service" ref="accountCollectAddrERC20Service" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrERC20CheckLogService" ref="accountCollectAddrERC20CheckLogService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountWithdrawRecordERC20Service" ref="accountWithdrawRecordERC20Service" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.stockinfo.service.Erc20TokenService" ref="erc20TokenService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 溢价费 -->
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.MarketSnapService" ref="marketSnapService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetPremiumService" ref="accountDebitAssetPremiumService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountSpotAssetSnapService" ref="accountSpotAssetSnapService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetSnapService" ref="accountDebitAssetSnapService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.fund.service.AccountWalletAssetSnapService" ref="accountWalletAssetSnapService" version="1.0.0" retries="2" timeout="1800000"/>
+
+	<!-- 网格机器人配置 -->
+	<dubbo:service interface="com.blocain.bitms.trade.robot.service.GridRobotConfigService" ref="gridRobotConfigService" version="1.0.0" retries="2" timeout="1800000"/>
+	<dubbo:service interface="com.blocain.bitms.trade.robot.service.GridRobotService" ref="gridRobotService" version="1.0.0" retries="2" timeout="1800000"/>
+	<!-- 归档 -->
+	<dubbo:service interface="com.blocain.bitms.archive.service.ArchiveService" ref="archiveService" version="1.0.0" retries="2" timeout="1800000"/>
+</beans>

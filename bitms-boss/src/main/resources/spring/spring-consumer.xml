@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:consumer check="false"/>
+
+    <!-- 系统管理服务 -->
+    <!-- 机构管理 -->
+    <dubbo:reference id="organizationService" interface="com.blocain.bitms.boss.system.service.OrganizationService" mock="return null" version="1.0.0"/>
+    <!-- 资源管理 -->
+    <dubbo:reference id="resourcesService" interface="com.blocain.bitms.boss.system.service.ResourcesService" mock="return null" version="1.0.0"/>
+    <!-- 角色管理 -->
+    <dubbo:reference id="roleInfoService" interface="com.blocain.bitms.boss.system.service.RoleInfoService" mock="return null" version="1.0.0"/>
+    <!-- 用户管理 -->
+    <dubbo:reference id="userInfoService" interface="com.blocain.bitms.boss.system.service.UserInfoService" mock="return null" version="1.0.0"/>
+    <!--缓存服务-->
+    <dubbo:reference id="cacheService" interface="com.blocain.bitms.boss.common.service.CacheService" mock="return null" version="1.0.0"/>
+    <!-- 全局公共服务 -->
+    <!-- 数据字典 -->
+    <dubbo:reference id="dictionaryService" interface="com.blocain.bitms.boss.common.service.DictionaryService" mock="return null" version="1.0.0"/>
+    <!-- 系统参数 -->
+    <dubbo:reference id="sysParameterService" interface="com.blocain.bitms.boss.common.service.SysParameterService" mock="return null" version="1.0.0"/>
+    <!-- 区域代码 -->
+    <dubbo:reference id="regionService" interface="com.blocain.bitms.boss.common.service.RegionService" mock="return null" version="1.0.0"/>
+    <!-- 手机短信 -->
+    <dubbo:reference id="msgRecordService" interface="com.blocain.bitms.boss.common.service.MsgRecordNoSql" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="msgTemplateService" interface="com.blocain.bitms.boss.common.service.MsgTemplateService" mock="return null" version="1.0.0"/>
+
+    <!-- 证券管理服务 -->
+    <!-- 证券信息 -->
+    <dubbo:reference id="stockInfoService" interface="com.blocain.bitms.trade.stockinfo.service.StockInfoService" mock="return null" version="1.0.0"/>
+    <!-- 证券费率 -->
+    <dubbo:reference id="stockRateService" interface="com.blocain.bitms.trade.stockinfo.service.StockRateService" mock="return null" version="1.0.0"/>
+    
+    <!-- 运营管理服务 -->
+    <!-- 账户管理 -->
+    <dubbo:reference id="accountService" interface="com.blocain.bitms.trade.account.service.AccountService" mock="return null" version="1.0.0"/>
+    <!-- 账户操作日志-->
+    <dubbo:reference id="accountLogNoSql" interface="com.blocain.bitms.trade.account.service.AccountLogNoSql" mock="return null" version="1.0.0"/>
+    <!-- 实名认证服务-->
+    <dubbo:reference id="accountCertificationService" interface="com.blocain.bitms.trade.account.service.AccountCertificationService" mock="return null" version="1.0.0"/>
+    <!-- 公告服务 -->
+    <dubbo:reference id="noticeService" interface="com.blocain.bitms.trade.account.service.NoticeService" mock="return null" version="1.0.0"/>
+    <!-- 消息服务 -->
+    <dubbo:reference id="messageService" interface="com.blocain.bitms.trade.account.service.MessageService" mock="return null" version="1.0.0"/>
+    <!-- 资金管理服务 -->
+	<!-- 系统钱包 -->
+    <dubbo:reference id="systemWalletService" interface="com.blocain.bitms.trade.fund.service.SystemWalletService" mock="return null" version="1.0.0"/>
+	<!-- 系统钱包地址 -->
+    <dubbo:reference id="systemWalletAddrService" interface="com.blocain.bitms.trade.fund.service.SystemWalletAddrService" mock="return null" version="1.0.0"/>
+	<!-- 区块交易确认 -->
+    <dubbo:reference id="blockTransConfirmService" interface="com.blocain.bitms.trade.fund.service.BlockTransConfirmService" mock="return null" version="1.0.0"/>
+    <!-- 充值归集 -->
+    <dubbo:reference id="accountFundCollectService" interface="com.blocain.bitms.trade.fund.service.AccountFundCollectService" mock="return null" version="1.0.0"/>
+	<!-- 提币划拨 -->
+    <dubbo:reference id="accountFundTransferService" interface="com.blocain.bitms.trade.fund.service.AccountFundTransferService" mock="return null" version="1.0.0"/>
+	<!-- 账户收款地址 -->
+    <dubbo:reference id="accountCollectAddrService" interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrService" mock="return null" version="1.0.0"/>
+    <!-- 账户收款地址审核记录 -->
+    <dubbo:reference id="accountCollectAddrCheckLogService" interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrCheckLogService" mock="return null" version="1.0.0"/>
+    <!-- 账户资金流水 -->
+    <dubbo:reference id="accountFundCurrentService" interface="com.blocain.bitms.trade.fund.service.AccountFundCurrentService" mock="return null" version="1.0.0"/>
+    <!-- 账户提现记录 -->
+    <dubbo:reference id="AccountWithdrawRecordService" interface="com.blocain.bitms.trade.fund.service.AccountWithdrawRecordService" mock="return null" version="1.0.0"/>
+	<!-- 账户注册邀请-->
+    <dubbo:reference id="accountInvitationService" interface="com.blocain.bitms.trade.account.service.AccountInvitationService" mock="return null" version="1.0.0"/>
+    <!-- 钱包账户资产 -->
+    <dubbo:reference id="accountWalletAssetService" interface="com.blocain.bitms.trade.fund.service.AccountWalletAssetService" mock="return null" version="1.0.0"/>
+    <!-- 现货账户资产 -->
+    <dubbo:reference id="accountSpotAssetService" interface="com.blocain.bitms.trade.fund.service.AccountSpotAssetService" mock="return null" version="1.0.0"/>
+    <!-- 合约账户资产 -->
+    <dubbo:reference id="accountContractAssetService" interface="com.blocain.bitms.trade.fund.service.AccountContractAssetService" mock="return null" version="1.0.0"/>
+    <!-- 资金类统一服务 -->
+    <dubbo:reference id="fundService" interface="com.blocain.bitms.trade.fund.service.FundService" mock="return null" version="1.0.0"/>
+    <!-- 账户资产 强增强减 -->
+	<dubbo:reference id="accountFundAdjustService" interface="com.blocain.bitms.trade.fund.service.AccountFundAdjustService" mock="return null" version="1.0.0"/>
+    <!-- 资金流水变化事务 -->
+    <dubbo:reference id="fundCurrentService" interface="com.blocain.bitms.trade.fund.service.FundCurrentService" mock="return null" version="1.0.0"/>
+    <!-- 账户借贷资产 -->
+    <dubbo:reference id="accountDebitAssetService" interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetService" mock="return null" version="1.0.0"/>
+    <!-- 钱包转账流水表 -->
+    <dubbo:reference id="walletTransferCurrentService" interface="com.blocain.bitms.trade.fund.service.WalletTransferCurrentService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="walletCashTransferCurrentService" interface="com.blocain.bitms.trade.fund.service.WalletCashTransferCurrentService" mock="return null" version="1.0.0"/>
+    <!-- 账户理财资产表 -->
+    <dubbo:reference id="accountWealthAssetService" interface="com.blocain.bitms.trade.fund.service.AccountWealthAssetService" mock="return null" version="1.0.0"/>
+    <!-- 账户理财资产明细表 -->
+    <dubbo:reference id="accountWealthAssetDetailService" interface="com.blocain.bitms.trade.fund.service.AccountWealthAssetDetailService" mock="return null" version="1.0.0"/>
+    <!-- 账户理财负债资产表 -->
+    <dubbo:reference id="accountWealthDebitAssetService" interface="com.blocain.bitms.trade.fund.service.AccountWealthDebitAssetService" mock="return null" version="1.0.0"/>
+    <!-- 报表资产负债表 -->
+    <dubbo:reference id="sheetBalanceService" interface="com.blocain.bitms.trade.fund.service.SheetBalanceService" mock="return null" version="1.0.0"/>
+
+    <!-- ICO管理服务 -->
+
+    <!-- 行情服务 -->
+    <dubbo:reference id="quotationService" interface="com.blocain.bitms.quotation.service.QuotationService" mock="return null" version="1.0.0"/> 
+    <dubbo:reference id="rtQuotationInfoService" interface="com.blocain.bitms.quotation.service.RtQuotationInfoService" mock="return null" version="1.0.0"/>
+    <!-- 风险管理服务 -->
+    <!-- 可用服务 -->
+    <dubbo:reference id="enableService" interface="com.blocain.bitms.trade.risk.service.EnableService" mock="return null" version="1.0.0"/>
+    
+    <!-- 委托交易服务 -->
+    <dubbo:reference id="realDealVCoinMoneyService" interface="com.blocain.bitms.trade.trade.service.RealDealVCoinMoneyService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="entrustVCoinMoneyService" interface="com.blocain.bitms.trade.trade.service.EntrustVCoinMoneyService" mock="return null" version="1.0.0"/>
+    <!-- 平仓操作 -->
+    <dubbo:reference id="closePositionService" interface="com.blocain.bitms.trade.trade.service.ClosePositionService" mock="return null" version="1.0.0"/>
+
+    <!-- 钱包管理-->
+	<dubbo:reference id="bitpayKeychainService" interface="com.blocain.bitms.bitpay.service.BitpayKeychainService" mock="return null" version="1.0.0"/>
+	<dubbo:reference id="withdrawRecordService" interface="com.blocain.bitms.bitpay.service.WithdrawRecordService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="bitGoRemoteV2Service" interface="com.blocain.bitms.payment.bitgo.BitGoRemoteV2Service" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="erc20TokenLocalService" interface="com.blocain.bitms.payment.eth.Erc20TokenLocalService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="ethLocalService" interface="com.blocain.bitms.payment.eth.EthLocalService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="bitpayKeychainERC20Service" interface="com.blocain.bitms.bitpay.service.BitpayKeychainERC20Service" mock="return null" version="1.0.0"/>
+
+    <!-- 监控管理 -->
+    <!-- 监控服务 -->
+    <dubbo:reference id="monitorEngineService" interface="com.blocain.bitms.monitor.service.MonitorEngineService" mock="return null" version="1.0.0"/>
+	<!-- 单账户资产检查 -->
+	<dubbo:reference id="acctAssetChkService" interface="com.blocain.bitms.monitor.service.AcctAssetChkService" mock="return null" version="1.0.0"/>
+	<!-- 监控日志查询 --> 
+	<dubbo:reference id="monitorLogsService" interface="com.blocain.bitms.monitor.service.MonitorLogsService" mock="return null" version="1.0.0"/>
+	<!-- 资金监控 -->
+	<dubbo:reference id="monitorAcctFundCurrentService" interface="com.blocain.bitms.monitor.service.MonitorAcctFundCurrentService" mock="return null" version="1.0.0"/>
+    <!-- 余额监控 -->
+    <dubbo:reference id="monitorAcctBalService" interface="com.blocain.bitms.monitor.service.MonitorAcctBalService" mock="return null" version="1.0.0"/>
+	<!-- 负资产监控 -->
+	<dubbo:reference id="monitorNegativeAssetService" interface="com.blocain.bitms.monitor.service.MonitorNegativeAssetService" mock="return null" version="1.0.0"/>
+	<!-- 监控参数设置 -->
+    <dubbo:reference id="monitorParamService" interface="com.blocain.bitms.monitor.service.MonitorParamService" mock="return null" version="1.0.0"/>
+    <!-- 保证金监控 -->
+    <dubbo:reference id="monitorMarginService" interface="com.blocain.bitms.monitor.service.MonitorMarginService" mock="return null" version="1.0.0"/>
+    <!-- 撮合交易总账监控 -->
+    <dubbo:reference id="monitorMatchFundService" interface="com.blocain.bitms.monitor.service.MonitorMatchFundService" mock="return null" version="1.0.0"/>
+    <!-- 平台数字资产总额监控 -->
+    <dubbo:reference id="monitorPlatBalService" interface="com.blocain.bitms.monitor.service.MonitorPlatBalService" mock="return null" version="1.0.0"/>
+    <!-- 明细账监控 -->
+    <dubbo:reference id="monitorDetailService" interface="com.blocain.bitms.monitor.service.MonitorDetailService" mock="return null" version="1.0.0"/>
+    <!-- 账户资金流水监控 -->
+    <dubbo:reference id="monitorAcctFundCurService" interface="com.blocain.bitms.monitor.service.MonitorAcctFundCurService" mock="return null" version="1.0.0"/>
+    <!-- 监控服务配置-->
+    <dubbo:reference id="monitorConfigService" interface="com.blocain.bitms.monitor.service.MonitorConfigService" mock="return null" version="1.0.0"/>
+    <!-- 监控服务运行日志-->
+    <dubbo:reference id="monitorRunLogsService" interface="com.blocain.bitms.monitor.service.MonitorRunLogsService" mock="return null" version="1.0.0"/>
+    <!-- 监控内外部区块高度-->
+    <dubbo:reference id="monitorBlockNumService" interface="com.blocain.bitms.monitor.service.MonitorBlockNumService" mock="return null" version="1.0.0"/>
+    <!-- erc20内外部监控-->
+    <dubbo:reference id="monitorERC20BalService" interface="com.blocain.bitms.monitor.service.MonitorERC20BalService" mock="return null" version="1.0.0"/>
+    <!-- 监控指标-->
+    <dubbo:reference id="monitorIndexService" interface="com.blocain.bitms.monitor.service.MonitorIndexService" mock="return null" version="1.0.0"/>
+    <!-- 监控阈值参数-->
+    <dubbo:reference id="monitorLimitParamService" interface="com.blocain.bitms.monitor.service.MonitorLimitParamService" mock="return null" version="1.0.0"/>
+    <!-- 归档运行日志-->
+    <dubbo:reference id="archiveRunLogsService" interface="com.blocain.bitms.monitor.service.ArchiveRunLogsService" mock="return null" version="1.0.0"/>
+
+    <!-- 糖果 -->
+    <dubbo:reference id="accountCandyRecordService" interface="com.blocain.bitms.trade.fund.service.AccountCandyRecordService" mock="return null" version="1.0.0"/>
+
+    <!-- 归档服务 -->
+    <dubbo:reference id="monitorArchiveService" interface="com.blocain.bitms.monitor.service.MonitorArchiveService" mock="return null" version="1.0.0"/>
+    <!-- 前端sql查询服务 -->
+    <dubbo:reference id="sqlScriptsExecuteService" interface="com.blocain.bitms.boss.common.service.SqlScriptsExecuteService" mock="return null" version="1.0.0"/>
+
+    <!-- 流程日志管理 -->
+    <dubbo:reference id="settlementProcessLogService" interface="com.blocain.bitms.trade.settlement.service.SettlementProcessLogService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="settlementProcessService" interface="com.blocain.bitms.trade.settlement.service.SettlementProcessService" mock="return null" version="1.0.0"/>
+    <!--交割核心处理 -->
+    <dubbo:reference id="settlementService" interface="com.blocain.bitms.trade.settlement.service.SettlementService" mock="return null" version="1.0.0"/>
+    <!-- 交割记录 -->
+    <dubbo:reference id="settlementRecordService" interface="com.blocain.bitms.trade.settlement.service.SettlementRecordService" mock="return null" version="1.0.0"/>
+    <!-- 账户交割记录 -->
+    <dubbo:reference id="settlementAccountAssetService" interface="com.blocain.bitms.trade.settlement.service.SettlementAccountAssetService" mock="return null" version="1.0.0"/>
+
+    <!-- 现金充值和提现 -->
+    <dubbo:reference id="accountCollectBankService" interface="com.blocain.bitms.trade.fund.service.AccountCollectBankService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="bankRechargeService" interface="com.blocain.bitms.trade.fund.service.BankRechargeService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountCashWithdrawService" interface="com.blocain.bitms.trade.fund.service.AccountCashWithdrawService" mock="return null" version="1.0.0"/>
+
+    <!-- ERC20 TOKEN -->
+    <dubbo:reference id="blockInfoERC20Service" interface="com.blocain.bitms.trade.block.service.BlockInfoERC20Service" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="systemWalletERC20Service" interface="com.blocain.bitms.trade.fund.service.SystemWalletERC20Service" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="systemWalletAddrERC20Service" interface="com.blocain.bitms.trade.fund.service.SystemWalletAddrERC20Service" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="blockTransConfirmERC20Service" interface="com.blocain.bitms.trade.fund.service.BlockTransConfirmERC20Service" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountCollectAddrERC20Service" interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrERC20Service" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountCollectAddrERC20CheckLogService" interface="com.blocain.bitms.trade.fund.service.AccountCollectAddrERC20CheckLogService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountWithdrawRecordERC20Service" interface="com.blocain.bitms.trade.fund.service.AccountWithdrawRecordERC20Service" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="erc20TokenService" interface="com.blocain.bitms.trade.stockinfo.service.Erc20TokenService" mock="return null" version="1.0.0"/>
+
+    <!-- 溢价费 -->
+    <dubbo:reference id="marketSnapService" interface="com.blocain.bitms.trade.fund.service.MarketSnapService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountDebitAssetPremiumService" interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetPremiumService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountDebitAssetSnapService" interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetSnapService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountSpotAssetSnapService" interface="com.blocain.bitms.trade.fund.service.AccountSpotAssetSnapService" mock="return null" version="1.0.0"/>
+    <dubbo:reference id="accountWalletAssetSnapService" interface="com.blocain.bitms.trade.fund.service.AccountWalletAssetSnapService" mock="return null" version="1.0.0"/>
+
+    <!-- 意见反馈 -->
+    <dubbo:reference id="feedbackNoSql" interface="com.blocain.bitms.boss.common.service.FeedbackNoSql" mock="return null" version="1.0.0"/>
+
+
+
+
+</beans>

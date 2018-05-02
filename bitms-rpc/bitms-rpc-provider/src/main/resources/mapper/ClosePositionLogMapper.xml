@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.settlement.mapper.ClosePositionLogMapper">
+    <!-- 基础列 -->
+    <sql id="closePositionLogColumns">
+        a.id as id,
+        a.debitId as debitId,
+        a.borrowerAccountId as borrowerAccountId,
+        a.lenderAccountId as lenderAccountId,
+        a.stockinfoId as stockinfoId,
+        a.debitAmt as debitAmt,
+        a.monitorMarginRatio as monitorMarginRatio,
+        a.monitorDate as monitorDate,
+        a.monitorLastPrice as monitorLastPrice,
+        a.lastPrice as lastPrice,
+        a.status as status,
+        a.remark as remark,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="closePositionLogResultMap" type="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        <id column="id" property="id" />
+        <result column="debitId" property="debitId"/>
+        <result column="borrowerAccountId" property="borrowerAccountId"/>
+        <result column="lenderAccountId" property="lenderAccountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="debitAmt" property="debitAmt"/>
+        <result column="monitorMarginRatio" property="monitorMarginRatio"/>
+        <result column="monitorDate" property="monitorDate"/>
+        <result column="monitorLastPrice" property="monitorLastPrice"/>
+        <result column="lastPrice" property="lastPrice"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        insert into ClosePositionLog(
+            id ,
+            debitId ,
+            borrowerAccountId ,
+            lenderAccountId ,
+            stockinfoId ,
+            debitAmt ,
+            monitorMarginRatio ,
+            monitorDate ,
+            monitorLastPrice ,
+            lastPrice ,
+            status ,
+            remark ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{debitId} ,
+            #{borrowerAccountId} ,
+            #{lenderAccountId} ,
+            #{stockinfoId} ,
+            #{debitAmt} ,
+            #{monitorMarginRatio} ,
+            #{monitorDate} ,
+            #{monitorLastPrice} ,
+            #{lastPrice} ,
+            #{status} ,
+            #{remark} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from ClosePositionLog where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update ClosePositionLog set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        insert into ClosePositionLog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="debitId != null">
+                debitId ,
+        </if>
+        <if test="borrowerAccountId != null">
+                borrowerAccountId ,
+        </if>
+        <if test="lenderAccountId != null">
+                lenderAccountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="debitAmt != null">
+                debitAmt ,
+        </if>
+        <if test="monitorMarginRatio != null">
+                monitorMarginRatio ,
+        </if>
+        <if test="monitorDate != null">
+                monitorDate ,
+        </if>
+        <if test="monitorLastPrice != null">
+                monitorLastPrice ,
+        </if>
+        <if test="lastPrice != null">
+                lastPrice ,
+        </if>
+        <if test="status != null">
+                status ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="debitId != null">
+                #{debitId} ,
+        </if>
+        <if test="borrowerAccountId != null">
+                #{borrowerAccountId} ,
+        </if>
+        <if test="lenderAccountId != null">
+                #{lenderAccountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="debitAmt != null">
+                #{debitAmt} ,
+        </if>
+        <if test="monitorMarginRatio != null">
+                #{monitorMarginRatio} ,
+        </if>
+        <if test="monitorDate != null">
+                #{monitorDate} ,
+        </if>
+        <if test="monitorLastPrice != null">
+                #{monitorLastPrice} ,
+        </if>
+        <if test="lastPrice != null">
+                #{lastPrice} ,
+        </if>
+        <if test="status != null">
+                #{status} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        update ClosePositionLog
+           <set>
+            <if test="debitId != null">
+                debitId = #{debitId} ,
+            </if>
+            <if test="borrowerAccountId != null">
+                borrowerAccountId = #{borrowerAccountId} ,
+            </if>
+            <if test="lenderAccountId != null">
+                lenderAccountId = #{lenderAccountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="debitAmt != null">
+                debitAmt = #{debitAmt} ,
+            </if>
+            <if test="monitorMarginRatio != null">
+                monitorMarginRatio = #{monitorMarginRatio} ,
+            </if>
+            <if test="monitorDate != null">
+                monitorDate = #{monitorDate} ,
+            </if>
+            <if test="monitorLastPrice != null">
+                monitorLastPrice = #{monitorLastPrice} ,
+            </if>
+            <if test="lastPrice != null">
+                lastPrice = #{lastPrice} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into ClosePositionLog(
+            id ,
+            debitId ,
+            borrowerAccountId ,
+            lenderAccountId ,
+            stockinfoId ,
+            debitAmt ,
+            monitorMarginRatio ,
+            monitorDate ,
+            monitorLastPrice ,
+            lastPrice ,
+            status ,
+            remark ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.debitId} ,
+            #{item.borrowerAccountId} ,
+            #{item.lenderAccountId} ,
+            #{item.stockinfoId} ,
+            #{item.debitAmt} ,
+            #{item.monitorMarginRatio} ,
+            #{item.monitorDate} ,
+            #{item.monitorLastPrice} ,
+            #{item.lastPrice} ,
+            #{item.status} ,
+            #{item.remark} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update ClosePositionLog set
+            debitId = #{item.debitId} ,
+            borrowerAccountId = #{item.borrowerAccountId} ,
+            lenderAccountId = #{item.lenderAccountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            debitAmt = #{item.debitAmt} ,
+            monitorMarginRatio = #{item.monitorMarginRatio} ,
+            monitorDate = #{item.monitorDate} ,
+            monitorLastPrice = #{item.monitorLastPrice} ,
+            lastPrice = #{item.lastPrice} ,
+            status = #{item.status} ,
+            remark = #{item.remark} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        update ClosePositionLog set
+            debitId = #{debitId} ,
+            borrowerAccountId = #{borrowerAccountId} ,
+            lenderAccountId = #{lenderAccountId} ,
+            stockinfoId = #{stockinfoId} ,
+            debitAmt = #{debitAmt} ,
+            monitorMarginRatio = #{monitorMarginRatio} ,
+            monitorDate = #{monitorDate} ,
+            monitorLastPrice = #{monitorLastPrice} ,
+            lastPrice = #{lastPrice} ,
+            status = #{status} ,
+            remark = #{remark} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        select <include refid="closePositionLogColumns"/> from ClosePositionLog a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        SELECT
+        <include refid="closePositionLogColumns"/>
+        FROM ClosePositionLog a WHERE 1=1
+        <if test="debitId != null">
+            and a.debitId = #{debitId}
+        </if>
+        <if test="borrowerAccountId != null">
+            and a.borrowerAccountId = #{borrowerAccountId}
+        </if>
+        <if test="lenderAccountId != null">
+            and a.lenderAccountId = #{lenderAccountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="debitAmt != null">
+            and a.debitAmt = #{debitAmt}
+        </if>
+        <if test="monitorMarginRatio != null">
+            and a.monitorMarginRatio = #{monitorMarginRatio}
+        </if>
+        <if test="monitorDate != null">
+            and a.monitorDate = #{monitorDate}
+        </if>
+        <if test="monitorLastPrice != null">
+            and a.monitorLastPrice = #{monitorLastPrice}
+        </if>
+        <if test="lastPrice != null">
+            and a.lastPrice = #{lastPrice}
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.settlement.entity.ClosePositionLog">
+        SELECT
+        <include refid="closePositionLogColumns"/>
+        FROM ClosePositionLog a WHERE 1=1
+    </select>
+
+
+</mapper>
+

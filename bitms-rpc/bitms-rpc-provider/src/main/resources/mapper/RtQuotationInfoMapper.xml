@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.quotation.mapper.RtQuotationInfoMapper">
+
+    <!-- 当前委托的最高买卖委托 -->
+    <select id="getQuotationExtraInfo" resultType="com.blocain.bitms.quotation.entity.RtQuotationInfo">
+        select entrustSellOne, entrustBuyOne, vcoinAmtSum24h,highestPrice,lowestPrice
+        from (select nvl(sum(dealamtsum),0) vcoinAmtSum24h, nvl(max(highestprice),0) highestprice,nvl(min(lowestprice),0) lowestprice
+                from ${tblKlineName}
+               where displaytime>=sf_addTime(1,-1,'D')) a,
+             (select nvl(min(entrustprice), 0) entrustSellOne
+               from ${tblEntrustName}
+              where status in ('noDeal', 'partialDeal')
+                and entrustdirect = 'spotSell'
+                and tradetype = 'matchTrade'
+                and entrusttype = 'limitPrice') b,
+             (select nvl(max(entrustprice), 0) entrustBuyOne
+               from ${tblEntrustName}
+              where status in ('noDeal', 'partialDeal')
+                and entrustdirect = 'spotBuy'
+                and tradetype = 'matchTrade'
+                and entrusttype = 'limitPrice') c
+    </select>
+
+</mapper>
+

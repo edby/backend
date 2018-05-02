@@ -1,0 +1,470 @@
+.fairTrade-wrap{
+	position: relative;
+}
+.fairTrade-wrap .panel{
+	padding: 16px;
+}
+.fairTrade-wrap .panel .nav {
+    padding-bottom: 15px;
+    overflow: hidden;
+}
+.fairTrade-wrap .panel .nav li a{
+    float: left;
+    width: 108px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+    border-radius: 2px;
+    text-align: center;
+    cursor: pointer;
+    color: #536b32;
+}
+.fairTrade-wrap .panel .nav li a:hover {
+    font-weight: bold;
+    background-color: #536b32;
+    color: #fff;
+}
+.fairTabNav .record-txt-btn {
+    border: 1px solid #4e6938;
+    border-radius: 3px;
+    margin-left: 10px;
+    height: 36px;
+    line-height: 32px;
+    float: right;
+}
+.fairTrade-wrap .panel .table tbody tr{
+    background-color: #1e222d;
+    height: 47px;
+}
+.fairTrade-wrap .panel .table tbody tr:hover {
+    background-color: #1d2324;
+}
+.fairTrade-wrap .panel .table thead tr th{
+	font-size: 16px;
+	border: 1px solid #252e3a;
+	vertical-align: middle;
+}
+/* .fairTrade-wrap .panel .table thead tr .operation{
+	width: 10%;
+} */ 
+.fairTrade-wrap .panel .table tbody tr td{
+	font-size: 12px;
+	border: 1px solid #252e3a;
+	vertical-align: middle;
+}
+.bmsTradeTable{
+	margin-top: 16px;
+	width: 49%;
+	border: 1px solid #252e3a;
+}
+.bmsTradeTable tr th{
+	width: 20%;
+}
+#entrustedNumber{
+	width: 40%;
+}
+.fairTrade-wrap .panel .table tbody tr td .slide {
+    display: inline-block;
+    width: 90%;
+    height: 20px;
+    background-color: #151922;
+    border-radius: 3px;
+}
+.fairTrade-wrap .panel .table tbody tr td .slide>div {
+    height: 20px;
+    border-radius: 3px;
+    background-color: #53743e;
+}
+.fairTrade-wrap .panel .table tbody tr td .slide .percentTxt{
+	line-height: 20px;
+}
+.fairTradeMargin{
+	margin-top: 94px;
+}
+/*PUSH购买弹窗*/
+.fairPopup{
+	position: absolute;
+    margin-left: 29%;
+    margin-top: 5%;
+	min-width: 856px;                 
+	background-color: #040c17;
+	border: 5px solid #1b262d;
+	z-index: 99;
+	display: none;
+}
+.fairPopup .fairPopup-wrap{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+}
+.fairPopup .fairPopup-wrap .fairPopup-margin{
+	margin-top: 15px;
+}
+.fairPopup .fairPopup-wrap h3{
+	margin-left: 10px;
+	color: #5d7b3c;
+	font-size: 16px;
+	line-height: 50px;
+	border-bottom: 1px solid #23333f;
+}
+.fairPopup .fairPopup-wrap img{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	cursor: pointer;
+}
+.fairPopup .fairPopup-wrap .fairPopup-title{
+	margin-left: 25%;
+	width: 150px;
+	display: inline-block;
+	line-height: 40px;
+}
+.fairPopup .fairPopup-wrap .fairPopup-size1{
+	height: 36px;
+    line-height: 36px;
+    width: 250px;
+    left: 40%;
+    padding-left: 10px;
+}
+.fairPopup .fairPopup-wrap .fairPopup-size2{
+	height: 38px;
+	left: 40%;
+	width: 188px;
+	padding-left: 20px;
+}
+.fairPopup .fairPopup-wrap .fairPopupTxt{
+	line-height: 40px;
+	font-size: 18px;
+}
+.fairPopup .fairPopup-wrap .spBtn1{
+	width: 14%;
+    height: 38px;
+    margin-left: 65%;
+} 
+.fairPopup .fairPopup-wrap .spBtn2 {
+    width: 150px;
+    height: 38px;
+    line-height: 38px;
+}
+.fairPopup .fairPopup-wrap .spBtn3 {
+    height: 36px;
+    line-height: 36px;
+    margin-left: 361px;
+}
+.fairPopup .fairPopup-wrap .fairPopupPos{
+	text-align: center;
+}
+.bmsTradeTable tr .entrustedNumberSlide{
+	width: 40%;
+}
+.bmsTradeTable .fairBtn{
+	width: 90px;
+}
+.fairBtn{
+	width: 90px;
+}
+/*交易记录*/
+.fairTradeRecord-wrap .panel {
+    padding: 8px;
+    margin-bottom: 15px;
+}
+.fairTradeRecord-wrap .panel span {
+    font-size: 18px;
+    margin: 9px;
+}
+.fairTradeRecord-wrap .table {
+	margin-top: 12px;
+}
+.fairTradeRecord-wrap .table thead tr{
+	height: 50px;
+    background-color: #1e222d;
+}
+.fairTradeRecord-wrap .table tbody tr{
+    height: 40px;
+}
+.fairTradeRecord-wrap .table thead tr th{
+    font-size: 16px;
+    vertical-align: middle;
+}
+.fairTradeRecord-wrap .table tbody tr td{
+    font-size: 14px;
+    vertical-align: middle;
+}
+.fairRecordNavMargin{
+	margin-top: 20px;
+}
+/*发起的Push*/
+.fairTradePushInput{
+	padding: 10px;
+	border-top: 1px solid #23333f;
+}
+.fairTradePushInput .field-label {
+    width: 150px;
+    margin-right: 36px;
+}
+.fairTradePushInput .coin {
+    position: absolute;
+    margin-left: 230px;
+    margin-top: 10px;
+}
+.fairTradePushInput .size1 {
+    height: 36px;
+    width: 250px;
+    text-indent: 10px;
+    font-size: small;
+    padding: 5px;
+    margin-right: 10px;
+}
+.fairTradePushInput .size2 {
+    height: 36px;
+    width: 150px;
+    text-indent: 10px;
+    font-size: small;
+    padding: 5px;
+}
+.fairTradePushInput .fairPushBtn{
+	width: 90px;
+    height: 36px;
+    font-size: 12px;
+    line-height: 36px;
+    margin-left: 6px;
+}
+.fairTradePushInput .commit-wrap {
+    border-top: 1px solid #23333f;
+    padding-top: 16px;
+    padding-left: 184px;
+}
+.fairTitle{
+	display: block;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+/*改*/
+.borderNone{
+	border: none;
+}
+#fairPushData{
+	display: none;
+}
+.errorPos>div{
+	margin-left: 360px;
+}
+.errorFairtrade>div{
+	margin-left: 191px;
+}
+#pushEmaiCode{
+	height: 32px;
+    line-height: 32px;
+    width: 85px;
+}
+.sellBtnbackgroundColor{
+	background-color: #DC605A;
+}
+#fairPushData{
+    margin-top: 12px;
+}
+#fairPushData2{
+	margin-top: 12px;
+}
+#authCodeBtnBuyInWin{
+	display: none;
+	width: 122px;
+}
+#authCodeBtnSellOutWin{
+	display: none;
+	width: 122px;
+}
+#authCodeBtnBuyInPush{
+	display: none;
+	width: 122px;
+}
+#authCodeBtnSellOutPush{
+	display: none;
+	width: 122px;
+}
+.disabledInput{
+	border: 1px dashed #394952;
+	background-color: #151922;
+}
+.currentProgress{
+	width: 16%;
+}
+.operation{
+	width: 12%;
+}
+.hidd{
+	display: block;
+}
+
+@media (max-width: 1680px) {
+/*求购信息*/
+.fairTrade-wrap .panel {
+    padding: 10px;
+}
+.fairTrade-wrap .panel .nav{
+	padding-bottom: 10px;
+}
+.fairTrade-wrap .panel .nav li a{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+.fairTrade-wrap .panel .table thead tr{
+    height: 30px;
+}
+.fairTrade-wrap .panel .table thead tr th {
+    font-size: 13px;
+}
+.fairTrade-wrap .panel .table tbody tr{
+	height: 34px;
+}
+.fairTrade-wrap .panel .table tbody tr td {
+    font-size: 12px;
+}
+.fairTradeMargin{
+	margin-top: 105px;
+}
+/*PUSH购买弹窗*/
+.fairPopup {
+    min-width: 568px;
+}
+.fairPopup .fairPopup-wrap .fairPopup-margin {
+    margin-top: 10px;
+}
+.fairPopup .fairPopup-wrap .fairPopup-title {
+    line-height: 30px;
+    width: 115px;
+    margin-left: 20%;
+}
+.fairPopup .fairPopup-wrap .fairPopupTxt {
+	font-size: 14px;
+    line-height: 30px;
+}
+.fairPopup .fairPopup-wrap .fairPopup-size1 {
+	width: 200px;
+	font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.fairPopup .fairPopup-wrap .fairPopup-size2 {
+	font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    width: 115px;
+    padding-left: 10px;
+}
+.fairPopup .fairPopup-wrap .spBtn1 {
+    width: 14%;
+    height: 28px;
+}
+.fairPopup .fairPopup-wrap .spBtn2 {
+    width: 76px;
+    height: 28px;
+    line-height: 28px;
+}
+.fairPopup .fairPopup-wrap .spBtn3 {
+    width: 76px;
+    height: 28px;
+    line-height: 28px;
+    margin-left: 227px;
+}
+.bmsTradeTable .fairBtn{
+    width: 60px;
+}
+.fairBtn{
+    width: 60px;
+}
+/*交易记录*/
+.fairTradeRecord-wrap .panel span {
+    font-size: 16px;
+}
+.fairTradeRecord-wrap .table thead tr {
+    height: 35px;
+}
+.fairTradeRecord-wrap .table tbody tr {
+    height: 26px;
+}
+.fairTradeRecord-wrap .table thead tr th {
+    font-size: 12px;
+}
+.fairTradeRecord-wrap .table tbody tr td {
+    font-size: 12px;
+}
+.fairRecordNavMargin{
+	margin-top: 40px;
+}
+/*发起的Push*/
+.fairTitle {
+    font-size: 16px;
+}
+/*改*/
+.errorPos>div{
+	margin-left: 225px;
+}
+#pushEmaiCode{
+	height: 32px;
+    line-height: 32px;
+    width: 95px;
+}
+.fairTradePushInput .size1 {
+    height: 30px;
+    line-height: 30px;
+    width: 200px;
+}
+.fairTradePushInput .coin {
+    margin-top: 7px;
+   	margin-left: 182px;
+}
+#fairTradepartLine{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fairTabNav .record-txt-btn {
+    border: 1px solid #4e6938;
+    border-radius: 3px;
+    margin-left: 5px;
+    height: 25px;
+    line-height: 22px;
+    margin-top: 5px;
+}
+.bmsTradeTable{
+	margin-top: 10px;
+}
+#fairPushData{
+    margin-top: 8px;
+}
+#fairPushData2{
+    margin-top: 8px;
+}
+#authCodeBtnBuyInWin{
+	display: none;
+	width: 90px;
+	height: 30px;
+    line-height: 30px;
+}
+#authCodeBtnSellOutWin{
+	display: none;
+	width: 90px;
+	height: 30px;
+    line-height: 30px;
+}
+#authCodeBtnBuyInPush{
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+}
+#authCodeBtnSellOutPush{
+	width: 90px;
+	height: 30px;
+	line-height: 30px;
+}
+.fairTradePushInput .fairPushBtn {
+    height: 30px;
+    line-height: 30px;
+}
+.select {
+    height: 30px;
+    padding: 0 6px;
+}
+}

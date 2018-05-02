@@ -1,0 +1,79 @@
+.helpCenter-wrap {
+    position: relative;
+}
+.helpCenter-wrap .panel {
+    padding: 10px;
+}
+.helpCenter-wrap .tabnav {
+    border-bottom: 1px solid #23333f;
+    padding-bottom: 10px;
+}
+.helpCenter-wrap .tabnav li.cur {
+    font-weight: bold;
+}
+.helpCenter-wrap .tabnav li {
+    width: 108px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 16px;
+}
+.helpCenter-wrap .helpCenter-content {
+	padding-top: 19px;
+    padding-bottom: 20px;
+    background-color: #1e222d;
+}
+.helpCenter-wrap .helpCenter-content .MainContent{
+	display: block;
+    width: 65%;
+    margin: 10px auto;
+    font-size: 16px;
+}
+.helpCenter-wrap .helpCenter-content .MainContent p{
+	line-height: 28px;
+}   
+.helpCenter-wrap .helpCenter-content .helpTitle1{
+	margin-top: 20px;
+	font-size: 16px;
+}
+.helpCenter-wrap .helpCenter-content .helpTitle2{
+	margin-top: 30px;
+	font-size: 16px;
+}
+@media (max-width: 1680px){
+/*帮助中心*/
+.helpCenter-wrap .helpCenter-content {
+    padding-top: 20px;
+    padding-bottom: 21px;
+    background-color: #1e222d;
+}
+.helpCenter-wrap .helpCenter-content .MainContent p{
+	line-height: 18px
+}  
+.helpCenter-wrap .helpCenter-content .MainContent{
+	display: block;
+    width: 65%;
+    margin: 0px auto;
+    font-size: 12px;
+}
+.helpCenter-wrap .tabnav li {
+    width: 80px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+}
+.helpCenter-wrap .helpCenter-content span{
+	display: block;
+	margin-top: 5px;
+	margin-left: 20px;
+	font-size: 12px;
+}
+.helpCenter-wrap .helpCenter-content .helpTitle1{
+	margin-top: 15px;
+	font-size: 14px;
+}	
+.helpCenter-wrap .helpCenter-content .helpTitle2{
+	margin-top: 20px;
+	font-size: 14px;
+}
+}
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/bitms-api" />
+    <file type="web" url="file://$PROJECT_DIR$/bitms-boss" />
+    <file type="web" url="file://$PROJECT_DIR$/bitms-quotationws" />
+    <file type="web" url="file://$PROJECT_DIR$/bitms-scoket" />
+    <file type="web" url="file://$PROJECT_DIR$/bitms-socket" />
+    <file type="web" url="file://$PROJECT_DIR$/bitms-trade" />
+    <file type="web" url="file://$PROJECT_DIR$/bitms-tradex" />
+    <file type="web" url="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-server" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>

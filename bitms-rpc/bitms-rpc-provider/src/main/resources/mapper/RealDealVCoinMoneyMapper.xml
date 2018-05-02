@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.trade.mapper.RealDealVCoinMoneyMapper">
+    <!-- 基础列 -->
+    <sql id="realDealVCoinMoneyColumns">
+        a.id as id,
+        a.buyAccountId as buyAccountId,
+        a.sellAccountId as sellAccountId,
+        a.buyEntrustId as buyEntrustId,
+        a.sellEntrustId as sellEntrustId,
+        a.tradeType as tradeType,
+        a.businessFlag as businessFlag,
+        a.dealDirect as dealDirect,
+        a.dealStockinfoId as dealStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealPrice as dealPrice,
+        a.dealBalance as dealBalance,
+        a.dealTime as dealTime,
+        a.buyFeeType as buyFeeType,
+        a.sellFeeType as sellFeeType,
+        a.buyFee as buyFee,
+        a.sellFee as sellFee,
+        a.remark as remark
+    </sql>
+
+    <sql id="realDealVCoinMoneyJoinColumns">
+        a.id as id,
+        a.buyAccountId as buyAccountId,
+        a.sellAccountId as sellAccountId,
+        a.buyEntrustId as buyEntrustId,
+        a.sellEntrustId as sellEntrustId,
+        a.tradeType as tradeType,
+        a.businessFlag as businessFlag,
+        a.dealDirect as dealDirect,
+        a.dealStockinfoId as dealStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealPrice as dealPrice,
+        a.dealBalance as dealBalance,
+        a.dealTime as dealTime,
+        a.buyFeeType as buyFeeType,
+        a.sellFeeType as sellFeeType,
+        a.buyFee as buyFee,
+        a.sellFee as sellFee,
+        a.remark as remark,
+        b.accountName as buyAccountName,
+        c.accountName as sellAccountName,
+        d.stockCode as dealStockinfoCode
+    </sql>
+
+    <sql id="realDealVCoinMoneyJoin2Columns">
+        a.id as id,
+        a.buyAccountId as buyAccountId,
+        a.sellAccountId as sellAccountId,
+        a.buyEntrustId as buyEntrustId,
+        a.sellEntrustId as sellEntrustId,
+        a.tradeType as tradeType,
+        a.businessFlag as businessFlag,
+        a.dealDirect as dealDirect,
+        a.dealStockinfoId as dealStockinfoId,
+        a.dealAmt as dealAmt,
+        a.dealPrice as dealPrice,
+        a.dealBalance as dealBalance,
+        a.dealTime as dealTime,
+        a.buyFeeType as buyFeeType,
+        a.sellFeeType as sellFeeType,
+        a.buyFee as buyFee,
+        a.sellFee as sellFee,
+        a.remark as remark,
+        c.stockCode as stockCode,
+        b.dealFee as dealFee
+    </sql>
+
+    <resultMap id="realDealVCoinMoneyResultMap" type="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        <id column="id" property="id"/>
+        <result column="buyAccountId" property="buyAccountId"/>
+        <result column="sellAccountId" property="sellAccountId"/>
+        <result column="buyEntrustId" property="buyEntrustId"/>
+        <result column="sellEntrustId" property="sellEntrustId"/>
+        <result column="tradeType" property="tradeType"/>
+        <result column="businessFlag" property="businessFlag"/>
+        <result column="dealDirect" property="dealDirect"/>
+        <result column="dealStockinfoId" property="dealStockinfoId"/>
+        <result column="dealAmt" property="dealAmt"/>
+        <result column="dealPrice" property="dealPrice"/>
+        <result column="dealBalance" property="dealBalance"/>
+        <result column="dealTime" property="dealTime"/>
+        <result column="buyFeeType" property="buyFeeType"/>
+        <result column="sellFeeType" property="sellFeeType"/>
+        <result column="buyFee" property="buyFee"/>
+        <result column="sellFee" property="sellFee"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        insert into ${tableName}(
+            id ,
+            buyAccountId ,
+            sellAccountId ,
+            buyEntrustId ,
+            sellEntrustId ,
+            tradeType ,
+            businessFlag ,
+            dealDirect ,
+            dealStockinfoId ,
+            dealAmt ,
+            dealPrice ,
+            dealBalance,
+            dealTime ,
+            buyFeeType ,
+            sellFeeType ,
+            buyFee ,
+            sellFee ,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{buyAccountId} ,
+            #{sellAccountId} ,
+            #{buyEntrustId} ,
+            #{sellEntrustId} ,
+            #{tradeType} ,
+            #{businessFlag} ,
+            #{dealDirect} ,
+            #{dealStockinfoId} ,
+            #{dealAmt} ,
+            #{dealPrice} ,
+            #{dealBalance},
+            #{dealTime} ,
+            #{buyFeeType} ,
+            #{sellFeeType} ,
+            #{buyFee} ,
+            #{sellFee} ,
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from ${tableName} where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        delete from ${tableName} where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        insert into ${tableName}
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="buyAccountId != null">
+                buyAccountId ,
+            </if>
+            <if test="sellAccountId != null">
+                sellAccountId ,
+            </if>
+            <if test="buyEntrustId != null">
+                buyEntrustId ,
+            </if>
+            <if test="sellEntrustId != null">
+                sellEntrustId ,
+            </if>
+            <if test="tradeType != null">
+                tradeType ,
+            </if>
+            <if test="businessFlag != null">
+                businessFlag ,
+            </if>
+            <if test="dealDirect != null">
+                dealDirect ,
+            </if>
+            <if test="dealStockinfoId != null">
+                dealStockinfoId ,
+            </if>
+            <if test="dealAmt != null">
+                dealAmt ,
+            </if>
+            <if test="dealPrice != null">
+                dealPrice ,
+            </if>
+            <if test="dealBalance!=null">
+                dealBalance,
+            </if>
+            <if test="dealTime != null">
+                dealTime ,
+            </if>
+            <if test="buyFeeType != null">
+                buyFeeType ,
+            </if>
+            <if test="sellFeeType != null">
+                sellFeeType ,
+            </if>
+            <if test="buyFee != null">
+                buyFee ,
+            </if>
+            <if test="sellFee != null">
+                sellFee ,
+            </if>
+            <if test="remark != null">
+                remark
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="buyAccountId != null">
+                #{buyAccountId} ,
+            </if>
+            <if test="sellAccountId != null">
+                #{sellAccountId} ,
+            </if>
+            <if test="buyEntrustId != null">
+                #{buyEntrustId} ,
+            </if>
+            <if test="sellEntrustId != null">
+                #{sellEntrustId} ,
+            </if>
+            <if test="tradeType != null">
+                #{tradeType} ,
+            </if>
+            <if test="businessFlag != null">
+                #{businessFlag} ,
+            </if>
+            <if test="dealDirect != null">
+                #{dealDirect} ,
+            </if>
+            <if test="dealStockinfoId != null">
+                #{dealStockinfoId} ,
+            </if>
+            <if test="dealAmt != null">
+                #{dealAmt} ,
+            </if>
+            <if test="dealPrice != null">
+                #{dealPrice} ,
+            </if>
+            <if test="dealBalance!=null">
+                #{dealBalance},
+            </if>
+            <if test="dealTime != null">
+                #{dealTime} ,
+            </if>
+            <if test="buyFeeType != null">
+                #{buyFeeType} ,
+            </if>
+            <if test="sellFeeType != null">
+                #{sellFeeType} ,
+            </if>
+            <if test="buyFee != null">
+                #{buyFee} ,
+            </if>
+            <if test="sellFee != null">
+                #{sellFee} ,
+            </if>
+            <if test="remark != null">
+                #{remark}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        update ${tableName}
+        <set>
+            <if test="buyAccountId != null">
+                buyAccountId = #{buyAccountId} ,
+            </if>
+            <if test="sellAccountId != null">
+                sellAccountId = #{sellAccountId} ,
+            </if>
+            <if test="buyEntrustId != null">
+                buyEntrustId = #{buyEntrustId} ,
+            </if>
+            <if test="sellEntrustId != null">
+                sellEntrustId = #{sellEntrustId} ,
+            </if>
+            <if test="tradeType != null">
+                tradeType = #{tradeType} ,
+            </if>
+            <if test="businessFlag != null">
+                businessFlag = #{businessFlag} ,
+            </if>
+            <if test="dealDirect != null">
+                dealDirect = #{dealDirect} ,
+            </if>
+            <if test="dealStockinfoId != null">
+                dealStockinfoId = #{dealStockinfoId} ,
+            </if>
+            <if test="dealAmt != null">
+                dealAmt = #{dealAmt} ,
+            </if>
+            <if test="dealPrice != null">
+                dealPrice = #{dealPrice} ,
+            </if>
+            <if test="dealBalance != null">
+                dealBalance = #{dealBalance} ,
+            </if>
+
+            <if test="dealTime != null">
+                dealTime = #{dealTime} ,
+            </if>
+            <if test="buyFeeType != null">
+                buyFeeType = #{buyFeeType} ,
+            </if>
+            <if test="sellFeeType != null">
+                sellFeeType = #{sellFeeType} ,
+            </if>
+            <if test="buyFee != null">
+                buyFee = #{buyFee} ,
+            </if>
+            <if test="sellFee != null">
+                sellFee = #{sellFee} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into ${tableName}(
+        id ,
+        buyAccountId ,
+        sellAccountId ,
+        buyEntrustId ,
+        sellEntrustId ,
+        tradeType ,
+        businessFlag ,
+        dealDirect ,
+        dealStockinfoId ,
+        dealAmt ,
+        dealPrice ,
+        dealBalance,
+        dealTime ,
+        buyFeeType ,
+        sellFeeType ,
+        buyFee ,
+        sellFee ,
+        remark
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.buyAccountId} ,
+            #{item.sellAccountId} ,
+            #{item.buyEntrustId} ,
+            #{item.sellEntrustId} ,
+            #{item.tradeType} ,
+            #{item.businessFlag} ,
+            #{item.dealDirect} ,
+            #{item.dealStockinfoId} ,
+            #{item.dealAmt} ,
+            #{item.dealPrice} ,
+            #{item.dealBalance},
+            #{item.dealTime} ,
+            #{item.buyFeeType} ,
+            #{item.sellFeeType} ,
+            #{item.buyFee} ,
+            #{item.sellFee} ,
+            #{item.remark}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update ${tableName} set
+            buyAccountId = #{item.buyAccountId} ,
+            sellAccountId = #{item.sellAccountId} ,
+            buyEntrustId = #{item.buyEntrustId} ,
+            sellEntrustId = #{item.sellEntrustId} ,
+            tradeType = #{item.tradeType} ,
+            businessFlag = #{item.businessFlag} ,
+            dealDirect = #{item.dealDirect} ,
+            dealStockinfoId = #{item.dealStockinfoId} ,
+            dealAmt = #{item.dealAmt} ,
+            dealPrice = #{item.dealPrice} ,
+            dealBalance = #{item.dealBalance},
+            dealTime = #{item.dealTime} ,
+            buyFeeType = #{item.buyFeeType} ,
+            sellFeeType = #{item.sellFeeType} ,
+            buyFee = #{item.buyFee} ,
+            sellFee = #{item.sellFee} ,
+            remark = #{item.remark}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        update ${tableName} set
+            buyAccountId = #{buyAccountId} ,
+            sellAccountId = #{sellAccountId} ,
+            buyEntrustId = #{buyEntrustId} ,
+            sellEntrustId = #{sellEntrustId} ,
+            tradeType = #{tradeType} ,
+            businessFlag = #{businessFlag} ,
+            dealDirect = #{dealDirect} ,
+            dealStockinfoId = #{dealStockinfoId} ,
+            dealAmt = #{dealAmt} ,
+            dealPrice = #{dealPrice} ,
+            dealBalance = #{dealBalance},
+            dealTime = #{dealTime} ,
+            buyFeeType = #{buyFeeType} ,
+            sellFeeType = #{sellFeeType} ,
+            buyFee = #{buyFee} ,
+            sellFee = #{sellFee} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        select
+        <include refid="realDealVCoinMoneyColumns"/>
+        from ${tableName} a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        SELECT
+        <include refid="realDealVCoinMoneyJoinColumns"/>
+        FROM ${tableName} a
+        left join Account b on b.id=a.buyAccountId
+        left join Account c on c.id=a.sellAccountId
+        left join Stockinfo d on d.id=a.dealStockinfoId
+        WHERE 1=1
+        <if test="buyAccountId != null">
+            and a.buyAccountId = #{buyAccountId}
+        </if>
+        <if test="buyAccountName != null and buyAccountName!=''">
+            and b.accountName like '%'||#{buyAccountName}||'%'
+        </if>
+        <if test="sellAccountId != null">
+            and a.sellAccountId = #{sellAccountId}
+        </if>
+        <if test="sellAccountName != null and sellAccountName!=''">
+            and c.accountName like '%'||#{sellAccountName}||'%'
+        </if>
+        <if test="buyEntrustId != null">
+            and a.buyEntrustId = #{buyEntrustId}
+        </if>
+        <if test="sellEntrustId != null">
+            and a.sellEntrustId = #{sellEntrustId}
+        </if>
+        <if test="tradeType != null">
+            and a.tradeType like '%'||#{tradeType}||'%'
+        </if>
+        <if test="businessFlag != null">
+            and a.businessFlag like '%'||#{businessFlag}||'%'
+        </if>
+        <if test="dealDirect != null">
+            and a.dealDirect like '%'||#{dealDirect}||'%'
+        </if>
+        <if test="dealStockinfoId != null">
+            and a.dealStockinfoId = #{dealStockinfoId}
+        </if>
+        <if test="dealAmt != null">
+            and a.dealAmt = #{dealAmt}
+        </if>
+        <if test="dealPrice != null">
+            and a.dealPrice = #{dealPrice}
+        </if>
+        <if test="timeStart != null ">
+            and a.dealTime &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.dealTime &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="buyFeeType != null">
+            and a.buyFeeType = #{buyFeeType}
+        </if>
+        <if test="sellFeeType != null">
+            and a.sellFeeType = #{sellFeeType}
+        </if>
+        <if test="buyFee != null">
+            and a.buyFee = #{buyFee}
+        </if>
+        <if test="sellFee != null">
+            and a.sellFee = #{sellFee}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        order by a.dealTime desc
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findRealDealListByEntrustId" resultType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        select
+        <include refid="realDealVCoinMoneyJoin2Columns"/>
+        from
+        ${tableName} a, ${enturstTableName} b, stockinfo c
+        where (a.buyentrustid = b.id or a.sellentrustid = b.id)
+        and b.feestockinfoid = c.id
+        and b.id =#{entrustId}
+        order by a.dealTime desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        SELECT
+        <include refid="realDealVCoinMoneyColumns"/>
+        FROM ${tableName} a WHERE 1=1
+    </select>
+
+    <select id="queryRealDealVCoinMoney" resultType="com.blocain.bitms.trade.trade.entity.RealDealVCoinMoney">
+        SELECT
+        <include refid="realDealVCoinMoneyColumns"/>
+        FROM ${tableName} a
+        WHERE exists (select 1 from (select id  from (select id from ${tableName} where tradetype='matchTrade' order by id desc) where rownum = 1) b where a.id = b.id)
+    </select>
+
+    <!-- 返回最近一段时间内的成交变动账户ID -->
+    <select id="getChangeAcctListByTimestamp" resultType="java.lang.Long">
+        select  distinct b.accountid as accountid
+         from ( select distinct a.buyaccountid as accountid
+              from ${tableName} a
+              where dealtime &gt;= #{currentdate}
+               and a.buyaccountid >=200000000000
+              union all
+              select distinct a.sellaccountid as accountid
+              from ${tableName} a
+              where dealtime &gt;= #{currentdate}
+               and a.sellaccountid >=200000000000
+               ) b
+    </select>
+
+</mapper>
+

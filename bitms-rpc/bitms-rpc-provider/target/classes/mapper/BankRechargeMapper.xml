@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.BankRechargeMapper">
+    <!-- 基础列 -->
+    <sql id="bankRechargeColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.amount as amount,
+        a.fee as fee,
+        a.transId as transId,
+        a.status as status,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate
+    </sql>
+
+    <sql id="bankRechargeJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.amount as amount,
+        a.fee as fee,
+        a.transId as transId,
+        a.status as status,
+        a.remark as remark,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.auditBy as auditBy,
+        a.auditDate as auditDate,
+        b.accountName as accountName,
+        b.unid as unid,
+        c.stockCode as stockCode
+    </sql>
+
+    <resultMap id="bankRechargeResultMap" type="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="amount" property="amount"/>
+        <result column="fee" property="fee"/>
+        <result column="transId" property="transId"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="auditBy" property="auditBy"/>
+        <result column="auditDate" property="auditDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        insert into BankRecharge(
+            id ,
+            accountId ,
+            stockinfoId ,
+            amount ,
+            fee ,
+            transId ,
+            status ,
+            remark ,
+            createBy ,
+            createDate ,
+            auditBy ,
+            auditDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{amount} ,
+            #{fee} ,
+            #{transId} ,
+            #{status} ,
+            #{remark} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{auditBy} ,
+            #{auditDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from BankRecharge where id = #{id} and status='auditPending'
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        delete from BankRecharge where id = #{id} and status='auditPending'
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        insert into BankRecharge
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="amount != null">
+                amount ,
+        </if>
+        <if test="fee != null">
+                fee ,
+        </if>
+        <if test="transId != null">
+                transId ,
+        </if>
+        <if test="status != null">
+                status ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="auditBy != null">
+                auditBy ,
+        </if>
+        <if test="auditDate != null">
+                auditDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="amount != null">
+                #{amount} ,
+        </if>
+        <if test="fee != null">
+                #{fee} ,
+        </if>
+        <if test="transId != null">
+                #{transId} ,
+        </if>
+        <if test="status != null">
+                #{status} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="auditBy != null">
+                #{auditBy} ,
+        </if>
+        <if test="auditDate != null">
+                #{auditDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        update BankRecharge
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="amount != null">
+                amount = #{amount} ,
+            </if>
+            <if test="fee != null">
+                fee = #{fee} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="auditBy != null">
+                auditBy = #{auditBy} ,
+            </if>
+            <if test="auditDate != null">
+                auditDate = #{auditDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into BankRecharge(
+            id ,
+            accountId ,
+            stockinfoId ,
+            amount ,
+            fee ,
+            transId ,
+            status ,
+            remark ,
+            createBy ,
+            createDate ,
+            auditBy ,
+            auditDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.amount} ,
+            #{item.fee} ,
+            #{item.transId} ,
+            #{item.status} ,
+            #{item.remark} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.auditBy} ,
+            #{item.auditDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update BankRecharge set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            amount = #{item.amount} ,
+            fee = #{item.fee} ,
+            transId = #{item.transId} ,
+            status = #{item.status} ,
+            remark = #{item.remark} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            auditBy = #{item.auditBy} ,
+            auditDate = #{item.auditDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        update BankRecharge set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            amount = #{amount} ,
+            fee = #{fee} ,
+            transId = #{transId} ,
+            status = #{status} ,
+            remark = #{remark} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            auditBy = #{auditBy} ,
+            auditDate = #{auditDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        select <include refid="bankRechargeColumns"/> from BankRecharge a where a.id = #{id}
+    </select>
+
+    <select id="selectForUpdate"  resultType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        select <include refid="bankRechargeColumns"/> from BankRecharge a where a.id = #{id} for update wait 3
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        SELECT
+        <include refid="bankRechargeJoinColumns"/>
+        FROM BankRecharge a  left join account b on b.id=a.accountId
+        left join stockinfo c on c.id=a.stockinfoId
+        WHERE 1=1
+        <if test="accountName != null and accountName != ''">
+            and ( b.accountName like '%'||#{accountName}||'%' or  b.unid like '%'||#{accountName}||'%')
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="transId != null and transId != '' ">
+            and a.transId like '%'||#{transId}||'%'
+        </if>
+        <if test="status != null and status!=''">
+            and a.status = #{status}
+        </if>
+        <if test="remark != null and remark!=''">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        order by a.id desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.BankRecharge">
+        SELECT
+        <include refid="bankRechargeColumns"/>
+        FROM BankRecharge a WHERE 1=1
+    </select>
+
+
+</mapper>
+

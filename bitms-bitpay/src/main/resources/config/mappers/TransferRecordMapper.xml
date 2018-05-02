@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blocain.bitms.bitpay.mapper.TransferRecordMapper">
+  
+  <sql id="Base_Column_List">
+		<trim suffixOverrides=",">
+		id,wallet_id,wallet_name,amount,fee,address,trans_id,create_date,
+	 	</trim>
+   </sql>
+   
+</mapper>

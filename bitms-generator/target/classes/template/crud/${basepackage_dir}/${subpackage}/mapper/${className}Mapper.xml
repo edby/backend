@@ -1,0 +1,194 @@
+<#include "/macro.include"/>
+<#assign className = table.className>
+<#assign classNameLower = className?uncap_first>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${basepackage}.${subpackage}.mapper.${className}Mapper">
+    <!-- 基础列 -->
+    <sql id="${classNameLower}Columns">
+        <@generateColumns/>
+    </sql>
+
+    <resultMap id="${classNameLower}ResultMap" type="${basepackage}.${subpackage}.entity.${className}">
+        <id column="id" property="id" />
+        <@generateResultMap/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="${basepackage}.${subpackage}.entity.${className}">
+        insert into ${className}(
+            <@generateInsertFields/>
+        ) VALUES (
+            <@generateValueFields/>
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from ${className} where id = <@jspEl "${'id'}"/>
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update ${className} set delFlag = 1 where id = <@jspEl "${'id'}"/>
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="${basepackage}.${subpackage}.entity.${className}">
+        insert into ${className}
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <@insertSelectiveFields/>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <@insertSelectiveValues/>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="${basepackage}.${subpackage}.entity.${className}">
+        update ${className}
+           <set>
+               <@generateSelectiveUpdate/>
+           </set>
+        where id = <@jspEl "${'id'}"/>
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into ${className}(
+        <@generateInsertFields/>
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            <@generateBatchValueFields/>
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update ${className} set
+            <@generatorBatchUpdate />
+            where id = <@jspEl "item.${'id'}"/>
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="${basepackage}.${subpackage}.entity.${className}">
+        update ${className} set
+        <@generateUpdateAllFields/>
+        where id = <@jspEl "${'id'}"/>
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="${basepackage}.${subpackage}.entity.${className}">
+        select <include refid="${classNameLower}Columns"/> from ${className} a where a.id = <@jspEl "${'id'}"/>
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="${basepackage}.${subpackage}.entity.${className}">
+        SELECT
+        <include refid="${classNameLower}Columns"/>
+        FROM ${className} a WHERE a.delFlag = 0
+        <@generateQueryCondition/>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="${basepackage}.${subpackage}.entity.${className}">
+        SELECT
+        <include refid="${classNameLower}Columns"/>
+        FROM ${className} a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+
+<#macro generateColumns>
+    <#list table.columns as column>
+        a.${column.columnNameLower} as ${column.columnNameLower}<#if column_has_next>,</#if>
+    </#list>
+</#macro>
+
+<#macro generateResultMap>
+    <#list table.columns as column>
+        <#if !column.pk && !column.fk>
+        <result column="${column.columnNameLower}" property="${column.columnNameLower}"/>
+        </#if>
+    </#list>
+</#macro>
+
+<#macro generateInsertFields>
+<#list table.columns as column>
+            ${column.columnNameLower} <#if column_has_next>,</#if>
+</#list>
+</#macro>
+
+<#macro generateValueFields>
+    <#list table.columns as column>
+            <@jspEl "${column.columnNameLower}"/> <#if column_has_next>,</#if>
+    </#list>
+</#macro>
+
+<#macro generateUpdateAllFields>
+    <#list table.columns as column>
+        <#if !column.pk && !column.fk>
+            ${column.columnNameLower} = <@jspEl "${column.columnNameLower}"/> <#if column_has_next>,</#if>
+        </#if>
+    </#list>
+</#macro>
+
+<#macro insertSelectiveFields>
+    <#list table.columns as column>
+        <if test="${column.columnNameLower} != null">
+                ${column.columnNameLower} <#if column_has_next>,</#if>
+        </if>
+    </#list>
+</#macro>
+
+<#macro insertSelectiveValues>
+    <#list table.columns as column>
+        <if test="${column.columnNameLower} != null">
+                <@jspEl "${column.columnNameLower}"/> <#if column_has_next>,</#if>
+        </if>
+    </#list>
+</#macro>
+
+<#macro generateSelectiveUpdate>
+    <#list table.columns as column>
+        <#if !column.pk && !column.fk>
+            <if test="${column.columnNameLower} != null">
+                ${column.columnNameLower} = <@jspEl "${column.columnNameLower}"/> <#if column_has_next>,</#if>
+            </if>
+        </#if>
+    </#list>
+</#macro>
+
+<#macro generateQueryCondition>
+<#list table.columns as column>
+<#if !column.pk && !column.fk && column.columnNameLower != "delFlag">
+    <#if column.javaType="java.lang.String">
+        <if test="${column.columnNameLower} != null">
+            and a.${column.columnNameLower} like '%'||<@jspEl "${column.columnNameLower}"/>||'%'
+        </if>
+    <#else>
+        <if test="${column.columnNameLower} != null">
+            and a.${column.columnNameLower} = <@jspEl "${column.columnNameLower}"/>
+        </if>
+    </#if>
+</#if>
+</#list>
+</#macro>
+
+<#macro generatorBatchUpdate>
+<#list table.columns as column>
+    <#if !column.pk && !column.fk>
+            ${column.columnNameLower} = <@jspEl "item.${column.columnNameLower}"/> <#if column_has_next>,</#if>
+    </#if>
+</#list>
+</#macro>
+
+<#macro generateBatchValueFields>
+    <#list table.columns as column>
+            <@jspEl "item.${column.columnNameLower}"/> <#if column_has_next>,</#if>
+    </#list>
+</#macro>

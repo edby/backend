@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorDetailMapper">
+    <!-- 基础列 -->
+    <sql id="monitorDetailColumns">
+        a.stockinfoId as stockinfoId,
+        a.bizCategoryId as bizCategoryId,
+        a.accountId as accountId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.originalBusinessId as originalBusinessId,
+        a.relatedBusinessId as relatedBusinessId,
+        a.businessFlag as businessFlag,
+        a.businessDate as businessDate,
+        a.monitorDesc as monitorDesc,
+        a.monitorDate as monitorDate,
+        a.dataSource as dataSource,
+        a.acctAssetType as acctAssetType
+    </sql>
+    <resultMap id="monitorDetailResultMap"
+               type="com.blocain.bitms.monitor.entity.MonitorDetail">
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="bizCategoryId" property="bizCategoryId"/>
+        <result column="monitorDate" property="monitorDate"/>
+        <result column="monitorDesc" property="monitorDesc"/>
+        <result column="accountId" property="accountId"/>
+        <result column="businessFlag" property="businessFlag"/>
+        <result column="businessDate" property="businessDate"/>
+        <result column="originalBusinessId" property="originalBusinessId"/>
+        <result column="relatedBusinessId" property="relatedBusinessId"/>
+        <result column="dataSource" property="dataSource"/>
+        <result column="acctAssetType" property="acctAssetType"/>
+    </resultMap>
+
+    <select id="findMonitorDetailList" resultType="com.blocain.bitms.monitor.entity.MonitorDetail">
+        select
+        <include refid="monitorDetailColumns"/>
+        from
+        MonitorDetail a
+        where 1=1
+        <!--<if test="stockinfoId != null">-->
+        <!--and a.stockinfoId = #{stockinfoId}-->
+        <!--and a.monitorDate in-->
+        <!--(select b.monitorDate from MonitorLogs b-->
+        <!--where b.relatedId = #{stockinfoId})-->
+        <!--</if>-->
+        and a.dataSource = 1
+        and a.acctAssetType = #{acctAssetType}
+        and a.accountId = #{accountId}
+        and a.stockinfoId = #{stockinfoId}
+        and a.bizCategoryId = #{bizCategoryId}
+        and a.monitorDate = #{monitorDate}
+        and a.relatedStockinfoId = #{relatedStockinfoId}
+    </select>
+</mapper>

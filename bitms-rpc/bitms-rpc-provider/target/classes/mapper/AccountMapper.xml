@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.account.mapper.AccountMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="accountColumns">
+        a.id as id,
+        a.unid as unid,
+        a.accountName as accountName,
+        a.loginPwd as loginPwd,
+        a.walletPwd as walletPwd,
+        a.email as email,
+        a.country as country,
+        a.mobNo as mobNo,
+        a.authKey as authKey,
+        a.status as status,
+        a.location as location,
+        a.thawTime as thawTime,
+        a.remark as remark,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.createDate as createDate,
+        a.updateDate as updateDate,
+        a.tradePolicy as tradePolicy,
+        a.securityPolicy as securityPolicy,
+        a.autoDebit as autoDebit,
+        a.chargeAward as chargeAward,
+        a.delFlag as delFlag,
+        a.lang as lang
+    </sql>
+
+    <resultMap id="accountResultMap" type="com.blocain.bitms.trade.account.entity.Account">
+        <id column="id" property="id"/>
+        <result column="unid" property="unid"/>
+        <result column="accountName" property="accountName"/>
+        <result column="loginPwd" property="loginPwd"/>
+        <result column="walletPwd" property="walletPwd"/>
+        <result column="email" property="email"/>
+        <result column="country" property="country"/>
+        <result column="location" property="location"/>
+        <result column="mobNo" property="mobNo"/>
+        <result column="authKey" property="authKey"/>
+        <result column="status" property="status"/>
+        <result column="thawTime" property="thawTime"/>
+        <result column="remark" property="remark"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+        <result column="tradePolicy" property="tradePolicy"/>
+        <result column="securityPolicy" property="securityPolicy"/>
+        <result column="autoDebit" property="autoDebit"/>
+        <result column="chargeAward" property="chargeAward"/>
+        <result column="delFlag" property="delFlag"/>
+        <result column="lang" property="lang"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.account.entity.Account">
+        insert into Account(
+            id ,
+            unid ,
+            accountName ,
+            loginPwd ,
+            walletPwd ,
+            email ,
+            country ,
+            mobNo ,
+            authKey ,
+            status ,
+            thawTime ,
+            location ,
+            remark ,
+            sign ,
+            randomKey ,
+            createDate ,
+            updateDate ,
+            tradePolicy ,
+            securityPolicy ,
+            autoDebit ,
+            chargeAward,
+            delFlag ,
+            lang 
+        ) VALUES (
+            #{id} ,
+            #{unid} ,
+            #{accountName} ,
+            #{loginPwd} ,
+            #{walletPwd} ,
+            #{email} ,
+            #{country} ,
+            #{mobNo} ,
+            #{authKey} ,
+            #{status} ,
+            #{thawTime} ,
+            #{location} ,
+            #{remark} ,
+            #{sign} ,
+            #{randomKey} ,
+            #{createDate} ,
+            #{updateDate} ,
+            #{tradePolicy} ,
+            #{securityPolicy} ,
+            #{autoDebit} ,
+            ${chargeAward},
+            #{delFlag} ,
+            #{lang} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Account where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update Account set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.account.entity.Account">
+        insert into Account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="unid != null">
+                unid ,
+            </if>
+            <if test="accountName != null">
+                accountName ,
+            </if>
+            <if test="loginPwd != null">
+                loginPwd ,
+            </if>
+            <if test="walletPwd != null">
+                walletPwd ,
+            </if>
+            <if test="email != null">
+                email ,
+            </if>
+            <if test="country != null">
+                country ,
+            </if>
+            <if test="mobNo != null">
+                mobNo ,
+            </if>
+            <if test="authKey != null">
+                authKey ,
+            </if>
+            <if test="status != null">
+                status ,
+            </if>
+            <if test="thawTime != null">
+                thawTime ,
+            </if>
+            <if test="location != null">
+                location ,
+            </if>
+            <if test="remark != null">
+                remark ,
+            </if>
+            <if test="sign != null">
+                sign ,
+            </if>
+            <if test="randomKey != null">
+                randomKey ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateDate != null">
+                updateDate ,
+            </if>
+            <if test="tradePolicy != null">
+                tradePolicy ,
+            </if>
+            <if test="securityPolicy != null">
+            securityPolicy ,
+            </if>
+            <if test="autoDebit != null">
+                autoDebit ,
+            </if>
+            <if test="chargeAward!=null">
+                chargeAward,
+            </if>
+            <if test="delFlag != null">
+                delFlag ,
+            </if>
+            <if test="lang != null">
+                lang
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="unid != null">
+                #{unid} ,
+            </if>
+            <if test="accountName != null">
+                #{accountName} ,
+            </if>
+            <if test="loginPwd != null">
+                #{loginPwd} ,
+            </if>
+            <if test="walletPwd != null">
+                #{walletPwd} ,
+            </if>
+            <if test="email != null">
+                #{email} ,
+            </if>
+            <if test="country != null">
+                #{country} ,
+            </if>
+            <if test="mobNo != null">
+                #{mobNo} ,
+            </if>
+            <if test="authKey != null">
+                #{authKey} ,
+            </if>
+            <if test="status != null">
+                #{status} ,
+            </if>
+            <if test="thawTime != null">
+                #{thawTime} ,
+            </if>
+            <if test="location != null">
+                #{location} ,
+            </if>
+            <if test="remark != null">
+                #{remark} ,
+            </if>
+            <if test="sign != null">
+                #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                #{randomKey} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate} ,
+            </if>
+            <if test="tradePolicy != null">
+                #{tradePolicy} ,
+            </if>
+            <if test="securityPolicy != null">
+                #{securityPolicy} ,
+            </if>
+            <if test="autoDebit != null">
+                #{autoDebit} ,
+            </if>
+            <if test="chargeAward!=null">
+                #{chargeAward},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag} ,
+            </if>
+            <if test="lang != null">
+                #{lang}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.account.entity.Account">
+        update Account
+        <set>
+            <if test="unid != null">
+                unid = #{unid} ,
+            </if>
+            <if test="accountName != null">
+                accountName = #{accountName} ,
+            </if>
+            <if test="loginPwd != null">
+                loginPwd = #{loginPwd} ,
+            </if>
+            <if test="walletPwd != null">
+                walletPwd = #{walletPwd} ,
+            </if>
+            <if test="email != null">
+                email = #{email} ,
+            </if>
+            <if test="country != null">
+                country = #{country} ,
+            </if>
+            <if test="mobNo != null">
+                mobNo = #{mobNo} ,
+            </if>
+            <if test="authKey != null">
+                authKey = #{authKey} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="thawTime != null">
+                thawTime = #{thawTime} ,
+            </if>
+            <if test="location != null">
+                location = #{location} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} ,
+            </if>
+            <if test="tradePolicy != null">
+                tradePolicy = #{tradePolicy} ,
+            </if>
+            <if test="securityPolicy != null">
+                securityPolicy = #{securityPolicy} ,
+            </if>
+            <if test="autoDebit != null">
+                autoDebit = #{autoDebit} ,
+            </if>
+            <if test="chargeAward!=null">
+                chargeAward = #{chargeAward},
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag} ,
+            </if>
+            <if test="lang != null">
+                lang = #{lang}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Account(
+        id ,
+        unid ,
+        accountName ,
+        loginPwd ,
+        walletPwd ,
+        email ,
+        country ,
+        mobNo ,
+        authKey ,
+        status ,
+        thawTime ,
+        location ,
+        remark ,
+        sign ,
+        randomKey ,
+        createDate ,
+        updateDate ,
+        tradePolicy ,
+        securityPolicy ,
+        autoDebit ,
+        chargeAward ,
+        delFlag ,
+        lang
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.unid} ,
+            #{item.accountName} ,
+            #{item.loginPwd} ,
+            #{item.walletPwd} ,
+            #{item.email} ,
+            #{item.country} ,
+            #{item.mobNo} ,
+            #{item.authKey} ,
+            #{item.status} ,
+            #{item.thawTime} ,
+            #{item.location} ,
+            #{item.remark} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.createDate} ,
+            #{item.updateDate} ,
+            #{item.tradePolicy} ,
+            #{item.securityPolicy} ,
+            #{item.autoDebit} ,
+            #{item.chargeAward},
+            #{item.delFlag} ,
+            #{item.lang}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Account set
+            unid = #{item.unid} ,
+            accountName = #{item.accountName} ,
+            loginPwd = #{item.loginPwd} ,
+            walletPwd = #{item.walletPwd} ,
+            email = #{item.email} ,
+            country = #{item.country} ,
+            mobNo = #{item.mobNo} ,
+            authKey = #{item.authKey} ,
+            status = #{item.status} ,
+            thawTime = #{item.thawTime} ,
+            location = #{item.location} ,
+            remark = #{item.remark} ,
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate} ,
+            tradePolicy = #{item.tradePolicy} ,
+            securityPolicy = #{item.securityPolicy} ,
+            autoDebit = #{item.autoDebit} ,
+            chargeAward = #{item.chargeAward},
+            delFlag = #{item.delFlag} ,
+            lang = #{item.lang}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.account.entity.Account">
+        update Account set
+            unid = #{unid} ,
+            accountName = #{accountName} ,
+            loginPwd = #{loginPwd} ,
+            walletPwd = #{walletPwd} ,
+            email = #{email} ,
+            country = #{country} ,
+            mobNo = #{mobNo} ,
+            authKey = #{authKey} ,
+            status = #{status} ,
+            thawTime = #{thawTime} ,
+            location = #{location} ,
+            remark = #{remark} ,
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate} ,
+            tradePolicy = #{tradePolicy} ,
+            securityPolicy = #{securityPolicy} ,
+            autoDebit = #{autoDebit} ,
+            chargeAward = #{chargeAward},
+            delFlag = #{delFlag} ,
+            lang = #{lang} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.trade.account.entity.Account">
+        select
+        <include refid="accountColumns"/>
+        from Account a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE a.delFlag = 0
+        <if test="unid != null ">
+            and a.unid = #{unid}
+        </if>
+        <if test="accountName != null and accountName != ''">
+            and a.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="email != null and email != ''">
+            and a.email like '%'||#{email}||'%'
+        </if>
+        <if test="country != null and country != ''">
+            and a.country like '%'||#{country}||'%'
+        </if>
+        <if test="mobNo != null and mobNo != ''">
+            and a.mobNo like '%'||#{mobNo}||'%'
+        </if>
+        <if test="status != null and status != ''">
+            and a.status = #{status}
+        </if>
+        <if test="thawTime != null and thawTime != ''">
+            and a.thawTime = #{thawTime}
+        </if>
+        <if test="location != null and location != ''">
+            and a.location = #{location}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+        <if test="tradePolicy != null">
+            and a.tradePolicy = #{tradePolicy}
+        </if>
+        <if test="securityPolicy != null">
+            and a.securityPolicy = #{securityPolicy}
+        </if>
+        <if test="autoDebit != null">
+            and a.autoDebit = #{autoDebit}
+        </if>
+        <if test="lang != null and lang != ''">
+            and a.lang like '%'||#{lang}||'%'
+        </if>
+        order by a.id desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE a.delFlag = 0
+    </select>
+
+    <!-- 根据帐户名称取数据 -->
+    <select id="findByName" resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE a.delFlag = 0
+        <!--AND (a.accountName = #{accountName} OR a.email = #{accountName})-->
+        AND a.accountName = #{accountName}
+    </select>
+
+    <select id="findByNameAndStatus" parameterType="hashmap"
+            resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE a.delFlag = 0
+        <!--AND (a.accountName = #{accountName} OR a.email = #{accountName})-->
+        AND a.accountName = #{accountName}
+        AND a.status = #{status}
+    </select>
+
+    <select id="findByUnid" resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE a.delFlag = 0
+        and a.unid = #{unid} and a.status= 0
+    </select>
+
+    <select id="getMaxUNID" resultType="java.lang.Long">
+      SELECT MAX(a.unid) FROM Account a WHERE a.delFlag = 0
+    </select>
+
+    <select id="findByPhone" resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE a.delFlag = 0
+        and a.mobNo = #{phone}
+    </select>
+
+    <select id="findByEmailAndMob" parameterType="hashmap"
+            resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a
+        WHERE a.delFlag = 0
+        and a.status= 0
+        and email = #{email}
+        and mobNo = #{mobNo}
+    </select>
+    <select id="findThawUserList" resultType="com.blocain.bitms.trade.account.entity.Account">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a
+        WHERE a.delFlag = 0
+        and a.status = 1
+        and a.thawTime IS NOT NULL
+    </select>
+
+    <!-- 根据账户ID列表获取相关账户列表 -->
+    <select id="findListByAcctIds" resultType="com.blocain.bitms.trade.account.entity.Account" parameterType="java.util.List">
+        SELECT
+        <include refid="accountColumns"/>
+        FROM Account a WHERE a.delFlag = 0
+        and a.status = 0
+        and a.id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
+

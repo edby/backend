@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.system.mapper.OrganizationMapper">
+    <!-- 基础列 -->
+    <sql id="organizationColumns">
+        a.id as id,
+        a.parentId as parentId,
+        a.orgCode as orgCode,
+        a.orgName as orgName,
+        a.orgDest as orgDest,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        a.sortNum as sortNum,
+        a.delFlag as delFlag
+    </sql>
+
+    <sql id="organizationJoinColumns">
+        a.id as id,
+        a.parentId as parentId,
+        a.orgCode as orgCode,
+        a.orgName as orgName,
+        a.orgDest as orgDest,
+        a.createBy as createBy,
+        b.trueName as createByName,
+        a.createDate as createDate,
+        a.updateBy as updateBy,
+        a.updateDate as updateDate,
+        a.sortNum as sortNum,
+        a.delFlag as delFlag
+    </sql>
+
+    <resultMap id="organizationResultMap" type="com.blocain.bitms.boss.system.entity.Organization">
+        <id column="id" property="id" />
+        <result column="parentId" property="parentId"/>
+        <result column="orgCode" property="orgCode"/>
+        <result column="orgName" property="orgName"/>
+        <result column="orgDest" property="orgDest"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateDate" property="updateDate"/>
+        <result column="sortNum" property="sortNum"/>
+        <result column="delFlag" property="delFlag"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.system.entity.Organization">
+        insert into Organization(
+        id ,
+        parentId ,
+        orgCode ,
+        orgName ,
+        orgDest ,
+        createBy ,
+        createDate ,
+        updateBy ,
+        updateDate ,
+        sortNum ,
+        delFlag
+        ) VALUES (
+        #{id} ,
+        #{parentId} ,
+        #{orgCode} ,
+        #{orgName} ,
+        #{orgDest} ,
+        #{createBy} ,
+        #{createDate} ,
+        #{updateBy} ,
+        #{updateDate} ,
+        #{sortNum} ,
+        #{delFlag}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Organization where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update Organization set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.system.entity.Organization">
+        insert into Organization
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="parentId != null">
+                parentId ,
+            </if>
+            <if test="orgCode != null">
+                orgCode ,
+            </if>
+            <if test="orgName != null">
+                orgName ,
+            </if>
+            <if test="orgDest != null">
+                orgDest ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateBy != null">
+                updateBy ,
+            </if>
+            <if test="updateDate != null">
+                updateDate ,
+            </if>
+            <if test="sortNum != null">
+                sortNum ,
+            </if>
+            <if test="delFlag != null">
+                delFlag
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="parentId != null">
+                #{parentId} ,
+            </if>
+            <if test="orgCode != null">
+                #{orgCode} ,
+            </if>
+            <if test="orgName != null">
+                #{orgName} ,
+            </if>
+            <if test="orgDest != null">
+                #{orgDest} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate} ,
+            </if>
+            <if test="sortNum != null">
+                #{sortNum} ,
+            </if>
+            <if test="delFlag != null">
+                #{delFlag}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.system.entity.Organization">
+        update Organization
+        <set>
+            <if test="parentId != null">
+                parentId = #{parentId} ,
+            </if>
+            <if test="orgCode != null">
+                orgCode = #{orgCode} ,
+            </if>
+            <if test="orgName != null">
+                orgName = #{orgName} ,
+            </if>
+            <if test="orgDest != null">
+                orgDest = #{orgDest} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateBy != null">
+                updateBy = #{updateBy} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} ,
+            </if>
+            <if test="sortNum != null">
+                sortNum = #{sortNum} ,
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Organization(
+        id ,
+        parentId ,
+        orgCode ,
+        orgName ,
+        orgDest ,
+        createBy ,
+        createDate ,
+        updateBy ,
+        updateDate ,
+        sortNum ,
+        delFlag
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.parentId} ,
+            #{item.orgCode} ,
+            #{item.orgName} ,
+            #{item.orgDest} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.updateBy} ,
+            #{item.updateDate} ,
+            #{item.sortNum} ,
+            #{item.delFlag}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Organization set
+            parentId = #{item.parentId} ,
+            orgCode = #{item.orgCode} ,
+            orgName = #{item.orgName} ,
+            orgDest = #{item.orgDest} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            updateBy = #{item.updateBy} ,
+            updateDate = #{item.updateDate} ,
+            sortNum = #{item.sortNum} ,
+            delFlag = #{item.delFlag}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.system.entity.Organization">
+        update Organization set
+        parentId = #{parentId} ,
+        orgCode = #{orgCode} ,
+        orgName = #{orgName} ,
+        orgDest = #{orgDest} ,
+        createBy = #{createBy} ,
+        createDate = #{createDate} ,
+        updateBy = #{updateBy} ,
+        updateDate = #{updateDate} ,
+        sortNum = #{sortNum} ,
+        delFlag = #{delFlag}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.boss.system.entity.Organization">
+        select <include refid="organizationColumns"/> from Organization a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.system.entity.Organization">
+        SELECT
+        <include refid="organizationJoinColumns"/>
+        FROM Organization a LEFT JOIN UserInfo b
+        ON b.id = a.createBy WHERE a.delFlag = 0
+        <if test="parentId != null">
+            and a.parentId = #{parentId}
+        </if>
+        <if test="orgCode != null">
+            and a.orgCode like '%'||#{orgCode}||'%'
+        </if>
+        <if test="orgName != null">
+            and a.orgName like '%'||#{orgName}||'%'
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="updateBy != null">
+            and a.updateBy = #{updateBy}
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.system.entity.Organization">
+        SELECT
+        <include refid="organizationColumns"/>
+        FROM Organization a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

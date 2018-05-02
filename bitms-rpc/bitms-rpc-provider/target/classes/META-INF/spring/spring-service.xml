@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 系统管理服务-->
+    <bean name="organizationService" class="com.blocain.bitms.boss.system.service.OrganizationServiceImpl"/>
+    <bean name="resourcesService" class="com.blocain.bitms.boss.system.service.ResourcesServiceImpl"/>
+    <bean name="roleInfoService" class="com.blocain.bitms.boss.system.service.RoleInfoServiceImpl"/>
+    <bean name="userInfoService" class="com.blocain.bitms.boss.system.service.UserInfoServiceImpl"/>
+    <bean name="cacheService" class="com.blocain.bitms.boss.common.service.CacheServiceImpl"/>
+    <!-- 公共服务 -->
+    <bean name="sysParameterService" class="com.blocain.bitms.boss.common.service.SysParameterServiceImpl"/>
+    <bean name="dictionaryService" class="com.blocain.bitms.boss.common.service.DictionaryServiceImpl"/>
+    <bean name="regionService" class="com.blocain.bitms.boss.common.service.RegionServiceImpl"/>
+    <bean name="feedbackNoSql" class="com.blocain.bitms.boss.common.service.FeedbackNoSqlImpl"/>
+    <!-- 短信服务 -->
+    <bean name="msgTemplateService" class="com.blocain.bitms.boss.common.service.MsgTemplateServiceImpl"/>
+    <bean name="msgRecordService" class="com.blocain.bitms.boss.common.service.MsgRecordNoSqlImpl"/>
+    <!-- 帐户服务 -->
+    <bean name="accountService" class="com.blocain.bitms.trade.account.service.AccountServiceImpl"/>
+    <bean name="accountPolicyService" class="com.blocain.bitms.trade.account.service.AccountPolicyServiceImpl"/>
+    <bean name="accountInvitationService" class="com.blocain.bitms.trade.account.service.AccountInvitationServiceImpl"/>
+    <bean name="accountCertificationService" class="com.blocain.bitms.trade.account.service.AccountCertificationServiceImpl"/>
+    <bean name="accountLogNoSql" class="com.blocain.bitms.trade.account.service.AccountLogNoSqlImpl"/>
+    <bean name="noticeService" class="com.blocain.bitms.trade.account.service.NoticeServiceImpl"/>
+    <bean name="messageService" class="com.blocain.bitms.trade.account.service.MessageServiceImpl"/>
+    <!-- 证券服务 -->
+    <bean name="stockInfoService" class="com.blocain.bitms.trade.stockinfo.service.StockInfoServiceImpl"/>
+    <bean name="stockRateService" class="com.blocain.bitms.trade.stockinfo.service.StockRateServiceImpl"/>
+    <!-- 资金服务 -->
+    <bean name="systemWalletService" class="com.blocain.bitms.trade.fund.service.SystemWalletServiceImpl"/>
+    <bean name="systemWalletAddrService" class="com.blocain.bitms.trade.fund.service.SystemWalletAddrServiceImpl"/>
+    <bean name="blockTransConfirmService" class="com.blocain.bitms.trade.fund.service.BlockTransConfirmServiceImpl"/>
+    <bean name="accountWalletAssetService" class="com.blocain.bitms.trade.fund.service.AccountWalletAssetServiceImpl"/>
+    <bean name="accountSpotAssetService" class="com.blocain.bitms.trade.fund.service.AccountSpotAssetServiceImpl"/>
+    <bean name="accountContractAssetService" class="com.blocain.bitms.trade.fund.service.AccountContractAssetServiceImpl"/>
+    <bean name="accountCollectAddrService" class="com.blocain.bitms.trade.fund.service.AccountCollectAddrServiceImpl"/>
+    <bean name="accountCollectAddrCheckLogService" class="com.blocain.bitms.trade.fund.service.AccountCollectAddrCheckLogServiceImpl"/>
+    <bean name="accountFundCollectService" class="com.blocain.bitms.trade.fund.service.AccountFundCollectServiceImpl"/>
+    <bean name="accountFundTransferService" class="com.blocain.bitms.trade.fund.service.AccountFundTransferServiceImpl"/>
+    <bean name="accountFundCurrentService" class="com.blocain.bitms.trade.fund.service.AccountFundCurrentServiceImpl"/>
+    <bean name="accountWithdrawRecordService" class="com.blocain.bitms.trade.fund.service.AccountWithdrawRecordServiceImpl"/>
+    <bean name="accountAssetService" class="com.blocain.bitms.trade.fund.service.AccountAssetServiceImpl"/>
+    <bean name="fundService" class="com.blocain.bitms.trade.fund.service.FundServiceImpl"/>
+    <bean name="accountFundAdjustService" class="com.blocain.bitms.trade.fund.service.AccountFundAdjustServiceImpl"/>
+    <bean name="fundCurrentService" class="com.blocain.bitms.trade.fund.service.FundCurrentServiceImpl"/>
+    <bean name="accountFundWithdrawService" class="com.blocain.bitms.trade.fund.service.AccountFundWithdrawServiceImpl"/>
+    <bean name="accountDebitAssetService" class="com.blocain.bitms.trade.fund.service.AccountDebitAssetServiceImpl"/>
+    <bean name="accountDebitAssetDetailService" class="com.blocain.bitms.trade.fund.service.AccountDebitAssetDetailServiceImpl"/>
+    <bean name="closePositionLogService" class="com.blocain.bitms.trade.settlement.service.ClosePositionLogServiceImpl"/>
+    <bean name="closePositionService" class="com.blocain.bitms.trade.trade.service.ClosePositionServiceImpl"/>
+    <bean name="walletTransferCurrentService" class="com.blocain.bitms.trade.fund.service.WalletTransferCurrentServiceImpl"/>
+    <bean name="walletCashTransferCurrentService" class="com.blocain.bitms.trade.fund.service.WalletCashTransferCurrentServiceImpl"/>
+    <bean name="accountWealthAssetDetailService" class="com.blocain.bitms.trade.fund.service.AccountWealthAssetDetailServiceImpl"/>
+    <bean name="accountWealthAssetService" class="com.blocain.bitms.trade.fund.service.AccountWealthAssetServiceImpl"/>
+    <bean name="accountWealthDebitAssetService" class="com.blocain.bitms.trade.fund.service.AccountWealthDebitAssetServiceImpl"/>
+    <bean name="sheetBalanceService" class="com.blocain.bitms.trade.fund.service.SheetBalanceServiceImpl"/>
+    <bean name="ercAddrsService" class="com.blocain.bitms.trade.fund.service.EthAddrsServiceImpl"/>
+
+    <!-- 行情查询服务 -->
+    <!-- 外部行情 -->
+    <bean name="quotationService" class="com.blocain.bitms.quotation.service.QuotationServiceImpl"/>
+    <!-- 内部行情-->
+    <bean name="rtQuotationInfoService" class="com.blocain.bitms.quotation.service.RtQuotationInfoServiceImpl"/>
+
+    <!-- 风控服务 -->
+    <bean name="enableService" class="com.blocain.bitms.trade.risk.service.EnableServiceImpl"/>
+    <bean name="riskService" class="com.blocain.bitms.trade.risk.service.RiskServiceImpl"/>
+
+    <!-- 支付服务 -->
+    <bean name="bitGoRemoteV2Service" class="com.blocain.bitms.payment.bitgo.impl.BitGoRemoteV2ServiceImpl"/>
+    <bean name="blockmetaRemoteService" class="com.blocain.bitms.payment.bitgo.impl.BlockmetaRemoteServiceImpl"/>
+    <bean name="btcRemoteService" class="com.blocain.bitms.payment.bitgo.impl.BtcRemoteServiceImpl"/>
+    <bean name="ethLocalService" class="com.blocain.bitms.payment.eth.impl.EthLocalServiceImpl"/>
+    <bean name="erc20TokenLocalService" class="com.blocain.bitms.payment.eth.impl.Erc20TokenLocalServiceImpl"/>
+    <bean name="etherscanRemoteService" class="com.blocain.bitms.payment.eth.impl.EtherscanRemoteServiceImpl"/>
+
+    <!-- 委托交易服务 -->
+    <bean name="entrustVCoinMoneyService" class="com.blocain.bitms.trade.trade.service.EntrustVCoinMoneyServiceImpl"/>
+    <bean name="realDealVCoinMoneyService" class="com.blocain.bitms.trade.trade.service.RealDealVCoinMoneyServiceImpl"/>
+    <bean name="tradeService" class="com.blocain.bitms.trade.trade.service.TradeServiceImpl"/>
+    <bean name="settlementService" class="com.blocain.bitms.trade.settlement.service.SettlementServiceImpl"/>
+
+    <!-- 钱包管理-->
+    <bean name="bitpayKeychainService" class="com.blocain.bitms.bitpay.service.BitpayKeychainServiceImpl"/>
+    <bean name="withdrawRecordService" class="com.blocain.bitms.bitpay.service.WithdrawRecordServiceImpl"/>
+    <bean name="bitpayKeychainERC20Service" class="com.blocain.bitms.bitpay.service.BitpayKeychainERC20ServiceImpl"/>
+
+    <!-- 流程日志管理-->
+    <bean name="settlementProcessLogService" class="com.blocain.bitms.trade.settlement.service.SettlementProcessLogServiceImpl"/>
+    <bean name="settlementProcessService" class="com.blocain.bitms.trade.settlement.service.SettlementProcessServiceImpl"/>
+    <bean name="settlementRecordService" class="com.blocain.bitms.trade.settlement.service.SettlementRecordServiceImpl"/>
+    <bean name="settlementAccountAssetService" class="com.blocain.bitms.trade.settlement.service.SettlementAccountAssetServiceImpl"/>
+
+    <!-- 监控管理 -->
+    <!-- 监控服务 -->
+    <bean name="monitorEngineService" class="com.blocain.bitms.monitor.service.MonitorEngineServiceImpl"/>
+    <!-- 单账户资产检查 -->
+    <bean name="acctAssetChkService" class="com.blocain.bitms.monitor.service.AcctAssetChkServiceImpl"/>
+    <!-- 监控日志服务 -->
+    <bean name="monitorLogsService" class="com.blocain.bitms.monitor.service.MonitorLogsServiceImpl"/>
+    <!-- 资金监控 -->
+    <bean name="monitorAcctFundCurrentService" class="com.blocain.bitms.monitor.service.MonitorAcctFundCurrentServiceImpl"/>
+    <!-- 余额监控 -->
+    <bean name="monitorAcctBalService" class="com.blocain.bitms.monitor.service.MonitorAcctBalServiceImpl"/>
+    <!-- 负资产监控 -->
+    <bean name="monitorNegativeAssetService" class="com.blocain.bitms.monitor.service.MonitorNegativeAssetServiceImpl"/>
+    <!-- 监控参数设置 -->
+    <bean name="monitorParamService" class="com.blocain.bitms.monitor.service.MonitorParamServiceImpl"/>
+    <!-- 保证金监控 -->
+    <bean name="monitorMarginService" class="com.blocain.bitms.monitor.service.MonitorMarginServiceImpl"/>
+    <!-- 账户余额监控 -->
+    <bean name="monitorBalanceService" class="com.blocain.bitms.monitor.service.MonitorBalanceServiceImpl"/>
+    <!-- 撮合交易总账监控 -->
+    <bean name="monitorMatchFundService" class="com.blocain.bitms.monitor.service.MonitorMatchFundServiceImpl"/>
+    <!-- 平台数字资产总额监控 -->
+    <bean name="monitorPlatBalService" class="com.blocain.bitms.monitor.service.MonitorPlatBalServiceImpl"/>
+    <!-- 明细账监控 -->
+    <bean name="monitorDetailService" class="com.blocain.bitms.monitor.service.MonitorDetailServiceImpl"/>
+    <!-- 资金扫描 -->
+    <bean name="fundScanService" class="com.blocain.bitms.trade.fund.service.FundScanServiceImpl"/>
+    <!-- 账户资金流水监控 -->
+    <bean name="monitorAcctFundCurService" class="com.blocain.bitms.monitor.service.MonitorAcctFundCurServiceImpl"/>
+    <!-- 监控服务配置 -->
+    <bean name="monitorConfigService" class="com.blocain.bitms.monitor.service.MonitorConfigServiceImpl"/>
+    <!-- 监控服务运行日志 -->
+    <bean name="monitorRunLogsService" class="com.blocain.bitms.monitor.service.MonitorRunLogsServiceImpl"/>
+    <!-- 监控内外部区块高度 -->
+    <bean name="monitorBlockNumService" class="com.blocain.bitms.monitor.service.MonitorBlockNumServiceImpl"/>
+    <!-- 监控ERC20内外部余额 -->
+    <bean name="monitorERC20BalService" class="com.blocain.bitms.monitor.service.MonitorERC20BalServiceImpl"/>
+    <!-- 监控指标 -->
+    <bean name="monitorIndexService" class="com.blocain.bitms.monitor.service.MonitorIndexServiceImpl"/>
+    <!-- 监控阈值参数 -->
+    <bean name="monitorLimitParamService" class="com.blocain.bitms.monitor.service.MonitorLimitParamServiceImpl"/>
+    <!-- 归档运行日志 -->
+    <bean name="archiveRunLogsService" class="com.blocain.bitms.monitor.service.ArchiveRunLogsServiceImpl"/>
+
+    <!-- 糖果 -->
+    <bean name="accountCandyRecordService" class="com.blocain.bitms.trade.fund.service.AccountCandyRecordServiceImpl"/>
+
+    <!-- 归档服务 -->
+    <bean name="monitorArchiveService" class="com.blocain.bitms.monitor.service.MonitorArchiveServiceImpl"/>
+    <!-- 前端sql查询服务 -->
+    <bean name="sqlScriptsExecuteService" class="com.blocain.bitms.boss.common.service.SqlScriptsExecuteServiceImpl"/>
+
+    <!-- 现金充值和提现 -->
+    <bean name="accountCollectBankService" class="com.blocain.bitms.trade.fund.service.AccountCollectBankServiceImpl"/>
+    <bean name="bankRechargeService" class="com.blocain.bitms.trade.fund.service.BankRechargeServiceImpl"/>
+    <bean name="accountCashWithdrawService" class="com.blocain.bitms.trade.fund.service.AccountCashWithdrawServiceImpl"/>
+
+    <!-- ERC20 TOKEN -->
+    <bean name="blockInfoERC20Service" class="com.blocain.bitms.trade.block.service.BlockInfoERC20ServiceImpl"/>
+    <bean name="systemWalletERC20Service" class="com.blocain.bitms.trade.fund.service.SystemWalletERC20ServiceImpl"/>
+    <bean name="systemWalletAddrERC20Service" class="com.blocain.bitms.trade.fund.service.SystemWalletAddrERC20ServiceImpl"/>
+    <bean name="blockTransConfirmERC20Service" class="com.blocain.bitms.trade.fund.service.BlockTransConfirmERC20ServiceImpl"/>
+    <bean name="accountCollectAddrERC20Service" class="com.blocain.bitms.trade.fund.service.AccountCollectAddrERC20ServiceImpl"/>
+    <bean name="accountCollectAddrERC20CheckLogService" class="com.blocain.bitms.trade.fund.service.AccountCollectAddrERC20CheckLogServiceImpl"/>
+    <bean name="accountWithdrawRecordERC20Service" class="com.blocain.bitms.trade.fund.service.AccountWithdrawRecordERC20ServiceImpl"/>
+    <bean name="erc20TokenService" class="com.blocain.bitms.trade.stockinfo.service.Erc20TokenServiceImpl"/>
+
+    <!-- 溢价费 -->
+    <bean name="marketSnapService" class="com.blocain.bitms.trade.fund.service.MarketSnapServiceImpl"/>
+    <bean name="accountDebitAssetPremiumService" class="com.blocain.bitms.trade.fund.service.AccountDebitAssetPremiumServiceImpl"/>
+    <bean name="accountSpotAssetSnapService" class="com.blocain.bitms.trade.fund.service.AccountSpotAssetSnapServiceImpl"/>
+    <bean name="accountDebitAssetSnapService" class="com.blocain.bitms.trade.fund.service.AccountDebitAssetSnapServiceImpl"/>
+    <bean name="accountWalletAssetSnapService" class="com.blocain.bitms.trade.fund.service.AccountWalletAssetSnapServiceImpl"/>
+
+    <!-- 网格机器人配置 -->
+    <bean name="gridRobotConfigService" class="com.blocain.bitms.trade.robot.service.GridRobotConfigServiceImpl"/>
+    <bean name="gridRobotService" class="com.blocain.bitms.trade.robot.service.GridRobotServiceImpl"/>
+    <!-- 归档 -->
+    <bean name="archiveService" class="com.blocain.bitms.archive.service.ArchiveServiceImpl"/>
+</beans>

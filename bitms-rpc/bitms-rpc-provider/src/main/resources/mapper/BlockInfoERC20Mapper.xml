@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.block.mapper.BlockInfoERC20Mapper">
+    <!-- 基础列 -->
+    <sql id="blockInfoERC20Columns">
+        a.id as id,
+        a.hash as hash,
+        a.parentHash as parentHash,
+        a.height as height,
+        a.blockTimeStamp as blockTimeStamp,
+        a.transScanStatus as transScanStatus,
+        a.erc20TokenScanNumber as erc20TokenScanNumber,
+        a.remark as remark
+    </sql>
+
+    <resultMap id="blockInfoERC20ResultMap" type="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        <id column="id" property="id" />
+        <result column="hash" property="hash"/>
+        <result column="parentHash" property="parentHash"/>
+        <result column="height" property="height"/>
+        <result column="blockTimeStamp" property="blockTimeStamp"/>
+        <result column="transScanStatus" property="transScanStatus"/>
+        <result column="erc20TokenScanNumber" property="erc20TokenScanNumber"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        insert into BlockInfoERC20(
+            id ,
+            hash ,
+            parentHash ,
+            height ,
+            blockTimeStamp ,
+            transScanStatus ,
+            erc20TokenScanNumber ,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{hash} ,
+            #{parentHash} ,
+            #{height} ,
+            #{blockTimeStamp} ,
+            #{transScanStatus} ,
+            #{erc20TokenScanNumber} ,
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from BlockInfoERC20 where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update BlockInfoERC20 set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        insert into BlockInfoERC20
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="hash != null">
+                hash ,
+        </if>
+        <if test="parentHash != null">
+                parentHash ,
+        </if>
+        <if test="height != null">
+                height ,
+        </if>
+        <if test="blockTimeStamp != null">
+                blockTimeStamp ,
+        </if>
+        <if test="transScanStatus != null">
+            transScanStatus ,
+        </if>
+        <if test="erc20TokenScanNumber != null">
+            erc20TokenScanNumber ,
+        </if>
+        <if test="remark != null">
+                remark 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="hash != null">
+                #{hash} ,
+        </if>
+        <if test="parentHash != null">
+                #{parentHash} ,
+        </if>
+        <if test="height != null">
+                #{height} ,
+        </if>
+        <if test="blockTimeStamp != null">
+                #{blockTimeStamp} ,
+        </if>
+        <if test="transScanStatus != null">
+                #{transScanStatus} ,
+        </if>
+        <if test="erc20TokenScanNumber != null">
+            #{erc20TokenScanNumber} ,
+        </if>
+        <if test="remark != null">
+                #{remark} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        update BlockInfoERC20
+           <set>
+            <if test="hash != null">
+                hash = #{hash} ,
+            </if>
+            <if test="parentHash != null">
+                parentHash = #{parentHash} ,
+            </if>
+            <if test="height != null">
+                height = #{height} ,
+            </if>
+            <if test="blockTimeStamp != null">
+                blockTimeStamp = #{blockTimeStamp} ,
+            </if>
+            <if test="transScanStatus != null">
+                transScanStatus = #{transScanStatus} ,
+            </if>
+           <if test="erc20TokenScanNumber != null">
+               erc20TokenScanNumber = #{erc20TokenScanNumber} ,
+           </if>
+            <if test="remark != null">
+                remark = #{remark} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into BlockInfoERC20(
+            id ,
+            hash ,
+            parentHash ,
+            height ,
+            blockTimeStamp ,
+            transScanStatus ,
+            erc20TokenScanNumber ,
+            remark 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.hash} ,
+            #{item.parentHash} ,
+            #{item.height} ,
+            #{item.blockTimeStamp} ,
+            #{item.transScanStatus} ,
+            #{item.erc20TokenScanNumber} ,
+            #{item.remark} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update BlockInfoERC20 set
+            hash = #{item.hash} ,
+            parentHash = #{item.parentHash} ,
+            height = #{item.height} ,
+            blockTimeStamp = #{item.blockTimeStamp} ,
+            transScanStatus = #{item.transScanStatus} ,
+            erc20TokenScanNumber = #{item.erc20TokenScanNumber} ,
+            remark = #{item.remark} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        update BlockInfoERC20 set
+            hash = #{hash} ,
+            parentHash = #{parentHash} ,
+            height = #{height} ,
+            blockTimeStamp = #{blockTimeStamp} ,
+            transScanStatus = #{transScanStatus} ,
+            erc20TokenScanNumber = #{erc20TokenScanNumber} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        select <include refid="blockInfoERC20Columns"/> from BlockInfoERC20 a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        SELECT
+        <include refid="blockInfoERC20Columns"/>
+        FROM BlockInfoERC20 a WHERE 1=1
+        <if test="hash != null">
+            and a.hash = #{hash}
+        </if>
+        <if test="parentHash != null">
+            and a.parentHash = #{parentHash}
+        </if>
+        <if test="height != null">
+            and a.height = #{height}
+        </if>
+        <if test="blockTimeStamp != null">
+            and a.blockTimeStamp = #{blockTimeStamp}
+        </if>
+        <if test="transScanStatus != null">
+            and a.transScanStatus = #{transScanStatus}
+        </if>
+        <if test="erc20TokenScanNumber != null">
+            and a.erc20TokenScanNumber = #{erc20TokenScanNumber}
+        </if>
+        order by a.height desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        SELECT
+        <include refid="blockInfoERC20Columns"/>
+        FROM BlockInfoERC20 a WHERE 1=1
+    </select>
+
+    <!-- 查询findLastUnScanTransBlockNumber -->
+    <select id="findLastUnScanTransBlockNumber" resultType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        SELECT
+        <include refid="blockInfoERC20Columns"/>
+        FROM BlockInfoERC20 a WHERE 1=1
+        and a.TRANSSCANSTATUS = 'false'
+        and a.height = (
+        select min(height) from BlockInfoERC20 b
+        where b.TRANSSCANSTATUS = 'false'
+        )
+    </select>
+
+    <!-- 查询高度字段最大值记录findMaxHeight -->
+    <select id="findMaxHeight" resultType="com.blocain.bitms.trade.block.entity.BlockInfoERC20">
+        SELECT
+        <include refid="blockInfoERC20Columns"/>
+        FROM BlockInfoERC20 a WHERE 1=1
+        and a.height = (
+        select max(height) from BlockInfoERC20 b
+        )
+    </select>
+
+</mapper>
+

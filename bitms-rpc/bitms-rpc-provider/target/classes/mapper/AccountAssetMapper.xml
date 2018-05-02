@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountAssetMapper">
+    <!-- 查询帐号资产 -->
+    <select id="findAssetList"  parameterType="com.blocain.bitms.trade.fund.model.AccountAssetModel" resultType="com.blocain.bitms.trade.fund.model.AccountAssetModel">
+        <foreach item="table" collection="tableNames"  index="index"  open="" separator="" close="">
+            <if test="index !=0">
+                union all
+            </if>
+            (
+            select
+            a.accountId as accountId,
+            a.stockinfoId as stockinfoId,
+            a.relatedStockinfoId as relatedStockinfoId,
+            nvl(a.amount,0) as amount,
+            a.frozenamt as frozenamt,
+            c.stockCode as digitalStockCode,
+            c.canWealth as canWealth,
+            c.canConversion as canConversion,
+            c.stockName as stockName,
+            d.stockName as legalStockCode,
+            b.debitamt as debitAmt,
+            b.accumulateInterest as accumulateInterest
+            from ${table.tableAsset} a
+            left join ${table.tableDebitAsset} b on a.stockinfoid=b.stockinfoid and a.relatedstockinfoid=b.relatedstockinfoid and b.borrowerAccountId=a.accountId
+            left join stockinfo c on a.stockinfoId=c.id
+            left join stockinfo d on a.relatedstockinfoid = d.id
+            where a.accountId=#{accountAssetModel.accountId}
+            )
+        </foreach>
+    </select>
+
+    <select id="findAssetAndDebitForAccount"  parameterType="com.blocain.bitms.trade.fund.model.AccountAssetModel" resultType="com.blocain.bitms.trade.fund.model.AccountAssetModel">
+
+            select
+            a.accountId as accountId,
+            a.stockinfoId as stockinfoId,
+            a.relatedStockinfoId as relatedStockinfoId,
+            nvl(a.amount,0) as amount,
+            nvl(a.frozenamt,0) as frozenamt,
+            nvl(b.debitamt,0) as debitAmt,
+            nvl(b.accumulateInterest,0) as accumulateInterest
+            from ${tableAsset} a
+            left join ${tableDebitAsset} b on a.stockinfoid=b.stockinfoid
+            <if test="stockType !=null and stockType == 'spotContract'">
+                and a.relatedstockinfoid=b.relatedstockinfoid
+            </if>
+            <if test="stockType !=null and stockType == 'leveragedSpot'">
+                and b.relatedStockinfoId=#{relatedStockinfoId}
+            </if>
+            and b.borrowerAccountId=#{accountId}
+            where a.accountId=#{accountId}
+            <if test="stockType !=null and stockType == 'spotContract'">
+                and a.relatedStockinfoId=#{relatedStockinfoId}
+            </if>
+            and a.stockInfoId=#{stockInfoId}
+
+    </select>
+
+</mapper>
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="bitms-api" />
+        <module name="bitms-boss" />
+        <module name="bitms-fastjson" />
+        <module name="bitms-generator" />
+        <module name="bitms-monitor" />
+        <module name="bitms-orm" />
+        <module name="bitms-payment" />
+        <module name="bitms-platscan" />
+        <module name="bitms-quartz" />
+        <module name="bitms-quotation" />
+        <module name="bitms-rpc-hander" />
+        <module name="bitms-rpc-ignite" />
+        <module name="bitms-rpc-provider" />
+        <module name="bitms-scoket" />
+        <module name="bitms-security" />
+        <module name="bitms-tools" />
+        <module name="bitms-trade" />
+        <module name="bitms-tradex" />
+        <module name="bitms-wallet" />
+        <module name="bitms-webapp-sdk" />
+        <module name="bitms-webapp-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bitms-api" target="1.8" />
+      <module name="bitms-boss" target="1.8" />
+      <module name="bitms-fastjson" target="1.8" />
+      <module name="bitms-generator" target="1.8" />
+      <module name="bitms-monitor" target="1.8" />
+      <module name="bitms-orm" target="1.8" />
+      <module name="bitms-parent" target="1.5" />
+      <module name="bitms-payment" target="1.8" />
+      <module name="bitms-platscan" target="1.8" />
+      <module name="bitms-quartz" target="1.8" />
+      <module name="bitms-quotation" target="1.8" />
+      <module name="bitms-quotationws" target="1.8" />
+      <module name="bitms-rpc" target="1.5" />
+      <module name="bitms-rpc-hander" target="1.8" />
+      <module name="bitms-rpc-ignite" target="1.8" />
+      <module name="bitms-rpc-provider" target="1.8" />
+      <module name="bitms-scoket" target="1.8" />
+      <module name="bitms-security" target="1.8" />
+      <module name="bitms-tools" target="1.8" />
+      <module name="bitms-trade" target="1.8" />
+      <module name="bitms-tradex" target="1.8" />
+      <module name="bitms-wallet" target="1.8" />
+      <module name="bitms-webapp" target="1.5" />
+      <module name="bitms-webapp-sdk" target="1.8" />
+      <module name="bitms-webapp-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

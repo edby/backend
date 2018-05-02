@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.system.mapper.UserRoleMapper">
+    <!-- 基础列 -->
+    <sql id="userRoleColumns">
+        a.id as id,
+        a.roleId as roleId,
+        a.userId as userId
+    </sql>
+
+    <resultMap id="userRoleResultMap" type="com.blocain.bitms.boss.system.entity.UserRole">
+        <id column="id" property="id"/>
+        <result column="roleId" property="roleId"/>
+        <result column="userId" property="userId"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.system.entity.UserRole">
+        insert into UserRole(
+            id ,
+            roleId ,
+            userId 
+        ) VALUES (
+            #{id} ,
+            #{roleId} ,
+            #{userId} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from UserRole where id = #{id}
+    </delete>
+
+    <delete id="removeByUser" parameterType="long">
+        delete from UserRole where userId = #{userId}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update UserRole set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.system.entity.UserRole">
+        insert into UserRole
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="roleId != null">
+                roleId ,
+            </if>
+            <if test="userId != null">
+                userId
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="roleId != null">
+                #{roleId} ,
+            </if>
+            <if test="userId != null">
+                #{userId}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.system.entity.UserRole">
+        update UserRole
+        <set>
+            <if test="roleId != null">
+                roleId = #{roleId} ,
+            </if>
+            <if test="userId != null">
+                userId = #{userId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into UserRole(
+        id ,
+        roleId ,
+        userId
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.roleId} ,
+            #{item.userId}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update UserRole set
+            roleId = #{item.roleId} ,
+            userId = #{item.userId}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.system.entity.UserRole">
+        update UserRole set
+            roleId = #{roleId} ,
+            userId = #{userId} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.boss.system.entity.UserRole">
+        select
+        <include refid="userRoleColumns"/>
+        from UserRole a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.system.entity.UserRole">
+        SELECT
+        <include refid="userRoleColumns"/>
+        FROM UserRole a WHERE a.delFlag = 0
+        <if test="roleId != null">
+            and a.roleId = #{roleId}
+        </if>
+        <if test="userId != null">
+            and a.userId = #{userId}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.system.entity.UserRole">
+        SELECT
+        <include refid="userRoleColumns"/>
+        FROM UserRole a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

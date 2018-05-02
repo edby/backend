@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.settlement.mapper.SettlementProcessLogMapper">
+    <!-- 基础列 -->
+    <sql id="settlementProcessLogColumns">
+        a.id as id,
+        a.processId as processId,
+        a.processName as processName,
+        a.status as status,
+        a.createBy as createBy,
+        a.createDate as createDate,
+        a.remark as remark
+    </sql>
+
+    <resultMap id="settlementProcessLogResultMap" type="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        <id column="id" property="id" />
+        <result column="processId" property="processId"/>
+        <result column="processName" property="processName"/>
+        <result column="status" property="status"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createDate" property="createDate"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        insert into SettlementProcessLog(
+            id ,
+            processId ,
+            processName ,
+            status ,
+            createBy ,
+            createDate ,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{processId} ,
+            #{processName} ,
+            #{status} ,
+            #{createBy} ,
+            #{createDate} ,
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SettlementProcessLog where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SettlementProcessLog set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        insert into SettlementProcessLog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="processId != null">
+                processId ,
+        </if>
+        <if test="processName != null">
+                processName ,
+        </if>
+        <if test="status != null">
+                status ,
+        </if>
+        <if test="createBy != null">
+                createBy ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="remark != null">
+                remark 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="processId != null">
+                #{processId} ,
+        </if>
+        <if test="processName != null">
+                #{processName} ,
+        </if>
+        <if test="status != null">
+                #{status} ,
+        </if>
+        <if test="createBy != null">
+                #{createBy} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="remark != null">
+                #{remark} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        update SettlementProcessLog
+           <set>
+            <if test="processId != null">
+                processId = #{processId} ,
+            </if>
+            <if test="processName != null">
+                processName = #{processName} ,
+            </if>
+            <if test="status != null">
+                status = #{status} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SettlementProcessLog(
+            id ,
+            processId ,
+            processName ,
+            status ,
+            createBy ,
+            createDate ,
+            remark 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.processId} ,
+            #{item.processName} ,
+            #{item.status} ,
+            #{item.createBy} ,
+            #{item.createDate} ,
+            #{item.remark} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SettlementProcessLog set
+            processId = #{item.processId} ,
+            processName = #{item.processName} ,
+            status = #{item.status} ,
+            createBy = #{item.createBy} ,
+            createDate = #{item.createDate} ,
+            remark = #{item.remark} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        update SettlementProcessLog set
+            processId = #{processId} ,
+            processName = #{processName} ,
+            status = #{status} ,
+            createBy = #{createBy} ,
+            createDate = #{createDate} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        select <include refid="settlementProcessLogColumns"/> from SettlementProcessLog a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        SELECT
+        <include refid="settlementProcessLogColumns"/>
+        FROM SettlementProcessLog a WHERE 1=1
+        <if test="processId != null">
+            and a.processId = #{processId}
+        </if>
+        <if test="processName != null">
+            and a.processName like '%'||#{processName}||'%'
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+        <if test="createBy != null">
+            and a.createBy = #{createBy}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        SELECT
+        <include refid="settlementProcessLogColumns"/>
+        FROM SettlementProcessLog a WHERE 1=1
+    </select>
+
+    <!-- 查询交割中的日志 -->
+    <select id="findDoingLogList" resultType="com.blocain.bitms.trade.settlement.entity.SettlementProcessLog">
+        SELECT
+        <include refid="settlementProcessLogColumns"/>
+        FROM SettlementProcessLog a WHERE createdate>=(select s.updatedate from sysparameter s where s.systemname='TRADE' and s.parametername='MatchTradeSwitch')
+        <if test="processId != null">
+            and a.processId = #{processId}
+        </if>
+        order by  createdate desc
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,2406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="bitms-trade:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="324e57cf-7cb2-4821-91f1-7cf83854755f" name="Default" comment="修改">
+      <change beforePath="" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/webapp/images/common/这里存放公用页的图片文件" />
+      <change beforePath="$PROJECT_DIR$/bitms-payment/src/main/resources/erc20Token.properties" afterPath="$PROJECT_DIR$/bitms-payment/src/main/resources/erc20Token.properties" />
+      <change beforePath="$PROJECT_DIR$/bitms-tools/pom.xml" afterPath="$PROJECT_DIR$/bitms-tools/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/bitms-tools/src/main/java/com/blocain/bitms/tools/utils/AliyunUtils.java" afterPath="$PROJECT_DIR$/bitms-tools/src/main/java/com/blocain/bitms/tools/utils/AliyunUtils.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-trade/src/main/resources/robot/url.properties" afterPath="$PROJECT_DIR$/bitms-trade/src/main/resources/robot/url.properties" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/account/controller/LoginControllerTest.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/account/controller/LoginControllerTest.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/common/controller/CommonControllerTest.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/common/controller/CommonControllerTest.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/AccountAssetControllerTest.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/AccountAssetControllerTest.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/ChargeControllerTest.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/ChargeControllerTest.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/WithdrawAddrTest.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/WithdrawAddrTest.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/WithdrawTest.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/controller/WithdrawTest.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/model/ChargeModelRequest.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/fund/model/ChargeModelRequest.java" />
+      <change beforePath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/sdk/AccountClientDemo.java" afterPath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/sdk/AccountClientDemo.java" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+    </list>
+    <ignored path="$PROJECT_DIR$/bitms-api/target/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-webapp/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-platscan/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-generator/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-quotation/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-payment/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-boss/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-fastjson/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-rpc/bitms-rpc-provider/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-monitor/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-rpc/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-orm/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-security/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-webapp/bitms-webapp-sdk/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-wallet/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-tools/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-trade/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-quartz/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-tradex/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-rpc/bitms-rpc-ignite/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-quotationws/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-scoket/target/" />
+    <ignored path="$PROJECT_DIR$/bitms-socket/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/bitms_parent$BitmsRpcServer.coverage" NAME="BitmsRpcServer Coverage Results" MODIFIED="1524216934896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.blocain.bitms.*</FILTER>
+    </SUITE>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@192.168.31.45" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@192.168.31.45" type="feb32156:DbDataSourceImpl" />
+        <item name="BITMS: schema" type="ac44c5e0:OracleImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@192.168.31.45" type="feb32156:DbDataSourceImpl" />
+        <item name="BITMS: schema" type="ac44c5e0:OracleImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/controller/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="347">
+              <caret line="87" column="22" lean-forward="false" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KLineEngineServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/service/KLineEngineServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="65" column="32" lean-forward="false" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KLineEntityRowMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/mapper/KLineEntityRowMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="94">
+              <caret line="17" column="3" lean-forward="false" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>msgtype</find>
+      <find>type</find>
+      <find>deepPriceMessage</find>
+      <find>CAMHE_RTKLINE_MAP</find>
+      <find>TOPIC_KLINE_5M</find>
+      <find>kLine1MinSessions</find>
+      <find>getkLine1MinSessions</find>
+      <find>kLine15MinSessions</find>
+      <find>getDeepPriceSessions</find>
+      <find>getDeepPriceSessions_tmp</find>
+      <find>topic.kline.1m</find>
+      <find>TOPIC_KLINE_1M</find>
+      <find>TOPIC_KLINE_MONTH</find>
+      <find>topic.kline.30m</find>
+      <find>TOPIC_KLINE_30M</find>
+      <find>kline.30m.pureSpot502</find>
+      <find>renderKline</find>
+      <find>dataS</find>
+      <find>dates</find>
+      <find>new StringBuffer(KLINE_DATA_KEY).append(topic).toString();</find>
+      <find>kLine1mKey</find>
+      <find>String kLineKey = new StringBuffer(KLINE_DATA_KEY).append(topic).toString();</find>
+      <find>CAMHE_KLINELIST_MAP</find>
+      <find>CAMHE_KLINELIST_MAP.put</find>
+      <find>myChart</find>
+      <find>new StringBuffer(KLINE_DATA_KEY).append(topic).toString()</find>
+      <find>new StringBuffer(KLINE_DATA_KEY).append(topic).toString(</find>
+      <find>JdbcTemplate</find>
+      <find>ApplicationContext</find>
+      <find>jdbcTemplate</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>MathTradeModel</replace>
+      <replace>new LinkedBlockingQueue()</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-server\src\test\java\com\blocain\bitms\apps\fund</dir>
+      <dir>G:\idea\idea-work-bitms\backend\bitms-scoket\src\main\resources</dir>
+      <dir>G:\idea\idea-work-bitms\backend\bitms-trade\src\main\webapp\styles</dir>
+    </dirStrings>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/interceptor/HandshakeInterceptor.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/resources/spring/mq-testwebsocket.xml" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/webscoket/AllQuotationWebSocketHandlertest.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/listener/TestMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/resources/spring/mq-allQuotation.xml" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/webscoket/AllQuotationWebSocketHandler.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/config/CustomConfig.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/webscoket/Maintest.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/listener/AllQuotationMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/common/controller/CommonController.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/consts/TopicConst.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/fund/controller/ChargeController.java" />
+        <option value="$PROJECT_DIR$/bitms-scoket/src/main/java/com/blocain/bitms/quotation/webscoket/QuotationWebSocketHandler.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/account/controller/LoginControllerTest.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/test/java/com/blocain/bitms/apps/sdk/account/TestAccountController.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/spot/controller/MatchTradeController.java" />
+        <option value="$PROJECT_DIR$/bitms-trade/src/main/webapp/WEB-INF/view/account/register.jsp" />
+        <option value="$PROJECT_DIR$/bitms-security/src/main/java/com/blocain/bitms/security/interceptor/CSRFHandlerInterceptor.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-sdk/src/main/java/com/blocain/bitms/apps/sdk/BitmsObject.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/beans/LoginRequest.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/beans/CheckRequest.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/beans/RegisterRequest.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-sdk/src/main/java/com/blocain/bitms/apps/sdk/internal/util/Signature.java" />
+        <option value="$PROJECT_DIR$/bitms-tools/src/main/java/com/blocain/bitms/tools/enums/CommonEnums.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/resources/quotation/155555555502.properties" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/controller/AccountController.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/fund/controller/ConversionController.java" />
+        <option value="$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/entity/Transaction.java" />
+        <option value="$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/mapper/TransactionRowMapper.java" />
+        <option value="$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/config/QuerySqlConfig.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/pom.xml" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/controller/RegisterController.java" />
+        <option value="$PROJECT_DIR$/bitms-tools/src/main/java/com/blocain/bitms/tools/utils/AliyunUtils.java" />
+        <option value="$PROJECT_DIR$/bitms-tools/pom.xml" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/DeepPriceMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine1MinMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine5MinMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine15MinMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine30MinMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineDayMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineHourMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineMonthMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineWeekMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/RealDealMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/RtQuotationMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/AllQuotationMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/AllRtQuotationMessageListener.java" />
+        <option value="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/basic/controller/AppsController.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="Profiles" type="6783ec58:MavenProjectsStructure$ProfilesNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bitms-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="bitms-parent" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="13" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Abstraction issuesJava</id>
+          </State>
+          <State>
+            <id>Control flow issuesJava</id>
+          </State>
+          <State>
+            <id>Google Web Toolkit issues</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>Logging issuesJava</id>
+          </State>
+          <State>
+            <id>Memory issuesJava</id>
+          </State>
+          <State>
+            <id>Security issuesJava</id>
+          </State>
+          <State>
+            <id>Serialization issuesJava</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SerializableHasSerialVersionUIDField</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-quotation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="quotation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="quotation" type="462c0819:PsiDirectoryNode" />
+              <item name="topic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bitms-parent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="bitms-webapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="basic" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../bihu-parent-workspace/pom.xml" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Oracle" />
+    <property name="SearchEverywhereHistoryKey" value="BitmsResponse&#9;PSI&#9;JAVA://com.blocain.bitms.apps.sdk.BitmsResponse&#10;CSRFInterceptor&#9;FILE&#9;file://G:/idea/idea-work-bitms/backend/bitms-security/src/main/java/com/blocain/bitms/security/interceptor/CSRFHandlerInterceptor.java&#10;stockInfo&#9;FILE&#9;file://G:/idea/idea-work-bitms/backend/bitms-rpc/bitms-rpc-provider/src/main/resources/mapper/StockInfoMapper.xml&#10;application&#9;ACTION&#9;ActivateApplicationServersToolWindow&#10;LinkedBlockingQueue&#9;PSI&#9;JAVA://java.util.concurrent.LinkedBlockingQueue&#10;SockJS&#9;FILE&#9;file://G:/idea/idea-work-bitms/backend/bitms-api/src/main/webapp/scripts/gallery/scoket/sockjs.min.js&#10;FundCons&#9;FILE&#9;file://G:/idea/idea-work-bitms/backend/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/trade/fund/consts/FundConsts.java&#10;accountWalletAsset&#9;FILE&#9;file://G:/idea/idea-work-bitms/backend/bitms-rpc/bitms-rpc-provider/src/main/resources/mapper/AccountWalletAssetMapper.xml&#10;project structure&#9;ACTION&#9;ShowProjectStructureSettings&#10;Logger&#9;PSI&#9;JAVA://com.blocain.bitms.tools.utils.LoggerUtils&#10;Encrypt&#9;PSI&#9;JAVA://com.blocain.bitms.orm.utils.EncryptUtils&#10;msg&#9;FILE&#9;file://G:/idea/idea-work-bitms/backend/bitms-rpc/bitms-rpc-provider/src/main/java/com/blocain/bitms/boss/common/service/MsgRecordNoSqlImpl.java&#10;WithdrawCon&#9;PSI&#9;JAVA://com.blocain.bitms.trade.fund.controller.WithdrawController#withdrawConfirm&#10;const&#9;FILE&#9;file://G:/idea/idea-work-bitms/backend/bitms-tools/src/main/java/com/blocain/bitms/tools/consts/BitmsConst.java&#10;ApiF&#9;PSI&#9;JAVA://com.blocain.bitms.apps.sdk.internal.mapping.ApiField&#10;ApiField&#9;null&#9;null&#10;withdrawFee&#9;PSI&#9;JAVA://com.blocain.bitms.trade.fund.enums.FundEnums#ERROR_WITHDRAW_FEE_NOT_EXIST&#10; WithdrawController&#9;PSI&#9;JAVA://com.blocain.bitms.trade.fund.controller.WithdrawController&#10;AccountConsts&#9;PSI&#9;JAVA://com.blocain.bitms.trade.account.consts.AccountConsts" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="214" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="214" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="214" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="102" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="64" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="477" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder5" value="5" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="216" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="216" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="216" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="215" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="216" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth5" value="215" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.blocain.bitms.apps.fund.controller" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.blocain.bitms.quotation.listener" />
+      <recent name="com.blocain.bitms.quotation.webscoket" />
+      <recent name="com.blocain.bitms.apps.spot.model" />
+      <recent name="com.blocain.bitms.apps.fund.model" />
+      <recent name="com.blocain.bitms.apps.fund.controller" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\idea\idea-work-bitms\backend\bitms-scoket\src\main\resources\spring" />
+      <recent name="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-server\src\main\webapp\images\bz_icon" />
+      <recent name="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-server\src\main\webapp\images" />
+      <recent name="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-server\src\main\java\com\blocain\bitms\apps\fund\controller" />
+      <recent name="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-server\src\main\webapp\WEB-INF\js" />
+    </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+        <PATH vcs="svn" revision="10812">G:\idea\idea-work-bitms\backend\bitms-payment\src\main\resources\erc20Token.properties</PATH>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.QuotationServer">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration name="BitmsRpcServer" type="Application" factoryName="Application" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.blocain.bitms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.blocain.bitms.BitmsRpcServer" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="bitms-rpc-provider" />
+      <envs />
+    </configuration>
+    <configuration name="QuotationServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.blocain.bitms.quotation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.blocain.bitms.quotation.QuotationServer" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="155555555502.properties" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="bitms-quotation" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration name="LoginControllerTest.login" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.blocain.bitms.apps.account.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="bitms-webapp-server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.blocain.bitms.apps.account.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.blocain.bitms.apps.account.controller.LoginControllerTest" />
+      <option name="METHOD_NAME" value="login" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="LoginControllerTest.sendSMS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.blocain.bitms.apps.account.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="bitms-webapp-server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.blocain.bitms.apps.account.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.blocain.bitms.apps.account.controller.LoginControllerTest" />
+      <option name="METHOD_NAME" value="sendSMS" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="TestAccountController.testLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.blocain.bitms.apps.sdk.account.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="bitms-webapp-server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.blocain.bitms.apps.sdk.account" />
+      <option name="MAIN_CLASS_NAME" value="com.blocain.bitms.apps.sdk.account.TestAccountController" />
+      <option name="METHOD_NAME" value="testLogin" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="TestAccountController.testSignOut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.blocain.bitms.apps.sdk.account.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="bitms-webapp-server" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.blocain.bitms.apps.sdk.account" />
+      <option name="MAIN_CLASS_NAME" value="com.blocain.bitms.apps.sdk.account.TestAccountController" />
+      <option name="METHOD_NAME" value="testSignOut" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration name="boss" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.30" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="bitms-boss:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_bitms-parent_7" />
+        <option name="HTTP_PORT" value="8003" />
+        <option name="JNDI_PORT" value="1003" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="49989" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="bitms-boss:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="socket" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.30" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="bitms-scoket:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_bitms-parent_9" />
+        <option name="HTTP_PORT" value="8004" />
+        <option name="JNDI_PORT" value="1004" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50518" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="bitms-scoket:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="trade" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.30" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <deployment>
+        <artifact name="bitms-trade:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_bitms-parent_6" />
+        <option name="HTTP_PORT" value="8002" />
+        <option name="JNDI_PORT" value="1002" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55007" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="bitms-trade:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="webapp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.30" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <deployment>
+        <artifact name="bitms-webapp-server:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_bitms-parent_4" />
+        <option name="HTTP_PORT" value="8001" />
+        <option name="JNDI_PORT" value="1011" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55479" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="bitms-webapp-server:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <list size="10">
+      <item index="0" class="java.lang.String" itemvalue="Application.BitmsRpcServer" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.socket" />
+      <item index="2" class="java.lang.String" itemvalue="Tomcat Server.boss" />
+      <item index="3" class="java.lang.String" itemvalue="Tomcat Server.trade" />
+      <item index="4" class="java.lang.String" itemvalue="Tomcat Server.webapp" />
+      <item index="5" class="java.lang.String" itemvalue="Application.QuotationServer" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.sendSMS" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.login" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.TestAccountController.testLogin" />
+      <item index="9" class="java.lang.String" itemvalue="JUnit.TestAccountController.testSignOut" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.QuotationServer" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TestAccountController.testSignOut" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.TestAccountController.testLogin" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.login" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.LoginControllerTest.sendSMS" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\17613\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-api" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-api" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-boss" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-boss" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-fastjson" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-fastjson" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-generator" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-generator" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-monitor" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-monitor" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-orm" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-orm" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-payment" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-payment" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-platscan" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-platscan" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-quartz" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-quartz" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-quotation" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-quotation" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-hander" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-hander" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-provider" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-provider" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-security" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-security" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-socket" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-socket" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-tools" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-tools" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-trade" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-trade" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-tradex" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-tradex" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-wallet" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-wallet" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-webapp" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-webapp" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-sdk" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-sdk" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-server" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend\bitms-webapp\bitms-webapp-server" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="G:\idea\idea-work-bitms\backend" />
+          <option name="myCopyRoot" value="G:\idea\idea-work-bitms\backend" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="324e57cf-7cb2-4821-91f1-7cf83854755f" name="Default" comment="" />
+      <created>1521448828761</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1521448828761</updated>
+      <workItem from="1521448835131" duration="2059000" />
+      <workItem from="1521451866736" duration="8989000" />
+      <workItem from="1521506105764" duration="17659000" />
+      <workItem from="1521528266845" duration="16413000" />
+      <workItem from="1521592826780" duration="2903000" />
+      <workItem from="1521595875363" duration="14626000" />
+      <workItem from="1521614909891" duration="10244000" />
+      <workItem from="1521629532788" duration="26972000" />
+      <workItem from="1521708358220" duration="10086000" />
+      <workItem from="1521718680974" duration="2114000" />
+      <workItem from="1521765706721" duration="8013000" />
+      <workItem from="1522024577136" duration="7034000" />
+      <workItem from="1522032053315" duration="13646000" />
+      <workItem from="1522050761992" duration="11718000" />
+      <workItem from="1522111107856" duration="14517000" />
+      <workItem from="1522134056340" duration="12279000" />
+      <workItem from="1522198225254" duration="21654000" />
+      <workItem from="1522283939019" duration="29531000" />
+      <workItem from="1522320972233" duration="4223000" />
+      <workItem from="1522370368982" duration="23010000" />
+      <workItem from="1522629735000" duration="30414000" />
+      <workItem from="1522667891661" duration="3581000" />
+      <workItem from="1522715834803" duration="32826000" />
+      <workItem from="1522802099564" duration="20430000" />
+      <workItem from="1523147899040" duration="8734000" />
+      <workItem from="1523171352915" duration="10327000" />
+      <workItem from="1523234363733" duration="32363000" />
+      <workItem from="1523320641100" duration="19160000" />
+      <workItem from="1523407064820" duration="848000" />
+      <workItem from="1523407947862" duration="17977000" />
+      <workItem from="1523442818015" duration="2340000" />
+      <workItem from="1523494092905" duration="10902000" />
+      <workItem from="1523510508478" duration="15852000" />
+      <workItem from="1523580043984" duration="16375000" />
+      <workItem from="1523839152860" duration="4891000" />
+      <workItem from="1523844091385" duration="18520000" />
+      <workItem from="1523872089180" duration="190000" />
+      <workItem from="1523925321159" duration="35202000" />
+      <workItem from="1524011959985" duration="34665000" />
+      <workItem from="1524098411876" duration="16977000" />
+      <workItem from="1524120731079" duration="8424000" />
+      <workItem from="1524184970733" duration="22658000" />
+      <workItem from="1524271335054" duration="19484000" />
+      <workItem from="1524305479665" duration="495000" />
+      <workItem from="1524443832717" duration="28158000" />
+      <workItem from="1524530052408" duration="11873000" />
+      <workItem from="1524546212490" duration="17432000" />
+      <workItem from="1524618010817" duration="549000" />
+      <workItem from="1524618600583" duration="3853000" />
+      <workItem from="1524637291009" duration="2604000" />
+      <workItem from="1524642677452" duration="873000" />
+      <workItem from="1524703148956" duration="20165000" />
+      <workItem from="1524789632457" duration="23999000" />
+      <workItem from="1524876062554" duration="5373000" />
+      <workItem from="1524884073858" duration="18767000" />
+      <workItem from="1525221540300" duration="7827000" />
+    </task>
+    <task id="LOCAL-00012" summary="账户测试类">
+      <created>1522029647607</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1522029647607</updated>
+    </task>
+    <task id="LOCAL-00013" summary="账户测试类">
+      <created>1522029799522</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1522029799522</updated>
+    </task>
+    <task id="LOCAL-00014" summary="资金部分需要的静态资源(图片等)">
+      <created>1522061605327</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1522061605327</updated>
+    </task>
+    <task id="LOCAL-00015" summary="资金部分控制类修改">
+      <created>1522062742059</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1522062742059</updated>
+    </task>
+    <task id="LOCAL-00016" summary="获取充值地址">
+      <created>1522133277200</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1522133277200</updated>
+    </task>
+    <task id="LOCAL-00017" summary="common 修改了部分逻辑判断">
+      <created>1522200547320</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1522200547320</updated>
+    </task>
+    <task id="LOCAL-00018" summary="6.13/6.14/6.15整合方法">
+      <created>1522202422281</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1522202422281</updated>
+    </task>
+    <task id="LOCAL-00019" summary="6.13/6.14/6.15资金控制类修改">
+      <created>1522225573989</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1522225573989</updated>
+    </task>
+    <task id="LOCAL-00020" summary="资金的提现部分发送短信验证码">
+      <created>1522289054428</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1522289054428</updated>
+    </task>
+    <task id="LOCAL-00021" summary="资金的提现部分发送短息年验证码测试类">
+      <created>1522289345592</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1522289345592</updated>
+    </task>
+    <task id="LOCAL-00022" summary="修改了资金部分添加提币提现地址的URL">
+      <created>1522290047060</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1522290047060</updated>
+    </task>
+    <task id="LOCAL-00023" summary="完善发送短信的部分">
+      <created>1522293513144</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1522293513144</updated>
+    </task>
+    <task id="LOCAL-00024" summary="费率类型添加">
+      <created>1522307843756</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1522307843756</updated>
+    </task>
+    <task id="LOCAL-00025" summary="修改了提币提现申请的地址">
+      <created>1522315970320</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1522315970320</updated>
+    </task>
+    <task id="LOCAL-00026" summary="公用发送短信验证码的接口">
+      <created>1522316010802</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1522316010802</updated>
+    </task>
+    <task id="LOCAL-00027" summary="充值记录的查询方法">
+      <created>1522324581044</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1522324581044</updated>
+    </task>
+    <task id="LOCAL-00028" summary="提币申请添加返回字段">
+      <created>1522376611813</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1522376611813</updated>
+    </task>
+    <task id="LOCAL-00029" summary="提币申请添加返回的字段withdrawAddress">
+      <created>1522386180959</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1522386180959</updated>
+    </task>
+    <task id="LOCAL-00030" summary="查询提币地址修改查询条件">
+      <created>1522388271033</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1522388271033</updated>
+    </task>
+    <task id="LOCAL-00031" summary="--修改了充值记录的方法">
+      <created>1522398205404</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1522398205404</updated>
+    </task>
+    <task id="LOCAL-00032" summary="取消的接口传symbol修改为stockinfo">
+      <created>1522401112376</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1522401112376</updated>
+    </task>
+    <task id="LOCAL-00033" summary="充值记录列表添加返回值">
+      <created>1522671442435</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1522671442435</updated>
+    </task>
+    <task id="LOCAL-00034" summary="提币提现添加biex类型的提币申请">
+      <created>1522671485145</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1522671485145</updated>
+    </task>
+    <task id="LOCAL-00035" summary="修改返回时中文乱码">
+      <created>1522733100215</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1522733100215</updated>
+    </task>
+    <task id="LOCAL-00036" summary="账户类添加借贷开关接口">
+      <created>1522744174587</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1522744174588</updated>
+    </task>
+    <task id="LOCAL-00037" summary="修改借贷开关">
+      <created>1522744576535</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1522744576535</updated>
+    </task>
+    <task id="LOCAL-00038" summary="现货交易和杠杆交易">
+      <created>1523241794956</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1523241794956</updated>
+    </task>
+    <task id="LOCAL-00039" summary="币种Logo">
+      <created>1523415478910</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1523415478911</updated>
+    </task>
+    <task id="LOCAL-00040" summary="VIN 币种的logo图标">
+      <created>1523426749845</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1523426749845</updated>
+    </task>
+    <task id="LOCAL-00041" summary="提币不支持提示信息">
+      <created>1523515498693</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1523515498693</updated>
+    </task>
+    <task id="LOCAL-00042" summary="账户互转 缓存处理">
+      <created>1523596907111</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1523596907111</updated>
+    </task>
+    <task id="LOCAL-00043" summary="用户会话控制">
+      <created>1523843820306</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1523843820307</updated>
+    </task>
+    <task id="LOCAL-00044" summary="用户会话控制">
+      <created>1523845634300</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1523845634300</updated>
+    </task>
+    <task id="LOCAL-00045" summary="用户会话">
+      <created>1523849099234</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1523849099234</updated>
+    </task>
+    <task id="LOCAL-00046" summary="完善用户会话">
+      <created>1523861652512</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1523861652512</updated>
+    </task>
+    <task id="LOCAL-00047" summary="溢价记录接口">
+      <created>1523870736853</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1523870736853</updated>
+    </task>
+    <task id="LOCAL-00048" summary="溢价添加消费者接口配置">
+      <created>1523934330687</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1523934330688</updated>
+    </task>
+    <task id="LOCAL-00049" summary="添加溢价测试类">
+      <created>1523934384752</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1523934384752</updated>
+    </task>
+    <task id="LOCAL-00050" summary="完善用户会话">
+      <created>1523935266376</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1523935266376</updated>
+    </task>
+    <task id="LOCAL-00051" summary="修改发送验证码返回的错误信息">
+      <created>1524187973273</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1524187973273</updated>
+    </task>
+    <task id="LOCAL-00052" summary="修改提币提现地址短信验证的错误信息">
+      <created>1524188115232</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1524188115232</updated>
+    </task>
+    <task id="LOCAL-00053" summary="添加用户登陆接口">
+      <created>1524303242896</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1524303242898</updated>
+    </task>
+    <task id="LOCAL-00054" summary="修改用户退出">
+      <created>1524444285647</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1524444285647</updated>
+    </task>
+    <task id="LOCAL-00055" summary="添加签名校验方法，返回json串">
+      <created>1524539275003</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1524539275004</updated>
+    </task>
+    <task id="LOCAL-00056" summary="修改登陆滑块校验">
+      <created>1524540278336</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1524540278336</updated>
+    </task>
+    <task id="LOCAL-00057" summary="修改新的签名返回注释">
+      <created>1524707881306</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1524707881306</updated>
+    </task>
+    <task id="LOCAL-00058" summary="借贷开关完善">
+      <created>1524734280945</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1524734280945</updated>
+    </task>
+    <task id="LOCAL-00059" summary="修改成交流水部分字段返回，添加了卖方和买方账户ID返回">
+      <created>1524810765550</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1524810765551</updated>
+    </task>
+    <task id="LOCAL-00060" summary="还原ws修改">
+      <created>1524811529058</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1524811529058</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="LoginControllerTest_login - 2018.04.21 at 15h 44m 41s.xml">
+      <configuration name="LoginControllerTest.login" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginControllerTest_sendSMS - 2018.04.21 at 10h 11m 11s.xml">
+      <configuration name="LoginControllerTest.sendSMS" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginControllerTest_sendSMS - 2018.04.21 at 10h 11m 24s.xml">
+      <configuration name="LoginControllerTest.sendSMS" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LoginControllerTest_sendSMS - 2018.04.21 at 10h 11m 49s.xml">
+      <configuration name="LoginControllerTest.sendSMS" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccountController_testLogin - 2018.04.21 at 17h 26m 15s.xml">
+      <configuration name="TestAccountController.testLogin" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccountController_testLogin - 2018.04.21 at 17h 31m 56s.xml">
+      <configuration name="TestAccountController.testLogin" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccountController_testLogin - 2018.04.21 at 17h 32m 05s.xml">
+      <configuration name="TestAccountController.testLogin" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccountController_testSignOut - 2018.04.21 at 17h 29m 20s.xml">
+      <configuration name="TestAccountController.testSignOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccountController_testSignOut - 2018.04.21 at 17h 29m 54s.xml">
+      <configuration name="TestAccountController.testSignOut" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TestAccountController_testSignOut - 2018.04.21 at 17h 32m 50s.xml">
+      <configuration name="TestAccountController.testSignOut" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="782798000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40791738" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44387755" sideWeight="0.4969743" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24659607" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45408162" sideWeight="0.61270803" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4506803" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40816328" sideWeight="0.70423603" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41836736" sideWeight="0.62027234" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25567323" sideWeight="0.4874552" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24432677" sideWeight="0.5125448" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57312924" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6819728" sideWeight="0.3797277" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40816328" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24659607" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37244898" sideWeight="0.62027234" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4506803" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63095236" sideWeight="0.70423603" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37244898" sideWeight="0.6278366" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57312924" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25416037" sideWeight="0.4874552" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24432677" sideWeight="0.5125448" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="提币提现添加biex类型的提币申请" />
+    <MESSAGE value="修改返回时中文乱码" />
+    <MESSAGE value="账户类添加借贷开关接口" />
+    <MESSAGE value="修改借贷开关" />
+    <MESSAGE value="现货交易和杠杆交易" />
+    <MESSAGE value="币种Logo" />
+    <MESSAGE value="VIN 币种的logo图标" />
+    <MESSAGE value="提币不支持提示信息" />
+    <MESSAGE value="账户互转 缓存处理" />
+    <MESSAGE value="用户会话控制" />
+    <MESSAGE value="用户会话" />
+    <MESSAGE value="溢价记录接口" />
+    <MESSAGE value="溢价添加消费者接口配置" />
+    <MESSAGE value="添加溢价测试类" />
+    <MESSAGE value="完善用户会话" />
+    <MESSAGE value="修改发送验证码返回的错误信息" />
+    <MESSAGE value="修改提币提现地址短信验证的错误信息" />
+    <MESSAGE value="添加用户登陆接口" />
+    <MESSAGE value="修改用户退出" />
+    <MESSAGE value="添加签名校验方法，返回json串" />
+    <MESSAGE value="修改登陆滑块校验" />
+    <MESSAGE value="修改新的签名返回注释" />
+    <MESSAGE value="借贷开关完善" />
+    <MESSAGE value="修改成交流水部分字段返回，添加了卖方和买方账户ID返回" />
+    <MESSAGE value="还原ws修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="还原ws修改" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="609" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="account" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointLogExpression">
+      <expression>
+        <expression-string>// 最高价
+    
+    private String            f;                    // 成交金额
+    
+    private String            g;                    // 成交数量</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bitms-tools/src/main/java/com/blocain/bitms/tools/bean/AliyunModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-tools/src/main/java/com/blocain/bitms/tools/utils/AliyunUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="89" column="46" lean-forward="false" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/controller/RegisterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="72" column="29" lean-forward="false" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="282" column="12" lean-forward="false" selection-start-line="282" selection-start-column="12" selection-end-line="282" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/listener/BaseMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/listener/QuotationPushListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/service/DataPushUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="26" column="39" lean-forward="false" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/model/BaseMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-fastjson/src/main/java/com/alibaba/fastjson/serializer/SerializerFeature.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2990">
+          <caret line="144" column="32" lean-forward="true" selection-start-line="144" selection-start-column="32" selection-end-line="144" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-fastjson/src/main/java/com/alibaba/fastjson/JSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="566" column="66" lean-forward="false" selection-start-line="566" selection-start-column="66" selection-end-line="566" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/model/DeepPriceMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/service/DeepPriceEngineServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="53" column="54" lean-forward="true" selection-start-line="53" selection-start-column="54" selection-end-line="53" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/thread/DeepPriceThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="45" column="46" lean-forward="false" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/thread/KLine1DThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="43" column="75" lean-forward="false" selection-start-line="43" selection-start-column="75" selection-end-line="43" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/consts/InQuotationConsts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/model/KlineMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#690#691#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/thread/KLine5MThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="43" column="72" lean-forward="true" selection-start-line="43" selection-start-column="72" selection-end-line="43" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-tools/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="20" column="41" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/consts/SessionConst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="82" column="81" lean-forward="true" selection-start-line="82" selection-start-column="81" selection-end-line="82" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine1MinMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="71" column="102" lean-forward="false" selection-start-line="71" selection-start-column="102" selection-end-line="71" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine5MinMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="70" column="102" lean-forward="false" selection-start-line="70" selection-start-column="102" selection-end-line="70" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine15MinMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="70" column="102" lean-forward="false" selection-start-line="70" selection-start-column="102" selection-end-line="70" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/BaseMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/AllRtQuotationMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/AllQuotationMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="62" column="102" lean-forward="false" selection-start-line="62" selection-start-column="102" selection-end-line="62" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/RtQuotationMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="74" column="102" lean-forward="false" selection-start-line="74" selection-start-column="102" selection-end-line="74" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/RealDealMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="74" column="102" lean-forward="false" selection-start-line="74" selection-start-column="102" selection-end-line="74" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineWeekMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="70" column="102" lean-forward="false" selection-start-line="70" selection-start-column="102" selection-end-line="70" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineMonthMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="70" column="102" lean-forward="false" selection-start-line="70" selection-start-column="102" selection-end-line="70" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineHourMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="72" column="102" lean-forward="false" selection-start-line="72" selection-start-column="102" selection-end-line="72" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLineDayMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="70" column="102" lean-forward="false" selection-start-line="70" selection-start-column="102" selection-end-line="70" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/consts/TopicConst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1610">
+          <caret line="70" column="65" lean-forward="false" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/resources/quotation/155555555502.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-tools/src/main/java/com/blocain/bitms/tools/utils/RedisUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/thread/KLine15MThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="44" column="119" lean-forward="true" selection-start-line="44" selection-start-column="119" selection-end-line="44" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/websocket/QuotationWebSocketHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="74" column="25" lean-forward="true" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/DeepPriceMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="59" column="48" lean-forward="false" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-tradex/src/main/webapp/scripts/src/spot/C2CKLine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="897">
+          <caret line="39" column="7" lean-forward="false" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/config/InQuotationConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="58" column="29" lean-forward="false" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/consts/InQuotationConsts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="98" column="76" lean-forward="false" selection-start-line="98" selection-start-column="57" selection-end-line="98" selection-end-column="76" />
+          <folding>
+            <element signature="e#4057#4078#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/entity/KLine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="58" lean-forward="false" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/src/main/java/com/blocain/bitms/quotation/entity/KLineEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-socket/src/main/java/com/blocain/bitms/quotation/listener/KLine30MinMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="35" column="13" lean-forward="true" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/thread/KLine1MThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/topic/QuotationChannelTopic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/thread/KLine1HThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="39" column="15" lean-forward="true" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/basic/controller/AppsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="207" column="31" lean-forward="true" selection-start-line="207" selection-start-column="31" selection-end-line="207" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/mapper/KLineEntityRowMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="17" column="3" lean-forward="false" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/4.3.10.RELEASE/spring-jdbc-4.3.10.RELEASE-sources.jar!/org/springframework/jdbc/core/JdbcTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="99" column="25" lean-forward="false" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-quotation/src/main/java/com/blocain/bitms/quotation/service/KLineEngineServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="65" column="32" lean-forward="false" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/src/main/java/com/blocain/bitms/apps/account/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="87" column="22" lean-forward="false" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>bitms-api:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>bitms-trade</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: c3p0:c3p0:0.9.1.1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/bitms-api/bitms-api.iml" filepath="$PROJECT_DIR$/bitms-api/bitms-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-boss/bitms-boss.iml" filepath="$PROJECT_DIR$/bitms-boss/bitms-boss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-fastjson/bitms-fastjson.iml" filepath="$PROJECT_DIR$/bitms-fastjson/bitms-fastjson.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-generator/bitms-generator.iml" filepath="$PROJECT_DIR$/bitms-generator/bitms-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-monitor/bitms-monitor.iml" filepath="$PROJECT_DIR$/bitms-monitor/bitms-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-orm/bitms-orm.iml" filepath="$PROJECT_DIR$/bitms-orm/bitms-orm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-parent.iml" filepath="$PROJECT_DIR$/bitms-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-payment/bitms-payment.iml" filepath="$PROJECT_DIR$/bitms-payment/bitms-payment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-platscan/bitms-platscan.iml" filepath="$PROJECT_DIR$/bitms-platscan/bitms-platscan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-quartz/bitms-quartz.iml" filepath="$PROJECT_DIR$/bitms-quartz/bitms-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-quotation/bitms-quotation.iml" filepath="$PROJECT_DIR$/bitms-quotation/bitms-quotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc.iml" filepath="$PROJECT_DIR$/bitms-rpc/bitms-rpc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/bitms-rpc-hander.iml" filepath="$PROJECT_DIR$/bitms-rpc/bitms-rpc-hander/bitms-rpc-hander.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-ignite/bitms-rpc-ignite.iml" filepath="$PROJECT_DIR$/bitms-rpc/bitms-rpc-ignite/bitms-rpc-ignite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-rpc/bitms-rpc-provider/bitms-rpc-provider.iml" filepath="$PROJECT_DIR$/bitms-rpc/bitms-rpc-provider/bitms-rpc-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-socket/bitms-scoket.iml" filepath="$PROJECT_DIR$/bitms-socket/bitms-scoket.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-security/bitms-security.iml" filepath="$PROJECT_DIR$/bitms-security/bitms-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-tools/bitms-tools.iml" filepath="$PROJECT_DIR$/bitms-tools/bitms-tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-trade/bitms-trade.iml" filepath="$PROJECT_DIR$/bitms-trade/bitms-trade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-tradex/bitms-tradex.iml" filepath="$PROJECT_DIR$/bitms-tradex/bitms-tradex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-wallet/bitms-wallet.iml" filepath="$PROJECT_DIR$/bitms-wallet/bitms-wallet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp.iml" filepath="$PROJECT_DIR$/bitms-webapp/bitms-webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-sdk/bitms-webapp-sdk.iml" filepath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-sdk/bitms-webapp-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/bitms-webapp-server.iml" filepath="$PROJECT_DIR$/bitms-webapp/bitms-webapp-server/bitms-webapp-server.iml" />
+    </modules>
+  </component>
+</project>

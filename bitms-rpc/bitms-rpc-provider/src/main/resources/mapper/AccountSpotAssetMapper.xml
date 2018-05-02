@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountSpotAssetMapper">
+    <!-- 基础列 -->
+    <sql id="accountSpotAssetColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.amount as amount,
+        a.frozenAmt as frozenAmt,
+        a.remark as remark,
+        a.direction as direction,
+        a.price as price,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="accountSpotAssetJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.amount as amount,
+        a.frozenAmt as frozenAmt,
+        a.remark as remark,
+        a.direction as direction,
+        a.price as price,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockCode as stockCode,
+        c.canRecharge as canRecharge,
+        c.canWithdraw as canWithdraw,
+        c.canTrade as canTrade,
+        c.canBorrow as canBorrow,
+        c.isExchange as isExchange,
+        c.canConversion as canConversion,
+        d.debitAmt as debitAmt,
+        d.accumulateInterest as accumulateInterest
+    </sql>
+
+    <resultMap id="accountSpotAssetResultMap" type="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="amount" property="amount"/>
+        <result column="frozenAmt" property="frozenAmt"/>
+        <result column="remark" property="remark"/>
+        <result column="direction" property="direction"/>
+        <result column="price" property="price"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        insert into accountSpotAsset(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId,
+            amount ,
+            frozenAmt ,
+            remark ,
+            direction,
+        	price,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId },
+            #{amount} ,
+            #{frozenAmt} ,
+            #{remark} ,
+            #{direction} ,
+            #{price} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from accountSpotAsset where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update accountSpotAsset set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        insert into accountSpotAsset
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="relatedStockinfoId != null">
+            relatedStockinfoId ,
+        </if>
+        <if test="amount != null">
+                amount ,
+        </if>
+        <if test="frozenAmt != null">
+                frozenAmt ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="direction != null">
+                direction ,
+        </if>
+        <if test="price != null">
+                price ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="relatedStockinfoId != null">
+            #{relatedStockinfoId} ,
+        </if>
+        <if test="amount != null">
+                #{amount} ,
+        </if>
+        <if test="frozenAmt != null">
+                #{frozenAmt} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="direction != null">
+                #{direction} ,
+        </if>
+        <if test="price != null">
+                #{price} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        update accountSpotAsset
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+           <if test="relatedStockinfoId != null">
+               relatedStockinfoId = #{relatedStockinfoId} ,
+           </if>
+            <if test="amount != null">
+                amount = #{amount} ,
+            </if>
+            <if test="frozenAmt != null">
+                frozenAmt = #{frozenAmt} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="direction != null">
+                direction = #{direction} ,
+            </if>
+            <if test="price != null">
+                price = #{price} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into accountSpotAsset(
+            id ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId,
+            amount ,
+            frozenAmt ,
+            remark ,
+            direction,
+        	price,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.amount} ,
+            #{item.frozenAmt} ,
+            #{item.remark} ,
+            #{item.direction} ,
+            #{item.price} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update accountSpotAsset set
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            amount = #{item.amount} ,
+            frozenAmt = #{item.frozenAmt} ,
+            remark = #{item.remark} ,
+            direction = #{item.direction} ,
+            price = #{item.price} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        update accountSpotAsset set
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            amount = #{amount} ,
+            frozenAmt = #{frozenAmt} ,
+            remark = #{remark} ,
+            direction = #{direction} ,
+            price = #{price} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        select <include refid="accountSpotAssetColumns"/> from accountSpotAsset a where a.id = #{id}
+    </select>
+
+    <!-- 查询并加行锁 -->
+    <select id="selectForUpdate"   resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        select <include refid="accountSpotAssetColumns"/> from accountSpotAsset a where a.accountId = #{accountId} and
+        a.stockinfoId = #{stockinfoId}    and a.relatedStockinfoId = #{relatedStockinfoId}  for update wait 3
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        SELECT
+        <include refid="accountSpotAssetJoinColumns"/>
+        FROM accountSpotAsset a
+        left join Account b on a.accountId=b.id
+        left join stockinfo c on a.stockinfoId=c.id
+        left join accountdebitasset d on d.borroweraccountid=a.accountid and d.relatedstockinfoid=a.relatedstockinfoid
+        and d.stockinfoid = a.stockinfoid
+        WHERE 1=1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        SELECT
+        <include refid="accountSpotAssetColumns"/>
+        FROM accountSpotAsset a WHERE 1=1
+    </select>
+    
+    <!-- 查询实体 -->
+    <select id="findWalletAsset" resultType="com.blocain.bitms.trade.fund.entity.AccountSpotAsset">
+        SELECT
+        <include refid="accountSpotAssetColumns"/>
+        FROM accountSpotAsset a
+        WHERE a.accountId=#{accountId}
+        and a.stockinfoId=#{stockinfoId}
+    </select>
+
+</mapper>
+

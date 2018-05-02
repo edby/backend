@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.stockinfo.mapper.Erc20TokenMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="erc20TokenColumns">
+        a.id as id,
+        a.blockHeight as blockHeight,
+        a.symbol as symbol,
+        a.symbolName as symbolName,
+        a.pair as pair,
+        a.contractAddr as contractAddr,
+        a.totalSupply as totalSupply,
+        a.tokenDecimals as tokenDecimals,
+        a.icon as icon,
+        a.createDate as createDate,
+        a.inviteAccountId as inviteAccountId,
+        a.activeAccountId as activeAccountId,
+        a.needAward as needAward,
+        a.awardAmount as awardAmount,
+        a.awardStatus as awardStatus,
+        a.isActive as isActive,
+        a.activeEndDate as activeEndDate
+    </sql>
+    <sql id="erc20TokenJoinColumns">
+        a.id as id,
+        a.blockHeight as blockHeight,
+        a.symbol as symbol,
+        a.symbolName as symbolName,
+        a.pair as pair,
+        a.contractAddr as contractAddr,
+        a.totalSupply as totalSupply,
+        a.tokenDecimals as tokenDecimals,
+        a.icon as icon,
+        a.createDate as createDate,
+        a.inviteAccountId as inviteAccountId,
+        a.activeAccountId as activeAccountId,
+        a.needAward as needAward,
+        a.awardAmount as awardAmount,
+        a.awardStatus as awardStatus,
+        a.isActive as isActive,
+        a.activeEndDate as activeEndDate,
+        b.accountName as inviter
+    </sql>
+
+    <sql id="erc20TokenMiniColumns">
+        a.symbol as symbol,
+        a.symbolName as symbolName,
+        a.contractAddr as contractAddr,
+        a.isActive as isActive
+    </sql>
+
+    <resultMap id="erc20TokenResultMap" type="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        <id column="id" property="id"/>
+        <id column="blockHeight" property="blockHeight"/>
+        <result column="symbol" property="symbol"/>
+        <result column="symbolName" property="symbolName"/>
+        <result column="pair" property="pair"/>
+        <result column="contractAddr" property="contractAddr"/>
+        <result column="totalSupply" property="totalSupply"/>
+        <result column="tokenDecimals" property="tokenDecimals"/>
+        <result column="icon" property="icon"/>
+        <result column="createDate" property="createDate"/>
+        <result column="inviteAccountId" property="inviteAccountId"/>
+        <result column="activeAccountId" property="activeAccountId" />
+        <result column="needAward" property="needAward"/>
+        <result column="awardStatus" property="awardStatus"/>
+        <result column="awardAmount" property="awardAmount" />
+        <result column="isActive" property="isActive"/>
+        <result column="activeEndDate" property="activeEndDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        insert into Erc20Token(
+            id ,
+            blockHeight,
+            symbol ,
+            symbolName ,
+            pair ,
+            contractAddr ,
+            totalSupply ,
+            tokenDecimals ,
+            icon ,
+            isActive,
+            inviteAccountId,
+            activeAccountId,
+            needAward,
+            awardAmount,
+            awardStatus,
+            activeEndDate,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{blockHeight},
+            #{symbol} ,
+            #{symbolName} ,
+            #{pair} ,
+            #{contractAddr} ,
+            #{totalSupply} ,
+            #{tokenDecimals} ,
+            #{icon} ,
+            #{isActive},
+            #{inviteAccountId},
+            #{activeAccountId},
+            #{needAward},
+            #{awardAmount},
+            #{awardStatus},
+            #{activeEndDate},
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Erc20Token where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update Erc20Token set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        insert into Erc20Token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="blockHeight!=''">
+                blockHeight,
+            </if>
+            <if test="symbol != null">
+                symbol ,
+            </if>
+            <if test="symbolName != null">
+                symbolName ,
+            </if>
+            <if test="pair != null">
+                pair ,
+            </if>
+            <if test="contractAddr != null">
+                contractAddr ,
+            </if>
+            <if test="totalSupply != null">
+                totalSupply ,
+            </if>
+            <if test="tokenDecimals != null">
+                tokenDecimals ,
+            </if>
+            <if test="icon != null">
+                icon ,
+            </if>
+            <if test="isActive != null">
+                isActive ,
+            </if>
+            <if test="inviteAccountId != null">
+                inviteAccountId ,
+            </if>
+            <if test="activeAccountId!=null">
+                activeAccountId,
+            </if>
+            <if test="needAward != null">
+                needAward ,
+            </if>
+            <if test="awardAmount!=null">
+                awardAmount,
+            </if>
+            <if test="awardStatus != null">
+                awardStatus ,
+            </if>
+            <if test="activeEndDate != null">
+                activeEndDate ,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="blockHeight!=''">
+                #{blockHeight},
+            </if>
+            <if test="symbol != null">
+                #{symbol} ,
+            </if>
+            <if test="symbolName != null">
+                #{symbolName} ,
+            </if>
+            <if test="pair != null">
+                #{pair} ,
+            </if>
+            <if test="contractAddr != null">
+                #{contractAddr} ,
+            </if>
+            <if test="totalSupply != null">
+                #{totalSupply} ,
+            </if>
+            <if test="tokenDecimals != null">
+                #{tokenDecimals} ,
+            </if>
+            <if test="icon != null">
+                #{icon} ,
+            </if>
+            <if test="isActive != null">
+                #{isActive} ,
+            </if>
+            <if test="inviteAccountId != null">
+                #{inviteAccountId} ,
+            </if>
+            <if test="activeAccountId != null">
+                #{activeAccountId},
+            </if>
+            <if test="needAward != null">
+                #{needAward} ,
+            </if>
+            <if test="awardAmount!= null">
+                #{awardAmount},
+            </if>
+            <if test="awardStatus != null">
+                #{awardStatus} ,
+            </if>
+            <if test="activeEndDate != null">
+                #{activeEndDate} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        update Erc20Token
+        <set>
+            <if test="blockHeight!=null">
+                blockHeight = #{blockHeight},
+            </if>
+            <if test="symbol != null">
+                symbol = #{symbol} ,
+            </if>
+            <if test="symbolName != null">
+                symbolName = #{symbolName} ,
+            </if>
+            <if test="pair != null">
+                pair = #{pair} ,
+            </if>
+            <if test="contractAddr != null">
+                contractAddr = #{contractAddr} ,
+            </if>
+            <if test="totalSupply != null">
+                totalSupply = #{totalSupply} ,
+            </if>
+            <if test="tokenDecimals != null">
+                tokenDecimals = #{tokenDecimals} ,
+            </if>
+            <if test="icon != null">
+                icon = #{icon} ,
+            </if>
+            <if test="isActive != null">
+                isActive = #{isActive} ,
+            </if>
+            <if test="inviteAccountId != null">
+                inviteAccountId = #{inviteAccountId} ,
+            </if>
+            <if test="activeAccountId!=null">
+                activeAccountId = #{activeAccountId},
+            </if>
+            <if test="needAward != null">
+                needAward = #{needAward} ,
+            </if>
+            <if test="awardAmount!=null">
+                awardAmount = #{awardAmount},
+            </if>
+            <if test="awardStatus != null">
+                awardStatus = #{awardStatus} ,
+            </if>
+            <if test="activeEndDate != null">
+                activeEndDate = #{activeEndDate} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Erc20Token(
+        id ,
+        blockHeight,
+        symbol ,
+        symbolName,
+        pair ,
+        contractAddr ,
+        totalSupply ,
+        tokenDecimals ,
+        icon ,
+        isActive,
+        inviteAccountId,
+        activeAccountId,
+        needAward,
+        awardAmount,
+        awardStatus,
+        activeEndDate,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.blockHeight},
+            #{item.symbol} ,
+            #{item.symbolName},
+            #{item.pair} ,
+            #{item.contractAddr} ,
+            #{item.totalSupply} ,
+            #{item.tokenDecimals} ,
+            #{item.icon} ,
+            #{item.isActive} ,
+            #{item.inviteAccountId},
+            #{item.activeAccountId},
+            #{item.needAward},
+            #{item.awardAmount},
+            #{item.awardStatus},
+            #{item.activeEndDate} ,
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Erc20Token set
+            blockHeight = #{item.blockHeight},
+            symbol = #{item.symbol} ,
+            symbolName = #{item.symbolName},
+            pair = #{item.pair} ,
+            contractAddr = #{item.contractAddr} ,
+            totalSupply = #{item.totalSupply} ,
+            tokenDecimals = #{item.tokenDecimals} ,
+            icon = #{item.icon} ,
+            isActive= #{item.isActive} ,
+            activeEndDate= #{item.activeEndDate} ,
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        update Erc20Token set
+            blockHeight = #{blockHeight},
+            symbol = #{symbol} ,
+            symbolName = #{symbolName},
+            pair = #{pair} ,
+            contractAddr = #{contractAddr} ,
+            totalSupply = #{totalSupply} ,
+            tokenDecimals = #{tokenDecimals} ,
+            icon = #{icon} ,
+            inviteAccountId = #{inviteAccountId} ,
+            activeAccountId = #{activeAccountId},
+            needAward = #{needAward} ,
+            awardAmount = #{awardAmount},
+            awardStatus = #{awardStatus} ,
+            isActive = #{isActive} ,
+            activeEndDate = #{activeEndDate} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        select
+        <include refid="erc20TokenColumns"/>
+        from Erc20Token a where a.id = #{id}
+    </select>
+
+    <!-- 根据主键取数据 行锁 -->
+    <select id="selectByPrimaryKeyForUpdate" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        select
+        <include refid="erc20TokenColumns"/>
+        from Erc20Token a where a.id = #{id} for update wait 3
+    </select>
+
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        SELECT
+        <include refid="erc20TokenColumns"/>
+        FROM Erc20Token a WHERE 1=1
+        <if test="symbol != null and symbol!=''">
+            and a.symbol like '%'||#{symbol}||'%'
+        </if>
+        <if test="symbolName != null  and symbolName!=''">
+            and a.symbolName like '%'||#{symbolName}||'%'
+        </if>
+        <if test="pair != null and pair!=''">
+            and a.pair like '%'||#{pair}||'%'
+        </if>
+        <if test="contractAddr != null and contractAddr!=''">
+            and a.contractAddr like '%'||#{contractAddr}||'%'
+        </if>
+        <if test="isActive != null and isActive!=''">
+            and a.isActive = #{isActive}
+        </if>
+        order by a.symbol asc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        SELECT
+        <include refid="erc20TokenMiniColumns"/>
+        FROM Erc20Token a WHERE 1=1
+        <if test="symbol != null">
+            and a.symbol like '%'||#{symbol}||'%'
+        </if>
+        <if test="contractAddr != null">
+            and a.contractAddr like '%'||#{contractAddr}||'%'
+        </if>
+    </select>
+
+    <select id="getErc20Token" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        SELECT
+        <include refid="erc20TokenColumns"/>
+        FROM Erc20Token a WHERE 1=1
+        <if test="pair != null and pair!=''">
+            and a.pair = #{pair}
+        </if>
+        and a.contractAddr = #{contractAddr}
+    </select>
+
+    <!-- 查询邀请奖励 -->
+    <select id="findListForAward" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        SELECT
+        <include refid="erc20TokenJoinColumns"/>
+        FROM Erc20Token a
+        left join account b on b.id=a.activeAccountId
+        WHERE 1=1
+        <if test="symbol != null">
+            and a.symbol like '%'||#{symbol}||'%'
+        </if>
+        <if test="contractAddr != null">
+            and a.contractAddr like '%'||#{contractAddr}||'%'
+        </if>
+            and a.inviteAccountId = #{inviteAccountId}
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="searchByKey" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        SELECT
+        <include refid="erc20TokenMiniColumns"/>
+        FROM Erc20Token a WHERE 1=1
+        <if test="symbol != null and symbol!=''">
+            and (lower(a.symbol) like '%'||#{symbol}||'%' or lower(a.symbolName) like '%'||#{symbol}||'%')
+        </if>
+        <if test="contractAddr != null and contractAddr!=''">
+            and lower(a.contractAddr) like '%'||#{contractAddr}||'%'
+        </if>
+    </select>
+
+    <!-- 查询高度字段最小值记录findMaxHeight -->
+    <select id="findMinHeight" resultType="com.blocain.bitms.trade.stockinfo.entity.Erc20Token">
+        SELECT
+        <include refid="erc20TokenColumns"/>
+        FROM Erc20Token a WHERE 1=1
+        and a.blockHeight = (
+        select min(blockHeight) from Erc20Token b
+        )
+    </select>
+
+</mapper>
+

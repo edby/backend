@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="@192.168.31.45" uuid="258e7681-9cbe-4de6-9461-e5750df107a6">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>*:BITMS</introspection-schemas>
+    </data-source>
+  </component>
+</project>

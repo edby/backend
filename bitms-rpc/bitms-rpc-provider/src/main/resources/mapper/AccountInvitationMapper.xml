@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.account.mapper.AccountInvitationMapper">
+    <!-- 基础列 -->
+    <sql id="accountInvitationColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.accountName as accountName,
+        a.invitCode as invitCode,
+        a.createDate as createDate,
+        a.bmsNum as bmsNum,
+        a.isGrant as isGrant,
+        a.grantFlag as grantFlag,
+        a.lockStatus as lockStatus,
+        a.lockEndDay as lockEndDay,
+        a.delFlag as delFlag
+    </sql>
+    
+    <sql id="accountInvitationJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.accountName as accountName,
+        a.invitCode as invitCode,
+        a.createDate as createDate,
+        a.bmsNum as bmsNum,
+        a.isGrant as isGrant,
+        a.grantFlag as grantFlag,
+        a.lockStatus as lockStatus,
+        a.lockEndDay as lockEndDay,
+        a.delFlag as delFlag,
+        b.accountName as invitationAccountName
+    </sql>
+
+    <resultMap id="accountInvitationResultMap" type="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        <id column="id" property="id" />
+        <result column="accountId" property="accountId"/>
+        <result column="accountName" property="accountName"/>
+        <result column="invitCode" property="invitCode"/>
+        <result column="createDate" property="createDate"/>
+        <result column="bmsNum" property="bmsNum"/>
+        <result column="isGrant" property="isGrant"/>
+        <result column="grantFlag" property="grantFlag"/>
+        <result column="lockStatus" property="lockStatus"/>
+        <result column="lockEndDay" property="lockEndDay"/>
+        <result column="delFlag" property="delFlag"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        insert into AccountInvitation(
+            id ,
+            accountId ,
+            accountName ,
+            invitCode ,
+            createDate ,
+            bmsNum ,
+            isGrant ,
+            grantFlag ,
+            lockStatus,
+        	lockEndDay,
+            delFlag 
+        ) VALUES (
+            #{id} ,
+            #{accountId} ,
+            #{accountName} ,
+            #{invitCode} ,
+            #{createDate} ,
+            #{bmsNum} ,
+            #{isGrant} ,
+            #{grantFlag} ,
+            #{lockStatus} ,
+            #{lockEndDay} ,
+            #{delFlag} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountInvitation where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountInvitation set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        insert into AccountInvitation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="accountName != null">
+                accountName ,
+        </if>
+        <if test="invitCode != null">
+                invitCode ,
+        </if>
+        <if test="createDate != null">
+                createDate ,
+        </if>
+        <if test="bmsNum != null">
+                bmsNum ,
+        </if>
+        <if test="isGrant != null">
+                isGrant ,
+        </if>
+        <if test="grantFlag != null">
+                grantFlag ,
+        </if>
+        <if test="lockStatus != null">
+                lockStatus ,
+        </if>
+        <if test="lockEndDay != null">
+                lockEndDay ,
+        </if>
+        <if test="delFlag != null">
+                delFlag 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="accountName != null">
+                #{accountName} ,
+        </if>
+        <if test="invitCode != null">
+                #{invitCode} ,
+        </if>
+        <if test="createDate != null">
+                #{createDate} ,
+        </if>
+        <if test="bmsNum != null">
+                #{bmsNum} ,
+        </if>
+        <if test="isGrant != null">
+                #{isGrant} ,
+        </if>
+        <if test="grantFlag != null">
+                #{grantFlag} ,
+        </if>
+        <if test="lockStatus != null">
+                #{lockStatus} ,
+        </if>
+        <if test="lockEndDay != null">
+                #{lockEndDay} ,
+        </if>
+        <if test="delFlag != null">
+                #{delFlag} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        update AccountInvitation
+           <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="accountName != null">
+                accountName = #{accountName} ,
+            </if>
+            <if test="invitCode != null">
+                invitCode = #{invitCode} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="bmsNum != null">
+                bmsNum = #{bmsNum} ,
+            </if>
+            <if test="isGrant != null">
+                isGrant = #{isGrant} ,
+            </if>
+            <if test="grantFlag != null">
+                grantFlag = #{grantFlag} ,
+            </if>
+            <if test="lockStatus != null">
+                lockStatus = #{lockStatus} ,
+            </if>
+            <if test="lockEndDay != null">
+                lockEndDay = #{lockEndDay} ,
+            </if>
+            <if test="delFlag != null">
+                delFlag = #{delFlag} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountInvitation(
+            id ,
+            accountId ,
+            accountName ,
+            invitCode ,
+            createDate ,
+            bmsNum ,
+            isGrant ,
+            grantFlag ,
+            lockStatus,
+        	lockEndDay,
+            delFlag 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.accountName} ,
+            #{item.invitCode} ,
+            #{item.createDate} ,
+            #{item.bmsNum} ,
+            #{item.isGrant} ,
+            #{item.grantFlag} ,
+            #{item.lockStatus} ,
+            #{item.lockEndDay} ,
+            #{item.delFlag} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountInvitation set
+            accountId = #{item.accountId} ,
+            accountName = #{item.accountName} ,
+            invitCode = #{item.invitCode} ,
+            createDate = #{item.createDate} ,
+            bmsNum = #{item.bmsNum} ,
+            isGrant = #{item.isGrant} ,
+            grantFlag = #{item.grantFlag} ,
+            lockStatus = #{item.lockStatus} ,
+            lockEndDay = #{item.lockEndDay} ,
+            delFlag = #{item.delFlag} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        update AccountInvitation set
+            accountId = #{accountId} ,
+            accountName = #{accountName} ,
+            invitCode = #{invitCode} ,
+            createDate = #{createDate} ,
+            bmsNum = #{bmsNum} ,
+            isGrant = #{isGrant} ,
+            grantFlag = #{grantFlag} ,
+            lockStatus = #{lockStatus} ,
+            lockEndDay = #{lockEndDay} ,
+            delFlag = #{delFlag} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        select <include refid="accountInvitationColumns"/> from AccountInvitation a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        SELECT
+        <include refid="accountInvitationJoinColumns"/>
+        FROM AccountInvitation a,Account b WHERE a.delFlag = 0 and a.invitCode=b.unid
+        <if test="accountId != null ">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null">
+            and a.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="invitCode != null">
+            and a.invitCode = #{invitCode}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+        <if test="bmsNum != null">
+            and a.bmsNum = #{bmsNum}
+        </if>
+        <if test="isGrant != null">
+            and a.isGrant = #{isGrant}
+        </if>
+        <if test="grantFlag != null">
+            and a.grantFlag = #{grantFlag}
+        </if>
+        <if test="invitationAccountName != null">
+            and b.accountName like '%'||#{invitationAccountName}||'%'
+        </if>
+    </select>
+    
+     <!-- 查询锁定日期到 还处于锁定中的费用 -->
+    <select id="findLockedList" resultType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+       SELECT
+        <include refid="accountInvitationColumns"/>
+        FROM AccountInvitation a WHERE 1=1
+        <if test="lockEndDay != null">
+            and a.lockEndDay &lt;= #{lockEndDay}
+        </if>
+        and a.lockStatus != 'no'
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.account.entity.AccountInvitation">
+        SELECT
+        <include refid="accountInvitationColumns"/>
+        FROM AccountInvitation a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

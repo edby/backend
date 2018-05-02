@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <description>MQ Configuration</description>
+
+    <bean id="leveragedSpot502_Topic" class="com.blocain.bitms.trade.quotation.consts.TopicConst">
+        <constructor-arg name="props" value="quotation/155555555502.properties"/>
+    </bean>
+
+    <!-- leveragedSpot502_消息接收器 -->
+    <bean id="leveragedSpot502_KLine1MinMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLine1MinMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_KLine5MinMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLine5MinMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_KLine15MinMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLine15MinMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_KLine30MinMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLine30MinMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_KLineHourMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLineHourMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_KLineDayMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLineDayMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_KLineWeekMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLineWeekMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_KLineMonthMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.KLineMonthMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_DeepPriceMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.DeepPriceMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_RtQuotationMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.RtQuotationMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <bean id="leveragedSpot502_RealDealMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.RealDealMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+    <!-- 全行情消息接收器 -->
+    <bean id="leveragedSpot502_AllRtQuotationMessageListener"
+          class="com.blocain.bitms.trade.quotation.listener.AllRtQuotationMessageListener">
+        <property name="quotationWebSocketHandler" ref="leveragedSpot502_Handler"/>
+    </bean>
+
+    <!-- 监听管理器 -->
+    <bean id="leveragedSpot502_TopicContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer"
+          destroy-method="destroy">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="messageListeners">
+            <map>
+                <!-- leveragedSpot502_ -->
+                <entry key-ref="leveragedSpot502_KLine1MinMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLine1MinChannelTopic" >
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_KLine5MinMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLine5MinChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_KLine15MinMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLine15MinChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_KLine30MinMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLine30MinChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_KLineHourMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLineHourChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_KLineDayMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLineDayChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_KLineWeekMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLineWeekChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_KLineMonthMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.KLineMonthChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_DeepPriceMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.DeepPriceChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_RtQuotationMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.RtQuotationChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <entry key-ref="leveragedSpot502_RealDealMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.RealDealChannelTopic">
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+                <!-- 全行情 -->
+                <entry key-ref="leveragedSpot502_AllRtQuotationMessageListener">
+                    <bean class="com.blocain.bitms.trade.quotation.topic.AllRtQuotationChannelTopic" >
+                        <constructor-arg name="topicConst" ref="leveragedSpot502_Topic" />
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

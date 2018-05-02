@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.quotation.mapper.QuoDetailedRuleMapper">
+    <!-- 基础列 -->
+    <sql id="quoDetailedRuleColumns">
+        a.id as id,
+        a.relatedId as relatedId,
+        a.realdealNum as realdealNum,
+        a.entrustNum as entrustNum,
+        a.entrustLevel as entrustLevel,
+        a.entrustBuySort as entrustBuySort,
+        a.entrustSellSort as entrustSellSort
+    </sql>
+
+    <resultMap id="quoDetailedRuleResultMap" type="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        <id column="id" property="id" />
+        <result column="id" property="id"/>
+        <result column="relatedId" property="relatedId"/>
+        <result column="realdealNum" property="realdealNum"/>
+        <result column="entrustNum" property="entrustNum"/>
+        <result column="entrustLevel" property="entrustLevel"/>
+        <result column="entrustBuySort" property="entrustBuySort"/>
+        <result column="entrustSellSort" property="entrustSellSort"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        insert into QuoDetailedRule(
+            id ,
+            relatedId ,
+            realdealNum ,
+            entrustNum ,
+            entrustLevel ,
+            entrustBuySort ,
+            entrustSellSort 
+        ) VALUES (
+            #{id} ,
+            #{relatedId} ,
+            #{realdealNum} ,
+            #{entrustNum} ,
+            #{entrustLevel} ,
+            #{entrustBuySort} ,
+            #{entrustSellSort} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from QuoDetailedRule where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update QuoDetailedRule set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        insert into QuoDetailedRule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="relatedId != null">
+                relatedId ,
+        </if>
+        <if test="realdealNum != null">
+                realdealNum ,
+        </if>
+        <if test="entrustNum != null">
+                entrustNum ,
+        </if>
+        <if test="entrustLevel != null">
+                entrustLevel ,
+        </if>
+        <if test="entrustBuySort != null">
+                entrustBuySort ,
+        </if>
+        <if test="entrustSellSort != null">
+                entrustSellSort 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="relatedId != null">
+                #{relatedId} ,
+        </if>
+        <if test="realdealNum != null">
+                #{realdealNum} ,
+        </if>
+        <if test="entrustNum != null">
+                #{entrustNum} ,
+        </if>
+        <if test="entrustLevel != null">
+                #{entrustLevel} ,
+        </if>
+        <if test="entrustBuySort != null">
+                #{entrustBuySort} ,
+        </if>
+        <if test="entrustSellSort != null">
+                #{entrustSellSort} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        update QuoDetailedRule
+           <set>
+            <if test="id != null">
+                id = #{id} ,
+            </if>
+            <if test="relatedId != null">
+                relatedId = #{relatedId} ,
+            </if>
+            <if test="realdealNum != null">
+                realdealNum = #{realdealNum} ,
+            </if>
+            <if test="entrustNum != null">
+                entrustNum = #{entrustNum} ,
+            </if>
+            <if test="entrustLevel != null">
+                entrustLevel = #{entrustLevel} ,
+            </if>
+            <if test="entrustBuySort != null">
+                entrustBuySort = #{entrustBuySort} ,
+            </if>
+            <if test="entrustSellSort != null">
+                entrustSellSort = #{entrustSellSort} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into QuoDetailedRule(
+            id ,
+            relatedId ,
+            realdealNum ,
+            entrustNum ,
+            entrustLevel ,
+            entrustBuySort ,
+            entrustSellSort 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.relatedId} ,
+            #{item.realdealNum} ,
+            #{item.entrustNum} ,
+            #{item.entrustLevel} ,
+            #{item.entrustBuySort} ,
+            #{item.entrustSellSort} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update QuoDetailedRule set
+            id = #{item.id} ,
+            relatedId = #{item.relatedId} ,
+            realdealNum = #{item.realdealNum} ,
+            entrustNum = #{item.entrustNum} ,
+            entrustLevel = #{item.entrustLevel} ,
+            entrustBuySort = #{item.entrustBuySort} ,
+            entrustSellSort = #{item.entrustSellSort} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        update QuoDetailedRule set
+            id = #{id} ,
+            relatedId = #{relatedId} ,
+            realdealNum = #{realdealNum} ,
+            entrustNum = #{entrustNum} ,
+            entrustLevel = #{entrustLevel} ,
+            entrustBuySort = #{entrustBuySort} ,
+            entrustSellSort = #{entrustSellSort} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        select <include refid="quoDetailedRuleColumns"/> from QuoDetailedRule a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        SELECT
+        <include refid="quoDetailedRuleColumns"/>
+        FROM QuoDetailedRule a WHERE a.delFlag = 0
+        <if test="id != null">
+            and a.id = #{id}
+        </if>
+        <if test="relatedId != null">
+            and a.relatedId = #{relatedId}
+        </if>
+        <if test="realdealNum != null">
+            and a.realdealNum = #{realdealNum}
+        </if>
+        <if test="entrustNum != null">
+            and a.entrustNum like '%'||#{entrustNum}||'%'
+        </if>
+        <if test="entrustLevel != null">
+            and a.entrustLevel like '%'||#{entrustLevel}||'%'
+        </if>
+        <if test="entrustBuySort != null">
+            and a.entrustBuySort like '%'||#{entrustBuySort}||'%'
+        </if>
+        <if test="entrustSellSort != null">
+            and a.entrustSellSort like '%'||#{entrustSellSort}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.quotation.entity.QuoDetailedRule">
+        SELECT
+        <include refid="quoDetailedRuleColumns"/>
+        FROM QuoDetailedRule a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,8 @@
+com\blocain\bitms\wallet\config\WalletConfig.class
+com\blocain\bitms\wallet\thread\ScanEthAddrsThread.class
+com\blocain\bitms\wallet\thread\CollectERC20BalanceThread.class
+com\blocain\bitms\wallet\WalletServer.class
+com\blocain\bitms\wallet\thread\ScanERC20TransThread.class
+com\blocain\bitms\wallet\thread\SyncERC20BlockThread.class
+com\blocain\bitms\wallet\thread\ScanERC20BlockThread.class
+com\blocain\bitms\wallet\thread\ScanERC20BlockErc20TokenThread.class

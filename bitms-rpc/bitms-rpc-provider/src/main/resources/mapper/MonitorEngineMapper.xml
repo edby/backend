@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorEngineMapper">
+    <!-- 监控返回值 -->
+	<resultMap id="baseMonitorResultMap" type="com.blocain.bitms.monitor.entity.MonitorResult">
+		<result column="accountid" property="accountId" />
+		<result column="monitordesc" property="monitorDesc" />
+	</resultMap>
+
+	<!-- 撮合资金总账实时监控返回值 -->
+	<resultMap id="matchFundCurMonitorResultMap" type="com.blocain.bitms.monitor.entity.MonitorMatchFund">
+		<result column="id" property="id" />
+		<result column="bizcategoryid" property="bizCategoryId" />
+		<result column="stockinfoid" property="stockinfoId" />
+		<result column="chkdate" property="chkDate" />
+	</resultMap>
+
+
+	<!-- 通用监控入参 -->
+	<parameterMap id="baseMonitorParamMap" type="java.util.HashMap">
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="baseMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<!-- 通用监控入参 -->
+	<parameterMap id="commonMonitorParamMap" type="java.util.HashMap">
+		<parameter property="bizids" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="monitor_idx" jdbcType="BIGINT" javaType="java.lang.Long" mode="OUT"/>
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="baseMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<!-- 账户检查入参 -->
+	<parameterMap id="acctAssetChkParamMap" type="java.util.HashMap">
+		<parameter property="acctId" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+
+	<!-- 生成余额监控入参
+	<parameterMap id="createMonitorBalanceParamMap" type="java.util.HashMap">
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+    -->
+
+	<!-- 撮合资金总账实时监控入参 -->
+	<parameterMap id="matchFundCurParamMap" type="java.util.HashMap">
+		<parameter property="bizids" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="matchFundCurMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<!-- 资金流水逐笔检查入参 -->
+	<parameterMap id="chkAccountFundCurParamMap" type="java.util.HashMap"> 
+		<parameter property="acctId" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="stockinfoid" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="baseMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+
+	<parameterMap id="digitalCoinParamMap" type="java.util.HashMap">
+		<parameter property="digitalCoin" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="externalRBal" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="externalWBal" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="monitor_idx" jdbcType="BIGINT" javaType="java.lang.Long" mode="OUT"/>
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="baseMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<parameterMap id="cashCoinParamMap" type="java.util.HashMap">
+		<parameter property="cashCoins" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="monitor_idx" jdbcType="BIGINT" javaType="java.lang.Long" mode="OUT"/>
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="baseMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<parameterMap id="blockNumParamMap" type="java.util.HashMap">
+		<parameter property="inBlockNum" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="outBlockNum" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="blockResource" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="monitor_idx" jdbcType="BIGINT" javaType="java.lang.Long" mode="OUT"/>
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="baseMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<parameterMap id="erc20BalParamMap" type="java.util.HashMap">
+		<parameter property="digitalCoin" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="externalHBal" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="externalCBal" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="monitor_idx" jdbcType="BIGINT" javaType="java.lang.Long" mode="OUT"/>
+		<parameter property="return_code" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_result" jdbcType="INTEGER" javaType="java.lang.Integer" mode="OUT"/>
+		<parameter property="monitor_data" jdbcType="CURSOR" javaType="java.sql.ResultSet" mode="OUT" resultMap="baseMonitorResultMap"/>
+		<parameter property="return_str" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"/>
+	</parameterMap>
+
+	<!-- 账户资产检查 -->
+	<select id="doAcctAssetChk" statementType="CALLABLE" parameterMap="acctAssetChkParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_chkAcctAsset(?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 保证金监控 -->
+	<select id="dealMarginMonitor" parameterMap="commonMonitorParamMap" statementType="CALLABLE">
+		<![CDATA[
+           {call pkg_monitor.sp_monitorMargin(?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 合约现货资金总账实时监控 -->
+	<select id="dealSpotContractFundCur" statementType="CALLABLE" parameterMap="matchFundCurParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_monitorSpotContractFundCur(?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 内部资金总账实时监控 -->
+	<select id="dealInternalPlatFundCur" statementType="CALLABLE" parameterMap="commonMonitorParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_monitorInternalPlatFundCur(?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 杠杆现货资金总账实时监控 -->
+	<select id="dealAccountFundCur" statementType="CALLABLE" parameterMap="commonMonitorParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_monitorAccountFundCur(?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 账户对账检查 -->
+	<select id="doAcctFundCurChk" statementType="CALLABLE" parameterMap="chkAccountFundCurParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_chkAccountFundCur(?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 数字资产内外部总账监控 -->
+	<select id="dealDigitalCoin" statementType="CALLABLE" parameterMap="digitalCoinParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_monitorDigitalCoinBal(?,?,?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 现金资产内外部总账监控 -->
+	<select id="dealCashCoin" statementType="CALLABLE" parameterMap="cashCoinParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_monitorCashCoinBal(?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- 区块高度内外部的监控 -->
+	<select id="dealBlockNumberMonitor" statementType="CALLABLE" parameterMap="blockNumParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_monitorblocknum(?,?,?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+	<!-- ERC20内外部总额监控 -->
+	<select id="dealErc20BalMonitor" statementType="CALLABLE" parameterMap="erc20BalParamMap">
+		<![CDATA[
+           {call PKG_MONITOR.sp_monitorErc20Bal(?,?,?,?,?,?,?,?)}
+        ]]>
+	</select>
+
+</mapper>
+

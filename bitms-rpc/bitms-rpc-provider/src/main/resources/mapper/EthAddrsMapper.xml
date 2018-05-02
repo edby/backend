@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.EthAddrsMapper">
+    <!-- 基础列 -->
+    <sql id="ethAddrsColumns">
+        a.id as id,
+        a.blockHeight as blockHeight,
+        a.addr as addr,
+        a.ethBalance as ethBalance,
+        a.isCollect as isCollect,
+        a.createDate as createDate
+    </sql>
+
+    <resultMap id="ethAddrsResultMap" type="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        <id column="id" property="id"/>
+        <result column="blockHeight" property="blockHeight"/>
+        <result column="addr" property="addr"/>
+        <result column="ethBalance" property="ethBalance"/>
+        <result column="isCollect" property="isCollect"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        insert into ethAddrs(
+            id ,
+            blockHeight ,
+            addr ,
+            ethBalance ,
+            isCollect ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{blockHeight} ,
+            #{addr} ,
+            #{ethBalance} ,
+            #{isCollect} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from ethAddrs where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update ethAddrs set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        insert into ethAddrs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="blockHeight != null">
+                blockHeight ,
+            </if>
+            <if test="addr != null">
+                addr ,
+            </if>
+            <if test="ethBalance != null">
+                ethBalance ,
+            </if>
+            <if test="isCollect!=null">
+                isCollect,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="blockHeight != null">
+                #{blockHeight} ,
+            </if>
+            <if test="addr != null">
+                #{addr} ,
+            </if>
+            <if test="ethBalance != null">
+                #{ethBalance} ,
+            </if>
+            <if test="isCollect!=null">
+                #{isCollect} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        update ethAddrs
+        <set>
+            <if test="blockHeight != null">
+                blockHeight = #{blockHeight} ,
+            </if>
+            <if test="addr != null">
+                addr = #{addr} ,
+            </if>
+            <if test="ethBalance != null">
+                ethBalance = #{ethBalance} ,
+            </if>
+            <if test="isCollect != null">
+                isCollect = #{isCollect},
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into ethAddrs(
+        id ,
+        blockHeight ,
+        addr ,
+        ethBalance ,
+        isCollect,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.blockHeight} ,
+            #{item.addr} ,
+            #{item.ethBalance} ,
+            #{item.isCollect}
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update ethAddrs set
+            blockHeight = #{item.blockHeight} ,
+            addr = #{item.addr} ,
+            ethBalance = #{item.ethBalance} ,
+            isCollect = #{item.isCollect},
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        update ethAddrs set
+            blockHeight = #{blockHeight} ,
+            addr = #{addr} ,
+            ethBalance = #{ethBalance} ,
+            isCollect = #{isCollect},
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        select
+        <include refid="ethAddrsColumns"/>
+        from ethAddrs a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        SELECT
+        <include refid="ethAddrsColumns"/>
+        FROM ethAddrs a WHERE 1=1
+        <if test="blockHeight != null">
+            and a.blockHeight = #{blockHeight}
+        </if>
+        <if test="addr != null">
+            and a.addr like '%'||#{addr}||'%'
+        </if>
+        <if test="ethBalance != null">
+            and a.ethBalance = #{ethBalance}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        SELECT
+        <include refid="ethAddrsColumns"/>
+        FROM ethAddrs a WHERE 1=1
+    </select>
+
+    <!-- 获取 ETH地址表中 跟用户充值相关联的 打款地址的ID -->
+    <select id="getChargeFromAddress" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select distinct d.id as id  from blocktransconfirmerc20 b,systemwalletaddrerc20 c,ethaddrs d
+        where  c.walletaddr=b.walletaddr and c.walletid=b.walletid
+        and b.fromaddress = d.addr
+        and c.accountid=#{accountId}
+        and c.stockinfoid=111111111102
+        and d.isCollect='no'
+        and d.ethbalance &gt; 0
+    </select>
+
+    <!-- 查询高度字段最小值记录findMaxHeight -->
+    <select id="findMinHeight" resultType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        SELECT
+        <include refid="ethAddrsColumns"/>
+        FROM ethAddrs a WHERE 1=1
+        and a.blockHeight = (
+        select min(blockHeight) from ethAddrs b
+        )
+    </select>
+
+    <select id="getByIdsForUpdate" resultType="com.blocain.bitms.trade.fund.entity.EthAddrs">
+        select  <include refid="ethAddrsColumns"/>  from  ethaddrs a where id in
+        <foreach item="item" collection="ids" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        for update wait 3
+    </select>
+
+</mapper>
+

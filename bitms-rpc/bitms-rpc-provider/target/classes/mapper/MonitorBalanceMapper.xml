@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorBalanceMapper">
+	<!-- 基础列 -->
+	<sql id="monitorBalanceColumns">
+		a.businessDate as businessDate,
+		a.accountId as accountId,
+		a.acctAssetType as acctAssetType,
+		a.stockinfoId as stockinfoId,
+		a.bizCategoryId as bizCategoryId,
+		a.beginBal as beginBal,
+		a.beginFrozenBal as beginFrozenBal,
+		a.beginFeeBal as beginFeeBal,
+		a.endBal as endBal,
+		a.endFrozenBal as endFrozenBal,
+		a.endFeeBal as endFeeBal,
+		a.createDate as createDate
+	</sql>
+
+	<resultMap id="monitorBalanceResultMap"
+		type="com.blocain.bitms.monitor.entity.MonitorBalance">
+		<id column="id" property="id" />
+		<result column="acctAssetType" property="acctAssetType" />
+		<result column="stockinfoId" property="stockinfoId" />
+		<result column="bizCategoryId" property="bizCategoryId" />
+		<result column="beginBal" property="beginBal" />
+		<result column="beginFrozenBal" property="beginFrozenBal" />
+		<result column="beginFeeBal" property="beginFeeBal" />
+		<result column="endBal" property="endBal" />
+		<result column="endFrozenBal" property="endFrozenBal" />
+		<result column="endFeeBal" property="endFeeBal" />
+		<result column="createDate" property="createDate" />
+	</resultMap>
+
+	<!-- 普通插入 -->
+	<insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorBalance">
+		insert into MonitorBalance(
+		businessDate ,
+		acctAssetType ,
+		accountId ,
+		stockinfoId ,
+		bizCategoryId ,
+		beginBal ,
+		beginFrozenBal ,
+		beginFeeBal ,
+		endBal ,
+		endFrozenBal ,
+		endFeeBal ,
+		createDate
+		) VALUES (
+		#{businessDate} ,
+		#{acctAssetType} ,
+		#{accountId} ,
+		#{stockinfoId} ,
+		#{bizCategoryId},
+		#{beginBal} ,
+		#{beginFrozenBal} ,
+		#{beginFeeBal} ,
+		#{endBal} ,
+		#{endFrozenBal} ,
+		#{endFeeBal} ,
+		#{createDate}
+		)
+	</insert>
+	<!-- 根据主键物理删除 -->
+	<delete id="remove" parameterType="java.lang.Long">
+		delete from MonitorBalance
+		where businessDate = #{businessDate}
+		and acctAssetType = #{acctAssetType}
+		and accountId = #{accountId}
+		and stockinfoId = #{stockinfoId}
+		and bizCategoryId = #{bizCategoryId}
+	</delete>
+
+	<!-- 根据主键逻辑删除 -->
+	<update id="delete" parameterType="java.lang.Long">
+		update MonitorBalance set delFlag = 1
+		where businessDate = #{businessDate}
+		and acctAssetType = #{acctAssetType}
+		and accountId = #{accountId}
+		and stockinfoId = #{stockinfoId}
+		and bizCategoryId = #{bizCategoryId}
+	</update>
+
+	<!--根据条件是否插入数据 -->
+	<insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorBalance">
+		insert into MonitorBalance
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="businessDate != null">
+				businessDate ,
+			</if>
+			<if test="acctAssetType != null">
+				acctAssetType ,
+			</if>
+			<if test="accountId != null">
+				accountId ,
+			</if>
+			<if test="stockinfoId != null">
+				stockinfoId ,
+			</if>
+			<if test="bizCategoryId!=null">
+				bizCategoryId ,
+			</if>
+			<if test="beginBal != null">
+				beginBal ,
+			</if>
+			<if test="beginFrozenBal != null">
+				beginFrozenBal ,
+			</if>
+			<if test="beginFeeBal != null">
+				beginFeeBal ,
+			</if>
+			<if test="endBal != null">
+				endBal ,
+			</if>
+			<if test="endFrozenBal != null">
+				endFrozenBal ,
+			</if>
+			<if test="endFeeBal != null">
+				endFeeBal ,
+			</if>
+			<if test="createDate != null">
+				createDate
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="businessDate != null">
+				#{businessDate} ,
+			</if>
+			<if test="acctAssetType != null">
+				#{acctAssetType} ,
+			</if>
+			<if test="accountId != null">
+				#{accountId} ,
+			</if>
+			<if test="stockinfoId != null">
+				#{stockinfoId} ,
+			</if>
+			<if test="bizCategoryId!=null">
+				#{bizCategoryId},
+			</if>
+			<if test="beginBal != null">
+				#{beginBal} ,
+			</if>
+			<if test="beginFrozenBal != null">
+				#{beginFrozenBal} ,
+			</if>
+			<if test="beginFeeBal != null">
+				#{beginFeeBal} ,
+			</if>
+			<if test="endBal != null">
+				#{endBal} ,
+			</if>
+			<if test="endFrozenBal != null">
+				#{endFrozenBal} ,
+			</if>
+			<if test="endFeeBal != null">
+				#{endFeeBal} ,
+			</if>
+			<if test="createDate != null">
+				#{createDate}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 选择性更新数据 -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorBalance">
+		update MonitorBalance
+		<set>
+			<if test="acctAssetType != null">
+				acctAssetType = #{acctAssetType} ,
+			</if>
+			<if test="beginBal != null">
+				beginBal = #{beginBal} ,
+			</if>
+			<if test="beginFrozenBal != null">
+				beginFrozenBal = #{beginFrozenBal} ,
+			</if>
+			<if test="beginFeeBal != null">
+				beginFeeBal = #{beginFeeBal} ,
+			</if>
+			<if test="endBal != null">
+				endBal = #{endBal} ,
+			</if>
+			<if test="endFrozenBal != null">
+				endFrozenBal = #{endFrozenBal} ,
+			</if>
+			<if test="endFeeBal != null">
+				endFeeBal = #{endFeeBal} ,
+			</if>
+			<if test="createDate != null">
+				createDate = #{createDate}
+			</if>
+		</set>
+		where businessDate = #{businessDate}
+		and acctAssetType = #{acctAssetType}
+		and accountId = #{accountId}
+		and stockinfoId = #{stockinfoId}
+		and bizCategoryId = #{bizCategoryId}
+	</update>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="list">
+		insert into MonitorBalance(
+		businessDate ,
+		acctAssetType ,
+		accountId ,
+		stockinfoId ,
+		bizCategoryId ,
+		beginBal ,
+		beginFrozenBal ,
+		beginFeeBal ,
+		endBal ,
+		endFrozenBal ,
+		endFeeBal ,
+		createDate
+		)
+		<foreach close=")" collection="list" item="item" index="index"
+			open="(" separator="union">
+			select
+			#{item.businessDate} ,
+			#{item.acctAssetType} ,
+			#{item.accountId} ,
+			#{item.stockinfoId} ,
+			#{item.bizCategoryId},
+			#{item.beginBal} ,
+			#{item.beginFrozenBal} ,
+			#{item.beginFeeBal} ,
+			#{item.endBal} ,
+			#{item.endFrozenBal} ,
+			#{item.endFeeBal} ,
+			#{item.createDate}
+			from dual
+		</foreach>
+	</insert>
+
+	<!-- 批量修改 -->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="begin"
+			close=";end;" separator=";">
+			update MonitorBalance set
+			acctAssetType = #{item.acctAssetType} ,
+			beginBal = #{item.beginBal} ,
+			beginFrozenBal = #{item.beginFrozenBal} ,
+			beginFeeBal = #{item.beginFeeBal} ,
+			endBal = #{item.endBal} ,
+			endFrozenBal = #{item.endFrozenBal} ,
+			endFeeBal = #{item.endFeeBal} ,
+			createDate = #{item.createDate}
+			where businessDate = #{businessDate}
+			and acctAssetType = #{acctAssetType}
+			and accountId = #{accountId}
+			and stockinfoId = #{stockinfoId}
+			and bizCategoryId = #{bizCategoryId}
+		</foreach>
+	</update>
+
+	<!-- 根据主键更新一条信息所有数据 -->
+	<update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorBalance">
+		update MonitorBalance set
+		acctAssetType = #{acctAssetType} ,
+		beginBal = #{beginBal} ,
+		beginFrozenBal = #{beginFrozenBal} ,
+		beginFeeBal = #{beginFeeBal} ,
+		endBal = #{endBal} ,
+		endFrozenBal = #{endFrozenBal} ,
+		endFeeBal = #{endFeeBal} ,
+		createDate = #{createDate}
+		where businessDate = #{businessDate}
+		and acctAssetType = #{acctAssetType}
+		and accountId = #{accountId}
+		and stockinfoId = #{stockinfoId}
+		and bizCategoryId = #{bizCategoryId}
+	</update>
+
+	<!-- 根据主键取数据 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultType="com.blocain.bitms.monitor.entity.MonitorBalance">
+		select
+		<include refid="monitorBalanceColumns" />
+		from MonitorBalance a
+		where businessDate = #{businessDate}
+		and acctAssetType = #{acctAssetType}
+		and accountId = #{accountId}
+		and stockinfoId = #{stockinfoId}
+		and bizCategoryId = #{bizCategoryId}
+	</select>
+
+	<!-- 可分页的对象查询 -->
+	<select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorBalance">
+		SELECT
+		<include refid="monitorBalanceColumns" />
+		FROM MonitorBalance a WHERE a.delFlag = 0
+		<if test="acctAssetType != null">
+			and a.acctAssetType like '%'||#{acctAssetType}||'%'
+		</if>
+		<if test="beginBal != null">
+			and a.beginBal = #{beginBal}
+		</if>
+		<if test="beginFrozenBal != null">
+			and a.beginFrozenBal = #{beginFrozenBal}
+		</if>
+		<if test="beginFeeBal != null">
+			and a.beginFeeBal = #{beginFeeBal}
+		</if>
+		<if test="endBal != null">
+			and a.endBal = #{endBal}
+		</if>
+		<if test="endFrozenBal != null">
+			and a.endFrozenBal = #{endFrozenBal}
+		</if>
+		<if test="endFeeBal != null">
+			and a.endFeeBal = #{endFeeBal}
+		</if>
+		<if test="createDate != null">
+			and a.createDate = #{createDate}
+		</if>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorBalance">
+		SELECT
+		<include refid="monitorBalanceColumns" />
+		FROM MonitorBalance a WHERE a.delFlag = 0
+	</select>
+
+
+</mapper>
+

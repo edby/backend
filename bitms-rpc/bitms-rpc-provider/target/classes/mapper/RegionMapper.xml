@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.common.mapper.RegionMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="regionColumns">
+        a.id as id,
+        a.sCode as sCode,
+        a.lCode as lCode,
+        a.enName as enName,
+        a.cnName as cnName,
+        a.area as area,
+        a.sortNum as sortNum
+    </sql>
+
+    <resultMap id="regionResultMap" type="com.blocain.bitms.boss.common.entity.Region">
+        <id column="id" property="id"/>
+        <result column="sCode" property="sCode"/>
+        <result column="lCode" property="lCode"/>
+        <result column="enName" property="enName"/>
+        <result column="cnName" property="cnName"/>
+        <result column="area" property="area"/>
+        <result column="sortNum" property="sortNum"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.common.entity.Region">
+        insert into Region(
+            id ,
+            sCode ,
+            lCode ,
+            enName ,
+            cnName ,
+            area ,
+            sortNum 
+        ) VALUES (
+            #{id} ,
+            #{sCode} ,
+            #{lCode} ,
+            #{enName} ,
+            #{cnName} ,
+            #{area} ,
+            #{sortNum} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from Region where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update Region set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.common.entity.Region">
+        insert into Region
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="sCode != null">
+                sCode ,
+            </if>
+            <if test="lCode != null">
+                lCode ,
+            </if>
+            <if test="enName != null">
+                enName ,
+            </if>
+            <if test="cnName != null">
+                cnName ,
+            </if>
+            <if test="area != null">
+                area ,
+            </if>
+            <if test="sortNum != null">
+                sortNum
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="sCode != null">
+                #{sCode} ,
+            </if>
+            <if test="lCode != null">
+                #{lCode} ,
+            </if>
+            <if test="enName != null">
+                #{enName} ,
+            </if>
+            <if test="cnName != null">
+                #{cnName} ,
+            </if>
+            <if test="area != null">
+                #{area} ,
+            </if>
+            <if test="sortNum != null">
+                #{sortNum}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.common.entity.Region">
+        update Region
+        <set>
+            <if test="sCode != null">
+                sCode = #{sCode} ,
+            </if>
+            <if test="lCode != null">
+                lCode = #{lCode} ,
+            </if>
+            <if test="enName != null">
+                enName = #{enName} ,
+            </if>
+            <if test="cnName != null">
+                cnName = #{cnName} ,
+            </if>
+            <if test="area != null">
+                area = #{area} ,
+            </if>
+            <if test="sortNum != null">
+                sortNum = #{sortNum}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into Region(
+        id ,
+        sCode ,
+        lCode ,
+        enName ,
+        cnName ,
+        area ,
+        sortNum
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.sCode} ,
+            #{item.lCode} ,
+            #{item.enName} ,
+            #{item.cnName} ,
+            #{item.area} ,
+            #{item.sortNum}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update Region set
+            sCode = #{item.sCode} ,
+            lCode = #{item.lCode} ,
+            enName = #{item.enName} ,
+            cnName = #{item.cnName} ,
+            area = #{item.area} ,
+            sortNum = #{item.sortNum}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.common.entity.Region">
+        update Region set
+            sCode = #{sCode} ,
+            lCode = #{lCode} ,
+            enName = #{enName} ,
+            cnName = #{cnName} ,
+            area = #{area} ,
+            sortNum = #{sortNum} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.boss.common.entity.Region">
+        select
+        <include refid="regionColumns"/>
+        from Region a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.common.entity.Region">
+        SELECT
+        <include refid="regionColumns"/>
+        FROM Region a WHERE 1=1 
+        <if test="enName != null">
+            and a.enName like '%'||#{enName}||'%'
+        </if>
+        <if test="cnName != null">
+            and a.cnName like '%'||#{cnName}||'%'
+        </if>
+        <if test="lCode != null and lCode !=''">
+            and a.lCode = #{lCode}
+        </if>
+        ORDER BY sortNum ASC
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.common.entity.Region">
+        SELECT
+        <include refid="regionColumns"/>
+        FROM Region a WHERE 1=1
+        ORDER BY SCODE ASC
+    </select>
+
+
+</mapper>
+

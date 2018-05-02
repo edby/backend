@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.bitpay.mapper.WithdrawRecordMapper">
+	<!-- 基础列 -->
+	<sql id="withdrawRecordColumns">
+		a.id as id,
+		a.accountId as accountId,
+		a.withdrawAddr as withdrawAddr,
+		a.occurAmt as occurAmt,
+		a.netFee as netFee,
+		a.stockinfoId as stockinfoId,
+		a.transId as transId,
+		a.state as state,
+		a.remark as remark,
+		a.createDate as createDate
+	</sql>
+
+	<resultMap id="withdrawRecordResultMap"
+		type="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		<id column="id" property="id" />
+		<result column="accountId" property="accountId" />
+		<result column="withdrawAddr" property="withdrawAddr" />
+		<result column="occurAmt" property="occurAmt" />
+		<result column="netFee" property="netFee" />
+		<result column="stockinfoId" property="stockinfoId" />
+		<result column="transId" property="transId" />
+		<result column="state" property="state" />
+		<result column="remark" property="remark" />
+		<result column="createDate" property="createDate" />
+	</resultMap>
+
+	<!-- 普通插入 -->
+	<insert id="insert" parameterType="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		insert into WithdrawRecord(
+		id ,
+		accountId ,
+		withdrawAddr ,
+		occurAmt ,
+		netFee ,
+		stockinfoId ,
+		transId ,
+		state ,
+		remark ,
+		createDate
+		) VALUES (
+		#{id} ,
+		#{accountId} ,
+		#{withdrawAddr} ,
+		#{occurAmt} ,
+		#{netFee} ,
+		#{stockinfoId} ,
+		#{transId} ,
+		#{state} ,
+		#{remark} ,
+		#{createDate}
+		)
+	</insert>
+	<!-- 根据主键物理删除 -->
+	<delete id="remove" parameterType="java.lang.Long">
+		delete from WithdrawRecord where id = #{id}
+	</delete>
+
+	<!-- 根据主键逻辑删除 -->
+	<update id="delete" parameterType="java.lang.Long">
+		update WithdrawRecord set delFlag = 1 where id = #{id}
+	</update>
+
+	<!--根据条件是否插入数据 -->
+	<insert id="insertSelective" parameterType="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		insert into WithdrawRecord
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id ,
+			</if>
+			<if test="accountId != null">
+				accountId ,
+			</if>
+			<if test="withdrawAddr != null">
+				withdrawAddr ,
+			</if>
+			<if test="occurAmt != null">
+				occurAmt ,
+			</if>
+			<if test="netFee != null">
+				netFee ,
+			</if>
+			<if test="stockinfoId != null">
+				stockinfoId ,
+			</if>
+			<if test="transId != null">
+				transId ,
+			</if>
+			<if test="state != null">
+				state ,
+			</if>
+			<if test="remark != null">
+				remark ,
+			</if>
+			<if test="createDate != null">
+				createDate
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id} ,
+			</if>
+			<if test="accountId != null">
+				#{accountId} ,
+			</if>
+			<if test="withdrawAddr != null">
+				#{withdrawAddr} ,
+			</if>
+			<if test="occurAmt != null">
+				#{occurAmt} ,
+			</if>
+			<if test="netFee != null">
+				#{netFee} ,
+			</if>
+			<if test="stockinfoId != null">
+				#{stockinfoId} ,
+			</if>
+			<if test="transId != null">
+				#{transId} ,
+			</if>
+			<if test="state != null">
+				#{state} ,
+			</if>
+			<if test="remark != null">
+				#{remark} ,
+			</if>
+			<if test="createDate != null">
+				#{createDate}
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 选择性更新数据 -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		update WithdrawRecord
+		<set>
+			<if test="accountId != null">
+				accountId = #{accountId} ,
+			</if>
+			<if test="withdrawAddr != null">
+				withdrawAddr = #{withdrawAddr} ,
+			</if>
+			<if test="occurAmt != null">
+				occurAmt = #{occurAmt} ,
+			</if>
+			<if test="netFee != null">
+				netFee = #{netFee} ,
+			</if>
+			<if test="stockinfoId != null">
+				stockinfoId = #{stockinfoId} ,
+			</if>
+			<if test="transId != null">
+				transId = #{transId} ,
+			</if>
+			<if test="state != null">
+				state = #{state} ,
+			</if>
+			<if test="remark != null">
+				remark = #{remark} ,
+			</if>
+			<if test="createDate != null">
+				createDate = #{createDate}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="list">
+		insert into WithdrawRecord(
+		id ,
+		accountId ,
+		withdrawAddr ,
+		occurAmt ,
+		netFee ,
+		stockinfoId ,
+		transId ,
+		state ,
+		remark ,
+		createDate
+		)
+		<foreach close=")" collection="list" item="item" index="index"
+			open="(" separator="union">
+			select
+			#{item.id} ,
+			#{item.accountId} ,
+			#{item.withdrawAddr} ,
+			#{item.occurAmt} ,
+			#{item.netFee} ,
+			#{item.stockinfoId} ,
+			#{item.transId} ,
+			#{item.state} ,
+			#{item.remark} ,
+			#{item.createDate}
+			from dual
+		</foreach>
+	</insert>
+
+	<!-- 批量修改 -->
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="begin"
+			close=";end;" separator=";">
+			update WithdrawRecord set
+			accountId = #{item.accountId} ,
+			withdrawAddr = #{item.withdrawAddr} ,
+			occurAmt = #{item.occurAmt} ,
+			netFee = #{item.netFee} ,
+			stockinfoId = #{item.stockinfoId} ,
+			transId = #{item.transId} ,
+			state = #{item.state} ,
+			remark = #{item.remark} ,
+			createDate = #{item.createDate}
+			where id = #{item.id}
+		</foreach>
+	</update>
+
+	<!-- 根据主键更新一条信息所有数据 -->
+	<update id="updateByPrimaryKey" parameterType="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		update WithdrawRecord set
+		accountId = #{accountId} ,
+		withdrawAddr = #{withdrawAddr} ,
+		occurAmt = #{occurAmt} ,
+		netFee = #{netFee} ,
+		stockinfoId = #{stockinfoId} ,
+		transId = #{transId} ,
+		state = #{state} ,
+		remark = #{remark} ,
+		createDate = #{createDate}
+		where id = #{id}
+	</update>
+
+	<!-- 根据主键取数据 -->
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultType="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		select
+		<include refid="withdrawRecordColumns" />
+		from WithdrawRecord a where a.id = #{id}
+	</select>
+
+	<!-- 可分页的对象查询 -->
+	<select id="findList" resultType="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		SELECT
+		<include refid="withdrawRecordColumns" />
+		FROM WithdrawRecord a WHERE 1=1
+		<if test="accountId != null">
+			and a.accountId = #{accountId}
+		</if>
+		<if test="stockinfoId != null">
+			and a.stockinfoId = #{stockinfoId}
+		</if>
+		<if test="transId != null">
+			and a.transId = #{transId}
+		</if>
+		<if test="occurAmt != null">
+			and a.occurAmt = #{occurAmt}
+		</if>
+		<if test="netFee != null">
+			and a.netFee = #{netFee}
+		</if>
+		<if test="state != null">
+			and a.state = #{state}
+		</if>
+		<if test="createDate != null">
+			and a.createDate = #{createDate}
+		</if>
+		<if test="idList !=null">
+			and a.id in
+			<foreach item="item" collection="idList" open="(" separator=","
+				close=")">
+				#{item}
+			</foreach>
+		</if>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="selectAll" resultType="com.blocain.bitms.bitpay.entity.WithdrawRecord">
+		SELECT
+		<include refid="withdrawRecordColumns" />
+		FROM WithdrawRecord a WHERE 1=1
+	</select>
+
+
+</mapper>
+

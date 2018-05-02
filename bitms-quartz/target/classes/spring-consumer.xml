@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:consumer check="false"/>
+
+    <!-- 帐户统一服务 -->
+    <dubbo:reference id="accountService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.account.service.AccountService"/>
+    <!-- 区块交易确认 -->
+    <dubbo:reference id="blockTransConfirmService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.BlockTransConfirmService"/>
+    <!-- 钱包地址总接收 -->
+    <dubbo:reference id="systemWalletAddrService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.SystemWalletAddrService"/>
+    <!-- 统一资产服务 -->
+    <dubbo:reference id="fundService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.FundService"/>
+    <!-- 账户钱包资产服务 -->
+    <dubbo:reference id="accountWalletAssetService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.AccountWalletAssetService"/>
+    <!-- 账户借贷服务 -->
+    <dubbo:reference id="accountDebitAssetService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetService"/>
+    <!-- 账户理财服务 -->
+    <dubbo:reference id="accountWealthAssetService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.AccountWealthAssetService"/>
+
+    <!-- 划拨 -->
+    <dubbo:reference id="accountFundTransferService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.AccountFundTransferService"/>
+
+    <!-- 账户资产负债统计（营收统计） -->
+    <dubbo:reference id="sheetBalanceService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.SheetBalanceService"/>
+
+    <!-- ERC20  -->
+    <dubbo:reference id="accountWithdrawRecordERC20Service" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.AccountWithdrawRecordERC20Service"/>
+
+    <!-- 糖果 -->
+    <dubbo:reference id="accountCandyRecordService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.AccountCandyRecordService"/>
+    <!-- 溢价费 -->
+    <dubbo:reference id="accountDebitAssetPremiumService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.fund.service.AccountDebitAssetPremiumService"/>
+    <!-- ERC20 TOKEN -->
+    <dubbo:reference id="erc20TokenService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.stockinfo.service.Erc20TokenService"/>
+
+    <dubbo:reference id="stockRateService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.trade.stockinfo.service.StockRateService"/>
+
+    <!-- 归档 -->
+    <dubbo:reference id="archiveService" mock="return null" version="1.0.0"
+                     interface="com.blocain.bitms.archive.service.ArchiveService"/>
+
+</beans>

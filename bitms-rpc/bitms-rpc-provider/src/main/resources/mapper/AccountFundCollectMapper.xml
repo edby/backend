@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountFundCollectMapper">
+    <!-- 基础列 -->
+    <sql id="accountFundCollectColumns">
+        a.id as id,
+        a.userinfoId as userinfoId,
+        a.stockinfoId as stockinfoId,
+        a.srcWalletId as srcWalletId,
+        a.srcWalletAddr as srcWalletAddr,
+        a.accountId as accountId,
+        a.targetWalletId as targetWalletId,
+        a.targetWalletAddr as targetWalletAddr,
+        a.collectTime as collectTime,
+        a.collectAmt as collectAmt,
+        a.collectFee as collectFee,
+        a.collectStatus as collectStatus,
+        a.transId as transId,
+        a.confirmStatus as confirmStatus,
+        a.originalCurrentId as originalCurrentId,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.remark as remark
+    </sql>
+
+    <resultMap id="accountFundCollectResultMap" type="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        <id column="id" property="id" />
+        <result column="userinfoId" property="userinfoId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="srcWalletId" property="srcWalletId"/>
+        <result column="srcWalletAddr" property="srcWalletAddr"/>
+        <result column="accountId" property="accountId"/>
+        <result column="targetWalletId" property="targetWalletId"/>
+        <result column="targetWalletAddr" property="targetWalletAddr"/>
+        <result column="collectTime" property="collectTime"/>
+        <result column="collectAmt" property="collectAmt"/>
+        <result column="collectFee" property="collectFee"/>
+        <result column="collectStatus" property="collectStatus"/>
+        <result column="transId" property="transId"/>
+        <result column="confirmStatus" property="confirmStatus"/>
+        <result column="originalCurrentId" property="originalCurrentId"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        insert into AccountFundCollect(
+            id ,
+            userinfoId ,
+            stockinfoId ,
+            srcWalletId ,
+            srcWalletAddr ,
+            accountId ,
+            targetWalletId ,
+            targetWalletAddr ,
+            collectTime ,
+            collectAmt ,
+            collectFee ,
+            collectStatus ,
+            transId ,
+            confirmStatus ,
+            originalCurrentId,
+            sign ,
+			randomKey ,
+            remark 
+        ) VALUES (
+            #{id} ,
+            #{userinfoId} ,
+            #{stockinfoId} ,
+            #{srcWalletId} ,
+            #{srcWalletAddr} ,
+            #{accountId} ,
+            #{targetWalletId} ,
+            #{targetWalletAddr} ,
+            #{collectTime} ,
+            #{collectAmt} ,
+            #{collectFee} ,
+            #{collectStatus} ,
+            #{transId} ,
+            #{confirmStatus} ,
+            #{originalCurrentId},
+            #{sign},
+            #{randomKey},
+            #{remark} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountFundCollect where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountFundCollect set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        insert into AccountFundCollect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="userinfoId != null">
+                userinfoId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="srcWalletId != null">
+                srcWalletId ,
+        </if>
+        <if test="srcWalletAddr != null">
+                srcWalletAddr ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="targetWalletId != null">
+                targetWalletId ,
+        </if>
+        <if test="targetWalletAddr != null">
+                targetWalletAddr ,
+        </if>
+        <if test="collectTime != null">
+                collectTime ,
+        </if>
+        <if test="collectAmt != null">
+                collectAmt ,
+        </if>
+        <if test="collectFee != null">
+                collectFee ,
+        </if>
+        <if test="collectStatus != null">
+                collectStatus ,
+        </if>
+        <if test="transId != null">
+                transId ,
+        </if>
+        <if test="confirmStatus != null">
+                confirmStatus ,
+        </if>
+        <if test="originalCurrentId != null">
+                originalCurrentId 
+        </if>
+        <if test="sign != null">
+                sign 
+        </if>
+        <if test="randomKey != null">
+                randomKey 
+        </if>
+        <if test="remark != null">
+                remark 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="userinfoId != null">
+                #{userinfoId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="srcWalletId != null">
+                #{srcWalletId} ,
+        </if>
+        <if test="srcWalletAddr != null">
+                #{srcWalletAddr} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="targetWalletId != null">
+                #{targetWalletId} ,
+        </if>
+        <if test="targetWalletAddr != null">
+                #{targetWalletAddr} ,
+        </if>
+        <if test="collectTime != null">
+                #{collectTime} ,
+        </if>
+        <if test="collectAmt != null">
+                #{collectAmt} ,
+        </if>
+        <if test="collectFee != null">
+                #{collectFee} ,
+        </if>
+        <if test="collectStatus != null">
+                #{collectStatus} ,
+        </if>
+        <if test="transId != null">
+                #{transId} ,
+        </if>
+        <if test="confirmStatus != null">
+                #{confirmStatus} ,
+        </if>
+        <if test="originalCurrentId != null">
+                #{originalCurrentId} ,
+        </if>
+        <if test="sign != null">
+                #{sign} ,
+        </if>
+        <if test="randomKey != null">
+                #{randomKey} ,
+        </if>
+        <if test="remark != null">
+                #{remark} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        update AccountFundCollect
+           <set>
+            <if test="userinfoId != null">
+                userinfoId = #{userinfoId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="srcWalletId != null">
+                srcWalletId = #{srcWalletId} ,
+            </if>
+            <if test="srcWalletAddr != null">
+                srcWalletAddr = #{srcWalletAddr} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="targetWalletId != null">
+                targetWalletId = #{targetWalletId} ,
+            </if>
+            <if test="targetWalletAddr != null">
+                targetWalletAddr = #{targetWalletAddr} ,
+            </if>
+            <if test="collectTime != null">
+                collectTime = #{collectTime} ,
+            </if>
+            <if test="collectAmt != null">
+                collectAmt = #{collectAmt} ,
+            </if>
+            <if test="collectFee != null">
+                collectFee = #{collectFee} ,
+            </if>
+            <if test="collectStatus != null">
+                collectStatus = #{collectStatus} ,
+            </if>
+            <if test="transId != null">
+                transId = #{transId} ,
+            </if>
+            <if test="confirmStatus != null">
+                confirmStatus = #{confirmStatus} ,
+            </if>
+            <if test="originalCurrentId != null">
+                originalCurrentId = #{originalCurrentId} ,
+            </if>
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountFundCollect(
+            id ,
+            userinfoId ,
+            stockinfoId ,
+            srcWalletId ,
+            srcWalletAddr ,
+            accountId ,
+            targetWalletId ,
+            targetWalletAddr ,
+            collectTime ,
+            collectAmt ,
+            collectFee ,
+            collectStatus ,
+            transId ,
+            confirmStatus ,
+            originalCurrentId,
+            sign ,
+			randomKey ,
+            remark 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.userinfoId} ,
+            #{item.stockinfoId} ,
+            #{item.srcWalletId} ,
+            #{item.srcWalletAddr} ,
+            #{item.accountId} ,
+            #{item.targetWalletId} ,
+            #{item.targetWalletAddr} ,
+            #{item.collectTime} ,
+            #{item.collectAmt} ,
+            #{item.collectFee} ,
+            #{item.collectStatus} ,
+            #{item.transId} ,
+            #{item.confirmStatus} ,
+            #{item.originalCurrentId} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.remark} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountFundCollect set
+            userinfoId = #{item.userinfoId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            srcWalletId = #{item.srcWalletId} ,
+            srcWalletAddr = #{item.srcWalletAddr} ,
+            accountId = #{item.accountId} ,
+            targetWalletId = #{item.targetWalletId} ,
+            targetWalletAddr = #{item.targetWalletAddr} ,
+            collectTime = #{item.collectTime} ,
+            collectAmt = #{item.collectAmt} ,
+            collectFee = #{item.collectFee} ,
+            collectStatus = #{item.collectStatus} ,
+            transId = #{item.transId} ,
+            confirmStatus = #{item.confirmStatus} ,
+            originalCurrentId = #{item.originalCurrentId} ,
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            remark = #{item.remark} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        update AccountFundCollect set
+            userinfoId = #{userinfoId} ,
+            stockinfoId = #{stockinfoId} ,
+            srcWalletId = #{srcWalletId} ,
+            srcWalletAddr = #{srcWalletAddr} ,
+            accountId = #{accountId} ,
+            targetWalletId = #{targetWalletId} ,
+            targetWalletAddr = #{targetWalletAddr} ,
+            collectTime = #{collectTime} ,
+            collectAmt = #{collectAmt} ,
+            collectFee = #{collectFee} ,
+            collectStatus = #{collectStatus} ,
+            transId = #{transId} ,
+            confirmStatus = #{confirmStatus} ,
+            originalCurrentId = #{originalCurrentId} ,
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            remark = #{remark} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        select <include refid="accountFundCollectColumns"/> from AccountFundCollect a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        SELECT
+        <include refid="accountFundCollectColumns"/>
+        FROM AccountFundCollect a WHERE 1=1
+        <if test="userinfoId != null">
+            and a.userinfoId = #{userinfoId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="srcWalletId != null">
+            and a.srcWalletId = #{srcWalletId}
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="targetWalletId != null">
+            and a.targetWalletId = #{targetWalletId}
+        </if>
+        <if test="collectTime != null">
+            and a.collectTime = #{collectTime}
+        </if>
+        <if test="collectAmt != null">
+            and a.collectAmt = #{collectAmt}
+        </if>
+        <if test="collectFee != null">
+            and a.collectFee = #{collectFee}
+        </if>
+        <if test="collectStatus != null">
+            and a.collectStatus = #{collectStatus}
+        </if>
+        <if test="transId != null">
+            and a.transId = #{transId}
+        </if>
+        <if test="confirmStatus != null">
+            and a.confirmStatus = #{confirmStatus}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountFundCollect">
+        SELECT
+        <include refid="accountFundCollectColumns"/>
+        FROM AccountFundCollect a WHERE 1=1
+    </select>
+
+
+</mapper>
+

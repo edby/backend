@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.boss.system.mapper.UserInfoMapper">
+    <!-- 基础列 -->
+    <sql id="userInfoColumns">
+        a.id as id,
+        a.orgId as orgId,
+        a.userName as userName,
+        a.trueName as trueName,
+        a.passWord as passWord,
+        a.gender as gender,
+        a.active as active,
+        a.idCard as idCard,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.authKey as authKey,
+        a.delFlag as delFlag
+    </sql>
+
+    <sql id="userInfoJoinColumns">
+        a.id as id,
+        a.orgId as orgId,
+        b.orgName as orgName,
+        a.userName as userName,
+        a.trueName as trueName,
+        a.passWord as passWord,
+        a.gender as gender,
+        a.active as active,
+        a.idCard as idCard,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.authKey as authKey,
+        a.delFlag as delFlag,
+        a.userLogo as userLogo,
+        a.userDest as userDest,
+        a.jobTitle as jobTitle,
+        a.address as address,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <sql id="userExtJoinColumns">
+        a.id as id,
+        a.orgId as orgId,
+        a.userName as userName,
+        a.trueName as trueName,
+        a.passWord as passWord,
+        a.gender as gender,
+        a.active as active,
+        a.idCard as idCard,
+        a.sign as sign,
+        a.randomKey as randomKey,
+        a.authKey as authKey,
+        a.delFlag as delFlag,
+        a.userLogo as userLogo,
+        a.userDest as userDest,
+        a.jobTitle as jobTitle,
+        a.address as address,
+        a.createDate as createDate,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="userInfoResultMap" type="com.blocain.bitms.boss.system.entity.UserInfo">
+        <id column="id" property="id"/>
+        <result column="orgId" property="orgId"/>
+        <result column="userName" property="userName"/>
+        <result column="trueName" property="trueName"/>
+        <result column="passWord" property="passWord"/>
+        <result column="gender" property="gender"/>
+        <result column="active" property="active"/>
+        <result column="idCard" property="idCard"/>
+        <result column="sign" property="sign"/>
+        <result column="randomKey" property="randomKey"/>
+        <result column="authKey" property="authKey"/>
+        <result column="delFlag" property="delFlag"/>
+        <result column="userLogo" property="userLogo"/>
+        <result column="userDest" property="userDest"/>
+        <result column="jobTitle" property="jobTitle"/>
+        <result column="address" property="address"/>
+        <result column="createDate" property="createDate"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.boss.system.entity.UserInfo">
+        insert into UserInfo(
+            id ,
+            orgId ,
+            userName ,
+            trueName ,
+            passWord ,
+            gender ,
+            active ,
+            idCard ,
+            sign ,
+            randomKey ,
+            authKey,
+            delFlag,
+            userLogo ,
+            userDest ,
+            jobTitle ,
+            address ,
+            createDate ,
+            updateDate
+        ) VALUES (
+            #{id} ,
+            #{orgId} ,
+            #{userName} ,
+            #{trueName} ,
+            #{passWord} ,
+            #{gender} ,
+            #{active} ,
+            #{idCard} ,
+            #{sign} ,
+            #{randomKey} ,
+            #{authKey},
+            #{delFlag} ,
+            #{userLogo} ,
+            #{userDest} ,
+            #{jobTitle} ,
+            #{address} ,
+            #{createDate} ,
+            #{updateDate}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from UserInfo where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update UserInfo set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.boss.system.entity.UserInfo">
+        insert into UserInfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="orgId != null">
+                orgId ,
+            </if>
+            <if test="userName != null">
+                userName ,
+            </if>
+            <if test="trueName != null">
+                trueName ,
+            </if>
+            <if test="passWord != null">
+                passWord ,
+            </if>
+            <if test="gender != null">
+                gender ,
+            </if>
+            <if test="active != null">
+                active ,
+            </if>
+            <if test="idCard != null">
+                idCard ,
+            </if>
+            <if test="sign != null">
+                sign ,
+            </if>
+            <if test="randomKey != null">
+                randomKey ,
+            </if>
+            <if test="authKey != null">
+                authKey ,
+            </if>
+            <if test="delFlag != null">
+                delFlag
+            </if>
+            <if test="userLogo != null">
+                userLogo ,
+            </if>
+            <if test="userDest != null">
+                userDest ,
+            </if>
+            <if test="jobTitle != null">
+                jobTitle ,
+            </if>
+            <if test="address != null">
+                address ,
+            </if>
+            <if test="createDate != null">
+                createDate ,
+            </if>
+            <if test="updateDate != null">
+                updateDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="orgId != null">
+                #{orgId} ,
+            </if>
+            <if test="userName != null">
+                #{userName} ,
+            </if>
+            <if test="trueName != null">
+                #{trueName} ,
+            </if>
+            <if test="passWord != null">
+                #{passWord} ,
+            </if>
+            <if test="gender != null">
+                #{gender} ,
+            </if>
+            <if test="active != null">
+                #{active} ,
+            </if>
+            <if test="idCard != null">
+                #{idCard} ,
+            </if>
+            <if test="sign != null">
+                #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                #{randomKey} ,
+            </if>
+            <if test="authKey != null">
+                #{authKey} ,
+            </if>
+            <if test="delFlag != null">
+                #{delFlag}
+            </if>
+            <if test="userLogo != null">
+                #{userLogo} ,
+            </if>
+            <if test="userDest != null">
+                #{userDest} ,
+            </if>
+            <if test="jobTitle != null">
+                #{jobTitle} ,
+            </if>
+            <if test="address != null">
+                #{address} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                #{updateDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.boss.system.entity.UserInfo">
+        update UserInfo
+        <set>
+            <if test="orgId != null">
+                orgId = #{orgId} ,
+            </if>
+            <if test="userName != null and userName != ''">
+                userName = #{userName} ,
+            </if>
+            <if test="trueName != null and trueName != ''">
+                trueName = #{trueName} ,
+            </if>
+            <if test="passWord != null and passWord != ''">
+                passWord = #{passWord} ,
+            </if>
+            <if test="gender != null">
+                gender = #{gender} ,
+            </if>
+            <if test="active != null">
+                active = #{active} ,
+            </if>
+            <if test="idCard != null and idCard != ''">
+                idCard = #{idCard} ,
+            </if>
+            <if test="sign != null">
+                sign = #{sign} ,
+            </if>
+            <if test="randomKey != null">
+                randomKey = #{randomKey} ,
+            </if>
+            <if test="authKey != null">
+                authKey = #{authKey} ,
+            </if>
+            <if test="userLogo != null">
+                userLogo = #{userLogo} ,
+            </if>
+            <if test="userDest != null">
+                userDest = #{userDest} ,
+            </if>
+            <if test="jobTitle != null">
+                jobTitle = #{jobTitle} ,
+            </if>
+            <if test="address != null">
+                address = #{address} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into UserInfo(
+        id ,
+        orgId ,
+        userName ,
+        trueName ,
+        passWord ,
+        gender ,
+        active ,
+        idCard ,
+        sign ,
+        randomKey ,
+        authKey,
+        delFlag ,
+        userLogo ,
+        userDest ,
+        jobTitle ,
+        address ,
+        createDate ,
+        updateDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.orgId} ,
+            #{item.userName} ,
+            #{item.trueName} ,
+            #{item.passWord} ,
+            #{item.gender} ,
+            #{item.active} ,
+            #{item.idCard} ,
+            #{item.sign} ,
+            #{item.randomKey} ,
+            #{item.authKey} ,
+            #{item.delFlag},
+            #{item.userLogo} ,
+            #{item.userDest} ,
+            #{item.jobTitle} ,
+            #{item.address} ,
+            #{item.createDate} ,
+            #{item.updateDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update UserInfo set
+            orgId = #{item.orgId} ,
+            userName = #{item.userName} ,
+            trueName = #{item.trueName} ,
+            passWord = #{item.passWord} ,
+            gender = #{item.gender} ,
+            active = #{item.active} ,
+            idCard = #{item.idCard} ,
+            sign = #{item.sign} ,
+            randomKey = #{item.randomKey} ,
+            authKey = #{item.authKey} ,
+            delFlag = #{item.delFlag},
+            userLogo = #{item.userLogo} ,
+            userDest = #{item.userDest} ,
+            jobTitle = #{item.jobTitle} ,
+            address = #{item.address} ,
+            createDate = #{item.createDate} ,
+            updateDate = #{item.updateDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.boss.system.entity.UserInfo">
+        update UserInfo set
+            orgId = #{orgId} ,
+            userName = #{userName} ,
+            trueName = #{trueName} ,
+            passWord = #{passWord} ,
+            gender = #{gender} ,
+            active = #{active} ,
+            idCard = #{idCard} ,
+            sign = #{sign} ,
+            randomKey = #{randomKey} ,
+            authKey =  #{authKey} ,
+            delFlag = #{delFlag} ,
+            userLogo = #{userLogo} ,
+            userDest = #{userDest} ,
+            jobTitle = #{jobTitle} ,
+            address = #{address} ,
+            createDate = #{createDate} ,
+            updateDate = #{updateDate}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="userInfoResultMap">
+        select
+        <include refid="userExtJoinColumns"/>
+        from
+        UserInfo a
+        where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.boss.system.entity.UserInfo">
+        SELECT
+        <include refid="userInfoJoinColumns"/>
+        FROM UserInfo a , Organization b
+        WHERE a.orgId = b.id AND a.delFlag = 0 AND b.delFlag = 0
+        <if test="orgId != null">
+            and a.orgId = #{orgId}
+        </if>
+        <if test="userName != null">
+            and a.userName like '%'||#{userName}||'%'
+        </if>
+        <if test="trueName != null">
+            and a.trueName like '%'||#{trueName}||'%'
+        </if>
+        <if test="gender != null">
+            and a.gender = #{gender}
+        </if>
+        <if test="active != null">
+            and a.active = #{active}
+        </if>
+        <if test="idCard != null">
+            and a.idCard like '%'||#{idCard}||'%'
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.boss.system.entity.UserInfo">
+        SELECT
+        <include refid="userInfoColumns"/>
+        FROM UserInfo a WHERE a.delFlag = 0
+    </select>
+
+    <select id="findByUserName" resultType="com.blocain.bitms.boss.system.entity.UserInfo">
+        SELECT
+        <include refid="userInfoColumns"/>
+        FROM UserInfo a WHERE a.delFlag = 0
+        AND a.userName = #{userName}
+    </select>
+
+
+</mapper>
+

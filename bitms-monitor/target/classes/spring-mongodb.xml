@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+    <!-- 加载属性文件 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:mongodb.properties"/>
+
+    <!-- 定义mongo对象，对应的是mongodb官方jar包中的Mongo，replica-set设置集群副本的ip地址和端口 -->
+    <mongo:mongo id="mongodb" replica-set="${mongodb.hostport.prop}">
+        <!-- 一些连接属性的设置 -->
+        <mongo:options
+                connections-per-host="${mongodb.connectionsPerHost.prop}"
+                threads-allowed-to-block-for-connection-multiplier="${mongodb.threadsAllowedToBlockForConnectionMultiplier.prop}"
+                connect-timeout="${mongodb.connectTimeout.prop}"
+                max-wait-time="${mongodb.maxWaitTime.prop}"
+                auto-connect-retry="${mongodb.autoConnectRetry.prop}"
+                socket-keep-alive="${mongodb.socketKeepAlive.prop}"
+                socket-timeout="${mongodb.socketTimeout.prop}"
+                slave-ok="${mongodb.slaveOk.prop}"
+                write-number="1"
+                write-timeout="0"
+                write-fsync="true"/>
+    </mongo:mongo>
+
+    <mongo:db-factory id="mongoDbFactory" dbname="bitms" mongo-ref="mongodb"/>
+    <!--<mongo:db-factory id="mongoDbFactory" dbname="bitms" username="${mongodb.username.prop}" password="${mongodb.password.prop}" mongo-ref="mongodb"/>-->
+
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+    </bean>
+
+    <!-- 扫描操作接口 -->
+    <mongo:mapping-converter base-package="com.blocain.bitms"/>
+
+    <mongo:repositories base-package="com.blocain.bitms"/>
+
+    <context:annotation-config/>
+</beans>

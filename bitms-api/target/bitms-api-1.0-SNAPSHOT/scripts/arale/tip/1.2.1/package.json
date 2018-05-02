@@ -1,0 +1,34 @@
+{
+  "name": "tip",
+  "version": "1.2.1",
+  "family": "arale",
+  "keywords": [
+    "widget",
+    "bubble",
+    "popup"
+  ],
+  "description": "提示框组件，专注于带箭头的气泡框显示、隐藏、动画等交互功能。",
+  "homepage": "http://aralejs.org/tip",
+  "author": "偏右 <afc163@gmail.com>",
+  "maintainers": [
+    "偏右 <afc163@gmail.com>",
+    "乔花 <shengyan1985@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aralejs/tip"
+  },
+  "bugs": {
+    "url": "https://github.com/aralejs/tip/issues"
+  },
+  "license": "MIT",
+  "spm": {
+    "alias": {
+      "$": "$",
+      "popup": "arale/popup/1.1.5/popup",
+      "ui-poptip": "alice/poptip/1.2.0/poptip.css"
+    },
+    "output": ["tip.js"],
+    "styleBox": true
+  }
+}

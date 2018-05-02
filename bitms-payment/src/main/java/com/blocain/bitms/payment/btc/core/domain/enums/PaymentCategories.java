@@ -1,0 +1,50 @@
+package com.blocain.bitms.payment.btc.core.domain.enums;
+
+import com.blocain.bitms.payment.btc.core.common.Errors;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+
+@ToString
+@AllArgsConstructor
+@JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public enum PaymentCategories
+{
+    SEND("send"),
+    /** **/
+    RECEIVE("receive"),
+    /** **/
+    GENERATE("generate"),
+    /** **/
+    IMMATURE("immature"),
+    /** **/
+    ORPHAN("orphan"),
+    /** **/
+    MOVE("move");
+    private final String name;
+    
+    @JsonValue
+    public String getName()
+    {
+        return name;
+    }
+    
+    @JsonCreator
+    public static PaymentCategories forName(String name)
+    {
+        if (name != null)
+        {
+            for (PaymentCategories paymentCategory : PaymentCategories.values())
+            {
+                if (name.equals(paymentCategory.getName())) { return paymentCategory; }
+            }
+        }
+        throw new IllegalArgumentException(Errors.ARGS_BTCD_PAYMENTCATEGORY_UNSUPPORTED.getDescription());
+    }
+}

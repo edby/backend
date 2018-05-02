@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorLogsMapper">
+    <!-- 基础列 -->
+    <sql id="monitorLogsColumns">
+        a.relatedId  as relatedId,
+		a.monitorType as monitorType,
+		a.monitorSubType as monitorSubType,
+		a.monitorName as monitorName,
+		a.monitorResult as monitorResult,
+		a.monitorDate as monitorDate,
+		a.targetTable as targetTable,
+		a.bizCategoryId as bizCategoryId,
+		a.monitorLogDesc as monitorLogDesc
+	</sql>
+    <sql id="monitorLogsJoinColumns">
+        a.relatedId  as relatedId,
+        a.monitorType as monitorType,
+        a.monitorSubType as monitorSubType,
+        a.monitorName as monitorName,
+        a.monitorResult as monitorResult,
+        a.monitorDate as monitorDate,
+        a.targetTable as targetTable,
+        a.bizCategoryId as bizCategoryId,
+        a.monitorLogDesc as monitorLogDesc,
+        b.stockName as stockName
+    </sql>
+
+    <resultMap id="monitorLogsResultMap" type="com.blocain.bitms.monitor.entity.MonitorLogs">
+        <result column="relatedId" property="relatedId"/>
+        <result column="monitorType" property="monitorType"/>
+        <result column="monitorSubType" property="monitorSubType"/>
+        <result column="monitorName" property="monitorName"/>
+        <result column="monitorResult" property="monitorResult"/>
+        <result column="monitorDate" property="monitorDate"/>
+        <result column="targetTable" property="targetTable"/>
+        <result column="bizCategoryId" property="bizCategoryId"/>
+        <result column="monitorLogDesc" property="monitorLogDesc"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorLogs">
+		insert into MonitorLogs(
+		relatedId,
+		monitorType ,
+		monitorSubType ,
+		monitorName ,
+		monitorResult ,
+		monitorDate ,
+		targetTable,
+		bizCategoryId,
+		monitorLogDesc
+		) VALUES (
+		#{relatedId} ,
+		#{monitorType} ,
+		#{monitorSubType} ,
+		#{monitorName} ,
+		#{monitorResult} ,
+		#{monitorDate} ,
+		#{targetTable},
+		#{bizCategoryId},
+		#{monitorLogDesc}
+		)
+	</insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+		delete from MonitorLogs
+		where id = #{id}
+	</delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+		update MonitorLogs set delFlag = 1
+		where id = #{id}
+	</update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorLogs">
+        insert into MonitorLogs
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="relatedId != null">
+                relatedId ,
+            </if>
+            <if test="monitorType != null">
+                monitorType ,
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType ,
+            </if>
+            <if test="monitorName != null">
+                monitorName ,
+            </if>
+            <if test="monitorResult != null">
+                monitorResult ,
+            </if>
+            <if test="monitorDate != null">
+                monitorDate ,
+            </if>
+            <if test="targetTable != null">
+                targetTable,
+            </if>
+            <if test="bizCategoryId != null">
+                bizCategoryId,
+            </if>
+            <if test="monitorLogDesc != null">
+                monitorLogDesc
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="relatedId != null">
+                #{relatedId} ,
+            </if>
+            <if test="monitorType != null">
+                #{monitorType} ,
+            </if>
+            <if test="monitorSubType != null">
+                #{monitorSubType} ,
+            </if>
+            <if test="monitorName != null">
+                #{monitorName} ,
+            </if>
+            <if test="monitorResult != null">
+                #{monitorResult} ,
+            </if>
+            <if test="monitorDate != null">
+                #{monitorDate} ,
+            </if>
+            <if test="targetTable != null">
+                #{targetTable},
+            </if>
+            <if test="bizCategoryId != null">
+                #{bizCategoryId},
+            </if>
+            <if test="monitorLogDesc != null">
+                #{monitorLogDesc}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorLogs">
+        update MonitorLogs
+        <set>
+            <if test="relatedId != null">
+                relatedId = #{relatedId} ,
+            </if>
+            <if test="monitorType != null">
+                monitorType = #{monitorType},
+            </if>
+            <if test="monitorSubType != null">
+                monitorSubType = #{monitorSubType} ,
+            </if>
+            <if test="monitorDate != null">
+                monitorDate = #{monitorDate} ,
+            </if>
+            <if test="monitorName != null">
+                monitorName = #{monitorName} ,
+            </if>
+            <if test="monitorResult != null">
+                monitorResult = #{monitorResult} ,
+            </if>
+            <if test="targetTable != null">
+                targetTable = #{targetTable},
+            </if>
+            <if test="bizCategoryId != null">
+                bizCategoryId = #{bizCategoryId},
+            </if>
+            <if test="monitorLogDesc != null">
+                monitorLogDesc = #{monitorLogDesc}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorLogs(
+        id,
+        monitorType ,
+        monitorSubType ,
+        monitorName ,
+        monitorResult ,
+        targetTable,
+        bizCategoryId,
+        monitorLogDesc
+        )
+        <foreach close=")" collection="list" item="item" index="index"
+                 open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.monitorType} ,
+            #{item.monitorSubType} ,
+            #{item.monitorName} ,
+            #{item.monitorResult} ,
+            #{item.targetTable},
+            #{item.bizCategoryId},
+            #{item.monitorLogDesc}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 根据主键批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin"
+                 close=";end;" separator=";">
+            update MonitorLogs set
+            relatedId = #{item.relatedId},
+            monitorType = #{item.monitorType},
+            monitorSubType = #{item.monitorSubType},
+            monitorDate = #{item.monitorDate},
+            monitorName = #{item.monitorName} ,
+            monitorResult = #{item.monitorResult} ,
+            targetTable = #{item.targetTable},
+            bizCategoryId = #{item.bizCategoryId},
+            monitorLogDesc = #{item.monitorLogDesc}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorLogs">
+		update MonitorLogs set
+		relatedId = #{relatedId},
+		monitorType = #{monitorType},
+		monitorSubType = #{monitorSubType},
+		monitorDate = #{monitorDate},
+		monitorName = #{monitorName} ,
+		monitorResult = #{monitorResult} ,
+		targetTable = #{targetTable},
+		bizCategoryId = #{bizCategoryId},
+		monitorLogDesc = #{monitorLogDesc}
+		where id = #{id}
+	</update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.String"
+            resultType="com.blocain.bitms.monitor.entity.MonitorLogs">
+        select
+        <include refid="monitorLogsColumns"/>
+        from MonitorLogs
+        where id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findMonitorLogsList" resultType="com.blocain.bitms.monitor.entity.MonitorLogs">
+        SELECT
+        <include refid="monitorLogsJoinColumns"/>
+        FROM MonitorLogs a LEFT JOIN StockInfo b ON a.bizCategoryId=b.id WHERE 1=1
+
+        <if test="monitorType != null">
+            and monitorType=#{monitorType}
+        </if>
+        <if test="monitorSubType != null">
+            and a.monitorSubType = #{monitorSubType}
+        </if>
+        <if test="monitorResult != null">
+            <choose>
+                <when test="monitorResult==1">
+                    and monitorResult = 1
+                </when>
+                <when test="monitorResult==0">
+                    and monitorResult != 1
+                </when>
+                <otherwise>
+                    -- and monitorResult = #{monitorResult}
+                </otherwise>
+            </choose>
+        </if>
+        <if test="bizCategoryId != null">
+            and a.bizCategoryId = #{bizCategoryId}
+        </if>
+        <if test="timeStart != null ">
+            and a.monitorDate &gt;= to_date(#{timeStart},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        <if test="timeEnd != null ">
+            and a.monitorDate &lt;= to_date(#{timeEnd},'YYYY-MM-DD hh24:mi:ss')
+        </if>
+        order by a.monitordate desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorLogs">
+        SELECT
+        <include refid="monitorLogsColumns"/>
+        FROM MonitorLogs a WHERE a.delFlag = 0
+    </select>
+
+
+</mapper>
+

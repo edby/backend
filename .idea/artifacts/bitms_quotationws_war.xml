@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bitms-quotationws:war">
+    <output-path>$PROJECT_DIR$/bitms-quotationws/target</output-path>
+    <root id="archive" name="bitms-quotationws-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="bitms-quotationws:war exploded" />
+    </root>
+  </artifact>
+</component>

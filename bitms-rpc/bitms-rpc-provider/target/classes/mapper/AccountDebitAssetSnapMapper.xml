@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.AccountDebitAssetSnapMapper">
+    <!-- 基础列 -->
+    <sql id="accountDebitAssetSnapColumns">
+        a.id as id,
+        a.borrowerAccountId as borrowerAccountId,
+        a.lenderAccountId as lenderAccountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.debitAmt as debitAmt,
+        a.accumulateInterest as accumulateInterest,
+        a.lastInterestDay as lastInterestDay,
+        a.lastPrice as lastPrice,
+        a.remark as remark,
+        a.updateDate as updateDate
+    </sql>
+
+    <resultMap id="accountDebitAssetSnapResultMap" type="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        <id column="id" property="id" />
+        <result column="borrowerAccountId" property="borrowerAccountId"/>
+        <result column="lenderAccountId" property="lenderAccountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="debitAmt" property="debitAmt"/>
+        <result column="accumulateInterest" property="accumulateInterest"/>
+        <result column="lastInterestDay" property="lastInterestDay"/>
+        <result column="lastPrice" property="lastPrice"/>
+        <result column="remark" property="remark"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        insert into AccountDebitAssetSnap(
+            id ,
+            borrowerAccountId ,
+            lenderAccountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            debitAmt ,
+            accumulateInterest ,
+            lastInterestDay ,
+            lastPrice ,
+            remark ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{borrowerAccountId} ,
+            #{lenderAccountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{debitAmt} ,
+            #{accumulateInterest} ,
+            #{lastInterestDay} ,
+            #{lastPrice} ,
+            #{remark} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from AccountDebitAssetSnap where id = #{id}
+    </delete>
+
+    <!-- 根据主键物理删除 -->
+    <delete id="deleteAll">
+        delete from AccountDebitAssetSnap where id &gt; 0
+    </delete>
+
+    <!-- SpotDebit快照 -->
+    <insert id="insertSpotDebit">
+        insert into AccountDebitAssetSnap(id,borrowerAccountId,lenderAccountId,stockinfoId,relatedStockinfoId,debitAmt ,
+        accumulateInterest,lastInterestDay,lastPrice,remark,updateDate)
+        (select id,borrowerAccountId,lenderAccountId,stockinfoId,relatedStockinfoId,debitAmt ,
+        accumulateInterest,lastInterestDay,lastPrice,remark,updateDate from AccountDebitAsset )
+    </insert>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update AccountDebitAssetSnap set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        insert into AccountDebitAssetSnap
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="borrowerAccountId != null">
+                borrowerAccountId ,
+        </if>
+        <if test="lenderAccountId != null">
+                lenderAccountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+        </if>
+        <if test="debitAmt != null">
+                debitAmt ,
+        </if>
+        <if test="accumulateInterest != null">
+                accumulateInterest ,
+        </if>
+        <if test="lastInterestDay != null">
+                lastInterestDay ,
+        </if>
+        <if test="lastPrice != null">
+                lastPrice ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="borrowerAccountId != null">
+                #{borrowerAccountId} ,
+        </if>
+        <if test="lenderAccountId != null">
+                #{lenderAccountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+        </if>
+        <if test="debitAmt != null">
+                #{debitAmt} ,
+        </if>
+        <if test="accumulateInterest != null">
+                #{accumulateInterest} ,
+        </if>
+        <if test="lastInterestDay != null">
+                #{lastInterestDay} ,
+        </if>
+        <if test="lastPrice != null">
+                #{lastPrice} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        update AccountDebitAssetSnap
+           <set>
+            <if test="borrowerAccountId != null">
+                borrowerAccountId = #{borrowerAccountId} ,
+            </if>
+            <if test="lenderAccountId != null">
+                lenderAccountId = #{lenderAccountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="debitAmt != null">
+                debitAmt = #{debitAmt} ,
+            </if>
+            <if test="accumulateInterest != null">
+                accumulateInterest = #{accumulateInterest} ,
+            </if>
+            <if test="lastInterestDay != null">
+                lastInterestDay = #{lastInterestDay} ,
+            </if>
+            <if test="lastPrice != null">
+                lastPrice = #{lastPrice} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountDebitAssetSnap(
+            id ,
+            borrowerAccountId ,
+            lenderAccountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            debitAmt ,
+            accumulateInterest ,
+            lastInterestDay ,
+            lastPrice ,
+            remark ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.borrowerAccountId} ,
+            #{item.lenderAccountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.debitAmt} ,
+            #{item.accumulateInterest} ,
+            #{item.lastInterestDay} ,
+            #{item.lastPrice} ,
+            #{item.remark} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountDebitAssetSnap set
+            borrowerAccountId = #{item.borrowerAccountId} ,
+            lenderAccountId = #{item.lenderAccountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            debitAmt = #{item.debitAmt} ,
+            accumulateInterest = #{item.accumulateInterest} ,
+            lastInterestDay = #{item.lastInterestDay} ,
+            lastPrice = #{item.lastPrice} ,
+            remark = #{item.remark} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        update AccountDebitAssetSnap set
+            borrowerAccountId = #{borrowerAccountId} ,
+            lenderAccountId = #{lenderAccountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            debitAmt = #{debitAmt} ,
+            accumulateInterest = #{accumulateInterest} ,
+            lastInterestDay = #{lastInterestDay} ,
+            lastPrice = #{lastPrice} ,
+            remark = #{remark} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        select <include refid="accountDebitAssetSnapColumns"/> from AccountDebitAssetSnap a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        SELECT
+        <include refid="accountDebitAssetSnapColumns"/>
+        FROM AccountDebitAssetSnap a WHERE 1=1
+        <if test="borrowerAccountId != null">
+            and a.borrowerAccountId = #{borrowerAccountId}
+        </if>
+        <if test="lenderAccountId != null">
+            and a.lenderAccountId = #{lenderAccountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="debitAmt != null">
+            and a.debitAmt = #{debitAmt}
+        </if>
+        <if test="accumulateInterest != null">
+            and a.accumulateInterest = #{accumulateInterest}
+        </if>
+        <if test="lastInterestDay != null">
+            and a.lastInterestDay = #{lastInterestDay}
+        </if>
+        <if test="lastPrice != null">
+            and a.lastPrice = #{lastPrice}
+        </if>
+        <if test="remark != null">
+            and a.remark like '%'||#{remark}||'%'
+        </if>
+        <if test="updateDate != null">
+            and a.updateDate = #{updateDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.AccountDebitAssetSnap">
+        SELECT
+        <include refid="accountDebitAssetSnapColumns"/>
+        FROM AccountDebitAssetSnap a WHERE 1=1
+    </select>
+
+
+</mapper>
+

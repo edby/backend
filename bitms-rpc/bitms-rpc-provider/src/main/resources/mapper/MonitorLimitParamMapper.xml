@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorLimitParamMapper">
+    <!-- 基础列 -->
+    <sql id="monitorLimitParamColumns">
+        a.id as id,
+        a.relatedId as relatedId,
+        a.stockinfoId as stockinfoId,
+        a.maxValue as maxValue,
+        a.minValue as minValue,
+        a.compDirect as compDirect,
+        a.createBy as createBy,
+        a.paramDesc as paramDesc,
+        a.createDate as createDate
+    </sql>
+
+    <!-- 基础列 -->
+    <sql id="monitorLimitParamJoinColumns">
+        a.id as id,
+        a.relatedId as relatedId,
+        a.stockinfoId as stockinfoId,
+        a.maxValue as maxValue,
+        a.minValue as minValue,
+        a.compDirect as compDirect,
+        a.createBy as createBy,
+        a.paramDesc as paramDesc,
+        a.createDate as createDate,
+        b.idxName as idxName,
+        c.stockName as stockName
+    </sql>
+
+    <resultMap id="monitorLimitParamResultMap" type="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        <id column="id" property="id"/>
+        <result column="relatedId" property="relatedId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="maxValue" property="maxValue"/>
+        <result column="minValue" property="minValue"/>
+        <result column="compDirect" property="compDirect"/>
+        <result column="createBy" property="createBy"/>
+        <result column="paramDesc" property="paramDesc"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        insert into MonitorLimitParam(
+            id ,
+            relatedId ,
+            stockinfoId ,
+            maxValue ,
+            minValue ,
+            compDirect,
+            createBy ,
+            paramDesc ,
+            createDate 
+        ) VALUES (
+            #{id} ,
+            #{relatedId} ,
+            #{stockinfoId} ,
+            #{maxValue} ,
+            #{minValue} ,
+            #{compDirect},
+            #{createBy} ,
+            #{paramDesc} ,
+            #{createDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorLimitParam where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from MonitorLimitParam where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        insert into MonitorLimitParam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="relatedId != null">
+                relatedId ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId ,
+            </if>
+            <if test="maxValue != null">
+                maxValue ,
+            </if>
+            <if test="minValue != null">
+                minValue ,
+            </if>
+            <if test="compDirect != null">
+                compDirect ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="paramDesc != null">
+                paramDesc ,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="relatedId != null">
+                #{relatedId} ,
+            </if>
+            <if test="stockinfoId != null">
+                #{stockinfoId} ,
+            </if>
+            <if test="maxValue != null">
+                #{maxValue} ,
+            </if>
+            <if test="minValue != null">
+                #{minValue} ,
+            </if>
+            <if test="compDirect != null">
+                #{compDirect} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="paramDesc != null">
+                #{paramDesc} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        update MonitorLimitParam
+        <set>
+            <if test="relatedId != null">
+                relatedId = #{relatedId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="maxValue != null">
+                maxValue = #{maxValue} ,
+            </if>
+            <if test="minValue != null">
+                minValue = #{minValue} ,
+            </if>
+            <if test="compDirect != null">
+                compDirect = #{compDirect} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="paramDesc != null">
+                paramDesc = #{paramDesc} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorLimitParam(
+        id ,
+        relatedId ,
+        stockinfoId ,
+        maxValue ,
+        minValue ,
+        compDirect,
+        createBy ,
+        paramDesc ,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.relatedId} ,
+            #{item.stockinfoId} ,
+            #{item.maxValue} ,
+            #{item.minValue} ,
+            #{item.compDirect} ,
+            #{item.createBy} ,
+            #{item.paramDesc} ,
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MonitorLimitParam set
+            relatedId = #{item.relatedId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            maxValue = #{item.maxValue} ,
+            minValue = #{item.minValue} ,
+            compDirect = #{item.compDirect} ,
+            createBy = #{item.createBy} ,
+            paramDesc = #{item.paramDesc} ,
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        update MonitorLimitParam set
+            relatedId = #{relatedId} ,
+            stockinfoId = #{stockinfoId} ,
+            maxValue = #{maxValue} ,
+            minValue = #{minValue} ,
+            compDirect = #{compDirect} ,
+            createBy = #{createBy} ,
+            paramDesc = #{paramDesc} ,
+            createDate = #{createDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        select
+        <include refid="monitorLimitParamColumns"/>
+        from MonitorLimitParam a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        SELECT
+        <include refid="monitorLimitParamColumns"/>
+        FROM MonitorLimitParam a WHERE 1=1
+        <if test="relatedId != null">
+            and a.relatedId = #{relatedId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        SELECT
+        <include refid="monitorLimitParamColumns"/>
+        FROM MonitorLimitParam a WHERE 1=1
+    </select>
+
+    <!-- 根据指标id和证券id查询 -->
+    <!--<select id="findByIdxAndStock" resultType="com.blocain.bitms.monitor.entity.MonitorLimitParam">-->
+    <!--SELECT-->
+    <!--<include refid="monitorLimitParamColumns"/>-->
+    <!--FROM MonitorLimitParam a WHERE 1=1-->
+    <!--and a.relatedId=#{idxid}-->
+    <!--and a.stockinfoId=#{stockinfoId}-->
+    <!--</select>-->
+
+    <!-- 根据指标id查询 -->
+    <select id="findByIdx" resultType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        SELECT
+        <include refid="monitorLimitParamColumns"/>
+        FROM MonitorLimitParam a WHERE 1=1
+        and a.relatedId=#{idx}
+    </select>
+
+    <!-- 可分页查询 -->
+    <select id="findJoinList" resultType="com.blocain.bitms.monitor.entity.MonitorLimitParam">
+        SELECT
+        <include refid="monitorLimitParamJoinColumns"/>
+        FROM MonitorLimitParam a ,MonitorIndex b,Stockinfo c
+        WHERE 1=1
+        and a.relatedId = b.id(+)
+        and a.stockinfoId = c.id(+)
+        <if test="relatedId != null">
+            and a.relatedId = #{relatedId}
+        </if>
+    </select>
+</mapper>
+

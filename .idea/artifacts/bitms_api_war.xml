@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bitms-api:war">
+    <output-path>$PROJECT_DIR$/bitms-api/target</output-path>
+    <root id="archive" name="bitms-api-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="bitms-api:war exploded" />
+    </root>
+  </artifact>
+</component>

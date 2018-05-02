@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.fund.mapper.SheetBalanceMapper">
+    <!-- 基础列 -->
+    <sql id="sheetBalanceColumns">
+        a.id as id,
+        a.balanceDay as balanceDay,
+        a.accountType as accountType,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.balanceAmt as balanceAmt,
+        a.assetAmt as assetAmt,
+        a.assetFrozenAmt as assetFrozenAmt,
+        a.debitAmt as debitAmt,
+        a.remark as remark,
+        a.updateDate as updateDate
+    </sql>
+    <sql id="sheetBalanceJoinColumns">
+        a.id as id,
+        a.balanceDay as balanceDay,
+        a.accountType as accountType,
+        a.accountId as accountId,
+        a.stockinfoId as stockinfoId,
+        a.relatedStockinfoId as relatedStockinfoId,
+        a.balanceAmt as balanceAmt,
+        a.assetAmt as assetAmt,
+        a.assetFrozenAmt as assetFrozenAmt,
+        a.debitAmt as debitAmt,
+        a.remark as remark,
+        a.updateDate as updateDate,
+        b.accountName as accountName,
+        c.stockName as stockName,
+        c.stockCode as stockCode,
+        d.stockName as relatedStockName,
+        d.stockCode as relatedStockCode
+    </sql>
+
+    <resultMap id="sheetBalanceResultMap" type="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        <id column="id" property="id" />
+        <result column="balanceDay" property="balanceDay"/>
+        <result column="accountType" property="accountType"/>
+        <result column="accountId" property="accountId"/>
+        <result column="stockinfoId" property="stockinfoId"/>
+        <result column="relatedStockinfoId" property="relatedStockinfoId"/>
+        <result column="balanceAmt" property="balanceAmt"/>
+        <result column="assetAmt" property="assetAmt"/>
+        <result column="assetFrozenAmt" property="assetFrozenAmt"/>
+        <result column="debitAmt" property="debitAmt"/>
+        <result column="remark" property="remark"/>
+        <result column="updateDate" property="updateDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        insert into SheetBalance(
+            id ,
+            balanceDay ,
+            accountType ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            balanceAmt ,
+            assetAmt ,
+            assetFrozenAmt ,
+            debitAmt ,
+            remark ,
+            updateDate 
+        ) VALUES (
+            #{id} ,
+            #{balanceDay} ,
+            #{accountType} ,
+            #{accountId} ,
+            #{stockinfoId} ,
+            #{relatedStockinfoId} ,
+            #{balanceAmt} ,
+            #{assetAmt} ,
+            #{assetFrozenAmt} ,
+            #{debitAmt} ,
+            #{remark} ,
+            #{updateDate} 
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from SheetBalance where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <update id="delete" parameterType="java.lang.Long">
+        update SheetBalance set delFlag = 1 where id = #{id}
+    </update>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        insert into SheetBalance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                id ,
+        </if>
+        <if test="balanceDay != null">
+                balanceDay ,
+        </if>
+        <if test="accountType != null">
+                accountType ,
+        </if>
+        <if test="accountId != null">
+                accountId ,
+        </if>
+        <if test="stockinfoId != null">
+                stockinfoId ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                relatedStockinfoId ,
+        </if>
+        <if test="balanceAmt != null">
+                balanceAmt ,
+        </if>
+        <if test="assetAmt != null">
+                assetAmt ,
+        </if>
+        <if test="assetFrozenAmt != null">
+                assetFrozenAmt ,
+        </if>
+        <if test="debitAmt != null">
+                debitAmt ,
+        </if>
+        <if test="remark != null">
+                remark ,
+        </if>
+        <if test="updateDate != null">
+                updateDate 
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="id != null">
+                #{id} ,
+        </if>
+        <if test="balanceDay != null">
+                #{balanceDay} ,
+        </if>
+        <if test="accountType != null">
+                #{accountType} ,
+        </if>
+        <if test="accountId != null">
+                #{accountId} ,
+        </if>
+        <if test="stockinfoId != null">
+                #{stockinfoId} ,
+        </if>
+        <if test="relatedStockinfoId != null">
+                #{relatedStockinfoId} ,
+        </if>
+        <if test="balanceAmt != null">
+                #{balanceAmt} ,
+        </if>
+        <if test="assetAmt != null">
+                #{assetAmt} ,
+        </if>
+        <if test="assetFrozenAmt != null">
+                #{assetFrozenAmt} ,
+        </if>
+        <if test="debitAmt != null">
+                #{debitAmt} ,
+        </if>
+        <if test="remark != null">
+                #{remark} ,
+        </if>
+        <if test="updateDate != null">
+                #{updateDate} 
+        </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        update SheetBalance
+           <set>
+            <if test="balanceDay != null">
+                balanceDay = #{balanceDay} ,
+            </if>
+            <if test="accountType != null">
+                accountType = #{accountType} ,
+            </if>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="stockinfoId != null">
+                stockinfoId = #{stockinfoId} ,
+            </if>
+            <if test="relatedStockinfoId != null">
+                relatedStockinfoId = #{relatedStockinfoId} ,
+            </if>
+            <if test="balanceAmt != null">
+                balanceAmt = #{balanceAmt} ,
+            </if>
+            <if test="assetAmt != null">
+                assetAmt = #{assetAmt} ,
+            </if>
+            <if test="assetFrozenAmt != null">
+                assetFrozenAmt = #{assetFrozenAmt} ,
+            </if>
+            <if test="debitAmt != null">
+                debitAmt = #{debitAmt} ,
+            </if>
+            <if test="remark != null">
+                remark = #{remark} ,
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate} 
+            </if>
+           </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into SheetBalance(
+            id ,
+            balanceDay ,
+            accountType ,
+            accountId ,
+            stockinfoId ,
+            relatedStockinfoId ,
+            balanceAmt ,
+            assetAmt ,
+            assetFrozenAmt ,
+            debitAmt ,
+            remark ,
+            updateDate 
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.balanceDay} ,
+            #{item.accountType} ,
+            #{item.accountId} ,
+            #{item.stockinfoId} ,
+            #{item.relatedStockinfoId} ,
+            #{item.balanceAmt} ,
+            #{item.assetAmt} ,
+            #{item.assetFrozenAmt} ,
+            #{item.debitAmt} ,
+            #{item.remark} ,
+            #{item.updateDate} 
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update SheetBalance set
+            balanceDay = #{item.balanceDay} ,
+            accountType = #{item.accountType} ,
+            accountId = #{item.accountId} ,
+            stockinfoId = #{item.stockinfoId} ,
+            relatedStockinfoId = #{item.relatedStockinfoId} ,
+            balanceAmt = #{item.balanceAmt} ,
+            assetAmt = #{item.assetAmt} ,
+            assetFrozenAmt = #{item.assetFrozenAmt} ,
+            debitAmt = #{item.debitAmt} ,
+            remark = #{item.remark} ,
+            updateDate = #{item.updateDate} 
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        update SheetBalance set
+            balanceDay = #{balanceDay} ,
+            accountType = #{accountType} ,
+            accountId = #{accountId} ,
+            stockinfoId = #{stockinfoId} ,
+            relatedStockinfoId = #{relatedStockinfoId} ,
+            balanceAmt = #{balanceAmt} ,
+            assetAmt = #{assetAmt} ,
+            assetFrozenAmt = #{assetFrozenAmt} ,
+            debitAmt = #{debitAmt} ,
+            remark = #{remark} ,
+            updateDate = #{updateDate} 
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        select <include refid="sheetBalanceColumns"/> from SheetBalance a where a.id = #{id}
+    </select>
+
+    <insert id="insertPlatCalUserAssetDebitForDay">
+     INSERT INTO sheetBalance(id,balanceDay,accountType,accountId,stockinfoId,relatedStockinfoId,balanceAmt,assetAmt,assetFrozenAmt,debitAmt,remark,updateDate)
+(
+      (
+        SELECT to_number(to_char(systimestamp, 'yyyymmdd'))*10000000000+rownum  ,to_number(to_char(systimestamp, 'yyyymmdd')),'walletAccount',
+        accountId,stockinfoId,relatedStockinfoId,amount,amount,frozenAmt,0,'',systimestamp
+        FROM accountwalletasset
+      )
+      union all
+   (
+    SELECT to_number(to_char(systimestamp, 'yyyymmdd'))*30000000000+rownum  ,to_number(to_char(systimestamp, 'yyyymmdd')),'wealthAccount',
+      wealthaccountId,stockinfoId,relatedStockinfoId,wealthamt,wealthamt,0,0,'',systimestamp
+      FROM accountwealthasset
+  )
+  union all
+  (
+
+      SELECT to_number(to_char(systimestamp, 'yyyymmdd'))*20000000000+rownum  ,to_number(to_char(systimestamp, 'yyyymmdd')),'spotAccount',
+      a.accountId,a.stockinfoId,a.relatedStockinfoId,nvl(a.amount,0)-nvl(b.debitamt,0),a.amount,a.frozenAmt,nvl(b.debitamt,0),'',systimestamp
+      FROM accountspotasset a left join accountdebitasset b on a.accountid=b.borroweraccountid and a.stockinfoid=b.stockinfoid and a.relatedstockinfoid=b.relatedstockinfoid
+      )
+)
+    </insert>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        SELECT
+        <include refid="sheetBalanceJoinColumns"/>
+        FROM SheetBalance a
+        left join account b on b.id=a.accountId
+        left join stockinfo c on c.id=a.stockinfoId
+        left join stockinfo d on d.id=a.relatedStockinfoId
+        WHERE 1=1
+        <if test="balanceDay != null">
+            and a.balanceDay = #{balanceDay}
+        </if>
+        <if test="accountType != null">
+            and a.accountType like '%'||#{accountType}||'%'
+        </if>
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="stockinfoId != null">
+            and a.stockinfoId = #{stockinfoId}
+        </if>
+        <if test="relatedStockinfoId != null">
+            and a.relatedStockinfoId = #{relatedStockinfoId}
+        </if>
+        <if test="balanceAmt != null">
+            and a.balanceAmt = #{balanceAmt}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        SELECT
+        <include refid="sheetBalanceColumns"/>
+        FROM SheetBalance a WHERE 1=1
+    </select>
+
+    <!-- 查询所有超级用户 -->
+    <select id="selectAllAdmin" resultType="com.blocain.bitms.trade.fund.entity.SheetBalance">
+        select
+        #{startDate} as startDate,#{endDate} as endDate,
+        aaa.accountId,aaa.stockinfoId,aaa.balanceAmt ,aaa.assetamt ,aaa.assetFrozenAmt ,aaa.debitAmt ,cc.stockCode as stockCode, dd.accountName as accountName
+        from
+        (
+            select nvl(aa.accountId,bb.accountId2) as accountId,nvl(aa.stockinfoId,bb.stockinfoId2) as stockinfoId,
+                    nvl(bb.balanceAmt,0)-nvl(aa.balanceAmt,0) as balanceAmt ,
+                    nvl(bb.assetamt,0)-nvl(aa.assetamt,0) as assetamt ,
+                    nvl(bb.assetFrozenAmt,0)-nvl(aa.assetFrozenAmt,0) as assetFrozenAmt ,
+                    nvl(bb.debitAmt,0)-nvl(aa.debitAmt,0) as debitAmt
+            from (
+                    select a.accountid,a.stockinfoid,
+                            nvl(sum(a.assetamt),0) as assetamt,nvl(sum(a.balanceAmt),0) as balanceAmt,
+                            nvl(sum(a.assetFrozenAmt),0) as assetFrozenAmt,nvl(sum(a.debitAmt),0) as debitAmt
+                     from   sheetBalance a
+                    where a.balanceday=#{startDate} and a.accountid &lt;=200000000000
+                    group by a. accountid,a.stockinfoid
+            ) aa
+
+            full join
+
+            (
+                select b.accountid as accountId2,b.stockinfoid as stockinfoId2, nvl(sum(b.assetamt),0) as assetamt,nvl(sum(b.balanceAmt),0) as balanceAmt,
+                        nvl(sum(b.assetFrozenAmt),0) as assetFrozenAmt,nvl(sum(b.debitAmt),0) as debitAmt
+                        from sheetBalance b
+                        where b.balanceday=#{endDate} and b.accountid&lt;=200000000000
+                        group by b. accountid,b.stockinfoid
+            ) bb
+
+          on aa.accountid=bb.accountid2 and aa.stockinfoid=bb.stockinfoid2
+          ) aaa
+          left join stockinfo cc on aaa.stockinfoid=cc.id
+          left join account dd on aaa.accountid = dd.id
+    </select>
+
+
+</mapper>
+

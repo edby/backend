@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <description>Spring全局配置</description>
+
+    <!-- 加载属性文件 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:email.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:redis.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:jdbc.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:mongodb.properties"/>
+
+    <!-- 使用Annotation自动注册Bean，解决事务失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
+    <context:component-scan base-package="com.blocain.bitms"><!-- base-package 如果多个，用“,”分隔 -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- Spring邮件发送 -->
+    <bean id="mailSender" class="com.blocain.bitms.orm.config.CustomJavaMailSender">
+        <property name="host">
+            <value>${mailserver.host.prop}</value>
+        </property>
+        <property name="port">
+            <value>${mailserver.port.prop}</value>
+        </property>
+        <property name="username">
+            <value>${mailserver.username.prop}</value>
+        </property>
+        <property name="password">
+            <value>${mailserver.password.prop}</value>
+        </property>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">${mailserver.transport.protocol}</prop>
+                <prop key="mail.store.protocol">${mailserver.store.protocol}</prop>
+                <prop key="mail.smtp.class">${mailserver.smtp.class}</prop>
+                <prop key="mail.smtp.host">${mailserver.smtp.host.prop}</prop>
+                <prop key="mail.smtp.auth">${mailserver.smtp.auth}</prop>
+                <prop key="mail.smtp.starttls.enable">${mailserver.smtp.auth}</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.timeout">${mailserver.smtp.timeout}</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 邮件发送服务 -->
+    <bean id="sendMail" class="com.blocain.bitms.trade.mail.SendMail">
+        <property name="sender" ref="mailSender"/>
+    </bean>
+
+    <bean id="springContext" class="com.blocain.bitms.orm.utils.SpringContext"/>
+
+    <!-- 配置 JSR303 Bean Validator 定义 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+</beans>

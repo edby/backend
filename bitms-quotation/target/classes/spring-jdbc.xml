@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 定义主数据数据源 -->
+    <bean id="masterDataSource" class="com.blocain.bitms.orm.config.CustomDruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${master.jdbc.url.prop}"/>
+        <property name="username" value="${master.jdbc.username.prop}"/>
+        <property name="password" value="${master.jdbc.password.prop}"/>
+        <property name="connectionTestQuery" value="${jdbc.check}"/>
+        <!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒 -->
+        <property name="connectionTimeout" value="30000"/>
+        <!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟 -->
+        <property name="idleTimeout" value="600000"/>
+        <!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），
+        缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';） -->
+        <property name="maxLifetime" value="1800000"/>
+        <property name="minimumIdle" value="2" />
+        <!-- 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) -->
+        <property name="maximumPoolSize" value="10"/>
+    </bean>
+
+    <!-- 定义只读数据源 -->
+    <bean id="slaveDataSource" class="com.blocain.bitms.orm.config.CustomDruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${slave.jdbc.url.prop}"/>
+        <property name="username" value="${slave.jdbc.username.prop}"/>
+        <property name="password" value="${slave.jdbc.password.prop}"/>
+        <property name="connectionTestQuery" value="${jdbc.check}"/>
+        <!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒 -->
+        <property name="connectionTimeout" value="30000"/>
+        <!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟 -->
+        <property name="idleTimeout" value="600000"/>
+        <!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），
+        缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';） -->
+        <property name="maxLifetime" value="1800000"/>
+        <property name="minimumIdle" value="2" />
+        <!-- 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) -->
+        <property name="maximumPoolSize" value="10"/>
+    </bean>
+
+    <!--定义数据源-->
+    <bean id="dataSource" class="com.blocain.bitms.orm.db.DynamicDataSource">
+        <property name="master" ref="masterDataSource"/>
+        <property name="slaves">
+            <list>
+                <ref bean="slaveDataSource"/>
+                <ref bean="masterDataSource"/> <!--主数据源也可以做读操作-->
+            </list>
+        </property>
+    </bean>
+
+    <!-- 数据会话工厂 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+    <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="com.blocain.bitms"/>
+        <property name="annotationClass" value="com.blocain.bitms.orm.annotation.MyBatisDao"/>
+    </bean>
+
+    <!-- 事务配置 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 拦截器方式配置事物 -->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="edit*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="send*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="*Batch" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="process*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="modify*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="receive*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="execute*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="create*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="register*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="bind*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="unBind*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="change*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="reset*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="ico*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="do*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="fund*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="entrust*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="realDeal*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--  数据源AOP切入 -->
+    <bean id="dataSourceAspect" class="com.blocain.bitms.orm.db.DataSourceAspect"/>
+
+    <!-- 第一个*代表所有的返回值类型，第二个*代表所有的类，第三个*代表类所有方法，最后一个..代表所有的参数 -->
+    <aop:config>
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.blocain.bitms.*..*ServiceImpl.*(..))"/>
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
+        <aop:aspect id="dataSourceChoose" ref="dataSourceAspect">
+            <aop:around pointcut-ref="transactionPointcut" method="doAround" arg-names="pjp"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>

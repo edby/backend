@@ -1,0 +1,6 @@
+#\u672C\u5730erc20RPC\u670D\u52A1\u5730\u5740(\u8981\u533A\u5206testnet\u4EE5\u53CAmiannet)
+erc20token.root.url=http://47.52.250.204:9876
+#\u672C\u5730erc20RPC\u670D\u52A1\u5730\u5740(\u8981\u533A\u5206testnet\u4EE5\u53CAmiannet)
+erc20token.etherscan.url=https://api-ropsten.etherscan.io/api
+#\u5B98\u7F51API key \u6CE8\u518C\u8D26\u6237  zhangchunxi zhangchunxi@qudao.so  \u5BC6\u7801 FUZAmima987@biex.com
+etherscan.io.apiKey=4YWVMV4QGMSNZAGW4RZEYTZSDHF36TWKMK

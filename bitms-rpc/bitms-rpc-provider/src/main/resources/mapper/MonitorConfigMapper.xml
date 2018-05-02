@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.monitor.mapper.MonitorConfigMapper">
+    <cache eviction="LRU" type="com.blocain.bitms.orm.cache.RedisCache"/>
+    <!-- 基础列 -->
+    <sql id="monitorConfigColumns">
+        a.id as id,
+        a.monitorCode as monitorCode,
+        a.monitorName as monitorName,
+        a.pollingTime as pollingTime,
+        a.monitorCategorys as monitorCategorys,
+        a.idxid1 as idxid1,
+        a.idxid2 as idxid2,
+        a.idxid3 as idxid3,
+        a.idxid4 as idxid4,
+        a.active as active,
+        a.createBy as createBy,
+        a.monitorDesc as monitorDesc,
+        a.createDate as createDate
+    </sql>
+
+    <sql id="monitorConfigJoinColumns">
+        a.id as id,
+        a.monitorCode as monitorCode,
+        a.monitorName as monitorName,
+        a.pollingTime as pollingTime,
+        a.monitorCategorys as monitorCategorys,
+        a.idxid1 as idxid1,
+        a.idxid2 as idxid2,
+        a.idxid3 as idxid3,
+        a.idxid4 as idxid4,
+        a.active as active,
+        a.createBy as createBy,
+        a.monitorDesc as monitorDesc,
+        a.createDate as createDate,
+        b.* as paramList
+    </sql>
+
+    <resultMap id="monitorConfigResultMap" type="com.blocain.bitms.monitor.entity.MonitorConfig">
+        <id column="id" property="id" />
+        <result column="monitorCode" property="monitorCode"/>
+        <result column="monitorName" property="monitorName"/>
+        <result column="pollingTime" property="pollingTime"/>
+        <result column="monitorCategorys" property="monitorCategorys"/>
+        <result column="idxid1" property="idxid1"/>
+        <result column="idxid2" property="idxid2"/>
+        <result column="idxid3" property="idxid3"/>
+        <result column="idxid4" property="idxid4"/>
+        <result column="active" property="active"/>
+        <result column="createBy" property="createBy"/>
+        <result column="monitorDesc" property="monitorDesc"/>
+        <result column="createDate" property="createDate"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        insert into MonitorConfig(
+        id ,
+        monitorCode ,
+        monitorName ,
+        pollingTime ,
+        monitorCategorys ,
+        idxid1,
+        idxid2,
+        idxid3,
+        idxid4,
+        active ,
+        createBy ,
+        monitorDesc ,
+        createDate
+        ) VALUES (
+        #{id} ,
+        #{monitorCode} ,
+        #{monitorName} ,
+        #{pollingTime} ,
+        #{monitorCategorys} ,
+        #{idxid1} ,
+        #{idxid2} ,
+        #{idxid3} ,
+        #{idxid4} ,
+        #{active} ,
+        #{createBy} ,
+        #{monitorDesc} ,
+        #{createDate}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        delete from MonitorConfig where id = #{id}
+    </delete>
+
+    <!-- 根据主键逻辑删除 -->
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from MonitorConfig where id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        insert into MonitorConfig
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="monitorCode != null">
+                monitorCode ,
+            </if>
+            <if test="monitorName != null">
+                monitorName ,
+            </if>
+            <if test="pollingTime != null">
+                pollingTime ,
+            </if>
+            <if test="monitorCategorys != null">
+                monitorCategorys ,
+            </if>
+            <if test="idxid1 != null">
+                idxid1 ,
+            </if>
+            <if test="idxid2 != null">
+                idxid2 ,
+            </if>
+            <if test="idxid3 != null">
+                idxid3 ,
+            </if>
+            <if test="idxid4 != null">
+                idxid4 ,
+            </if>
+            <if test="active != null">
+                active ,
+            </if>
+            <if test="createBy != null">
+                createBy ,
+            </if>
+            <if test="monitorDesc != null">
+                monitorDesc ,
+            </if>
+            <if test="createDate != null">
+                createDate
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="monitorCode != null">
+                #{monitorCode} ,
+            </if>
+            <if test="monitorName != null">
+                #{monitorName} ,
+            </if>
+            <if test="pollingTime != null">
+                #{pollingTime} ,
+            </if>
+            <if test="monitorCategorys != null">
+                #{monitorCategorys} ,
+            </if>
+            <if test="idxid1 != null">
+                #{idxid1} ,
+            </if>
+            <if test="idxid2 != null">
+                #{idxid2} ,
+            </if>
+            <if test="idxid3 != null">
+                #{idxid3} ,
+            </if>
+            <if test="idxid4 != null">
+                #{idxid4} ,
+            </if>
+            <if test="active != null">
+                #{active} ,
+            </if>
+            <if test="createBy != null">
+                #{createBy} ,
+            </if>
+            <if test="monitorDesc != null">
+                #{monitorDesc} ,
+            </if>
+            <if test="createDate != null">
+                #{createDate}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        update MonitorConfig
+        <set>
+            <if test="monitorCode != null">
+                monitorCode = #{monitorCode} ,
+            </if>
+            <if test="monitorName != null">
+                monitorName = #{monitorName} ,
+            </if>
+            <if test="pollingTime != null">
+                pollingTime = #{pollingTime} ,
+            </if>
+            <if test="monitorCategorys != null">
+                monitorCategorys = #{monitorCategorys} ,
+            </if>
+            <if test="idxid1 != null">
+                idxid1 = #{idxid1 } ,
+            </if>
+            <if test="idxid2 != null">
+                idxid2 = #{idxid2 } ,
+            </if>
+            <if test="idxid3 != null">
+                idxid3 = #{idxid3 } ,
+            </if>
+            <if test="idxid4 != null">
+                idxid4 = #{idxid4 } ,
+            </if>
+            <if test="active != null">
+                active = #{active} ,
+            </if>
+            <if test="createBy != null">
+                createBy = #{createBy} ,
+            </if>
+            <if test="monitorDesc != null">
+                monitorDesc = #{monitorDesc} ,
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into MonitorConfig(
+        id ,
+        monitorCode ,
+        monitorName ,
+        pollingTime ,
+        monitorCategorys ,
+        idxid1,
+        idxid2,
+        idxid3,
+        idxid4,
+        active ,
+        createBy ,
+        monitorDesc ,
+        createDate
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.monitorCode} ,
+            #{item.monitorName} ,
+            #{item.pollingTime} ,
+            #{item.monitorCategorys} ,
+            #{item.idxid1} ,
+            #{item.idxid2} ,
+            #{item.idxid3} ,
+            #{item.idxid4} ,
+            #{item.active} ,
+            #{item.createBy} ,
+            #{item.monitorDesc} ,
+            #{item.createDate}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update MonitorConfig set
+            monitorCode = #{item.monitorCode} ,
+            monitorName = #{item.monitorName} ,
+            pollingTime = #{item.pollingTime} ,
+            monitorCategorys = #{item.monitorCategorys} ,
+            idxid1 = #{item.idxid1} ,
+            idxid2 = #{item.idxid2} ,
+            idxid3 = #{item.idxid3} ,
+            idxid4 = #{item.idxid4} ,
+            active = #{item.active} ,
+            createBy = #{item.createBy} ,
+            monitorDesc = #{item.monitorDesc} ,
+            createDate = #{item.createDate}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        update MonitorConfig set
+        monitorCode = #{monitorCode} ,
+        monitorName = #{monitorName} ,
+        pollingTime = #{pollingTime} ,
+        monitorCategorys = #{monitorCategorys} ,
+        idxid1 = #{idxid1} ,
+        idxid2 = #{idxid2} ,
+        idxid3 = #{idxid3} ,
+        idxid4 = #{idxid4} ,
+        active = #{active} ,
+        createBy = #{createBy} ,
+        monitorDesc = #{monitorDesc} ,
+        createDate = #{createDate}
+        where id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey"  parameterType="java.lang.Long" resultType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        select <include refid="monitorConfigColumns"/> from MonitorConfig a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        SELECT
+        <include refid="monitorConfigColumns"/>
+        FROM MonitorConfig a WHERE 1=1
+        <if test="monitorCode != null">
+            and a.monitorCode like '%'||#{monitorCode}||'%'
+        </if>
+        <if test="monitorName != null">
+            and a.monitorName like '%'||#{monitorName}||'%'
+        </if>
+        <if test="pollingTime != null">
+            and a.pollingTime = #{pollingTime}
+        </if>
+        <if test="monitorCategorys != null">
+            and a.monitorCategorys like '%'||#{monitorCategorys}||'%'
+        </if>
+        <if test="active != null">
+            and a.active = #{active}
+        </if>
+        <if test="createBy != null">
+            and a.createBy like '%'||#{createBy}||'%'
+        </if>
+        <if test="monitorDesc != null">
+            and a.monitorDesc like '%'||#{monitorDesc}||'%'
+        </if>
+        <if test="createDate != null">
+            and a.createDate = #{createDate}
+        </if>
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findJoinList" resultType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        select a.*,(select b.idxName as idxName1 from MonitorIndex b  where b.id=a.idxid1) as idxName1,
+        (select b.idxName as idxName2 from MonitorIndex b  where b.id=a.idxid2) as idxName2,
+        (select b.idxName as idxName3 from MonitorIndex b  where b.id=a.idxid3) as idxName3,
+        (select b.idxName as idxName4 from MonitorIndex b  where b.id=a.idxid4) as idxName4
+        FROM MonitorConfig a WHERE 1=1
+        <if test="monitorCode != null">
+            and a.monitorCode = #{monitorCode}
+        </if>
+        <if test="monitorName != null">
+            and a.monitorName like '%'||#{monitorName}||'%'
+        </if>
+        <if test="monitorCategorys != null">
+            and a.monitorCategorys like '%'||#{monitorCategorys}||'%'
+        </if>
+        <if test="active != null">
+            and a.active = #{active}
+        </if>
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        SELECT
+        <include refid="monitorConfigColumns"/>
+        FROM MonitorConfig a WHERE 1=1
+    </select>
+
+    <!-- 根据监控参数表ID查询所有 -->
+    <select id="findRelatedList" parameterType="java.lang.Long" resultType="com.blocain.bitms.monitor.entity.MonitorConfig">
+        SELECT
+        <include refid="monitorConfigColumns"/>
+        FROM MonitorConfig a WHERE
+        a.forbidActionValue like '%'||#{id}||'%'
+        or
+        a.warnActionValue like '%'||#{id}||'%'
+    </select>
+
+
+</mapper>
+

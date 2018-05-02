@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="cache.xml"/>
+
+    <!--Ignite Configuration-->
+    <bean id="igniteCfg" class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="igniteInstanceName" value="BiexIgnite"/>
+        <property name="cacheConfiguration">
+            <list>
+                <ref bean="accountFundCurrentCache"/>
+                <ref bean="accountWalletAssetCache"/>
+                <ref bean="btc2eur_entrustVCoinMoneyCache"/>
+                <ref bean="btc2eur_realDealVCoinMoneyCache"/>
+                <ref bean="btc2eur_realDealVCoinMoneyHisCache"/>
+                <ref bean="btc2usd_entrustVCoinMoneyCache"/>
+                <ref bean="btc2usd_realDealVCoinMoneyCache"/>
+                <ref bean="btc2usd_realDealVCoinMoneyHisCache"/>
+                <ref bean="biex2btc_entrustVCoinMoneyCache"/>
+                <ref bean="biex2btc_realDealVCoinMoneyCache"/>
+                <ref bean="biex2btc_realDealVCoinMoneyHisCache"/>
+            </list>
+        </property>
+
+        <!--Transaction Configuration-->
+        <property name="transactionConfiguration">
+            <bean class="org.apache.ignite.configuration.TransactionConfiguration">
+                <property name="defaultTxIsolation" value="SERIALIZABLE"/>
+                <property name="defaultTxTimeout" value="6000"/>
+            </bean>
+        </property>
+
+        <!--Data Storage Configuration-->
+        <property name="dataStorageConfiguration">
+            <bean class="org.apache.ignite.configuration.DataStorageConfiguration">
+                <property name="defaultDataRegionConfiguration">
+                    <bean class="org.apache.ignite.configuration.DataRegionConfiguration">
+                        <property name="initialSize" value="#{1L * 1024 * 1024 * 1024}"/>
+                        <property name="maxSize" value="#{5L * 1024 * 1024 * 1024}"/>
+                        <!-- Enabling RANDOM_LRU eviction for this region.  -->
+                        <property name="pageEvictionMode" value="RANDOM_LRU"/>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+
+        <!--TCP/IP for node discovery-->
+        <property name="discoverySpi">
+            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+                <property name="ipFinder">
+                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.multicast.TcpDiscoveryMulticastIpFinder">
+                        <property name="addresses">
+                            <list>
+                                <value>127.0.0.1:47500..47510</value>
+                            </list>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

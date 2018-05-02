@@ -1,0 +1,17 @@
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\repository\AccountWalletAssetRepository.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\impl\EntrustVCoinMoneyIgniteImpl.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\impl\RealDealVCoinMoneyIgniteImpl.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\repository\EntrustVCoinMoneyRepository.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\AccountFundCurrentIgnite.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\config\IgniteConsts.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\startup\ServerNodeSpringStartup.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\impl\AccountWalletAssetIgniteImpl.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\startup\ClientNodeSpringStartup.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\config\BiexIgniteCfg.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\AccountWalletAssetIgnite.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\EntrustVCoinMoneyIgnite.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\impl\AccountFundCurrentIgniteImpl.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\repository\AccountFundCurrentRepository.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\repository\RealDealVCoinMoneyHisRepository.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\service\RealDealVCoinMoneyIgnite.java
+G:\idea\idea-work-bitms\backend\bitms-rpc\bitms-rpc-ignite\src\main\java\com\blocain\bitms\ignite\repository\RealDealVCoinMoneyRepository.java

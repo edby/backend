@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blocain.bitms.trade.account.mapper.AccountCertificationMapper">
+    <!-- 基础列 -->
+    <sql id="accountCertificationColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.surname as surname,
+        a.realname as realname,
+        a.regionId as regionId,
+        a.passportId as passportId,
+        a.attachments as attachments,
+        a.status as status
+    </sql>
+    <!-- 链接列 -->
+    <sql id="accountCertificationJoinColumns">
+        a.id as id,
+        a.accountId as accountId,
+        a.surname as surname,
+        a.realname as realname,
+        a.regionId as regionId,
+        a.passportId as passportId,
+        a.attachments as attachments,
+        a.status as status,
+        b.accountName as accountName
+    </sql>
+    <resultMap id="accountCertificationResultMap" type="com.blocain.bitms.trade.account.entity.AccountCertification">
+        <id column="id" property="id"/>
+        <result column="accountId" property="accountId"/>
+        <result column="surname" property="surname"/>
+        <result column="realname" property="realname"/>
+        <result column="regionId" property="regionId"/>
+        <result column="passportId" property="passportId"/>
+        <result column="attachments" property="attachments"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <!-- 普通插入 -->
+    <insert id="insert" parameterType="com.blocain.bitms.trade.account.entity.AccountCertification">
+        INSERT INTO AccountCertification (
+            id,
+            accountId,
+            surname,
+            realname,
+            regionId,
+            passportId,
+            attachments,
+            status
+        ) VALUES (
+            #{id},
+            #{accountId},
+            #{surname},
+            #{realname},
+            #{regionId},
+            #{passportId},
+            #{attachments},
+            #{status}
+        )
+    </insert>
+    <!-- 根据主键物理删除 -->
+    <delete id="remove" parameterType="java.lang.Long">
+        DELETE FROM AccountCertification
+        WHERE id = #{id}
+    </delete>
+
+    <!--根据条件是否插入数据 -->
+    <insert id="insertSelective" parameterType="com.blocain.bitms.trade.account.entity.AccountCertification">
+        insert into AccountCertification
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id ,
+            </if>
+            <if test="accountId != null">
+                accountId ,
+            </if>
+            <if test="surname != null">
+                surname ,
+            </if>
+            <if test="realname != null">
+                realname ,
+            </if>
+            <if test="regionId != null">
+                regionId ,
+            </if>
+            <if test="passportId != null">
+                passportId ,
+            </if>
+            <if test="attachments != null">
+                attachments ,
+            </if>
+            <if test="status != null">
+                status
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id} ,
+            </if>
+            <if test="accountId != null">
+                #{accountId} ,
+            </if>
+            <if test="surname != null">
+                #{surname} ,
+            </if>
+            <if test="realname != null">
+                #{realname} ,
+            </if>
+            <if test="regionId != null">
+                #{regionId} ,
+            </if>
+            <if test="passportId != null">
+                #{passportId} ,
+            </if>
+            <if test="attachments != null">
+                #{attachments} ,
+            </if>
+            <if test="status != null">
+                #{status}
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 选择性更新数据 -->
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.blocain.bitms.trade.account.entity.AccountCertification">
+        update AccountCertification
+        <set>
+            <if test="accountId != null">
+                accountId = #{accountId} ,
+            </if>
+            <if test="surname != null">
+                surname = #{surname} ,
+            </if>
+            <if test="realname != null">
+                realname = #{realname} ,
+            </if>
+            <if test="regionId != null">
+                regionId = #{regionId} ,
+            </if>
+            <if test="passportId != null">
+                passportId = #{passportId} ,
+            </if>
+            <if test="attachments != null">
+                attachments = #{attachments} ,
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" parameterType="list">
+        insert into AccountCertification(
+        id ,
+        accountId ,
+        surname ,
+        realname ,
+        regionId ,
+        passportId ,
+        attachments ,
+        status
+        )
+        <foreach close=")" collection="list" item="item" index="index" open="(" separator="union">
+            select
+            #{item.id} ,
+            #{item.accountId} ,
+            #{item.surname} ,
+            #{item.realname} ,
+            #{item.regionId} ,
+            #{item.passportId} ,
+            #{item.attachments} ,
+            #{item.status}
+            from dual
+        </foreach>
+    </insert>
+
+    <!-- 批量修改 -->
+    <update id="updateBatch" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update AccountCertification set
+            accountId = #{item.accountId} ,
+            surname = #{item.surname} ,
+            realname = #{item.realname} ,
+            regionId = #{item.regionId} ,
+            passportId = #{item.passportId} ,
+            attachments = #{item.attachments} ,
+            status = #{item.status}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <!-- 根据主键更新一条信息所有数据 -->
+    <update id="updateByPrimaryKey" parameterType="com.blocain.bitms.trade.account.entity.AccountCertification">
+        UPDATE AccountCertification
+        SET
+            accountId   = #{accountId},
+            surname     = #{surname},
+            realname    = #{realname},
+            regionId    = #{regionId},
+            passportId  = #{passportId},
+            attachments = #{attachments},
+            status      = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据主键取数据 -->
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long"
+            resultType="com.blocain.bitms.trade.account.entity.AccountCertification">
+        select
+        <include refid="accountCertificationColumns"/>
+        from AccountCertification a where a.id = #{id}
+    </select>
+
+    <!-- 可分页的对象查询 -->
+    <select id="findList" resultType="com.blocain.bitms.trade.account.entity.AccountCertification" useCache="false">
+        SELECT
+        <include refid="accountCertificationJoinColumns"/>
+        FROM AccountCertification a left join Account b on a.accountId=b.id WHERE 1 = 1
+        <if test="accountId != null">
+            and a.accountId = #{accountId}
+        </if>
+        <if test="accountName != null and accountName!=''">
+            and b.accountName like '%'||#{accountName}||'%'
+        </if>
+        <if test="surname != null">
+            and a.surname like '%'||#{surname}||'%'
+        </if>
+        <if test="realname != null">
+            and a.realname like '%'||#{realname}||'%'
+        </if>
+        <if test="regionId != null">
+            and a.regionId = #{regionId}
+        </if>
+        <if test="passportId != null">
+            and a.passportId like '%'||#{passportId}||'%'
+        </if>
+        <if test="status != null">
+            and a.status = #{status}
+        </if>
+        order by a.id desc
+    </select>
+
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="com.blocain.bitms.trade.account.entity.AccountCertification">
+        SELECT
+        <include refid="accountCertificationColumns"/>
+        FROM AccountCertification a
+    </select>
+
+    <select id="findByAccountId" resultType="com.blocain.bitms.trade.account.entity.AccountCertification">
+        SELECT * from(
+            SELECT
+            <include refid="accountCertificationColumns"/>
+            FROM AccountCertification a
+            WHERE a.accountId = #{accountId}
+            ORDER BY a.id desc
+        ) where  ROWNUM = 1
+    </select>
+
+</mapper>
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <description>Spring全局配置</description>
+    <util:map id="topicMap" map-class="java.util.HashMap">
+        <entry key="btc2usd" value-ref="btc2usdTopicConst" />
+        <entry key="btc2bch" value-ref="btc2bchTopicConst" />
+        <entry key="btc2bcz" value-ref="btc2bczTopicConst" />
+        <entry key="btc2ethx" value-ref="btc2ethxTopicConst" />
+        <entry key="btc2ltcx" value-ref="btc2ltcxTopicConst" />
+        <entry key="btc2usdx" value-ref="btc2usdxTopicConst" />
+        <entry key="usdz2btc" value-ref="usdz2btcTopicConst" />
+        <entry key="usd2btc" value-ref="usd2btcTopicConst" />
+        <entry key="biex2btc" value-ref="biex2btcTopicConst" />
+        <entry key="btc2eur" value-ref="btc2eurTopicConst" />
+    </util:map>
+
+    <!-- 加载属性文件 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:redis.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:cookie.properties"/>
+
+    <!-- 配置 JSR303 Bean Validator 定义 -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <bean id="springContext" class="com.blocain.bitms.orm.utils.SpringContext"/>
+</beans>
